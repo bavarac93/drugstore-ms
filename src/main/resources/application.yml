@@ -1,1 +1,24 @@
+server:
+  port: 1221
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5445/dms
+    username: postgres
+    password: muki93
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    generate-ddl: true
+
+  logging:
+    level:
+      org.springframework: info
+      org.hibernate: info
 
