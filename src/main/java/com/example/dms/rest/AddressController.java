@@ -26,12 +26,12 @@ public class AddressController {
 
     @GetMapping
     public ResponseEntity<List<AddressResponse>> getAll() {
-        return new ResponseEntity<>(addressService.getAll(), HttpStatus.FOUND);
+        return new ResponseEntity<>(addressService.findAll(), HttpStatus.FOUND);
     }
 
     @GetMapping("{id}")
     public ResponseEntity<AddressResponse> getById(@PathVariable final Long id) {
-        return new ResponseEntity<>(addressService.getById(id), HttpStatus.FOUND);
+        return new ResponseEntity<>(addressService.findById(id), HttpStatus.FOUND);
     }
 
     @DeleteMapping("{id}")

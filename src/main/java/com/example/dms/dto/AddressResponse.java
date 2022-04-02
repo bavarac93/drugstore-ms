@@ -1,5 +1,7 @@
 package com.example.dms.dto;
 
+import java.time.LocalDateTime;
+
 public class AddressResponse {
     private Long id;
     private String buildingNumber;
@@ -7,6 +9,15 @@ public class AddressResponse {
     private String city;
     private int postcode;
     private String country;
+    private LocalDateTime createdAt;
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 
     public Long getId() {
         return id;

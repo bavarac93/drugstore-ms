@@ -11,8 +11,8 @@ import java.util.List;
  *
  * <ul>
  *     <li>{@link #create}</li>
- *     <li>{@link #getById}</li>
- *     <li>{@link #getAll()}</li>
+ *     <li>{@link #findById}</li>
+ *     <li>{@link #findAll()}</li>
  *     <li>{@link #deleteById}</li>
  *     <li>{@link #updateById}</li>
  *     <li>{@link #updateStreetAndBuildingNumberById}</li>
@@ -33,7 +33,7 @@ public interface AddressService {
      *
      * @return {@link AddressResponse}
      */
-    List<AddressResponse> getAll();
+    List<AddressResponse> findAll();
 
     /**
      * Get an address by id.
@@ -41,7 +41,7 @@ public interface AddressService {
      * @param id {@link Long}
      * @return {@link AddressResponse}
      */
-    AddressResponse getById(final Long id);
+    AddressResponse findById(final Long id);
 
     /**
      * Delete an address by id.

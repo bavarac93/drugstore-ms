@@ -4,8 +4,14 @@ import com.example.dms.dto.AddressRequest;
 import com.example.dms.dto.AddressResponse;
 import com.example.dms.model.AddressEntity;
 
-public interface AddressMapper {
-     AddressEntity dtoToEntity(AddressRequest addressRequest);
+import java.util.List;
 
-     AddressResponse entityToDto(AddressEntity persistedAddressEntity);
+public interface AddressMapper {
+     AddressEntity dtoToEntity(final AddressRequest addressRequest);
+
+     AddressResponse entityToDto(final AddressEntity persistedAddressEntity);
+
+     List<AddressResponse> entityToDto(final List<AddressEntity> addressEntities);
+
+     void updateAddress(final AddressRequest addressRequest, final AddressEntity addressEntity);
 }

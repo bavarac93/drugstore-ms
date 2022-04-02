@@ -1,6 +1,7 @@
 package com.example.dms.model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table (name = "address")
@@ -14,18 +15,49 @@ public class AddressEntity {
     private String city;
     private int postcode;
     private String country;
+    private LocalDateTime modifiedAt;
+    private String modifiedBy;
+    private LocalDateTime createdAt;
+
 
     public AddressEntity( ) {
 
     }
 
-    public AddressEntity(Long id, String buildingNumber, String street, String city, int postcode, String country) {
+    public AddressEntity(Long id, String buildingNumber, String street, String city, int postcode, String country, LocalDateTime modifiedAt, String modifiedBy, LocalDateTime createdAt) {
         this.id = id;
         this.buildingNumber = buildingNumber;
         this.street = street;
         this.city = city;
         this.postcode = postcode;
         this.country = country;
+        this.modifiedAt = modifiedAt;
+        this.modifiedBy = modifiedBy;
+        this.createdAt = createdAt;
+    }
+
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getModifiedAt() {
+        return modifiedAt;
+    }
+
+    public void setModifiedAt(LocalDateTime modifiedAt) {
+        this.modifiedAt = modifiedAt;
     }
 
     public Long getId() {
