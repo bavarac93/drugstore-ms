@@ -13,27 +13,32 @@ public class AddressEntity {
     private String buildingNumber;
     private String street;
     private String city;
-    private int postcode;
+    private String postcode;
     private String country;
     private LocalDateTime modifiedAt;
     private String modifiedBy;
     private LocalDateTime createdAt;
+    private String createdBy;
 
 
     public AddressEntity( ) {
-
     }
 
-    public AddressEntity(Long id, String buildingNumber, String street, String city, int postcode, String country, LocalDateTime modifiedAt, String modifiedBy, LocalDateTime createdAt) {
-        this.id = id;
+    public AddressEntity(String buildingNumber, String street, String city, String postcode, String country, LocalDateTime createdAt) {
         this.buildingNumber = buildingNumber;
         this.street = street;
         this.city = city;
         this.postcode = postcode;
         this.country = country;
-        this.modifiedAt = modifiedAt;
-        this.modifiedBy = modifiedBy;
         this.createdAt = createdAt;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 
     public String getModifiedBy() {
@@ -92,11 +97,11 @@ public class AddressEntity {
         this.city = city;
     }
 
-    public int getPostcode() {
+    public String getPostcode() {
         return postcode;
     }
 
-    public void setPostcode(int postcode) {
+    public void setPostcode(String postcode) {
         this.postcode = postcode;
     }
 
@@ -117,6 +122,10 @@ public class AddressEntity {
         sb.append(", city='").append(city).append('\'');
         sb.append(", postcode=").append(postcode);
         sb.append(", country='").append(country).append('\'');
+        sb.append(", modifiedAt=").append(modifiedAt);
+        sb.append(", modifiedBy='").append(modifiedBy).append('\'');
+        sb.append(", createdAt=").append(createdAt);
+        sb.append(", createdBy='").append(createdBy).append('\'');
         sb.append('}');
         return sb.toString();
     }

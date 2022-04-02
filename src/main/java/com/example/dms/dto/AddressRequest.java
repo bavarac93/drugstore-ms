@@ -4,7 +4,7 @@ public class AddressRequest {
     private String buildingNumber;
     private String street;
     private String city;
-    private int postcode;
+    private String postcode;
     private String country;
 
     public AddressRequest() {
@@ -35,11 +35,11 @@ public class AddressRequest {
         this.city = city;
     }
 
-    public int getPostcode() {
+    public String getPostcode() {
         return postcode;
     }
 
-    public void setPostcode(int postcode) {
+    public void setPostcode(String postcode) {
         this.postcode = postcode;
     }
 

@@ -13,27 +13,38 @@ import java.util.Objects;
 @RestController
 @RequestMapping("address")
 public class AddressController {
+
     private final AddressService addressService;
 
     public AddressController(final AddressService addressService) {
         this.addressService = Objects.requireNonNull(addressService, "addressService cannot be null");
     }
 
+    // API radi
     @PostMapping
     public ResponseEntity<AddressResponse> create(@RequestBody final AddressRequest addressRequest) {
         return new ResponseEntity<>(addressService.create(addressRequest), HttpStatus.CREATED);
     }
 
+    // API radi
+    @PostMapping("create-custom-address")
+    public ResponseEntity<AddressResponse> createCustomContact() {
+        return new ResponseEntity<>(addressService.createCustomAddress(), HttpStatus.CREATED);
+    }
+
+    // API radi
     @GetMapping
-    public ResponseEntity<List<AddressResponse>> getAll() {
+    public ResponseEntity<List<AddressResponse>> findAll() {
         return new ResponseEntity<>(addressService.findAll(), HttpStatus.FOUND);
     }
 
+    // API radi
     @GetMapping("{id}")
-    public ResponseEntity<AddressResponse> getById(@PathVariable final Long id) {
+    public ResponseEntity<AddressResponse> findById(@PathVariable final Long id) {
         return new ResponseEntity<>(addressService.findById(id), HttpStatus.FOUND);
     }
 
+    // API radi
     @DeleteMapping("{id}")
     public ResponseEntity<Void> deleteById(@PathVariable final Long id) {
         addressService.deleteById(id);
@@ -48,6 +59,7 @@ public class AddressController {
         return new ResponseEntity<>(addressService.updateById(id, addressRequest), HttpStatus.ACCEPTED);
     }
 
+    // API radi
     @PatchMapping ("/{id}")
     public ResponseEntity<AddressResponse> updateStreetAndBuildingNumberById(
             @RequestParam("buildingNumber") String buildingNumber,

@@ -30,9 +30,11 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public AddressResponse create(final AddressRequest addressRequest) {
         final AddressEntity addressEntity = addressMapper.dtoToEntity(addressRequest);
-        final AddressEntity persistedAddressEntity = addressRepository.save(addressEntity);
-        final AddressResponse addressResponse = addressMapper.entityToDto(persistedAddressEntity);
-        return addressResponse;
+        addressEntity.setCreatedBy(AUTHOR);
+        addressEntity.setCreatedAt(LocalDateTime.now());
+        final AddressEntity persistedContactEntity = addressRepository.save(addressEntity);
+        final AddressResponse contactResponse = addressMapper.entityToDto(persistedContactEntity);
+        return contactResponse;
     }
 
     @Override
@@ -63,10 +65,12 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public final AddressResponse updateById(Long id, AddressRequest addressRequest) {
         if (!addressRepository.existsById(id)) {
-            throw new ApiRequestException("Address with this id: " + id + "does not exist.");
+            throw new ApiRequestException("Address with this id: " + id + " does not exist.");
         }
         final AddressEntity addressEntity = addressRepository.findById(id).get();
         addressMapper.updateAddress(addressRequest, addressEntity);
+        addressEntity.setModifiedBy(AUTHOR);
+        addressEntity.setModifiedAt(LocalDateTime.now());
         final AddressEntity updateAddressEntity = addressRepository.save(addressEntity);
         return addressMapper.entityToDto(updateAddressEntity);
     }
@@ -84,4 +88,20 @@ public class AddressServiceImpl implements AddressService {
         final AddressEntity updateAddressEntity = addressRepository.save(addressEntity);
         return addressMapper.entityToDto(updateAddressEntity);
     }
+
+    @Override
+    public AddressResponse createCustomAddress() {
+        final AddressEntity addressEntity = new AddressEntity(
+                "bb",
+                "Makovi",
+                "Zenica",
+                "72000",
+                "Bosna i Hercegovina",
+                LocalDateTime.now());
+        final AddressEntity persistedAddressEntity = addressRepository.save(addressEntity);
+        final AddressResponse addressResponse = addressMapper.entityToDto(persistedAddressEntity);
+        return addressResponse;
+    }
+
+
 }

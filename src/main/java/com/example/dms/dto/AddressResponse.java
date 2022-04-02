@@ -7,7 +7,7 @@ public class AddressResponse {
     private String buildingNumber;
     private String street;
     private String city;
-    private int postcode;
+    private String postcode;
     private String country;
     private LocalDateTime createdAt;
 
@@ -51,11 +51,11 @@ public class AddressResponse {
         this.city = city;
     }
 
-    public int getPostcode() {
+    public String getPostcode() {
         return postcode;
     }
 
-    public void setPostcode(int postcode) {
+    public void setPostcode(String postcode) {
         this.postcode = postcode;
     }
 
