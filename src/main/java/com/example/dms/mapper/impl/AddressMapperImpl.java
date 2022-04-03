@@ -47,11 +47,11 @@ public class AddressMapperImpl implements AddressMapper {
 
     @Override
     public void updateAddress(AddressRequest addressRequest, AddressEntity addressEntity) {
-        addressEntity.setCity(addressEntity.getCity());
-        addressEntity.setStreet(addressEntity.getStreet());
-        addressEntity.setPostcode(addressEntity.getPostcode());
-        addressEntity.setBuildingNumber(addressEntity.getBuildingNumber());
-        addressEntity.setCountry(addressEntity.getCountry());
+        addressEntity.setCity(addressRequest.getCity());
+        addressEntity.setStreet(addressRequest.getStreet());
+        addressEntity.setPostcode(addressRequest.getPostcode());
+        addressEntity.setBuildingNumber(addressRequest.getBuildingNumber());
+        addressEntity.setCountry(addressRequest.getCountry());
         addressEntity.setModifiedBy(addressEntity.getModifiedBy());
         addressEntity.setModifiedAt(addressEntity.getModifiedAt());
     }
