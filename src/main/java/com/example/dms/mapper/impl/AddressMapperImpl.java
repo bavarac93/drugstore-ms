@@ -54,6 +54,5 @@ public class AddressMapperImpl implements AddressMapper {
         addressEntity.setCountry(addressEntity.getCountry());
         addressEntity.setModifiedBy(addressEntity.getModifiedBy());
         addressEntity.setModifiedAt(addressEntity.getModifiedAt());
-
     }
 }

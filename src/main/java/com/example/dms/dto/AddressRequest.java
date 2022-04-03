@@ -8,7 +8,6 @@ public class AddressRequest {
     private String country;
 
     public AddressRequest() {
-
     }
 
     public String getBuildingNumber() {
