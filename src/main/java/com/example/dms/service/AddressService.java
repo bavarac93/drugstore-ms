@@ -16,7 +16,6 @@ import java.util.List;
  *     <li>{@link #deleteById}</li>
  *     <li>{@link #updateById}</li>
  *     <li>{@link #updateStreetAndBuildingNumberById}</li>
- *     <li>{@link #createCustomAddress}</li>
  * </ul>
  *
  */
@@ -69,13 +68,6 @@ public interface AddressService {
      * @return {@link AddressResponse}
      */
     AddressResponse updateStreetAndBuildingNumberById(Long id, String buildingNumber, String street);
-
-    /**
-     * Create a custom address.
-     *
-     * @return {@link AddressResponse}
-     */
-    AddressResponse createCustomAddress();
 }
 
 

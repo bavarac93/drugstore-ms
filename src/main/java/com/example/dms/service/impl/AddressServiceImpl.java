@@ -63,7 +63,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public final AddressResponse updateById(Long id, AddressRequest addressRequest) {
+    public  AddressResponse updateById(final Long id, final AddressRequest addressRequest) {
         if (!addressRepository.existsById(id)) {
             throw new ApiRequestException("Address with this id: " + id + " does not exist.");
         }
@@ -76,7 +76,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public final AddressResponse updateStreetAndBuildingNumberById(Long id, String buildingNumber, String street) {
+    public AddressResponse updateStreetAndBuildingNumberById(final Long id, final String buildingNumber, final String street) {
         if (!addressRepository.existsById(id)) {
             throw new ApiRequestException("Address with id: " + id + " does not exist.");
         }
@@ -87,20 +87,6 @@ public class AddressServiceImpl implements AddressService {
         addressEntity.setModifiedAt(LocalDateTime.now());
         final AddressEntity updateAddressEntity = addressRepository.save(addressEntity);
         return addressMapper.entityToDto(updateAddressEntity);
-    }
-
-    @Override
-    public AddressResponse createCustomAddress() {
-        final AddressEntity addressEntity = new AddressEntity(
-                "bb",
-                "Makovi",
-                "Zenica",
-                "72000",
-                "Bosna i Hercegovina",
-                LocalDateTime.now());
-        final AddressEntity persistedAddressEntity = addressRepository.save(addressEntity);
-        final AddressResponse addressResponse = addressMapper.entityToDto(persistedAddressEntity);
-        return addressResponse;
     }
 
 
