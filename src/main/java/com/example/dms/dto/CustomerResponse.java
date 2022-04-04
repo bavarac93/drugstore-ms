@@ -54,7 +54,10 @@ public class CustomerResponse {
     }
 
     public boolean isVerified() {
-        return isVerified;
+        if(email != null) {
+            return true;
+        } else
+        return false;
     }
 
     public void setVerified(boolean verified) {
