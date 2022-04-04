@@ -3,6 +3,7 @@ package com.example.dms.service.impl;
 import com.example.dms.dao.CustomerRepository;
 import com.example.dms.dto.CustomerRequest;
 import com.example.dms.dto.CustomerResponse;
+import com.example.dms.exception.ApiRequestException;
 import com.example.dms.mapper.CustomerMapper;
 import com.example.dms.model.CustomerEntity;
 import com.example.dms.service.CustomerService;
@@ -12,6 +13,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -37,5 +39,15 @@ public class CustomerServiceImpl implements CustomerService {
         final CustomerEntity persistedCustomerEntity = customerRepository.save(customerEntity);
         final CustomerResponse customerResponse = customerMapper.entityToDto(persistedCustomerEntity);
         return customerResponse;
+    }
+
+    @Override
+    public CustomerResponse findById(Long id) {
+        final Optional<CustomerEntity> optionalCustomerEntity = customerRepository.findById(id);
+        if (optionalCustomerEntity.isEmpty()) {
+            throw new ApiRequestException("Customer with this id " + id + " does not exist.");
+        }
+        final CustomerEntity customerEntity = optionalCustomerEntity.get();
+        return customerMapper.entityToDto(customerEntity);
     }
 }

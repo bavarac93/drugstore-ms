@@ -5,10 +5,7 @@ import com.example.dms.dto.CustomerResponse;
 import com.example.dms.service.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
 
@@ -25,8 +22,12 @@ public class CustomerController {
     @PostMapping
     public ResponseEntity<CustomerResponse> create(@RequestBody final CustomerRequest customerRequest) {
         return new ResponseEntity<> (customerService.create(customerRequest), HttpStatus.CREATED);
-
-
-
     }
+
+    @GetMapping("{id}")
+    public ResponseEntity<CustomerResponse> findById(@PathVariable final Long id) {
+        return new ResponseEntity<>(customerService.findById(id), HttpStatus.FOUND);
+    }
+
+
 }
