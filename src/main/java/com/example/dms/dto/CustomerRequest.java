@@ -5,10 +5,8 @@ public class CustomerRequest {
     private String lastName;
     private String phoneNumber;
     private String email;
-    private boolean isVerified;
 
     public CustomerRequest() {
-
     }
 
     public String getFirstName() {
@@ -43,14 +41,4 @@ public class CustomerRequest {
         this.email = email;
     }
 
-    public boolean isVerified() {
-        if(email != null) {
-            return true;
-        } else
-            return false;
-    }
-
-    public void setVerified(boolean verified) {
-        isVerified = verified;
-    }
 }
