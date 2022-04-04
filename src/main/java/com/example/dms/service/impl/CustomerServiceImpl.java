@@ -23,13 +23,13 @@ public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository customerRepository;
     private final CustomerMapper customerMapper;
 
-    public CustomerServiceImpl(CustomerRepository customerRepository, CustomerMapper customerMapper) {
+    public CustomerServiceImpl(final CustomerRepository customerRepository, final CustomerMapper customerMapper) {
         this.customerRepository = Objects.requireNonNull(customerRepository, "customerRepository cannot be null");
         this.customerMapper = Objects.requireNonNull(customerMapper, "customerMapper cannot be null");
     }
 
     @Override
-    public CustomerResponse create(CustomerRequest customerRequest) {
+    public CustomerResponse create(final CustomerRequest customerRequest) {
         final CustomerEntity customerEntity = customerMapper.dtoToEntity(customerRequest);
         customerEntity.setCreatedAt(LocalDateTime.now());
         customerEntity.setCreatedBy(AUTHOR);
@@ -42,7 +42,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerResponse findById(Long id) {
+    public CustomerResponse findById(final Long id) {
         final Optional<CustomerEntity> optionalCustomerEntity = customerRepository.findById(id);
         if (optionalCustomerEntity.isEmpty()) {
             throw new ApiRequestException("Customer with this id " + id + " does not exist.");
