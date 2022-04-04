@@ -12,7 +12,6 @@ public class CustomerResponse {
     private Date dateJoined;
 
 
-
     public String getFirstName() {
         return firstName;
     }
@@ -45,23 +44,13 @@ public class CustomerResponse {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getEmail() {
-        return email;
-    }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
     public boolean isVerified() {
-        if(email != null) {
-            return true;
-        } else
-        return false;
-    }
-
-    public void setVerified(boolean verified) {
-        isVerified = verified;
+        return isVerified;
     }
 
     public Long getId() {
@@ -70,5 +59,13 @@ public class CustomerResponse {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setVerified(boolean verified) {
+        isVerified = verified;
     }
 }

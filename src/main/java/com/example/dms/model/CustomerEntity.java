@@ -19,7 +19,6 @@ public class CustomerEntity {
     private Date dateJoined;
     private String creditCardNumber;
     private Date cardExpiry;
-    private boolean isAllergic;
     private String drugAllergicTo;
     private  String createdBy;
     private LocalDateTime createdAt;
@@ -28,7 +27,7 @@ public class CustomerEntity {
 
     }
 
-    public CustomerEntity(Long id, String firstName, String lastName, String phoneNumber, String email, boolean isVerified, Date dateJoined, String creditCardNumber, Date cardExpiry, boolean isAllergic) {
+    public CustomerEntity(Long id, String firstName, String lastName, String phoneNumber, String email, boolean isVerified, Date dateJoined, String creditCardNumber, Date cardExpiry) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -38,7 +37,6 @@ public class CustomerEntity {
         this.dateJoined = dateJoined;
         this.creditCardNumber = creditCardNumber;
         this.cardExpiry = cardExpiry;
-        this.isAllergic = isAllergic;
     }
 
     public Long getId() {
@@ -81,16 +79,16 @@ public class CustomerEntity {
         this.email = email;
     }
 
+    public Date getDateJoined() {
+        return dateJoined;
+    }
+
     public boolean isVerified() {
         return isVerified;
     }
 
     public void setVerified(boolean verified) {
         isVerified = verified;
-    }
-
-    public Date getDateJoined() {
-        return dateJoined;
     }
 
     public void setDateJoined(Date dateJoined) {
@@ -111,14 +109,6 @@ public class CustomerEntity {
 
     public void setCardExpiry(Date cardExpiry) {
         this.cardExpiry = cardExpiry;
-    }
-
-    public boolean isAllergic() {
-        return isAllergic;
-    }
-
-    public void setAllergic(boolean allergic) {
-        isAllergic = allergic;
     }
 
     public String getDrugAllergicTo() {
@@ -157,7 +147,6 @@ public class CustomerEntity {
         sb.append(", dateJoined=").append(dateJoined);
         sb.append(", creditCardNumber='").append(creditCardNumber).append('\'');
         sb.append(", cardExpiry=").append(cardExpiry);
-        sb.append(", isAllergic=").append(isAllergic);
         sb.append(", drugAllergicTo='").append(drugAllergicTo).append('\'');
         sb.append('}');
         return sb.toString();

@@ -32,6 +32,8 @@ public class CustomerServiceImpl implements CustomerService {
         customerEntity.setCreatedAt(LocalDateTime.now());
         customerEntity.setCreatedBy(AUTHOR);
         customerEntity.setDateJoined(Date.from(Instant.now()));
+        if ((customerRequest.getEmail() != null) && !(customerRequest.getEmail().isEmpty()))
+            customerEntity.setVerified(true);
         final CustomerEntity persistedCustomerEntity = customerRepository.save(customerEntity);
         final CustomerResponse customerResponse = customerMapper.entityToDto(persistedCustomerEntity);
         return customerResponse;
