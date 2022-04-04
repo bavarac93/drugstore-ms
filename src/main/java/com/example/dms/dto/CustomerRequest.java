@@ -47,7 +47,7 @@ public class CustomerRequest {
         return isVerified;
     }
 
-    public void setVerified(boolean isVerified) {
-        isVerified = isVerified;
+    public void setVerified(boolean verified) {
+        isVerified = verified;
     }
 }

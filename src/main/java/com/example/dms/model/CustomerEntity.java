@@ -28,22 +28,6 @@ public class CustomerEntity {
 
     }
 
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
     public CustomerEntity(Long id, String firstName, String lastName, String phoneNumber, String email, boolean isVerified, Date dateJoined, String creditCardNumber, Date cardExpiry, boolean isAllergic) {
         this.id = id;
         this.firstName = firstName;
@@ -101,8 +85,8 @@ public class CustomerEntity {
         return isVerified;
     }
 
-    public void setVerified(boolean isVerified) {
-        isVerified = isVerified;
+    public void setVerified(boolean verified) {
+        isVerified = verified;
     }
 
     public Date getDateJoined() {
@@ -143,6 +127,22 @@ public class CustomerEntity {
 
     public void setDrugAllergicTo(String drugAllergicTo) {
         this.drugAllergicTo = drugAllergicTo;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     @Override
