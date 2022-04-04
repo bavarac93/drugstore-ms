@@ -10,7 +10,15 @@ public class CustomerResponse {
     private String email;
     private boolean isVerified;
     private Date dateJoined;
+    private String drugAllergicTo;
 
+    public String getDrugAllergicTo() {
+        return drugAllergicTo;
+    }
+
+    public void setDrugAllergicTo(String drugAllergicTo) {
+        this.drugAllergicTo = drugAllergicTo;
+    }
 
     public String getFirstName() {
         return firstName;

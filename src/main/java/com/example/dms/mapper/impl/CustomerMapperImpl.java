@@ -16,6 +16,7 @@ public class CustomerMapperImpl implements CustomerMapper {
         customerEntity.setLastName(customerRequest.getLastName());
         customerEntity.setPhoneNumber(customerRequest.getPhoneNumber());
         customerEntity.setEmail(customerRequest.getEmail());
+        customerEntity.setDrugAllergicTo(customerRequest.getDrugAllergicTo());
         return customerEntity;
     }
 
@@ -29,6 +30,7 @@ public class CustomerMapperImpl implements CustomerMapper {
         customerResponse.setPhoneNumber(persistedCustomerEntity.getPhoneNumber());
         customerResponse.setVerified(persistedCustomerEntity.isVerified());
         customerResponse.setDateJoined(persistedCustomerEntity.getDateJoined());
+        customerResponse.setDrugAllergicTo(persistedCustomerEntity.getDrugAllergicTo());
         return customerResponse;
     }
 }

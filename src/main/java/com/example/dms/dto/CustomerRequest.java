@@ -5,8 +5,18 @@ public class CustomerRequest {
     private String lastName;
     private String phoneNumber;
     private String email;
+    private String drugAllergicTo;
+
 
     public CustomerRequest() {
+    }
+
+    public String getDrugAllergicTo() {
+        return drugAllergicTo;
+    }
+
+    public void setDrugAllergicTo(String drugAllergicTo) {
+        this.drugAllergicTo = drugAllergicTo;
     }
 
     public String getFirstName() {
