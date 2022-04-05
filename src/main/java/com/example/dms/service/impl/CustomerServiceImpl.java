@@ -53,4 +53,12 @@ public class CustomerServiceImpl implements CustomerService {
         final List<CustomerEntity> customerEntityList = customerRepository.findAll();
         return customerMapper.entityToDto(customerEntityList);
     }
+
+    @Override
+    public void deleteById(final Long id) {
+        if (!customerRepository.existsById(id)) {
+            throw new ApiRequestException("The customer with this id " + id + "does not exist.");
+        }
+        customerRepository.deleteById(id);
+    }
 }

@@ -14,6 +14,7 @@ import java.util.List;
  *     <li>{@link #create}</li>
  *     <li>{@link #findById}</li>
  *     <li>{@link #findAll()}</li>
+ *     <li>{@link #deleteById}</li>
  * </ul>
  *
  */
@@ -41,4 +42,11 @@ public interface CustomerService {
      * @return {@link CustomerResponse}
      */
     List<CustomerResponse> findAll();
+
+    /**
+     * Delete a customer by id.
+     *
+     * @param id {@link Long}
+     */
+    void deleteById(final Long id);
 }
