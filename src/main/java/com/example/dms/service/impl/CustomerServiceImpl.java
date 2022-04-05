@@ -11,9 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -37,8 +35,7 @@ public class CustomerServiceImpl implements CustomerService {
         if ((customerRequest.getEmail() != null) && !(customerRequest.getEmail().isEmpty()))
             customerEntity.setVerified(true);
         final CustomerEntity persistedCustomerEntity = customerRepository.save(customerEntity);
-        final CustomerResponse customerResponse = customerMapper.entityToDto(persistedCustomerEntity);
-        return customerResponse;
+        return customerMapper.entityToDto(persistedCustomerEntity);
     }
 
     @Override
@@ -49,5 +46,11 @@ public class CustomerServiceImpl implements CustomerService {
         }
         final CustomerEntity customerEntity = optionalCustomerEntity.get();
         return customerMapper.entityToDto(customerEntity);
+    }
+
+    @Override
+    public List<CustomerResponse> findAll() {
+        final List<CustomerEntity> customerEntityList = customerRepository.findAll();
+        return customerMapper.entityToDto(customerEntityList);
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @RestController
@@ -22,6 +23,11 @@ public class CustomerController {
     @PostMapping
     public ResponseEntity<CustomerResponse> create(@RequestBody final CustomerRequest customerRequest) {
         return new ResponseEntity<> (customerService.create(customerRequest), HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CustomerResponse>> findAll() {
+        return new ResponseEntity<>(customerService.findAll(), HttpStatus.FOUND);
     }
 
     @GetMapping("{id}")

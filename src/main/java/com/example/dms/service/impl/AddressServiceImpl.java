@@ -33,15 +33,13 @@ public class AddressServiceImpl implements AddressService {
         addressEntity.setCreatedBy(AUTHOR);
         addressEntity.setCreatedAt(LocalDateTime.now());
         final AddressEntity persistedContactEntity = addressRepository.save(addressEntity);
-        final AddressResponse contactResponse = addressMapper.entityToDto(persistedContactEntity);
-        return contactResponse;
+        return addressMapper.entityToDto(persistedContactEntity);
     }
 
     @Override
     public List<AddressResponse> findAll() {
         final List<AddressEntity> addressEntities = addressRepository.findAll();
-        final List<AddressResponse> addressResponseList = addressMapper.entityToDto(addressEntities);
-        return addressResponseList;
+        return addressMapper.entityToDto(addressEntities);
     }
 
     @Override

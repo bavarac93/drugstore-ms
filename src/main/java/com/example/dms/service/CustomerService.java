@@ -1,7 +1,10 @@
 package com.example.dms.service;
 
+import com.example.dms.dto.AddressResponse;
 import com.example.dms.dto.CustomerRequest;
 import com.example.dms.dto.CustomerResponse;
+
+import java.util.List;
 
 /**
  * Methods used to manipulate customer data.
@@ -10,6 +13,7 @@ import com.example.dms.dto.CustomerResponse;
  * <ul>
  *     <li>{@link #create}</li>
  *     <li>{@link #findById}</li>
+ *     <li>{@link #findAll()}</li>
  * </ul>
  *
  */
@@ -30,4 +34,11 @@ public interface CustomerService {
      * @return {@link CustomerResponse}
      */
     CustomerResponse findById(final Long id);
+
+    /**
+     * Get a list of customers.
+     *
+     * @return {@link CustomerResponse}
+     */
+    List<CustomerResponse> findAll();
 }

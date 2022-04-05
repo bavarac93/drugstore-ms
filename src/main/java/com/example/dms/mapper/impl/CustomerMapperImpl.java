@@ -6,6 +6,9 @@ import com.example.dms.mapper.CustomerMapper;
 import com.example.dms.model.CustomerEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class CustomerMapperImpl implements CustomerMapper {
 
@@ -32,5 +35,14 @@ public class CustomerMapperImpl implements CustomerMapper {
         customerResponse.setDateJoined(persistedCustomerEntity.getDateJoined());
         customerResponse.setDrugAllergicTo(persistedCustomerEntity.getDrugAllergicTo());
         return customerResponse;
+    }
+
+    @Override
+    public List<CustomerResponse> entityToDto(final List<CustomerEntity> customerEntities) {
+        final List<CustomerResponse> responseList = new ArrayList<>();
+        for (CustomerEntity customerEntity : customerEntities) {
+            responseList.add(entityToDto(customerEntity));
+        }
+        return responseList;
     }
 }
