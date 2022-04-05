@@ -12,4 +12,6 @@ public interface CustomerMapper {
     CustomerResponse entityToDto(final CustomerEntity persistedCustomerEntity);
 
     List<CustomerResponse> entityToDto (final List<CustomerEntity> customerEntities);
+
+    void updateCustomer(final CustomerRequest customerRequest, final CustomerEntity customerEntity);
 }

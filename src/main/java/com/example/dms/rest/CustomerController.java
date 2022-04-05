@@ -41,6 +41,14 @@ public class CustomerController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @PutMapping("{id}")
+    public ResponseEntity<CustomerResponse> updateById(
+            @PathVariable final Long id,
+            @RequestBody final CustomerRequest customerRequest
+    ) {
+        return new ResponseEntity<>(customerService.updateById(id, customerRequest), HttpStatus.ACCEPTED);
+    }
+
 
 
 }

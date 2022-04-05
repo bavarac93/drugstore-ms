@@ -45,4 +45,13 @@ public class CustomerMapperImpl implements CustomerMapper {
         }
         return responseList;
     }
+
+    @Override
+    public void updateCustomer(CustomerRequest customerRequest, CustomerEntity customerEntity) {
+        customerEntity.setFirstName(customerRequest.getFirstName());
+        customerEntity.setLastName(customerRequest.getLastName());
+        customerEntity.setEmail(customerRequest.getEmail());
+        customerEntity.setPhoneNumber(customerRequest.getPhoneNumber());
+        customerEntity.setDrugAllergicTo(customerRequest.getDrugAllergicTo());
+    }
 }

@@ -52,7 +52,5 @@ public class AddressMapperImpl implements AddressMapper {
         addressEntity.setPostcode(addressRequest.getPostcode());
         addressEntity.setBuildingNumber(addressRequest.getBuildingNumber());
         addressEntity.setCountry(addressRequest.getCountry());
-        addressEntity.setModifiedBy(addressEntity.getModifiedBy());
-        addressEntity.setModifiedAt(addressEntity.getModifiedAt());
     }
 }

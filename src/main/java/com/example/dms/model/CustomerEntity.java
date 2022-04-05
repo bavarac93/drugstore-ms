@@ -17,17 +17,17 @@ public class CustomerEntity {
     private String email;
     private boolean isVerified;
     private Date dateJoined;
-    private String creditCardNumber;
-    private Date cardExpiry;
     private String drugAllergicTo;
     private  String createdBy;
     private LocalDateTime createdAt;
+    private LocalDateTime modifiedAt;
+    private String modifiedBy;
 
     public CustomerEntity() {
 
     }
 
-    public CustomerEntity(Long id, String firstName, String lastName, String phoneNumber, String email, boolean isVerified, Date dateJoined, String creditCardNumber, Date cardExpiry) {
+    public CustomerEntity(Long id, String firstName, String lastName, String phoneNumber, String email, boolean isVerified, Date dateJoined, String drugAllergicTo, String createdBy, LocalDateTime createdAt) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -35,8 +35,25 @@ public class CustomerEntity {
         this.email = email;
         this.isVerified = isVerified;
         this.dateJoined = dateJoined;
-        this.creditCardNumber = creditCardNumber;
-        this.cardExpiry = cardExpiry;
+        this.drugAllergicTo = drugAllergicTo;
+        this.createdBy = createdBy;
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getModifiedAt() {
+        return modifiedAt;
+    }
+
+    public void setModifiedAt(LocalDateTime modifiedAt) {
+        this.modifiedAt = modifiedAt;
+    }
+
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
     }
 
     public Long getId() {
@@ -95,21 +112,6 @@ public class CustomerEntity {
         this.dateJoined = dateJoined;
     }
 
-    public String getCreditCardNumber() {
-        return creditCardNumber;
-    }
-
-    public void setCreditCardNumber(String creditCardNumber) {
-        this.creditCardNumber = creditCardNumber;
-    }
-
-    public Date getCardExpiry() {
-        return cardExpiry;
-    }
-
-    public void setCardExpiry(Date cardExpiry) {
-        this.cardExpiry = cardExpiry;
-    }
 
     public String getDrugAllergicTo() {
         return drugAllergicTo;
@@ -145,8 +147,6 @@ public class CustomerEntity {
         sb.append(", email='").append(email).append('\'');
         sb.append(", isVerified=").append(isVerified);
         sb.append(", dateJoined=").append(dateJoined);
-        sb.append(", creditCardNumber='").append(creditCardNumber).append('\'');
-        sb.append(", cardExpiry=").append(cardExpiry);
         sb.append(", drugAllergicTo='").append(drugAllergicTo).append('\'');
         sb.append('}');
         return sb.toString();

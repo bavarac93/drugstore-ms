@@ -61,4 +61,17 @@ public class CustomerServiceImpl implements CustomerService {
         }
         customerRepository.deleteById(id);
     }
+
+    @Override
+    public CustomerResponse updateById(Long id, CustomerRequest customerRequest) {
+        if (!customerRepository.existsById(id)) {
+            throw new ApiRequestException("The customer with this id " + id + "cannot be found.");
+        }
+        final CustomerEntity customerEntity = customerRepository.findById(id).get();
+        customerMapper.updateCustomer(customerRequest, customerEntity);
+        customerEntity.setModifiedBy(AUTHOR);
+        customerEntity.setModifiedAt(LocalDateTime.now());
+        final CustomerEntity updateCustomerEntity = customerRepository.save(customerEntity);
+        return customerMapper.entityToDto(updateCustomerEntity);
+    }
 }
