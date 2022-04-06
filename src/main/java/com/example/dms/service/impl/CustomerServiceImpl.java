@@ -84,7 +84,7 @@ public class CustomerServiceImpl implements CustomerService {
         customerEntity.setPhoneNumber(phoneNumber);
         customerEntity.setModifiedBy(AUTHOR);
         customerEntity.setModifiedAt(LocalDateTime.now());
-        final CustomerEntity updateCustomer = customerRepository.save(customerEntity);
-        return customerMapper.entityToDto(updateCustomer);
+        final CustomerEntity updateCustomerEntity = customerRepository.save(customerEntity);
+        return customerMapper.entityToDto(updateCustomerEntity);
     }
 }
