@@ -17,6 +17,7 @@ import java.util.*;
 public class CustomerServiceImpl implements CustomerService {
 
     public static final String AUTHOR = "Muki";
+    public static final String MESSAGE = "The customer with this id does not exist.";
 
     private final CustomerRepository customerRepository;
     private final CustomerMapper customerMapper;
@@ -48,7 +49,7 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerResponse findById(final Long id) {
         final Optional<CustomerEntity> optionalCustomerEntity = customerRepository.findById(id);
         if (optionalCustomerEntity.isEmpty()) {
-            throw new ApiRequestException("Customer with this id " + id + " does not exist.");
+            throw new ApiRequestException(MESSAGE);
         }
         final CustomerEntity customerEntity = optionalCustomerEntity.get();
         return customerMapper.entityToDto(customerEntity);
@@ -57,7 +58,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void deleteById(final Long id) {
         if (!customerRepository.existsById(id)) {
-            throw new ApiRequestException("The customer with this id " + id + "does not exist.");
+            throw new ApiRequestException(MESSAGE);
         }
         customerRepository.deleteById(id);
     }
@@ -65,7 +66,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerResponse updateById(final Long id, final CustomerRequest customerRequest) {
         if (!customerRepository.existsById(id)) {
-            throw new ApiRequestException("The customer with this id " + id + "cannot be found.");
+            throw new ApiRequestException(MESSAGE);
         }
         final CustomerEntity customerEntity = customerRepository.findById(id).get();
         customerMapper.updateCustomer(customerRequest, customerEntity);
@@ -78,7 +79,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerResponse updatePhoneNumberById(final Long id, final String phoneNumber) {
         if (!customerRepository.existsById(id)) {
-            throw new ApiRequestException("The customer with this id " + id + " does not exist.");
+            throw new ApiRequestException(MESSAGE);
         }
         final CustomerEntity customerEntity = customerRepository.findById(id).get();
         customerEntity.setPhoneNumber(phoneNumber);
