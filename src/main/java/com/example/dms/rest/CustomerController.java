@@ -49,6 +49,15 @@ public class CustomerController {
         return new ResponseEntity<>(customerService.updateById(id, customerRequest), HttpStatus.ACCEPTED);
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<CustomerResponse> updatePhoneNumberById(
+            @PathVariable ("id") Long id,
+            @RequestParam ("phoneNumber") String phoneNumber
+    ){
+        CustomerResponse customerResponse = customerService.updatePhoneNumberById(id, phoneNumber);
+        return new ResponseEntity<>(customerResponse, HttpStatus.OK);
+    }
+
 
 
 }

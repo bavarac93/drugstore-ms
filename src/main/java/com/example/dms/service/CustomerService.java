@@ -58,4 +58,14 @@ public interface CustomerService {
      * @return {@link CustomerResponse}
      */
     CustomerResponse updateById(final Long id, final CustomerRequest customerRequest);
+
+    /**
+     *
+     * Update a phoneNumber by id.
+     *
+     * @param id {@link Long}
+     * @param phoneNumber {@link String}
+     * @return {@link CustomerResponse}
+     */
+    CustomerResponse updatePhoneNumberById(final Long id, final String phoneNumber);
 }

@@ -63,7 +63,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerResponse updateById(Long id, CustomerRequest customerRequest) {
+    public CustomerResponse updateById(final Long id, final CustomerRequest customerRequest) {
         if (!customerRepository.existsById(id)) {
             throw new ApiRequestException("The customer with this id " + id + "cannot be found.");
         }
@@ -73,5 +73,18 @@ public class CustomerServiceImpl implements CustomerService {
         customerEntity.setModifiedAt(LocalDateTime.now());
         final CustomerEntity updateCustomerEntity = customerRepository.save(customerEntity);
         return customerMapper.entityToDto(updateCustomerEntity);
+    }
+
+    @Override
+    public CustomerResponse updatePhoneNumberById(final Long id, final String phoneNumber) {
+        if (!customerRepository.existsById(id)) {
+            throw new ApiRequestException("The customer with this id " + id + " does not exist.");
+        }
+        final CustomerEntity customerEntity = customerRepository.findById(id).get();
+        customerEntity.setPhoneNumber(phoneNumber);
+        customerEntity.setModifiedBy(AUTHOR);
+        customerEntity.setModifiedAt(LocalDateTime.now());
+        final CustomerEntity updateCustomer = customerRepository.save(customerEntity);
+        return customerMapper.entityToDto(updateCustomer);
     }
 }
