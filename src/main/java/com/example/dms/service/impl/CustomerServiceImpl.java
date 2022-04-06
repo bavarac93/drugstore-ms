@@ -39,6 +39,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public List<CustomerResponse> findAll() {
+        final List<CustomerEntity> customerEntityList = customerRepository.findAll();
+        return customerMapper.entityToDto(customerEntityList);
+    }
+
+    @Override
     public CustomerResponse findById(final Long id) {
         final Optional<CustomerEntity> optionalCustomerEntity = customerRepository.findById(id);
         if (optionalCustomerEntity.isEmpty()) {
@@ -46,12 +52,6 @@ public class CustomerServiceImpl implements CustomerService {
         }
         final CustomerEntity customerEntity = optionalCustomerEntity.get();
         return customerMapper.entityToDto(customerEntity);
-    }
-
-    @Override
-    public List<CustomerResponse> findAll() {
-        final List<CustomerEntity> customerEntityList = customerRepository.findAll();
-        return customerMapper.entityToDto(customerEntityList);
     }
 
     @Override

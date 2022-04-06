@@ -29,19 +29,19 @@ public interface CustomerService {
     CustomerResponse create(final CustomerRequest customerRequest);
 
     /**
+     * Get a list of customers.
+     *
+     * @return {@link CustomerResponse}
+     */
+    List<CustomerResponse> findAll();
+
+    /**
      * Get a customer by id.
      *
      * @param id {@link Long}
      * @return {@link CustomerResponse}
      */
     CustomerResponse findById(final Long id);
-
-    /**
-     * Get a list of customers.
-     *
-     * @return {@link CustomerResponse}
-     */
-    List<CustomerResponse> findAll();
 
     /**
      * Delete a customer by id.
