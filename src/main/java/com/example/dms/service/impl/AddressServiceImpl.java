@@ -9,6 +9,7 @@ import com.example.dms.model.AddressEntity;
 import com.example.dms.service.AddressService;
 import org.springframework.stereotype.Service;
 
+import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -18,6 +19,7 @@ import java.util.Optional;
 public class AddressServiceImpl implements AddressService {
 
     public static final String AUTHOR = "Muki";
+    public static final String ADDRESS_DOES_NOT_EXIST = "Address with id: {0} does not exist.";
 
     private final AddressMapper addressMapper;
     private final AddressRepository addressRepository;
@@ -46,7 +48,8 @@ public class AddressServiceImpl implements AddressService {
     public AddressResponse findById(final Long id) {
         final Optional<AddressEntity> optionalAddressEntity = addressRepository.findById(id);
         if (optionalAddressEntity.isEmpty()) {
-            throw new ApiRequestException("Address with id: " + id + " does not exist.");
+            throw new ApiRequestException(
+                    MessageFormat.format(ADDRESS_DOES_NOT_EXIST, id));
         }
         final AddressEntity addressEntity = optionalAddressEntity.get();
         return addressMapper.entityToDto(addressEntity);
@@ -55,7 +58,8 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public void deleteById(final Long id) {
         if (!addressRepository.existsById(id)) {
-            throw new ApiRequestException("Address with this id: " + id + " does not exist.");
+            throw new ApiRequestException(
+                    MessageFormat.format(ADDRESS_DOES_NOT_EXIST, id));
         }
         addressRepository.deleteById(id);
     }
@@ -63,7 +67,8 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public  AddressResponse updateById(final Long id, final AddressRequest addressRequest) {
         if (!addressRepository.existsById(id)) {
-            throw new ApiRequestException("Address with this id: " + id + " does not exist.");
+            throw new ApiRequestException(
+                    MessageFormat.format(ADDRESS_DOES_NOT_EXIST, id));
         }
         final AddressEntity addressEntity = addressRepository.findById(id).get();
         addressMapper.updateAddress(addressRequest, addressEntity);
@@ -76,7 +81,8 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public AddressResponse updateStreetAndBuildingNumberById(final Long id, final String buildingNumber, final String street) {
         if (!addressRepository.existsById(id)) {
-            throw new ApiRequestException("Address with id: " + id + " does not exist.");
+            throw new ApiRequestException(
+                    MessageFormat.format(ADDRESS_DOES_NOT_EXIST, id));
         }
         final AddressEntity addressEntity = addressRepository.findById(id).get();
         addressEntity.setStreet(street);
