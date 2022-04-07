@@ -46,12 +46,7 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public AddressResponse findById(final Long id) {
-        final Optional<AddressEntity> optionalAddressEntity = addressRepository.findById(id);
-        if (optionalAddressEntity.isEmpty()) {
-            throw new ApiRequestException(
-                    MessageFormat.format(ADDRESS_DOES_NOT_EXIST, id));
-        }
-        final AddressEntity addressEntity = optionalAddressEntity.get();
+        final AddressEntity addressEntity = getAddressEntityById(id);
         return addressMapper.entityToDto(addressEntity);
     }
 
@@ -66,11 +61,7 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public  AddressResponse updateById(final Long id, final AddressRequest addressRequest) {
-        if (!addressRepository.existsById(id)) {
-            throw new ApiRequestException(
-                    MessageFormat.format(ADDRESS_DOES_NOT_EXIST, id));
-        }
-        final AddressEntity addressEntity = addressRepository.findById(id).get();
+        final AddressEntity addressEntity = getAddressEntityById(id);
         addressMapper.updateAddress(addressRequest, addressEntity);
         addressEntity.setModifiedBy(AUTHOR);
         addressEntity.setModifiedAt(LocalDateTime.now());
@@ -80,11 +71,7 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public AddressResponse updateStreetAndBuildingNumberById(final Long id, final String buildingNumber, final String street) {
-        if (!addressRepository.existsById(id)) {
-            throw new ApiRequestException(
-                    MessageFormat.format(ADDRESS_DOES_NOT_EXIST, id));
-        }
-        final AddressEntity addressEntity = addressRepository.findById(id).get();
+        final AddressEntity addressEntity = getAddressEntityById(id);
         addressEntity.setStreet(street);
         addressEntity.setBuildingNumber(buildingNumber);
         addressEntity.setModifiedBy(AUTHOR);
@@ -93,5 +80,13 @@ public class AddressServiceImpl implements AddressService {
         return addressMapper.entityToDto(updateAddressEntity);
     }
 
+    private AddressEntity getAddressEntityById(final Long id) {
+        final Optional<AddressEntity> optionalAddressEntity = addressRepository.findById(id);
+        if (optionalAddressEntity.isEmpty()) {
+            throw new ApiRequestException(
+                    MessageFormat.format(ADDRESS_DOES_NOT_EXIST, id));
+        }
+        return optionalAddressEntity.get();
+    }
 
 }

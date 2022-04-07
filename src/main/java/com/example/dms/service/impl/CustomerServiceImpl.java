@@ -93,8 +93,7 @@ public class CustomerServiceImpl implements CustomerService {
             throw new ApiRequestException(
                     MessageFormat.format(CUSTOMER_DOES_NOT_EXIST, id));
         }
-        final CustomerEntity customerEntity = optionalCustomerEntity.get();
-        return customerEntity;
+        return optionalCustomerEntity.get();
     }
 
 }
