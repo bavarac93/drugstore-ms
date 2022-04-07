@@ -15,6 +15,8 @@ import java.util.List;
  *     <li>{@link #findAll()}</li>
  *     <li>{@link #deleteById}</li>
  *     <li>{@link #updateById}</li>
+ *     <li>{@link #updatePhoneNumberById}</li>
+ *     <li>{@link #updateVerifiedStatus}</li>
  * </ul>
  *
  */
@@ -68,4 +70,14 @@ public interface CustomerService {
      * @return {@link CustomerResponse}
      */
     CustomerResponse updatePhoneNumberById(final Long id, final String phoneNumber);
+
+    /**
+     *
+     * Update isVerified by id.
+     *
+     * @param id {@link Long}
+     * @param email {@link String}
+     * @return {@link CustomerResponse}
+     */
+    CustomerResponse updateVerifiedStatus(final Long id, final String email);
 }

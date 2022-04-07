@@ -87,6 +87,17 @@ public class CustomerServiceImpl implements CustomerService {
         return customerMapper.entityToDto(updateCustomerEntity);
     }
 
+    @Override
+    public CustomerResponse updateVerifiedStatus(final Long id, final String email) {
+        final CustomerEntity customerEntity = getCustomerEntityById(id);
+        customerEntity.setEmail(email);
+        customerEntity.setModifiedBy(AUTHOR);
+        customerEntity.setModifiedAt(LocalDateTime.now());
+        customerEntity.setVerified(!(customerEntity.getEmail().isEmpty()) && !(customerEntity.getEmail().isBlank()));
+        final CustomerEntity updateCustomerEntity = customerRepository.save(customerEntity);
+        return customerMapper.entityToDto(updateCustomerEntity);
+    }
+
     private CustomerEntity getCustomerEntityById(final Long id) {
         final Optional<CustomerEntity> optionalCustomerEntity = customerRepository.findById(id);
         if (optionalCustomerEntity.isEmpty()) {

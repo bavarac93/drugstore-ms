@@ -58,6 +58,15 @@ public class CustomerController {
         return new ResponseEntity<>(customerResponse, HttpStatus.OK);
     }
 
+    @PatchMapping("verified/{id}")
+    public ResponseEntity<CustomerResponse> updateVerifiedStatus(
+            @PathVariable ("id") Long id,
+            @RequestParam ("email") String email
+    ){
+        CustomerResponse customerResponse = customerService.updateVerifiedStatus(id, email);
+        return new ResponseEntity<>(customerResponse, HttpStatus.OK);
+    }
+
 
 
 }
