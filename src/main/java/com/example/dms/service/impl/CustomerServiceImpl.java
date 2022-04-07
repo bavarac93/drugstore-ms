@@ -34,8 +34,11 @@ public class CustomerServiceImpl implements CustomerService {
         customerEntity.setCreatedAt(LocalDateTime.now());
         customerEntity.setCreatedBy(AUTHOR);
         customerEntity.setDateJoined(Date.from(Instant.now()));
-        if ((customerRequest.getEmail() != null) && !(customerRequest.getEmail().isEmpty()))
+        if ((customerRequest.getEmail() != null) && !(customerRequest.getEmail().isEmpty())) {
             customerEntity.setVerified(true);
+        } else {
+            customerEntity.setVerified(false);
+        }
         final CustomerEntity persistedCustomerEntity = customerRepository.save(customerEntity);
         return customerMapper.entityToDto(persistedCustomerEntity);
     }
@@ -48,12 +51,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerResponse findById(final Long id) {
-        final Optional<CustomerEntity> optionalCustomerEntity = customerRepository.findById(id);
-        if (optionalCustomerEntity.isEmpty()) {
-            throw new ApiRequestException(
-                    MessageFormat.format(CUSTOMER_DOES_NOT_EXIST, id));
-        }
-        final CustomerEntity customerEntity = optionalCustomerEntity.get();
+        final CustomerEntity customerEntity = getCustomerEntityById(id);
         return customerMapper.entityToDto(customerEntity);
     }
 
@@ -62,14 +60,18 @@ public class CustomerServiceImpl implements CustomerService {
         if (!customerRepository.existsById(id)) {
             throw new ApiRequestException(
                     MessageFormat.format(CUSTOMER_DOES_NOT_EXIST, id));
-        }        customerRepository.deleteById(id);
+        }
+        customerRepository.deleteById(id);
     }
 
     @Override
     public CustomerResponse updateById(final Long id, final CustomerRequest customerRequest) {
-        final CustomerEntity customerEntity = customerRepository.findById(id).get();
-        if ((customerRequest.getEmail() != null) && !(customerRequest.getEmail().isEmpty()))
+      final CustomerEntity customerEntity = getCustomerEntityById(id);
+        if ((customerRequest.getEmail() != null) && !(customerRequest.getEmail().isEmpty())) {
             customerEntity.setVerified(true);
+        } else {
+            customerEntity.setVerified(false);
+        }
         customerMapper.updateCustomer(customerRequest, customerEntity);
         final CustomerEntity updateCustomerEntity = customerRepository.save(customerEntity);
         return customerMapper.entityToDto(updateCustomerEntity);
@@ -77,16 +79,22 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerResponse updatePhoneNumberById(final Long id, final String phoneNumber) {
-        if (!customerRepository.existsById(id)) {
-            throw new ApiRequestException(
-                    MessageFormat.format(CUSTOMER_DOES_NOT_EXIST, id));
-        }
-        final CustomerEntity customerEntity = customerRepository.findById(id).get();
+        final CustomerEntity customerEntity = getCustomerEntityById(id);
         customerEntity.setPhoneNumber(phoneNumber);
         customerEntity.setModifiedBy(AUTHOR);
         customerEntity.setModifiedAt(LocalDateTime.now());
         final CustomerEntity updateCustomerEntity = customerRepository.save(customerEntity);
         return customerMapper.entityToDto(updateCustomerEntity);
+    }
+
+    private CustomerEntity getCustomerEntityById(final Long id) {
+        final Optional<CustomerEntity> optionalCustomerEntity = customerRepository.findById(id);
+        if (optionalCustomerEntity.isEmpty()) {
+            throw new ApiRequestException(
+                    MessageFormat.format(CUSTOMER_DOES_NOT_EXIST, id));
+        }
+        final CustomerEntity customerEntity = optionalCustomerEntity.get();
+        return customerEntity;
     }
 
 }
