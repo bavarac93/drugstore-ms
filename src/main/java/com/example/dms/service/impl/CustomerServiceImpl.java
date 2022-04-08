@@ -7,12 +7,16 @@ import com.example.dms.exception.ApiRequestException;
 import com.example.dms.mapper.CustomerMapper;
 import com.example.dms.model.CustomerEntity;
 import com.example.dms.service.CustomerService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -51,7 +55,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerResponse findById(final Long id) {
-        final CustomerEntity customerEntity = getCustomerEntityById(id);
+        final CustomerEntity customerEntity = this.getCustomerEntityById(id);
         return customerMapper.entityToDto(customerEntity);
     }
 
@@ -66,7 +70,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerResponse updateById(final Long id, final CustomerRequest customerRequest) {
-      final CustomerEntity customerEntity = getCustomerEntityById(id);
+        final CustomerEntity customerEntity = this.getCustomerEntityById(id);
         customerEntity.setVerified((customerRequest.getEmail() != null) && !(customerRequest.getEmail().isEmpty()));
         customerMapper.updateCustomer(customerRequest, customerEntity);
         final CustomerEntity updateCustomerEntity = customerRepository.save(customerEntity);
@@ -85,7 +89,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerResponse updateVerifiedStatus(final Long id, final String email) {
-        final CustomerEntity customerEntity = getCustomerEntityById(id);
+        final CustomerEntity customerEntity = this.getCustomerEntityById(id);
         customerEntity.setEmail(email);
         customerEntity.setModifiedBy(AUTHOR);
         customerEntity.setModifiedAt(LocalDateTime.now());
@@ -94,7 +98,7 @@ public class CustomerServiceImpl implements CustomerService {
         return customerMapper.entityToDto(updateCustomerEntity);
     }
 
-    private CustomerEntity getCustomerEntityById(final Long id) {
+    private @NotNull CustomerEntity getCustomerEntityById(final Long id) {
         final Optional<CustomerEntity> optionalCustomerEntity = customerRepository.findById(id);
         if (optionalCustomerEntity.isEmpty()) {
             throw new ApiRequestException(
