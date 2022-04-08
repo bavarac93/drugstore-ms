@@ -9,6 +9,7 @@ import com.example.dms.model.CustomerEntity;
 import com.example.dms.service.CustomerService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.text.MessageFormat;
 import java.time.Instant;
@@ -106,5 +107,4 @@ public class CustomerServiceImpl implements CustomerService {
         }
         return optionalCustomerEntity.get();
     }
-
 }

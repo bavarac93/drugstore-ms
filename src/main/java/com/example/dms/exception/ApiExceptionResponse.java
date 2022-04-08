@@ -9,7 +9,7 @@ public class ApiExceptionResponse {
     private final HttpStatus httpStatus;
     private final LocalDateTime timestamp;
 
-    public ApiExceptionResponse(String message, HttpStatus httpStatus, LocalDateTime timestamp) {
+    public ApiExceptionResponse(final String message, final HttpStatus httpStatus, final LocalDateTime timestamp) {
         this.message = message;
         this.httpStatus = httpStatus;
         this.timestamp = timestamp;
