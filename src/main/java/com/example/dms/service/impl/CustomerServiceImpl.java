@@ -9,6 +9,8 @@ import com.example.dms.model.CustomerEntity;
 import com.example.dms.service.CustomerService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
+
+import javax.swing.text.MaskFormatter;
 import java.text.MessageFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -85,7 +87,6 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerResponse updateVerifiedStatus(final Long id, final String email) {
         final CustomerEntity customerEntity = this.getCustomerEntityById(id);
-        customerEntity.setEmail(email);
         customerEntity.setModifiedBy(AUTHOR);
         customerEntity.setModifiedAt(LocalDateTime.now());
         customerEntity.setVerified(!(customerEntity.getEmail().isEmpty()) && !(customerEntity.getEmail().isBlank()));
@@ -102,7 +103,7 @@ public class CustomerServiceImpl implements CustomerService {
         return optionalCustomerEntity.get();
     }
 
-    private void validateCustomerEmail (@NotNull CustomerEntity customerEntity, CustomerRequest customerRequest) {
+    private void validateCustomerEmail (@NotNull final CustomerEntity customerEntity, @NotNull final CustomerRequest customerRequest) {
         customerEntity.setVerified((customerRequest.getEmail() != null) && !(customerRequest.getEmail().isEmpty()));
     }
 }
