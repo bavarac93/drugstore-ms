@@ -102,7 +102,7 @@ public class CustomerServiceImpl implements CustomerService {
         return optionalCustomerEntity.get();
     }
 
-    private void validateCustomerEmail (@NotNull final CustomerEntity customerEntity, @NotNull final CustomerRequest customerRequest) {
+    private void validateCustomerEmail (@NotNull CustomerEntity customerEntity, CustomerRequest customerRequest) {
         customerEntity.setVerified((customerRequest.getEmail() != null) && !(customerRequest.getEmail().isEmpty()));
     }
 }
