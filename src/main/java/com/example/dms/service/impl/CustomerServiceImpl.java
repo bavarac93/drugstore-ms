@@ -37,7 +37,7 @@ public class CustomerServiceImpl implements CustomerService {
         customerEntity.setCreatedAt(LocalDateTime.now());
         customerEntity.setCreatedBy(AUTHOR);
         customerEntity.setDateJoined(Date.from(Instant.now()));
-        customerEntity.setVerified((customerRequest.getEmail() != null) && !(customerRequest.getEmail().isEmpty()));
+        validateCustomerEmail(customerEntity, customerRequest);
         final CustomerEntity persistedCustomerEntity = customerRepository.save(customerEntity);
         return customerMapper.entityToDto(persistedCustomerEntity);
     }
@@ -66,7 +66,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerResponse updateById(final Long id, final @NotNull CustomerRequest customerRequest) {
         final CustomerEntity customerEntity = this.getCustomerEntityById(id);
-        customerEntity.setVerified((customerRequest.getEmail() != null) && !(customerRequest.getEmail().isEmpty()));
+        validateCustomerEmail(customerEntity, customerRequest);
         customerMapper.updateCustomer(customerRequest, customerEntity);
         final CustomerEntity updateCustomerEntity = customerRepository.save(customerEntity);
         return customerMapper.entityToDto(updateCustomerEntity);
@@ -100,5 +100,9 @@ public class CustomerServiceImpl implements CustomerService {
                     MessageFormat.format(CUSTOMER_DOES_NOT_EXIST, id));
         }
         return optionalCustomerEntity.get();
+    }
+
+    private void validateCustomerEmail (@NotNull final CustomerEntity customerEntity, @NotNull final CustomerRequest customerRequest) {
+        customerEntity.setVerified((customerRequest.getEmail() != null) && !(customerRequest.getEmail().isEmpty()));
     }
 }
