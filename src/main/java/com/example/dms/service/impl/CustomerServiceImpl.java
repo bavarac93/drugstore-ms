@@ -9,8 +9,6 @@ import com.example.dms.model.CustomerEntity;
 import com.example.dms.service.CustomerService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-
 import java.text.MessageFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -39,11 +37,7 @@ public class CustomerServiceImpl implements CustomerService {
         customerEntity.setCreatedAt(LocalDateTime.now());
         customerEntity.setCreatedBy(AUTHOR);
         customerEntity.setDateJoined(Date.from(Instant.now()));
-        if ((customerRequest.getEmail() != null) && !(customerRequest.getEmail().isEmpty())) {
-            customerEntity.setVerified(true);
-        } else {
-            customerEntity.setVerified(false);
-        }
+        customerEntity.setVerified((customerRequest.getEmail() != null) && !(customerRequest.getEmail().isEmpty()));
         final CustomerEntity persistedCustomerEntity = customerRepository.save(customerEntity);
         return customerMapper.entityToDto(persistedCustomerEntity);
     }
@@ -70,7 +64,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerResponse updateById(final Long id, final CustomerRequest customerRequest) {
+    public CustomerResponse updateById(final Long id, final @NotNull CustomerRequest customerRequest) {
         final CustomerEntity customerEntity = this.getCustomerEntityById(id);
         customerEntity.setVerified((customerRequest.getEmail() != null) && !(customerRequest.getEmail().isEmpty()));
         customerMapper.updateCustomer(customerRequest, customerEntity);
