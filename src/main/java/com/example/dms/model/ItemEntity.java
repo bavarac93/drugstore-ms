@@ -7,12 +7,13 @@ import java.time.LocalDateTime;
 @Table (name = "item")
 public class ItemEntity {
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long itemId;
     private Long brandId;
     private Long supplierId;
     private String productType;
     private Long price;
+    private Long sku;
     private Long quantity;
     private Long sold;
     private Long available;
@@ -26,12 +27,13 @@ public class ItemEntity {
     public ItemEntity() {
     }
 
-    public ItemEntity(Long itemId, Long brandId, Long supplierId, String productType, Long price, Long quantity, Long sold, Long available, Long description, String expiryDate, LocalDateTime createdAt, LocalDateTime createdBy, LocalDateTime modifiedAt, LocalDateTime modifiedBy) {
+    public ItemEntity(Long itemId, Long brandId, Long supplierId, String productType, Long price, Long sku, Long quantity, Long sold, Long available, Long description, String expiryDate, LocalDateTime createdAt, LocalDateTime createdBy, LocalDateTime modifiedAt, LocalDateTime modifiedBy) {
         this.itemId = itemId;
         this.brandId = brandId;
         this.supplierId = supplierId;
         this.productType = productType;
         this.price = price;
+        this.sku = sku;
         this.quantity = quantity;
         this.sold = sold;
         this.available = available;
@@ -155,6 +157,14 @@ public class ItemEntity {
         this.modifiedBy = modifiedBy;
     }
 
+    public Long getSku() {
+        return sku;
+    }
+
+    public void setSku(Long sku) {
+        this.sku = sku;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("ItemEntity{");
@@ -163,6 +173,7 @@ public class ItemEntity {
         sb.append(", supplierId=").append(supplierId);
         sb.append(", productType='").append(productType).append('\'');
         sb.append(", price=").append(price);
+        sb.append(", sku=").append(sku);
         sb.append(", quantity=").append(quantity);
         sb.append(", sold=").append(sold);
         sb.append(", available=").append(available);
@@ -176,3 +187,4 @@ public class ItemEntity {
         return sb.toString();
     }
 }
+
