@@ -22,12 +22,19 @@ public class CustomerEntity {
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
     private String modifiedBy;
+    @ManyToOne
+    @JoinColumn(name = "address_entity_id")
+    private AddressEntity addressEntity;
+
+    public AddressEntity getAddressEntity() {
+        return addressEntity;
+    }
 
     public CustomerEntity() {
 
     }
 
-    public CustomerEntity(Long id, String firstName, String lastName, String phoneNumber, String email, boolean isVerified, Date dateJoined, String drugAllergicTo, String createdBy, LocalDateTime createdAt) {
+    public CustomerEntity(Long id, String firstName, String lastName, String phoneNumber, String email, boolean isVerified, Date dateJoined, String drugAllergicTo, String createdBy, LocalDateTime createdAt, AddressEntity addressEntity) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -38,6 +45,11 @@ public class CustomerEntity {
         this.drugAllergicTo = drugAllergicTo;
         this.createdBy = createdBy;
         this.createdAt = createdAt;
+        this.addressEntity = addressEntity;
+    }
+
+    public void setAddressEntity(AddressEntity addressEntity) {
+        this.addressEntity = addressEntity;
     }
 
     public LocalDateTime getModifiedAt() {
@@ -148,6 +160,11 @@ public class CustomerEntity {
         sb.append(", isVerified=").append(isVerified);
         sb.append(", dateJoined=").append(dateJoined);
         sb.append(", drugAllergicTo='").append(drugAllergicTo).append('\'');
+        sb.append(", createdBy='").append(createdBy).append('\'');
+        sb.append(", createdAt=").append(createdAt);
+        sb.append(", modifiedAt=").append(modifiedAt);
+        sb.append(", modifiedBy='").append(modifiedBy).append('\'');
+        sb.append(", addressEntity=").append(addressEntity);
         sb.append('}');
         return sb.toString();
     }
