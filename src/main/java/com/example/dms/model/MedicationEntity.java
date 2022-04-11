@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class MedicationEntity {
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    private Long medicationId;
+    private Long id;
     private String name;
     private String sku;
     private Long description;
@@ -22,7 +22,7 @@ public class MedicationEntity {
     }
 
     public MedicationEntity(Long medicationId, String name, String sku, Long description, String expiryDate, LocalDateTime createdAt, LocalDateTime createdBy) {
-        this.medicationId = medicationId;
+        this.id = medicationId;
         this.name = name;
         this.sku = sku;
         this.description = description;
@@ -32,11 +32,11 @@ public class MedicationEntity {
     }
 
     public Long getMedicationId() {
-        return medicationId;
+        return id;
     }
 
     public void setMedicationId(Long medicationId) {
-        this.medicationId = medicationId;
+        this.id = medicationId;
     }
 
     public String getName() {
@@ -106,7 +106,7 @@ public class MedicationEntity {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("MedicationEntity{");
-        sb.append("medicationId=").append(medicationId);
+        sb.append("id=").append(id);
         sb.append(", name='").append(name).append('\'');
         sb.append(", sku='").append(sku).append('\'');
         sb.append(", description=").append(description);

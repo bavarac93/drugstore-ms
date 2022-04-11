@@ -22,8 +22,9 @@ public class CustomerEntity {
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
     private String modifiedBy;
+
     @ManyToOne
-    @JoinColumn(name = "address_entity_id")
+    @JoinColumn(name = "address_id")
     private AddressEntity addressEntity;
 
     public AddressEntity getAddressEntity() {

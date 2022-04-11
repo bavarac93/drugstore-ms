@@ -9,25 +9,25 @@ public class BrandEntity {
 
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    private Long brandId;
+    private Long id;
     private String brandName;
     private String brandDesc;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 
-    @ManyToOne
+    @OneToMany
     @JoinColumn(name = "product_type_id")
     private ProductTypeEntity productType;
 
-    @ManyToOne
-    @JoinColumn(name = "supplier_entity_id")
+    @OneToMany
+    @JoinColumn(name = "supplier_id")
     private SupplierEntity supplierEntity;
 
     public BrandEntity() {
     }
 
     public BrandEntity(Long brandId, String brandName, String brandDesc, ProductTypeEntity productType, SupplierEntity supplierEntity, LocalDateTime createdAt) {
-        this.brandId = brandId;
+        this.id = brandId;
         this.brandName = brandName;
         this.brandDesc = brandDesc;
         this.productType = productType;
@@ -36,11 +36,11 @@ public class BrandEntity {
     }
 
     public Long getBrandId() {
-        return brandId;
+        return id;
     }
 
     public void setBrandId(Long brandId) {
-        this.brandId = brandId;
+        this.id = brandId;
     }
 
     public String getBrandName() {
@@ -94,7 +94,7 @@ public class BrandEntity {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("BrandEntity{");
-        sb.append("brandId=").append(brandId);
+        sb.append("id=").append(id);
         sb.append(", brandName='").append(brandName).append('\'');
         sb.append(", brandDesc='").append(brandDesc).append('\'');
         sb.append(", productType=").append(productType);

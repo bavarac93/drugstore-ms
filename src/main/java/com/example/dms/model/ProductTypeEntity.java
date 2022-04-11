@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class ProductTypeEntity {
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    private Long productTypeId;
+    private Long id;
     private String name;
 
     @ManyToOne
@@ -31,7 +31,7 @@ public class ProductTypeEntity {
     }
 
     public ProductTypeEntity(Long productTypeId, String name, MedicationEntity medicationEntity, MedicalSuppliesEntity medicalSuppliesEntity, BeautyProductEntity beautyProductEntity, LocalDateTime createdAt, String createdBy) {
-        this.productTypeId = productTypeId;
+        this.id = productTypeId;
         this.name = name;
         this.medicationEntity = medicationEntity;
         this.medicalSuppliesEntity = medicalSuppliesEntity;
@@ -53,11 +53,11 @@ public class ProductTypeEntity {
     }
 
     public Long getProductTypeId() {
-        return productTypeId;
+        return id;
     }
 
     public void setProductTypeId(Long productTypeId) {
-        this.productTypeId = productTypeId;
+        this.id = productTypeId;
     }
 
     public String getName() {
@@ -115,7 +115,7 @@ public class ProductTypeEntity {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("ProductTypeEntity{");
-        sb.append("productTypeId=").append(productTypeId);
+        sb.append("id=").append(id);
         sb.append(", name='").append(name).append('\'');
         sb.append(", medicationEntity=").append(medicationEntity);
         sb.append(", medicalSuppliesEntity=").append(medicalSuppliesEntity);

@@ -18,6 +18,9 @@ public class MedicalSuppliesEntity {
     private LocalDateTime modifiedAt;
     private LocalDateTime modifiedBy;
 
+    public MedicalSuppliesEntity() {
+    }
+
     public MedicalSuppliesEntity(Long id, String name, String sku, Long description, String expiryDate, LocalDateTime createdAt, LocalDateTime createdBy) {
         this.id = id;
         this.name = name;

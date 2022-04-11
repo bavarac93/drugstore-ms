@@ -8,18 +8,19 @@ import java.time.LocalDateTime;
 public class ItemEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long itemId;
+    private Long id;
+    //private String medName;
     @OneToMany
     @JoinColumn(name = "brand_id")
-    private BrandEntity brandId;
+    private BrandEntity brandEntity;
 
-    @OneToMany
-    @JoinColumn(name = "supplier_id")
-    private SupplierEntity supplierEntity;
-
-    @OneToMany
-    @JoinColumn(name = "product_id")
-    private ProductTypeEntity productType;
+//    @OneToMany
+//    @JoinColumn(name = "supplier_id")
+//    private SupplierEntity supplierEntity;
+//
+//    @OneToMany
+//    @JoinColumn(name = "product_id")
+//    private ProductTypeEntity productType;
     private Long price;
     private String sku;
     private Long quantity;
@@ -32,9 +33,6 @@ public class ItemEntity {
     private LocalDateTime modifiedAt;
     private LocalDateTime modifiedBy;
 
-    public BrandEntity getBrandId() {
-        return brandId;
-    }
 
     public ItemEntity() {
     }
