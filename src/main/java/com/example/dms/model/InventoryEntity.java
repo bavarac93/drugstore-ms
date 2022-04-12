@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table (name = "item")
-public class ItemEntity {
+@Table (name = "inventory")
+public class InventoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -34,7 +34,7 @@ public class ItemEntity {
     private LocalDateTime modifiedBy;
 
 
-    public ItemEntity() {
+    public InventoryEntity() {
     }
 
 }
