@@ -3,44 +3,44 @@ package com.example.dms.model;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-@Table (name = "brand")
+@Entity (name = "Brand")
+@Table (name = "brand_v4")
 public class BrandEntity {
-
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String brandName;
     private String brandDesc;
     private LocalDateTime createdAt;
+    private String createdBy;
     private LocalDateTime modifiedAt;
+    private String modifiedBy;
 
-    @OneToMany
-    @JoinColumn(name = "product_type_id")
-    private ProductTypeEntity productType;
-
-    @OneToMany
-    @JoinColumn(name = "supplier_id")
-    private SupplierEntity supplierEntity;
+    // BrandEntity
+    @ManyToOne(
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL
+    )
+    @JoinColumn(name = "brand_entities")
+    private InventoryEntity inventoryEntity;
 
     public BrandEntity() {
     }
 
-    public BrandEntity(Long brandId, String brandName, String brandDesc, ProductTypeEntity productType, SupplierEntity supplierEntity, LocalDateTime createdAt) {
-        this.id = brandId;
+    public BrandEntity(Long id, String brandName, String brandDesc, LocalDateTime createdAt, String createdBy) {
+        this.id = id;
         this.brandName = brandName;
         this.brandDesc = brandDesc;
-        this.productType = productType;
-        this.supplierEntity = supplierEntity;
         this.createdAt = createdAt;
+        this.createdBy = createdBy;
     }
 
-    public Long getBrandId() {
+    public Long getId() {
         return id;
     }
 
-    public void setBrandId(Long brandId) {
-        this.id = brandId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getBrandName() {
@@ -59,28 +59,20 @@ public class BrandEntity {
         this.brandDesc = brandDesc;
     }
 
-    public ProductTypeEntity getProductType() {
-        return productType;
-    }
-
-    public void setProductType(ProductTypeEntity productType) {
-        this.productType = productType;
-    }
-
-    public SupplierEntity getSupplierEntity() {
-        return supplierEntity;
-    }
-
-    public void setSupplierEntity(SupplierEntity supplierEntity) {
-        this.supplierEntity = supplierEntity;
-    }
-
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 
     public LocalDateTime getModifiedAt() {
@@ -91,17 +83,24 @@ public class BrandEntity {
         this.modifiedAt = modifiedAt;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("BrandEntity{");
-        sb.append("id=").append(id);
-        sb.append(", brandName='").append(brandName).append('\'');
-        sb.append(", brandDesc='").append(brandDesc).append('\'');
-        sb.append(", productType=").append(productType);
-        sb.append(", supplierEntity=").append(supplierEntity);
-        sb.append(", createdAt=").append(createdAt);
-        sb.append(", modifiedAt=").append(modifiedAt);
-        sb.append('}');
-        return sb.toString();
+    public String getModifiedBy() {
+        return modifiedBy;
     }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
+
+    public InventoryEntity getInventoryEntity() {
+        return inventoryEntity;
+    }
+
+    public void setInventoryEntity(InventoryEntity inventoryEntity) {
+        this.inventoryEntity = inventoryEntity;
+    }
+
 }
+
+
+
+
