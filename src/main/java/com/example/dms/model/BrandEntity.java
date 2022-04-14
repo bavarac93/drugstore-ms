@@ -3,8 +3,8 @@ package com.example.dms.model;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity (name = "Brand")
-@Table (name = "brand_v4")
+@Entity
+@Table(name = "brand")
 public class BrandEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,26 +13,47 @@ public class BrandEntity {
     private String brandDesc;
     private LocalDateTime createdAt;
     private String createdBy;
+    private String phoneNumber;
+    private String email;
+    private String website;
     private LocalDateTime modifiedAt;
     private String modifiedBy;
-
-    // BrandEntity
-    @ManyToOne(
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL
-    )
-    @JoinColumn(name = "brand_entities")
-    private InventoryEntity inventoryEntity;
 
     public BrandEntity() {
     }
 
-    public BrandEntity(Long id, String brandName, String brandDesc, LocalDateTime createdAt, String createdBy) {
+    public BrandEntity(Long id, String brandName, String brandDesc, LocalDateTime createdAt, String createdBy, String phoneNumber, String email, String website) {
         this.id = id;
         this.brandName = brandName;
         this.brandDesc = brandDesc;
         this.createdAt = createdAt;
         this.createdBy = createdBy;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.website = website;
+    }
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
     }
 
     public Long getId() {
@@ -91,13 +112,6 @@ public class BrandEntity {
         this.modifiedBy = modifiedBy;
     }
 
-    public InventoryEntity getInventoryEntity() {
-        return inventoryEntity;
-    }
-
-    public void setInventoryEntity(InventoryEntity inventoryEntity) {
-        this.inventoryEntity = inventoryEntity;
-    }
 
 }
 

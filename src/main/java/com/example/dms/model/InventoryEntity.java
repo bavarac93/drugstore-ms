@@ -2,11 +2,9 @@ package com.example.dms.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
-@Entity (name = "Inventory")
-@Table (name = "inventory_v4")
+@Entity
+@Table (name = "inventory")
 public class InventoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,12 +22,9 @@ public class InventoryEntity {
     private LocalDateTime modifiedAt;
     private LocalDateTime modifiedBy;
 
-// InventoryEntity
-    @OneToMany (
-            mappedBy = "id",
-            cascade = CascadeType.ALL
-    )
-    private List<BrandEntity> brandEntities = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "brand_id")
+    private BrandEntity brandEntity;
 
 //    @OneToMany
 //    @JoinColumn(name = "supplier_id")
@@ -41,28 +36,6 @@ public class InventoryEntity {
 
 
     public InventoryEntity() {
-    }
-
-    public InventoryEntity(Long id, String itemName, Long price, String sku, Long quantity, Long sold, Long available, Long description, String expiryDate, LocalDateTime createdAt, LocalDateTime createdBy) {
-        this.id = id;
-        this.itemName = itemName;
-        this.price = price;
-        this.sku = sku;
-        this.quantity = quantity;
-        this.sold = sold;
-        this.available = available;
-        this.description = description;
-        this.expiryDate = expiryDate;
-        this.createdAt = createdAt;
-        this.createdBy = createdBy;
-    }
-
-    public List<BrandEntity> getBrandEntities() {
-        return brandEntities;
-    }
-
-    public void setBrandEntities(List<BrandEntity> brandEntities) {
-        this.brandEntities = brandEntities;
     }
 
     public Long getId() {
@@ -169,5 +142,12 @@ public class InventoryEntity {
         this.modifiedBy = modifiedBy;
     }
 
+    public BrandEntity getBrandEntity() {
+        return brandEntity;
+    }
+
+    public void setBrandEntity(BrandEntity brandEntity) {
+        this.brandEntity = brandEntity;
+    }
 }
 

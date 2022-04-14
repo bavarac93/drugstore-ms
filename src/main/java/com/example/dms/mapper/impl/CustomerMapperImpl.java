@@ -4,6 +4,7 @@ import com.example.dms.dto.CustomerRequest;
 import com.example.dms.dto.CustomerResponse;
 import com.example.dms.mapper.CustomerMapper;
 import com.example.dms.model.CustomerEntity;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.List;
 public class CustomerMapperImpl implements CustomerMapper {
 
     @Override
-    public CustomerEntity dtoToEntity(final CustomerRequest customerRequest) {
+    public CustomerEntity dtoToEntity(final @NotNull CustomerRequest customerRequest) {
         final CustomerEntity customerEntity = new CustomerEntity();
         customerEntity.setFirstName(customerRequest.getFirstName());
         customerEntity.setLastName(customerRequest.getLastName());
@@ -24,7 +25,7 @@ public class CustomerMapperImpl implements CustomerMapper {
     }
 
     @Override
-    public CustomerResponse entityToDto(final CustomerEntity persistedCustomerEntity) {
+    public CustomerResponse entityToDto(final @NotNull CustomerEntity persistedCustomerEntity) {
         final CustomerResponse customerResponse = new CustomerResponse();
         customerResponse.setId(persistedCustomerEntity.getId());
         customerResponse.setFirstName(persistedCustomerEntity.getFirstName());
@@ -38,7 +39,7 @@ public class CustomerMapperImpl implements CustomerMapper {
     }
 
     @Override
-    public List<CustomerResponse> entityToDto(final List<CustomerEntity> customerEntities) {
+    public List<CustomerResponse> entityToDto(final @NotNull List<CustomerEntity> customerEntities) {
         final List<CustomerResponse> responseList = new ArrayList<>();
         for (CustomerEntity customerEntity : customerEntities) {
             responseList.add(entityToDto(customerEntity));
@@ -47,7 +48,7 @@ public class CustomerMapperImpl implements CustomerMapper {
     }
 
     @Override
-    public void updateCustomer(CustomerRequest customerRequest, CustomerEntity customerEntity) {
+    public void updateCustomer(@NotNull CustomerRequest customerRequest, @NotNull CustomerEntity customerEntity) {
         customerEntity.setFirstName(customerRequest.getFirstName());
         customerEntity.setLastName(customerRequest.getLastName());
         customerEntity.setEmail(customerRequest.getEmail());

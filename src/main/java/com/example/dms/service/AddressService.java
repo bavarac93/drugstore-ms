@@ -21,7 +21,7 @@ import java.util.List;
  */
 public interface AddressService {
     /**
-     * Create a new address based on a request model.
+     * Create a new brand based on a request model.
      *
      * @param addressRequest {@link AddressRequest}
      * @return {@link AddressResponse}
