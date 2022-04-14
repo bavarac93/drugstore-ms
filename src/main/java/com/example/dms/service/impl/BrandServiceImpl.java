@@ -5,7 +5,6 @@ import com.example.dms.dto.BrandRequest;
 import com.example.dms.dto.BrandResponse;
 import com.example.dms.exception.ApiRequestException;
 import com.example.dms.mapper.BrandMapper;
-import com.example.dms.model.AddressEntity;
 import com.example.dms.model.BrandEntity;
 import com.example.dms.service.BrandService;
 import org.springframework.stereotype.Service;
@@ -29,19 +28,6 @@ public class BrandServiceImpl implements BrandService {
         this.brandRepository = Objects.requireNonNull(brandRepository, "brandRepository cannot be null");
         this.brandMapper = Objects.requireNonNull(brandMapper, "brandMapper cannot be null");
     }
-
-
-//    public String create() {
-//        final BrandEntity brandEntity = new BrandEntity();
-//        brandEntity.setBrandName("EIP");
-//        brandEntity.setBrandDesc("Najbolja medresa u gradu");
-//        brandEntity.setCreatedBy("AUTHOR");
-//        brandEntity.setCreatedAt(LocalDateTime.now());
-//
-//        brandRepository.save(brandEntity);
-//        return "upisano";
-//    }
-
 
     @Override
     public BrandResponse create(final BrandRequest brandRequest) {

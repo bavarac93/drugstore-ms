@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5445/postgres
+    url: jdbc:postgresql://localhost:1993/drugstore_db
     username: muki
     password: muki93
 

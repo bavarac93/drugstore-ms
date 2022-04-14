@@ -1,6 +1,5 @@
 package com.example.dms.dto;
 
-import java.time.LocalDateTime;
 
 public class BrandResponse {
     private Long id;

@@ -1,10 +1,8 @@
 package com.example.dms.rest;
 
-import com.example.dms.dto.AddressResponse;
 import com.example.dms.dto.BrandRequest;
 import com.example.dms.dto.BrandResponse;
 import com.example.dms.service.BrandService;
-import org.jetbrains.annotations.Contract;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,11 +19,6 @@ public class BrandController {
     public BrandController(final BrandService brandService) {
         this.brandService = Objects.requireNonNull(brandService, "brandService cannot be null");
     }
-
-//    @PostMapping
-//    public String create() {
-//        return brandService.create();
-//    }
 
     @PostMapping
     ResponseEntity<BrandResponse> create(@RequestBody final BrandRequest brandRequest) {

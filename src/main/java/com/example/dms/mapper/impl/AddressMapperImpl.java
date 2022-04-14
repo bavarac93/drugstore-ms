@@ -14,7 +14,7 @@ import java.util.List;
 public class AddressMapperImpl implements AddressMapper {
 
     @Override
-    public AddressEntity dtoToEntity(final AddressRequest addressRequest) {
+    public AddressEntity dtoToEntity(final @NotNull AddressRequest addressRequest) {
         final AddressEntity addressEntity = new AddressEntity();
         addressEntity.setBuildingNumber(addressRequest.getBuildingNumber());
         addressEntity.setCity(addressRequest.getCity());
@@ -25,7 +25,7 @@ public class AddressMapperImpl implements AddressMapper {
     }
 
     @Override
-    public AddressResponse entityToDto(final AddressEntity addressEntity) {
+    public AddressResponse entityToDto(final @NotNull AddressEntity addressEntity) {
         final AddressResponse addressResponse = new AddressResponse();
         addressResponse.setId(addressEntity.getId());
         addressResponse.setCity(addressEntity.getCity());
