@@ -4,6 +4,7 @@ import com.example.dms.dto.AddressRequest;
 import com.example.dms.dto.AddressResponse;
 import com.example.dms.mapper.AddressMapper;
 import com.example.dms.model.AddressEntity;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class AddressMapperImpl implements AddressMapper {
     }
 
     @Override
-    public List<AddressResponse> entityToDto(final List<AddressEntity> addressEntities) {
+    public List<AddressResponse> entityToDto(final @NotNull List<AddressEntity> addressEntities) {
         final List<AddressResponse> responseList = new ArrayList<>();
         for (AddressEntity addressEntity : addressEntities) {
             responseList.add(entityToDto(addressEntity));
@@ -46,7 +47,7 @@ public class AddressMapperImpl implements AddressMapper {
     }
 
     @Override
-    public void updateAddress(AddressRequest addressRequest, AddressEntity addressEntity) {
+    public void updateAddress(@NotNull final AddressRequest addressRequest, @NotNull final AddressEntity addressEntity) {
         addressEntity.setCity(addressRequest.getCity());
         addressEntity.setStreet(addressRequest.getStreet());
         addressEntity.setPostcode(addressRequest.getPostcode());

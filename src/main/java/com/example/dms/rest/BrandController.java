@@ -35,5 +35,24 @@ public class BrandController {
         return new ResponseEntity<>(brandService.findAll(), HttpStatus.FOUND);
     }
 
+    @GetMapping("{id}")
+    ResponseEntity<BrandResponse> findById(@PathVariable final Long id) {
+        return new ResponseEntity<>(brandService.findById(id), HttpStatus.FOUND);
+    }
+
+    @DeleteMapping("{id}")
+    ResponseEntity<Void> deleteById(@PathVariable final Long id) {
+        brandService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PutMapping("{id}")
+    ResponseEntity<BrandResponse> updateById(
+            @PathVariable final Long id,
+            @RequestBody final BrandRequest brandRequest
+    ) {
+        return new ResponseEntity<>(brandService.updateById(id, brandRequest), HttpStatus.ACCEPTED);
+    }
+
 
 }

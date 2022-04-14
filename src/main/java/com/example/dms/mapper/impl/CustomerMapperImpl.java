@@ -48,7 +48,7 @@ public class CustomerMapperImpl implements CustomerMapper {
     }
 
     @Override
-    public void updateCustomer(@NotNull CustomerRequest customerRequest, @NotNull CustomerEntity customerEntity) {
+    public void updateCustomer(final @NotNull CustomerRequest customerRequest, final @NotNull CustomerEntity customerEntity) {
         customerEntity.setFirstName(customerRequest.getFirstName());
         customerEntity.setLastName(customerRequest.getLastName());
         customerEntity.setEmail(customerRequest.getEmail());

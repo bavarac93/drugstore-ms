@@ -43,4 +43,13 @@ public class BrandMapperImpl implements BrandMapper {
         }
         return brandResponseList;
     }
+
+    @Override
+    public void updateBrand(final @NotNull BrandRequest brandRequest, final @NotNull BrandEntity brandEntity) {
+        brandEntity.setBrandName(brandRequest.getBrandName());
+        brandEntity.setBrandDesc(brandRequest.getBrandDesc());
+        brandEntity.setPhoneNumber(brandRequest.getPhoneNumber());
+        brandEntity.setWebsite(brandRequest.getWebsite());
+        brandEntity.setEmail(brandRequest.getEmail());
+    }
 }

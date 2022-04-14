@@ -14,4 +14,5 @@ public interface BrandMapper {
 
     List<BrandResponse> entityToDto (final List<BrandEntity> brandEntities);
 
+    void updateBrand(final BrandRequest brandRequest, final BrandEntity brandEntity);
 }

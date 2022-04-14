@@ -11,8 +11,10 @@ import java.util.List;
  *
  * <ul>
  *     <li>{@link #create}</li>
+ *     <li>{@link #findById}</li>
  *     <li>{@link #findAll()}</li>
- *     <li>{@link  #getBrandEntityById(Long)}</li>
+ *     <li>{@link #deleteById}</li>
+ *     <li>{@link #updateById}</li>
  * </ul>
  *
  */
@@ -43,6 +45,28 @@ public interface BrandService {
      */
     List<BrandResponse> findAll();
 
+    /**
+     * Get a  brand by id.
+     *
+     * @param id {@link Long}
+     * @return {@link BrandResponse}
+     */
+    BrandResponse findById(final Long id);
 
+    /**
+     * Delete a  brand by id.
+     *
+     * @param id {@link Long}
+     *
+     */
+    void deleteById(final Long id);
 
+    /**
+     * Update a brand by id.
+     *
+     * @param id {@link Long}
+     * @param brandRequest {@link BrandRequest}
+     * @return {@link BrandResponse}
+     */
+    BrandResponse updateById(final Long id, final BrandRequest brandRequest);
 }

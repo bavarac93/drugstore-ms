@@ -11,15 +11,16 @@ import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 @Service
 public class BrandServiceImpl implements BrandService {
+
     private static final String BRAND_DOES_NOT_EXIST = "Brand with id: {0} does not exist.";
     public static final String AUTHOR = "Muki";
+
     private final BrandRepository brandRepository;
     private final BrandMapper brandMapper;
 
@@ -64,6 +65,30 @@ public class BrandServiceImpl implements BrandService {
     public List<BrandResponse> findAll() {
         final List<BrandEntity> brandEntityList = brandRepository.findAll();
         return brandMapper.entityToDto(brandEntityList);
+    }
+
+    @Override
+    public BrandResponse findById(final Long id) {
+        final BrandEntity brandEntity = this.getBrandEntityById(id);
+        return brandMapper.entityToDto(brandEntity);
+    }
+
+    @Override
+    public void deleteById(final Long id) {
+        if (!brandRepository.existsById(id)) {
+            throw new ApiRequestException(
+                    MessageFormat.format(BRAND_DOES_NOT_EXIST, id));
+        }
+        brandRepository.deleteById(id);
+    }
+
+    @Override
+    public BrandResponse updateById(final Long id, final BrandRequest brandRequest) {
+        final BrandEntity brandEntity = getBrandEntityById(id);
+        brandMapper.updateBrand (brandRequest, brandEntity);
+        brandEntity.setModifiedAt(LocalDateTime.now());
+        brandEntity.setModifiedBy(AUTHOR);
+        return brandMapper.entityToDto(brandEntity);
     }
 
 
