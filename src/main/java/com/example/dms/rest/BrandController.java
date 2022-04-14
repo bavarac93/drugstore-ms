@@ -1,8 +1,10 @@
 package com.example.dms.rest;
 
+import com.example.dms.dto.AddressResponse;
 import com.example.dms.dto.BrandRequest;
 import com.example.dms.dto.BrandResponse;
 import com.example.dms.service.BrandService;
+import org.jetbrains.annotations.Contract;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,6 +54,15 @@ public class BrandController {
             @RequestBody final BrandRequest brandRequest
     ) {
         return new ResponseEntity<>(brandService.updateById(id, brandRequest), HttpStatus.ACCEPTED);
+    }
+
+    @PatchMapping("/{id}")
+    ResponseEntity<BrandResponse> updateBrandDescById(
+            @PathVariable ("id") final Long id,
+            @RequestParam ("brandDesc") final String brandDesc
+    ) {
+        BrandResponse brandResponse = brandService.updateBrandDescById(id, brandDesc);
+        return new ResponseEntity<>(brandResponse, HttpStatus.OK);
     }
 
 

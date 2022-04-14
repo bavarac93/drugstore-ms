@@ -53,16 +53,6 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public BrandEntity getBrandEntityById(final Long id) {
-        final Optional<BrandEntity> optionalBrandEntity = brandRepository.findById(id);
-        if (optionalBrandEntity.isEmpty()) {
-            throw new ApiRequestException(
-                    MessageFormat.format(BRAND_DOES_NOT_EXIST, id));
-        }
-        return optionalBrandEntity.get();
-    }
-
-    @Override
     public List<BrandResponse> findAll() {
         final List<BrandEntity> brandEntityList = brandRepository.findAll();
         return brandMapper.entityToDto(brandEntityList);
@@ -93,6 +83,24 @@ public class BrandServiceImpl implements BrandService {
         return brandMapper.entityToDto(updateBrandEntity);
     }
 
+    @Override
+    public BrandResponse updateBrandDescById(final Long id, final String brandDesc) {
+        final BrandEntity brandEntity = getBrandEntityById(id);
+        brandEntity.setBrandDesc(brandDesc);
+        brandEntity.setModifiedAt(LocalDateTime.now());
+        brandEntity.setModifiedBy(AUTHOR);
+        final BrandEntity updateBrandEntity = brandRepository.save(brandEntity);
+        return brandMapper.entityToDto(updateBrandEntity);
+    }
 
+    @Override
+    public BrandEntity getBrandEntityById(final Long id) {
+        final Optional<BrandEntity> optionalBrandEntity = brandRepository.findById(id);
+        if (optionalBrandEntity.isEmpty()) {
+            throw new ApiRequestException(
+                    MessageFormat.format(BRAND_DOES_NOT_EXIST, id));
+        }
+        return optionalBrandEntity.get();
+    }
 }
 

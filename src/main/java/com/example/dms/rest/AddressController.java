@@ -53,7 +53,8 @@ public class AddressController {
     public ResponseEntity<AddressResponse> updateStreetAndBuildingNumberById(
             @RequestParam("buildingNumber") String buildingNumber,
             @RequestParam("street") String street,
-            @PathVariable("id") Long id) {
+            @PathVariable("id") Long id
+    ) {
         AddressResponse addressResponse = addressService.updateStreetAndBuildingNumberById(id, buildingNumber, street);
         return new ResponseEntity<>(addressResponse, HttpStatus.OK);
     }

@@ -7,6 +7,7 @@ import com.example.dms.exception.ApiRequestException;
 import com.example.dms.mapper.AddressMapper;
 import com.example.dms.model.AddressEntity;
 import com.example.dms.service.AddressService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
@@ -80,6 +81,7 @@ public class AddressServiceImpl implements AddressService {
         return addressMapper.entityToDto(updateAddressEntity);
     }
 
+    @NotNull
     private AddressEntity getAddressEntityById(final Long id) {
         final Optional<AddressEntity> optionalAddressEntity = addressRepository.findById(id);
         if (optionalAddressEntity.isEmpty()) {

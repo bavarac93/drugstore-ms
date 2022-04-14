@@ -15,6 +15,7 @@ import java.util.List;
  *     <li>{@link #findAll()}</li>
  *     <li>{@link #deleteById}</li>
  *     <li>{@link #updateById}</li>
+ *     <li>{@link #updateBrandDescById}</li>
  * </ul>
  *
  */
@@ -31,7 +32,7 @@ public interface BrandService {
     BrandResponse create(final BrandRequest brandRequest);
 
     /**
-     * Get a  brand entity by id.
+     * Get a brand entity by id.
      *
      * @param id {@link Long}
      * @return {@link BrandEntity}
@@ -69,4 +70,15 @@ public interface BrandService {
      * @return {@link BrandResponse}
      */
     BrandResponse updateById(final Long id, final BrandRequest brandRequest);
+
+
+
+    /**
+     * Update brandDesc by id.
+     *
+     * @param id {@link Long}
+     * @param brandDesc {@link String}
+     * @return {@link BrandResponse}
+     */
+    BrandResponse updateBrandDescById(final Long id, final String brandDesc);
 }

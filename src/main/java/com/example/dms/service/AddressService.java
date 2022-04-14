@@ -2,6 +2,8 @@ package com.example.dms.service;
 
 import com.example.dms.dto.AddressRequest;
 import com.example.dms.dto.AddressResponse;
+import com.example.dms.model.AddressEntity;
+import com.example.dms.model.BrandEntity;
 
 import java.util.List;
 
