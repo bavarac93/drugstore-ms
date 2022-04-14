@@ -5,6 +5,7 @@ import com.example.dms.dto.BrandRequest;
 import com.example.dms.dto.BrandResponse;
 import com.example.dms.exception.ApiRequestException;
 import com.example.dms.mapper.BrandMapper;
+import com.example.dms.model.AddressEntity;
 import com.example.dms.model.BrandEntity;
 import com.example.dms.service.BrandService;
 import org.springframework.stereotype.Service;
@@ -88,7 +89,8 @@ public class BrandServiceImpl implements BrandService {
         brandMapper.updateBrand (brandRequest, brandEntity);
         brandEntity.setModifiedAt(LocalDateTime.now());
         brandEntity.setModifiedBy(AUTHOR);
-        return brandMapper.entityToDto(brandEntity);
+        final BrandEntity updateBrandEntity = brandRepository.save(brandEntity);
+        return brandMapper.entityToDto(updateBrandEntity);
     }
 
 
