@@ -13,7 +13,6 @@ public class InventoryResponse {
     private LocalDateTime expiryDate;
     private Long brandId;
     private LocalDateTime createdAt;
-    private String createdBy;
 
     public Long getId() {
         return id;
@@ -95,11 +94,4 @@ public class InventoryResponse {
         this.createdAt = createdAt;
     }
 
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
 }

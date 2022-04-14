@@ -7,9 +7,6 @@ import com.example.dms.model.InventoryEntity;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 @Component
 public class InventoryMapperImpl implements InventoryMapper {
 
@@ -36,6 +33,7 @@ public class InventoryMapperImpl implements InventoryMapper {
         inventoryResponse.setQuantity(persistedInventoryEntity.getQuantity());
         inventoryResponse.setExpiryDate(persistedInventoryEntity.getExpiryDate());
         inventoryResponse.setSku(persistedInventoryEntity.getSku());
+        inventoryResponse.setSold(persistedInventoryEntity.getSold());
         inventoryResponse.setCreatedAt(persistedInventoryEntity.getCreatedAt());
         return inventoryResponse;
     }

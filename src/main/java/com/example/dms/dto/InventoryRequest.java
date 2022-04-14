@@ -1,5 +1,7 @@
 package com.example.dms.dto;
 
+import com.example.dms.model.BrandEntity;
+
 import java.time.LocalDateTime;
 
 public class InventoryRequest {
@@ -10,7 +12,15 @@ public class InventoryRequest {
     private Long quantity;
     private Long sold;
     private LocalDateTime expiryDate;
-    private Long brandId;
+    private BrandEntity brandEntity;
+
+    public BrandEntity getBrandEntity() {
+        return brandEntity;
+    }
+
+    public void setBrandEntity(BrandEntity brandEntity) {
+        this.brandEntity = brandEntity;
+    }
 
     public String getItemName() {
         return itemName;
@@ -68,11 +78,4 @@ public class InventoryRequest {
         this.expiryDate = expiryDate;
     }
 
-    public Long getBrandId() {
-        return brandId;
-    }
-
-    public void setBrandId(Long brandId) {
-        this.brandId = brandId;
-    }
 }
