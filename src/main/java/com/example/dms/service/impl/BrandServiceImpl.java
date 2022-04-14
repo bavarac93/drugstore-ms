@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -61,7 +62,8 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public List<BrandResponse> findAll() {
-        return null;
+        final List<BrandEntity> brandEntityList = brandRepository.findAll();
+        return brandMapper.entityToDto(brandEntityList);
     }
 
 

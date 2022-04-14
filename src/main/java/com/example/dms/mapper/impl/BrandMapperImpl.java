@@ -7,6 +7,9 @@ import com.example.dms.model.BrandEntity;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class BrandMapperImpl implements BrandMapper {
     @Override
@@ -30,5 +33,14 @@ public class BrandMapperImpl implements BrandMapper {
         brandResponse.setPhoneNumber(persistedBrandEntity.getPhoneNumber());
         brandResponse.setWebsite(persistedBrandEntity.getWebsite());
         return brandResponse;
+    }
+
+    @Override
+    public List<BrandResponse> entityToDto(final @NotNull List<BrandEntity> brandEntities) {
+        List<BrandResponse> brandResponseList = new ArrayList<>();
+        for(BrandEntity brandEntity : brandEntities) {
+            brandResponseList.add(entityToDto(brandEntity));
+        }
+        return brandResponseList;
     }
 }
