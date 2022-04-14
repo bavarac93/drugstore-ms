@@ -14,13 +14,12 @@ public class InventoryEntity {
     private String sku;
     private Long quantity;
     private Long sold;
-    private Long available;
-    private Long description;
-    private String expiryDate;
+    private String description;
+    private LocalDateTime expiryDate;
     private LocalDateTime createdAt;
-    private LocalDateTime createdBy;
+    private String createdBy;
     private LocalDateTime modifiedAt;
-    private LocalDateTime modifiedBy;
+    private String  modifiedBy;
 
     @ManyToOne
     @JoinColumn(name = "brand_id")
@@ -86,27 +85,19 @@ public class InventoryEntity {
         this.sold = sold;
     }
 
-    public Long getAvailable() {
-        return available;
-    }
-
-    public void setAvailable(Long available) {
-        this.available = available;
-    }
-
-    public Long getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(Long description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    public String getExpiryDate() {
+    public LocalDateTime getExpiryDate() {
         return expiryDate;
     }
 
-    public void setExpiryDate(String expiryDate) {
+    public void setExpiryDate(LocalDateTime expiryDate) {
         this.expiryDate = expiryDate;
     }
 
@@ -118,11 +109,11 @@ public class InventoryEntity {
         this.createdAt = createdAt;
     }
 
-    public LocalDateTime getCreatedBy() {
+    public String getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(LocalDateTime createdBy) {
+    public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -134,11 +125,11 @@ public class InventoryEntity {
         this.modifiedAt = modifiedAt;
     }
 
-    public LocalDateTime getModifiedBy() {
+    public String getModifiedBy() {
         return modifiedBy;
     }
 
-    public void setModifiedBy(LocalDateTime modifiedBy) {
+    public void setModifiedBy(String modifiedBy) {
         this.modifiedBy = modifiedBy;
     }
 
