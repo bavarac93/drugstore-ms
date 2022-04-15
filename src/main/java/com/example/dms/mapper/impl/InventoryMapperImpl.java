@@ -24,7 +24,7 @@ public class InventoryMapperImpl implements InventoryMapper {
     }
 
     @Override
-    public InventoryResponse entityToDto(final @NotNull InventoryEntity persistedInventoryEntity, final Long brandId) {
+    public InventoryResponse entityToDto(final @NotNull InventoryEntity persistedInventoryEntity) {
         final InventoryResponse inventoryResponse = new InventoryResponse();
         inventoryResponse.setId(persistedInventoryEntity.getId());
         inventoryResponse.setItemName(persistedInventoryEntity.getItemName());
@@ -35,7 +35,7 @@ public class InventoryMapperImpl implements InventoryMapper {
         inventoryResponse.setSku(persistedInventoryEntity.getSku());
         inventoryResponse.setSold(persistedInventoryEntity.getSold());
         inventoryResponse.setCreatedAt(persistedInventoryEntity.getCreatedAt());
-        inventoryResponse.setBrandId(brandId);
+        inventoryResponse.setBrandId(persistedInventoryEntity.getBrandEntity().getId());
         return inventoryResponse;
     }
 }
