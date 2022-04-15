@@ -34,10 +34,9 @@ public class InventoryServiceImpl implements InventoryService {
         final InventoryEntity inventoryEntity = inventoryMapper.dtoToEntity(inventoryRequest);
         inventoryEntity.setCreatedAt(LocalDateTime.now());
         inventoryEntity.setCreatedBy(AUTHOR);
-        inventoryEntity.setExpiryDate(LocalDateTime.from(LocalDateTime.now()).plusYears(2));
         final BrandEntity brandEntity = brandService.getBrandEntityById(brandId);
         inventoryEntity.setBrandEntity(brandEntity);
         final InventoryEntity persistedInventoryEntity = inventoryRepository.save(inventoryEntity);
-        return inventoryMapper.entityToDto(persistedInventoryEntity);
+        return inventoryMapper.entityToDto(persistedInventoryEntity, brandId);
     }
 }
