@@ -45,7 +45,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<CustomerResponse> findAll() {
         final List<CustomerEntity> customerEntityList = customerRepository.findAll();
-        return customerMapper.entityToDto(customerEntityList);
+        return customerMapper.entitiesToDto(customerEntityList);
     }
 
     @Override

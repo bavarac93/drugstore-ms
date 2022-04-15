@@ -1,11 +1,16 @@
 package com.example.dms.mapper.impl;
 
+import com.example.dms.dto.CustomerResponse;
 import com.example.dms.dto.InventoryRequest;
 import com.example.dms.dto.InventoryResponse;
 import com.example.dms.mapper.InventoryMapper;
+import com.example.dms.model.CustomerEntity;
 import com.example.dms.model.InventoryEntity;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class InventoryMapperImpl implements InventoryMapper {
@@ -37,5 +42,14 @@ public class InventoryMapperImpl implements InventoryMapper {
         inventoryResponse.setCreatedAt(persistedInventoryEntity.getCreatedAt());
         inventoryResponse.setBrandId(persistedInventoryEntity.getBrandEntity().getId());
         return inventoryResponse;
+    }
+
+    @Override
+    public List<InventoryResponse> entitiesToDto(final @NotNull List<InventoryEntity> inventoryEntities) {
+        final List<InventoryResponse> inventoryResponseList = new ArrayList<>();
+        for (InventoryEntity inventory : inventoryEntities) {
+            inventoryResponseList.add(entityToDto(inventory));
+        }
+        return inventoryResponseList;
     }
 }

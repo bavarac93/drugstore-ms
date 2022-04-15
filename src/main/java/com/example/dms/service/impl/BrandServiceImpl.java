@@ -41,7 +41,7 @@ public class BrandServiceImpl implements BrandService {
     @Override
     public List<BrandResponse> findAll() {
         final List<BrandEntity> brandEntityList = brandRepository.findAll();
-        return brandMapper.entityToDto(brandEntityList);
+        return brandMapper.entitiesToDto(brandEntityList);
     }
 
     @Override

@@ -38,7 +38,7 @@ public class AddressMapperImpl implements AddressMapper {
     }
 
     @Override
-    public List<AddressResponse> entityToDto(final @NotNull List<AddressEntity> addressEntities) {
+    public List<AddressResponse> entitiesToDto(final @NotNull List<AddressEntity> addressEntities) {
         final List<AddressResponse> responseList = new ArrayList<>();
         for (AddressEntity addressEntity : addressEntities) {
             responseList.add(entityToDto(addressEntity));

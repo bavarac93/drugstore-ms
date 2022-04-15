@@ -54,7 +54,8 @@ public class InventoryServiceImpl implements InventoryService {
 
     @Override
     public List<InventoryResponse> findAll() {
-        return null;
+        List<InventoryEntity> inventoryEntityList = inventoryRepository.findAll();
+        return inventoryMapper.entitiesToDto(inventoryEntityList);
     }
 
     private @NotNull InventoryEntity getInventoryEntityById(final Long id) {

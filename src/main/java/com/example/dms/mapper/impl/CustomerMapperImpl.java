@@ -39,7 +39,7 @@ public class CustomerMapperImpl implements CustomerMapper {
     }
 
     @Override
-    public List<CustomerResponse> entityToDto(final @NotNull List<CustomerEntity> customerEntities) {
+    public List<CustomerResponse> entitiesToDto(final @NotNull List<CustomerEntity> customerEntities) {
         final List<CustomerResponse> responseList = new ArrayList<>();
         for (CustomerEntity customerEntity : customerEntities) {
             responseList.add(entityToDto(customerEntity));

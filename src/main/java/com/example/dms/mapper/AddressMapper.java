@@ -11,7 +11,7 @@ public interface AddressMapper {
 
      AddressResponse entityToDto(final AddressEntity persistedAddressEntity);
 
-     List<AddressResponse> entityToDto(final List<AddressEntity> addressEntities);
+     List<AddressResponse> entitiesToDto(final List<AddressEntity> addressEntities);
 
      void updateAddress(final AddressRequest addressRequest, final AddressEntity addressEntity);
 }

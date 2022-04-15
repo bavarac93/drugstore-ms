@@ -1,6 +1,5 @@
 package com.example.dms.rest;
 
-import com.example.dms.dto.BrandResponse;
 import com.example.dms.dto.InventoryRequest;
 import com.example.dms.dto.InventoryResponse;
 import com.example.dms.service.InventoryService;

@@ -42,7 +42,7 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public List<AddressResponse> findAll() {
         final List<AddressEntity> addressEntities = addressRepository.findAll();
-        return addressMapper.entityToDto(addressEntities);
+        return addressMapper.entitiesToDto(addressEntities);
     }
 
     @Override
