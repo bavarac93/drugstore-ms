@@ -18,11 +18,6 @@ public class InventoryController {
         this.inventoryService = Objects.requireNonNull(inventoryService, "inventoryService cannot be null");
     }
 
-//    @PostMapping("{brandId}")
-//    public String createInventory(@PathVariable final Long brandId) {
-//        return inventoryService.create(brandId);
-//    }
-
     @PostMapping("{brandId}")
     ResponseEntity<InventoryResponse> create(
             @RequestBody final InventoryRequest inventoryRequest,
