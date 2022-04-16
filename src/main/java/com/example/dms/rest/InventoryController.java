@@ -44,4 +44,12 @@ public class InventoryController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @PutMapping("{id}")
+    ResponseEntity<InventoryResponse> updateById(
+            @PathVariable final Long id,
+            @RequestBody final InventoryRequest inventoryRequest
+    ) {
+    return new ResponseEntity<>(inventoryService.updateById(id, inventoryRequest), HttpStatus.ACCEPTED);
+    }
+
 }

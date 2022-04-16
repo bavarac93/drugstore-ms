@@ -11,7 +11,6 @@ import com.example.dms.service.BrandService;
 import com.example.dms.service.InventoryService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
-
 import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -65,6 +64,16 @@ public class InventoryServiceImpl implements InventoryService {
             MessageFormat.format(ITEM_DOES_NOT_EXIST, id));
         }
         inventoryRepository.deleteById(id);
+    }
+
+    @Override
+    public InventoryResponse updateById(final Long id, final InventoryRequest inventoryRequest) {
+        final InventoryEntity inventoryEntity = getInventoryEntityById(id);
+        inventoryMapper.updateInventory(inventoryRequest, inventoryEntity);
+        inventoryEntity.setModifiedAt(LocalDateTime.now());
+        inventoryEntity.setModifiedBy(AUTHOR);
+        final InventoryEntity updateInventory = inventoryRepository.save(inventoryEntity);
+        return inventoryMapper.entityToDto(updateInventory);
     }
 
     private @NotNull InventoryEntity getInventoryEntityById(final Long id) {

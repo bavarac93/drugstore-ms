@@ -50,7 +50,17 @@ public interface InventoryService {
     /**
      * Delete an inventory item by id.
      *
-     * @@param id {@link Long}
+     * @param id {@link Long}
      */
     void deleteById(final Long id);
+
+    /**
+     * Update an item by id.
+     *
+     * @param id {@link Long}
+     * @param inventoryRequest {@link InventoryRequest}
+     *
+     * @return {@link InventoryResponse}
+     * */
+    InventoryResponse updateById(final Long id, final InventoryRequest inventoryRequest);
 }

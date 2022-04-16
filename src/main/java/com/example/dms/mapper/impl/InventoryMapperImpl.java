@@ -1,10 +1,8 @@
 package com.example.dms.mapper.impl;
 
-import com.example.dms.dto.CustomerResponse;
 import com.example.dms.dto.InventoryRequest;
 import com.example.dms.dto.InventoryResponse;
 import com.example.dms.mapper.InventoryMapper;
-import com.example.dms.model.CustomerEntity;
 import com.example.dms.model.InventoryEntity;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
@@ -51,5 +49,16 @@ public class InventoryMapperImpl implements InventoryMapper {
             inventoryResponseList.add(entityToDto(inventory));
         }
         return inventoryResponseList;
+    }
+
+    @Override
+    public void updateInventory(final @NotNull InventoryRequest inventoryRequest, final @NotNull InventoryEntity inventoryEntity) {
+        inventoryEntity.setItemName(inventoryRequest.getItemName());
+        inventoryEntity.setQuantity(inventoryRequest.getQuantity());
+        inventoryEntity.setSold(inventoryRequest.getSold());
+        inventoryEntity.setDescription(inventoryRequest.getDescription());
+        inventoryEntity.setExpiryDate(inventoryRequest.getExpiryDate());
+        inventoryEntity.setSku(inventoryRequest.getSku());
+        inventoryEntity.setPrice(inventoryRequest.getPrice());
     }
 }

@@ -13,4 +13,6 @@ public interface InventoryMapper {
     InventoryResponse entityToDto(final InventoryEntity persistedInventoryEntity);
 
     List<InventoryResponse> entitiesToDto(final List<InventoryEntity> inventoryEntities);
+
+    void updateInventory(final InventoryRequest inventoryRequest, final InventoryEntity inventoryEntity);
 }
