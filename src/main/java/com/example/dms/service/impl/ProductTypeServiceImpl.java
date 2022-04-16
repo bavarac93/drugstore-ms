@@ -1,4 +1,8 @@
 package com.example.dms.service.impl;
 
-public class ProductTypeServiceImpl {
+import com.example.dms.service.ProductTypeService;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ProductTypeServiceImpl implements ProductTypeService {
 }
