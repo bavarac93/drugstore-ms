@@ -58,6 +58,15 @@ public class InventoryServiceImpl implements InventoryService {
         return inventoryMapper.entitiesToDto(inventoryEntityList);
     }
 
+    @Override
+    public void deleteById(final Long id) {
+        if (!inventoryRepository.existsById(id)) {
+            throw new ApiRequestException(
+            MessageFormat.format(ITEM_DOES_NOT_EXIST, id));
+        }
+        inventoryRepository.deleteById(id);
+    }
+
     private @NotNull InventoryEntity getInventoryEntityById(final Long id) {
         final Optional<InventoryEntity> optionalInventoryEntity = inventoryRepository.findById(id);
         if (optionalInventoryEntity.isEmpty()) {

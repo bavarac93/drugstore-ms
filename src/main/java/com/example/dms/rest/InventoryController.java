@@ -38,4 +38,10 @@ public class InventoryController {
         return new ResponseEntity<>(inventoryService.findById(id), HttpStatus.FOUND);
     }
 
+    @DeleteMapping("{id}")
+    ResponseEntity<Void> deleteById(@PathVariable final Long id) {
+        inventoryService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 }

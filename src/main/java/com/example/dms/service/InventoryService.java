@@ -45,4 +45,12 @@ public interface InventoryService {
      * @return {@link InventoryResponse}
      */
     List<InventoryResponse> findAll();
+
+
+    /**
+     * Delete an inventory item by id.
+     *
+     * @@param id {@link Long}
+     */
+    void deleteById(final Long id);
 }
