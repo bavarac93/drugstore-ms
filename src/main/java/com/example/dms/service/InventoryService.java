@@ -17,6 +17,7 @@ import java.util.List;
  *     <li>{@link #findById}</li>
  *     <li>{@link #deleteById}</li>
  *     <li>{@link #updateById}</li>
+ *     <li>{@link #updateDescriptionById}</li>
  * </ul>
  *
  */
@@ -46,7 +47,6 @@ public interface InventoryService {
      */
     List<InventoryResponse> findAll();
 
-
     /**
      * Delete an inventory item by id.
      *
@@ -63,4 +63,14 @@ public interface InventoryService {
      * @return {@link InventoryResponse}
      * */
     InventoryResponse updateById(final Long id, final InventoryRequest inventoryRequest);
+    
+    /**
+     * Update the description of an item by id.
+     *
+     * @param id {@link Long}
+     * @param description {@link String}
+     *
+     * @return {@link InventoryResponse}
+     * */
+    InventoryResponse updateDescriptionById(final Long id, final String description);
 }

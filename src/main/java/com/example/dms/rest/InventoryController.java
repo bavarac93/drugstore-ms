@@ -52,4 +52,12 @@ public class InventoryController {
     return new ResponseEntity<>(inventoryService.updateById(id, inventoryRequest), HttpStatus.ACCEPTED);
     }
 
+    @PatchMapping("/{id}")
+    ResponseEntity<InventoryResponse> updateDescriptionById(
+            @PathVariable ("id") final Long id,
+            @RequestParam ("description") final String description
+    ) {
+      return new ResponseEntity<>(inventoryService.updateDescriptionById(id,description), HttpStatus.ACCEPTED);
+    }
+
 }

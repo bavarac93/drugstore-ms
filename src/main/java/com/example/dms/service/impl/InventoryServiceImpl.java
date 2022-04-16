@@ -76,6 +76,16 @@ public class InventoryServiceImpl implements InventoryService {
         return inventoryMapper.entityToDto(updateInventory);
     }
 
+    @Override
+    public InventoryResponse updateDescriptionById(final Long id,final  String description) {
+        final InventoryEntity inventoryEntity = getInventoryEntityById(id);
+        inventoryEntity.setModifiedBy(AUTHOR);
+        inventoryEntity.setModifiedAt(LocalDateTime.now());
+        inventoryEntity.setDescription(description);
+        final InventoryEntity updateInventory = inventoryRepository.save(inventoryEntity);
+        return inventoryMapper.entityToDto(updateInventory);
+    }
+
     private @NotNull InventoryEntity getInventoryEntityById(final Long id) {
         final Optional<InventoryEntity> optionalInventoryEntity = inventoryRepository.findById(id);
         if (optionalInventoryEntity.isEmpty()) {
