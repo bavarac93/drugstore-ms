@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table (name = "supplier")
-public class SupplierEntity extends Audit {
+public class SupplierEntity extends AuditEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

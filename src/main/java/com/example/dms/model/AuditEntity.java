@@ -1,8 +1,10 @@
 package com.example.dms.model;
 
+import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
-public class Audit {
+@MappedSuperclass
+public class AuditEntity {
     private  String createdBy;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
