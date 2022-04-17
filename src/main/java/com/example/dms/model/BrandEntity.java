@@ -5,19 +5,15 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "brand")
-public class BrandEntity {
+public class BrandEntity extends Audit {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String brandName;
     private String brandDesc;
-    private LocalDateTime createdAt;
-    private String createdBy;
     private String phoneNumber;
     private String email;
     private String website;
-    private LocalDateTime modifiedAt;
-    private String modifiedBy;
 
     public BrandEntity() {
     }
@@ -70,39 +66,58 @@ public class BrandEntity {
         this.brandDesc = brandDesc;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
+    @Override
     public String getCreatedBy() {
-        return createdBy;
+        return super.getCreatedBy();
     }
 
+    @Override
     public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
+        super.setCreatedBy(createdBy);
     }
 
+    @Override
+    public LocalDateTime getCreatedAt() {
+        return super.getCreatedAt();
+    }
+
+    @Override
+    public void setCreatedAt(LocalDateTime createdAt) {
+        super.setCreatedAt(createdAt);
+    }
+
+    @Override
     public LocalDateTime getModifiedAt() {
-        return modifiedAt;
+        return super.getModifiedAt();
     }
 
+    @Override
     public void setModifiedAt(LocalDateTime modifiedAt) {
-        this.modifiedAt = modifiedAt;
+        super.setModifiedAt(modifiedAt);
     }
 
+    @Override
     public String getModifiedBy() {
-        return modifiedBy;
+        return super.getModifiedBy();
     }
 
+    @Override
     public void setModifiedBy(String modifiedBy) {
-        this.modifiedBy = modifiedBy;
+        super.setModifiedBy(modifiedBy);
     }
 
-
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("BrandEntity{");
+        sb.append("id=").append(id);
+        sb.append(", brandName='").append(brandName).append('\'');
+        sb.append(", brandDesc='").append(brandDesc).append('\'');
+        sb.append(", phoneNumber='").append(phoneNumber).append('\'');
+        sb.append(", email='").append(email).append('\'');
+        sb.append(", website='").append(website).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }
 
 

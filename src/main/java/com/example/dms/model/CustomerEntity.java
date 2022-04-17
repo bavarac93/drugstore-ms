@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Entity
 @Table (name = "customer")
-public class CustomerEntity {
+public class CustomerEntity extends Audit {
 
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
@@ -18,10 +18,6 @@ public class CustomerEntity {
     private boolean isVerified;
     private Date dateJoined;
     private String drugAllergicTo;
-    private  String createdBy;
-    private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
-    private String modifiedBy;
 
     @ManyToOne
     @JoinColumn(name = "address_id")
@@ -35,38 +31,8 @@ public class CustomerEntity {
 
     }
 
-    public CustomerEntity(Long id, String firstName, String lastName, String phoneNumber, String email, boolean isVerified, Date dateJoined, String drugAllergicTo, String createdBy, LocalDateTime createdAt, AddressEntity addressEntity) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.isVerified = isVerified;
-        this.dateJoined = dateJoined;
-        this.drugAllergicTo = drugAllergicTo;
-        this.createdBy = createdBy;
-        this.createdAt = createdAt;
-        this.addressEntity = addressEntity;
-    }
-
     public void setAddressEntity(AddressEntity addressEntity) {
         this.addressEntity = addressEntity;
-    }
-
-    public LocalDateTime getModifiedAt() {
-        return modifiedAt;
-    }
-
-    public void setModifiedAt(LocalDateTime modifiedAt) {
-        this.modifiedAt = modifiedAt;
-    }
-
-    public String getModifiedBy() {
-        return modifiedBy;
-    }
-
-    public void setModifiedBy(String modifiedBy) {
-        this.modifiedBy = modifiedBy;
     }
 
     public Long getId() {
@@ -134,20 +100,44 @@ public class CustomerEntity {
         this.drugAllergicTo = drugAllergicTo;
     }
 
+    @Override
     public String getCreatedBy() {
-        return createdBy;
+        return super.getCreatedBy();
     }
 
+    @Override
     public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
+        super.setCreatedBy(createdBy);
     }
 
+    @Override
     public LocalDateTime getCreatedAt() {
-        return createdAt;
+        return super.getCreatedAt();
     }
 
+    @Override
     public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+        super.setCreatedAt(createdAt);
+    }
+
+    @Override
+    public LocalDateTime getModifiedAt() {
+        return super.getModifiedAt();
+    }
+
+    @Override
+    public void setModifiedAt(LocalDateTime modifiedAt) {
+        super.setModifiedAt(modifiedAt);
+    }
+
+    @Override
+    public String getModifiedBy() {
+        return super.getModifiedBy();
+    }
+
+    @Override
+    public void setModifiedBy(String modifiedBy) {
+        super.setModifiedBy(modifiedBy);
     }
 
     @Override
@@ -161,10 +151,6 @@ public class CustomerEntity {
         sb.append(", isVerified=").append(isVerified);
         sb.append(", dateJoined=").append(dateJoined);
         sb.append(", drugAllergicTo='").append(drugAllergicTo).append('\'');
-        sb.append(", createdBy='").append(createdBy).append('\'');
-        sb.append(", createdAt=").append(createdAt);
-        sb.append(", modifiedAt=").append(modifiedAt);
-        sb.append(", modifiedBy='").append(modifiedBy).append('\'');
         sb.append(", addressEntity=").append(addressEntity);
         sb.append('}');
         return sb.toString();

@@ -1,5 +1,6 @@
 package com.example.dms.dto;
 
+
 import java.time.LocalDateTime;
 
 public class InventoryResponse {
@@ -40,6 +41,14 @@ public class InventoryResponse {
 
     public String getSku() {
         return sku;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public void setSku(String sku) {
@@ -84,14 +93,6 @@ public class InventoryResponse {
 
     public void setBrandId(Long brandId) {
         this.brandId = brandId;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
     }
 
 }

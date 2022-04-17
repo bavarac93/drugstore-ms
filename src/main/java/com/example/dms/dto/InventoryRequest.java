@@ -1,6 +1,5 @@
 package com.example.dms.dto;
 
-import com.example.dms.model.BrandEntity;
 
 import java.time.LocalDateTime;
 

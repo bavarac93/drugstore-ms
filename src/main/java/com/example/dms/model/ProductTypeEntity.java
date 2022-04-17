@@ -5,17 +5,12 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table (name = "product_type")
-public class ProductTypeEntity {
+public class ProductTypeEntity extends Audit {
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String productType;
     private String productTypeDesc;
-    private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
-    private String createdBy;
-    private String modifiedBy;
-//dodati u entity audit zadnja 4. iskoristit inheritance
 
     public ProductTypeEntity() {
     }
@@ -44,35 +39,53 @@ public class ProductTypeEntity {
         this.productTypeDesc = productTypeDesc;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getModifiedAt() {
-        return modifiedAt;
-    }
-
-    public void setModifiedAt(LocalDateTime modifiedAt) {
-        this.modifiedAt = modifiedAt;
-    }
-
+    @Override
     public String getCreatedBy() {
-        return createdBy;
+        return super.getCreatedBy();
     }
 
+    @Override
     public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
+        super.setCreatedBy(createdBy);
     }
 
+    @Override
+    public LocalDateTime getCreatedAt() {
+        return super.getCreatedAt();
+    }
+
+    @Override
+    public void setCreatedAt(LocalDateTime createdAt) {
+        super.setCreatedAt(createdAt);
+    }
+
+    @Override
+    public LocalDateTime getModifiedAt() {
+        return super.getModifiedAt();
+    }
+
+    @Override
+    public void setModifiedAt(LocalDateTime modifiedAt) {
+        super.setModifiedAt(modifiedAt);
+    }
+
+    @Override
     public String getModifiedBy() {
-        return modifiedBy;
+        return super.getModifiedBy();
     }
 
+    @Override
     public void setModifiedBy(String modifiedBy) {
-        this.modifiedBy = modifiedBy;
+        super.setModifiedBy(modifiedBy);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("ProductTypeEntity{");
+        sb.append("id=").append(id);
+        sb.append(", productType='").append(productType).append('\'');
+        sb.append(", productTypeDesc='").append(productTypeDesc).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

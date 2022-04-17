@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table (name = "inventory")
-public class InventoryEntity {
+public class InventoryEntity extends Audit {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -16,10 +16,6 @@ public class InventoryEntity {
     private Long sold;
     private String description;
     private LocalDateTime expiryDate;
-    private LocalDateTime createdAt;
-    private String createdBy;
-    private LocalDateTime modifiedAt;
-    private String  modifiedBy;
 
     @ManyToOne
     @JoinColumn(name = "brand_id")
@@ -101,36 +97,44 @@ public class InventoryEntity {
         this.expiryDate = expiryDate;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
+    @Override
     public String getCreatedBy() {
-        return createdBy;
+        return super.getCreatedBy();
     }
 
+    @Override
     public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
+        super.setCreatedBy(createdBy);
     }
 
+    @Override
+    public LocalDateTime getCreatedAt() {
+        return super.getCreatedAt();
+    }
+
+    @Override
+    public void setCreatedAt(LocalDateTime createdAt) {
+        super.setCreatedAt(createdAt);
+    }
+
+    @Override
     public LocalDateTime getModifiedAt() {
-        return modifiedAt;
+        return super.getModifiedAt();
     }
 
+    @Override
     public void setModifiedAt(LocalDateTime modifiedAt) {
-        this.modifiedAt = modifiedAt;
+        super.setModifiedAt(modifiedAt);
     }
 
+    @Override
     public String getModifiedBy() {
-        return modifiedBy;
+        return super.getModifiedBy();
     }
 
+    @Override
     public void setModifiedBy(String modifiedBy) {
-        this.modifiedBy = modifiedBy;
+        super.setModifiedBy(modifiedBy);
     }
 
     public BrandEntity getBrandEntity() {
