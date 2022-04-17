@@ -22,16 +22,6 @@ public class BrandEntity {
     public BrandEntity() {
     }
 
-    public BrandEntity(Long id, String brandName, String brandDesc, LocalDateTime createdAt, String createdBy, String phoneNumber, String email, String website) {
-        this.id = id;
-        this.brandName = brandName;
-        this.brandDesc = brandDesc;
-        this.createdAt = createdAt;
-        this.createdBy = createdBy;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.website = website;
-    }
     public String getPhoneNumber() {
         return phoneNumber;
     }
