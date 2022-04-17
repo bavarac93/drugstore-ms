@@ -11,8 +11,8 @@ import java.util.List;
  *
  * <ul>
  *     <li>{@link #create}</li>
+ *     <li>{@link #findAll}</li>
  *     <li>{@link #findById}</li>
- *     <li>{@link #findAll()}</li>
  *     <li>{@link #deleteById}</li>
  *     <li>{@link #updateById}</li>
  *     <li>{@link #updateBrandDescById}</li>
@@ -20,8 +20,6 @@ import java.util.List;
  *
  */
 public interface BrandService {
-//
-//    String create();
 
     /**
      * Create a new brand based on a request model.
@@ -70,8 +68,6 @@ public interface BrandService {
      * @return {@link BrandResponse}
      */
     BrandResponse updateById(final Long id, final BrandRequest brandRequest);
-
-
 
     /**
      * Update brandDesc by id.

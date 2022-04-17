@@ -12,8 +12,7 @@ import java.util.List;
  *
  * <ul>
  *     <li>{@link #create}</li>
- *     <li>{@link #findById}</li>
- *     <li>{@link #findAll()}</li>
+ *     <li>{@link #findAll}</li>
  *     <li>{@link #findById}</li>
  *     <li>{@link #deleteById}</li>
  *     <li>{@link #updateById}</li>
