@@ -13,7 +13,6 @@ import java.util.Objects;
 @RestController
 @RequestMapping("address")
 public class AddressController {
-
     private final AddressService addressService;
 
     public AddressController(final AddressService addressService) {

@@ -15,6 +15,7 @@ public class ProductTypeEntity {
     private LocalDateTime modifiedAt;
     private String createdBy;
     private String modifiedBy;
+//dodati u entity audit zadnja 4. iskoristit inheritance
 
     public ProductTypeEntity() {
     }

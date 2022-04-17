@@ -12,14 +12,14 @@ public class InventoryRequest {
     private Long quantity;
     private Long sold;
     private LocalDateTime expiryDate;
-    private BrandEntity brandEntity;
+    private Long brandId;
 
-    public BrandEntity getBrandEntity() {
-        return brandEntity;
+    public Long getBrandId() {
+        return brandId;
     }
 
-    public void setBrandEntity(BrandEntity brandEntity) {
-        this.brandEntity = brandEntity;
+    public void setBrandId(Long brandId) {
+        this.brandId = brandId;
     }
 
     public String getItemName() {

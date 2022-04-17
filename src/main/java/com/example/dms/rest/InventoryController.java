@@ -20,12 +20,10 @@ public class InventoryController {
         this.inventoryService = Objects.requireNonNull(inventoryService, "inventoryService cannot be null");
     }
 
-    @PostMapping("{brandId}")
+    @PostMapping
     ResponseEntity<InventoryResponse> create(
-            @RequestBody final InventoryRequest inventoryRequest,
-            @PathVariable final Long brandId
-    ) {
-        return new ResponseEntity<>(inventoryService.create(inventoryRequest, brandId), HttpStatus.CREATED);
+            @RequestBody final InventoryRequest inventoryRequest) {
+        return new ResponseEntity<>(inventoryService.create(inventoryRequest), HttpStatus.CREATED);
     }
 
     @GetMapping

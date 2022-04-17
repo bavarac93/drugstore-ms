@@ -35,11 +35,11 @@ public class InventoryServiceImpl implements InventoryService {
     }
 
     @Override
-    public InventoryResponse create(final InventoryRequest inventoryRequest, final Long brandId) {
+    public InventoryResponse create(final InventoryRequest inventoryRequest) {
         final InventoryEntity inventoryEntity = inventoryMapper.dtoToEntity(inventoryRequest);
         inventoryEntity.setCreatedAt(LocalDateTime.now());
         inventoryEntity.setCreatedBy(AUTHOR);
-        final BrandEntity brandEntity = brandService.getBrandEntityById(brandId);
+        final BrandEntity brandEntity = brandService.getBrandEntityById(inventoryRequest.getBrandId());
         inventoryEntity.setBrandEntity(brandEntity);
         final InventoryEntity persistedInventoryEntity = inventoryRepository.save(inventoryEntity);
         return inventoryMapper.entityToDto(persistedInventoryEntity);

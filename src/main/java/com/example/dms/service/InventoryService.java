@@ -26,10 +26,9 @@ public interface InventoryService {
      * Create a new inventory item based on a request model.
      *
      * @param inventoryRequest {@link InventoryRequest}
-     * @param brandId {@link Long}
      * @return {@link InventoryResponse}
      */
-    InventoryResponse create(final InventoryRequest inventoryRequest, final Long brandId);
+    InventoryResponse create(final InventoryRequest inventoryRequest);
 
     /**
      * Get an inventory item by id.
