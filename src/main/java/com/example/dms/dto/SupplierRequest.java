@@ -7,6 +7,7 @@ public class SupplierRequest {
     private String supplierDesc;
     private LocalDateTime contractSigned;
     private LocalDateTime contractExpires;
+    private LocalDateTime createdAt;
 
     public String getSupplierName() {
         return supplierName;
@@ -14,6 +15,14 @@ public class SupplierRequest {
 
     public void setSupplierName(String supplierName) {
         this.supplierName = supplierName;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public String getSupplierDesc() {

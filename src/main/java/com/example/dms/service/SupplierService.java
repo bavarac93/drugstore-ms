@@ -1,5 +1,7 @@
 package com.example.dms.service;
 
+import com.example.dms.dto.SupplierRequest;
+import com.example.dms.dto.SupplierResponse;
 import com.example.dms.model.SupplierEntity;
 
 /** Methods used to manipulate supplier data.
@@ -16,6 +18,16 @@ import com.example.dms.model.SupplierEntity;
  *
  * */
 public interface SupplierService {
+
+    /**
+     * Create a supplier based on request data.
+     *
+     * @param supplierRequest {@link SupplierRequest}
+     * @return supplierResponse {@link SupplierResponse}
+     *
+     */
+    SupplierResponse create(final SupplierRequest supplierRequest);
+
 
     /**
      * Get a supplier entity by id.

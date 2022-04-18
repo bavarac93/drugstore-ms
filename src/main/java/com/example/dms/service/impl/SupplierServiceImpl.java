@@ -1,12 +1,16 @@
 package com.example.dms.service.impl;
 
 import com.example.dms.dao.SupplierRepository;
+import com.example.dms.dto.SupplierRequest;
+import com.example.dms.dto.SupplierResponse;
 import com.example.dms.exception.ApiRequestException;
+import com.example.dms.mapper.SupplierMapper;
 import com.example.dms.model.SupplierEntity;
 import com.example.dms.service.SupplierService;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -14,12 +18,25 @@ import java.util.Optional;
 public class SupplierServiceImpl implements SupplierService {
 
     private static final String SUPPLIER_DOES_NOT_EXIST = "Supplier with this id: {0} does not exist.";
-    private final SupplierRepository supplierRepository;
+    private static final String AUTHOR = "Muki";
 
-    public SupplierServiceImpl(final SupplierRepository supplierRepository) {
+    private final SupplierRepository supplierRepository;
+    private final SupplierMapper supplierMapper;
+
+    public SupplierServiceImpl(final SupplierRepository supplierRepository, final SupplierMapper supplierMapper) {
         this.supplierRepository = Objects.requireNonNull(supplierRepository, "supplierRepository cannot be null");
+        this.supplierMapper = Objects.requireNonNull(supplierMapper, "supplierMapper cannot be null");
     }
 
+
+    @Override
+    public SupplierResponse create(final SupplierRequest supplierRequest) {
+        SupplierEntity supplierEntity = supplierMapper.dtoToEntity(supplierRequest);
+        supplierEntity.setCreatedAt(LocalDateTime.now());
+        supplierEntity.setCreatedBy(AUTHOR);
+        final SupplierEntity saveSupplierEntity = supplierRepository.save(supplierEntity);
+        return supplierMapper.entityToDto(saveSupplierEntity);
+    }
 
     @Override
     public SupplierEntity getSupplierEntityById(final Long id) {
