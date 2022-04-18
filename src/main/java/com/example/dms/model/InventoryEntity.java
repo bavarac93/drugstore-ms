@@ -25,12 +25,9 @@ public class InventoryEntity extends AuditEntity {
     @JoinColumn (name = "product_type_id")
     private ProductTypeEntity productTypeEntity;
 
-//    @OneToMany
-//    @JoinColumn(name = "supplier_id")
-//    private SupplierEntity supplierEntity;
-//
-
-
+    @ManyToOne
+    @JoinColumn (name = "supplier_id")
+    private SupplierEntity supplierEntity;
 
     public InventoryEntity() {
     }
@@ -109,6 +106,14 @@ public class InventoryEntity extends AuditEntity {
 
     public ProductTypeEntity getProductTypeEntity() {
         return productTypeEntity;
+    }
+
+    public SupplierEntity getSupplierEntity() {
+        return supplierEntity;
+    }
+
+    public void setSupplierEntity(SupplierEntity supplierEntity) {
+        this.supplierEntity = supplierEntity;
     }
 
     public void setProductTypeEntity(ProductTypeEntity productTypeEntity) {

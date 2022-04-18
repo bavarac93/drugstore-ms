@@ -16,7 +16,6 @@ import java.util.List;
  *     <li>{@link #deleteById}</li>
  *     <li>{@link #updateById}</li>
  *     <li>{@link #updateBrandDescById}</li>
- *     <li>{@link #getBrandEntityById}</li>
  * </ul>
  *
  */

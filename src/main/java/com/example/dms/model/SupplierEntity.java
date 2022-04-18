@@ -10,12 +10,9 @@ public class SupplierEntity extends AuditEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String supplierName;
-    //    @ManyToOne
-//    @JoinColumn(name = "product_type_id")
-//    private ProductTypeEntity productTypeEntity;
-//    @ManyToOne
-//    @JoinColumn(name = "brand_id")
-//    private BrandEntity brandEntity;
+    private String supplierDesc;
+    private LocalDateTime contractSigned;
+    private LocalDateTime contractExpires;
 
     public SupplierEntity() {
     }
@@ -30,6 +27,30 @@ public class SupplierEntity extends AuditEntity {
 
     public String getSupplierName() {
         return supplierName;
+    }
+
+    public String getSupplierDesc() {
+        return supplierDesc;
+    }
+
+    public void setSupplierDesc(String supplierDesc) {
+        this.supplierDesc = supplierDesc;
+    }
+
+    public LocalDateTime getContractSigned() {
+        return contractSigned;
+    }
+
+    public void setContractSigned(LocalDateTime contractSigned) {
+        this.contractSigned = contractSigned;
+    }
+
+    public LocalDateTime getContractExpires() {
+        return contractExpires;
+    }
+
+    public void setContractExpires(LocalDateTime contractExpires) {
+        this.contractExpires = contractExpires;
     }
 
     public void setSupplierName(String supplierName) {

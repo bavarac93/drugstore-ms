@@ -13,6 +13,7 @@ public class InventoryRequest {
     private LocalDateTime expiryDate;
     private Long brandId;
     private Long productTypeId;
+    private Long supplierId;
 
     public Long getProductTypeId() {
         return productTypeId;
@@ -20,6 +21,14 @@ public class InventoryRequest {
 
     public void setProductTypeId(Long productTypeId) {
         this.productTypeId = productTypeId;
+    }
+
+    public Long getSupplierId() {
+        return supplierId;
+    }
+
+    public void setSupplierId(Long supplierId) {
+        this.supplierId = supplierId;
     }
 
     public Long getBrandId() {

@@ -14,6 +14,7 @@ public class InventoryResponse {
     private LocalDateTime expiryDate;
     private Long brandId;
     private Long productTypeId;
+    private Long supplierId;
     private LocalDateTime createdAt;
 
     public Long getId() {
@@ -46,6 +47,14 @@ public class InventoryResponse {
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
+    }
+
+    public Long getSupplierId() {
+        return supplierId;
+    }
+
+    public void setSupplierId(Long supplierId) {
+        this.supplierId = supplierId;
     }
 
     public Long getProductTypeId() {

@@ -8,9 +8,11 @@ import com.example.dms.mapper.InventoryMapper;
 import com.example.dms.model.BrandEntity;
 import com.example.dms.model.InventoryEntity;
 import com.example.dms.model.ProductTypeEntity;
+import com.example.dms.model.SupplierEntity;
 import com.example.dms.service.BrandService;
 import com.example.dms.service.InventoryService;
 import com.example.dms.service.ProductTypeService;
+import com.example.dms.service.SupplierService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import java.text.MessageFormat;
@@ -30,12 +32,19 @@ public class InventoryServiceImpl implements InventoryService {
     private final BrandService brandService;
     private final InventoryMapper inventoryMapper;
     private final ProductTypeService productTypeService;
+    private final SupplierService supplierService;
 
-    public InventoryServiceImpl(final InventoryRepository inventoryRepository, final BrandService brandService, final InventoryMapper inventoryMapper, final ProductTypeService productTypeService) {
+    public InventoryServiceImpl(
+            final InventoryRepository inventoryRepository,
+            final BrandService brandService,
+            final InventoryMapper inventoryMapper,
+            final ProductTypeService productTypeService,
+            final SupplierService supplierService) {
         this.inventoryRepository = Objects.requireNonNull(inventoryRepository, "inventoryRepository cannot be null");
         this.brandService = Objects.requireNonNull(brandService, "brandService cannot be null");
         this.inventoryMapper = Objects.requireNonNull(inventoryMapper, "inventoryMapper cannot be null");
         this.productTypeService = Objects.requireNonNull(productTypeService, "productTypeService cannot be null");
+        this.supplierService = Objects.requireNonNull(supplierService, "supplierService cannot be null");
     }
 
     @Override
@@ -47,6 +56,8 @@ public class InventoryServiceImpl implements InventoryService {
         inventoryEntity.setBrandEntity(brandEntity);
         final ProductTypeEntity productTypeEntity = productTypeService.getProductTypeEntityById(inventoryRequest.getProductTypeId());
         inventoryEntity.setProductTypeEntity(productTypeEntity);
+        final SupplierEntity supplierEntity = supplierService.getSupplierEntityById(inventoryRequest.getSupplierId());
+        inventoryEntity.setSupplierEntity(supplierEntity);
         final InventoryEntity persistedInventoryEntity = inventoryRepository.save(inventoryEntity);
         return inventoryMapper.entityToDto(persistedInventoryEntity);
     }
