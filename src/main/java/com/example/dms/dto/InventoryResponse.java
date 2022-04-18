@@ -1,6 +1,8 @@
 package com.example.dms.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 
 public class InventoryResponse {
@@ -15,6 +17,7 @@ public class InventoryResponse {
     private Long brandId;
     private Long productTypeId;
     private Long supplierId;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
 
     public Long getId() {

@@ -21,8 +21,7 @@ public class InventoryController {
     }
 
     @PostMapping
-    ResponseEntity<InventoryResponse> create(
-            @RequestBody final InventoryRequest inventoryRequest) {
+    ResponseEntity<InventoryResponse> create(@RequestBody final InventoryRequest inventoryRequest) {
         return new ResponseEntity<>(inventoryService.create(inventoryRequest), HttpStatus.CREATED);
     }
 
@@ -55,7 +54,10 @@ public class InventoryController {
             @PathVariable ("id") final Long id,
             @RequestParam ("description") final String description
     ) {
-      return new ResponseEntity<>(inventoryService.updateDescriptionById(id,description), HttpStatus.ACCEPTED);
+      return new ResponseEntity<>(
+              inventoryService.updateDescriptionById(id,description),
+              HttpStatus.ACCEPTED
+      );
     }
 
 }

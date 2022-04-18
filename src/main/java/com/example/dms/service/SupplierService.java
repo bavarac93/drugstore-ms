@@ -4,6 +4,8 @@ import com.example.dms.dto.SupplierRequest;
 import com.example.dms.dto.SupplierResponse;
 import com.example.dms.model.SupplierEntity;
 
+import java.util.List;
+
 /** Methods used to manipulate supplier data.
  * List of implemented APIs with links:
  *
@@ -28,6 +30,36 @@ public interface SupplierService {
      */
     SupplierResponse create(final SupplierRequest supplierRequest);
 
+    /**
+     * Get a list of suppliers.
+     *
+     * @return supplierResponse {@link SupplierResponse}
+     */
+    List<SupplierResponse> findAll();
+
+    /**
+     * Get a supplier by id.
+     *
+     * @param id {@link Long}
+     * @return {@link SupplierResponse}
+     */
+    SupplierResponse findById(final Long id);
+
+    /**
+     * Delete a supplier by id.
+     *
+     * @param id {@link Long}
+     *
+     */
+    void deleteById(final Long id);
+
+    /**
+     * Update a supplier by id.
+     *
+     * @param id {@link Long}
+     *
+     */
+    SupplierResponse updateById(final Long id, final SupplierRequest supplierRequest);
 
     /**
      * Get a supplier entity by id.
@@ -36,4 +68,6 @@ public interface SupplierService {
      * @return {@link SupplierEntity}
      */
     SupplierEntity getSupplierEntityById(final Long id);
+
+
 }

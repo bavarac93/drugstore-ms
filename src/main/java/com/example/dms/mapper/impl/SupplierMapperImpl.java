@@ -7,6 +7,9 @@ import com.example.dms.model.SupplierEntity;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class SupplierMapperImpl implements SupplierMapper {
 
@@ -32,5 +35,14 @@ public class SupplierMapperImpl implements SupplierMapper {
         supplierResponse.setContractExpires(persistedSupplierEntity.getContractExpires());
         supplierResponse.setCreatedAt(persistedSupplierEntity.getCreatedAt());
         return supplierResponse;
+    }
+
+    @Override
+    public List<SupplierResponse> entitiesToDto(@NotNull List<SupplierEntity> supplierEntityList) {
+        final List<SupplierResponse> supplierResponses = new ArrayList<>();
+        for (SupplierEntity supplierEntity : supplierEntityList) {
+            supplierResponses.add(entityToDto(supplierEntity));
+        }
+        return supplierResponses;
     }
 }

@@ -3,15 +3,22 @@ package com.example.dms.rest;
 import com.example.dms.dto.AddressRequest;
 import com.example.dms.dto.AddressResponse;
 import com.example.dms.service.AddressService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.apache.tomcat.jni.Local;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
 @RestController
 @RequestMapping("address")
+@Api(value = "APIs used to manipulate address data", tags = "address")
 public class AddressController {
     private final AddressService addressService;
 
@@ -19,11 +26,15 @@ public class AddressController {
         this.addressService = Objects.requireNonNull(addressService, "addressService cannot be null");
     }
 
+    @ApiOperation(value = "Create new address",
+                  consumes = MediaType.APPLICATION_JSON_VALUE,
+                  produces = MediaType.APPLICATION_JSON_VALUE)
     @PostMapping
     public ResponseEntity<AddressResponse> create(@RequestBody final AddressRequest addressRequest) {
         return new ResponseEntity<>(addressService.create(addressRequest), HttpStatus.CREATED);
     }
 
+    @ApiOperation(value = "Retrieve all addresses", produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping
     public ResponseEntity<List<AddressResponse>> findAll() {
         return new ResponseEntity<>(addressService.findAll(), HttpStatus.FOUND);

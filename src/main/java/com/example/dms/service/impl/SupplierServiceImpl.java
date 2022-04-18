@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -39,6 +40,32 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
+    public List<SupplierResponse> findAll() {
+        List<SupplierEntity> supplierEntityList = supplierRepository.findAll();
+        return supplierMapper.entitiesToDto(supplierEntityList);
+    }
+
+    @Override
+    public SupplierResponse findById(final Long id) {
+        final SupplierEntity supplierEntity = getSupplierEntityById(id);
+        return supplierMapper.entityToDto(supplierEntity);
+    }
+
+    @Override
+    public void deleteById(final Long id) {
+        if (!supplierRepository.existsById(id)){
+            throw new ApiRequestException(
+                    MessageFormat.format(SUPPLIER_DOES_NOT_EXIST, id));
+        }
+        supplierRepository.deleteById(id);
+    }
+
+    @Override
+    public SupplierResponse updateById(Long id, SupplierRequest supplierRequest) {
+        return null;
+    }
+
+    @Override
     public SupplierEntity getSupplierEntityById(final Long id) {
         final Optional<SupplierEntity> optionalSupplierEntity = supplierRepository.findById(id);
             if (optionalSupplierEntity.isEmpty()) {
@@ -47,4 +74,6 @@ public class SupplierServiceImpl implements SupplierService {
             }
             return optionalSupplierEntity.get();
     }
+
+
 }

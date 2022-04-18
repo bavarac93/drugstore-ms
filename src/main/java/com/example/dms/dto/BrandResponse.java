@@ -1,6 +1,8 @@
 package com.example.dms.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 
 public class BrandResponse {
@@ -10,6 +12,7 @@ public class BrandResponse {
     private String phoneNumber;
     private String email;
     private String website;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
 
     public LocalDateTime getCreatedAt() {
