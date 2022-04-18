@@ -12,13 +12,22 @@ import java.util.List;
 
 @Component
 public class ProductTypeMapperImpl implements ProductTypeMapper {
+
+    @Override
+    public ProductTypeEntity dtoToEntity(final @NotNull ProductTypeRequest productTypeRequest) {
+        final ProductTypeEntity productTypeEntity = new ProductTypeEntity();
+        productTypeEntity.setProductType(productTypeRequest.getProductType());
+        productTypeEntity.setProductTypeDesc(productTypeRequest.getProductTypeDesc());
+        return productTypeEntity;
+    }
+
     @Override
     public ProductTypeResponse entityToDto(final @NotNull ProductTypeEntity persistedProductTypeEntity) {
         final ProductTypeResponse productTypeResponse = new ProductTypeResponse();
-        persistedProductTypeEntity.setId(productTypeResponse.getId());
-        persistedProductTypeEntity.setProductType(productTypeResponse.getProductType());
-        persistedProductTypeEntity.setProductTypeDesc(productTypeResponse.getProductTypeDesc());
-        persistedProductTypeEntity.setCreatedAt(productTypeResponse.getCreatedAt());
+        productTypeResponse.setId(persistedProductTypeEntity.getId());
+        productTypeResponse.setProductType(persistedProductTypeEntity.getProductType());
+        productTypeResponse.setProductTypeDesc(persistedProductTypeEntity.getProductTypeDesc());
+        productTypeResponse.setCreatedAt(persistedProductTypeEntity.getCreatedAt());
         return productTypeResponse;
     }
 

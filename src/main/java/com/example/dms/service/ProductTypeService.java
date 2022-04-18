@@ -1,8 +1,8 @@
 package com.example.dms.service;
 
-import com.example.dms.dto.InventoryResponse;
 import com.example.dms.dto.ProductTypeRequest;
 import com.example.dms.dto.ProductTypeResponse;
+import com.example.dms.model.ProductTypeEntity;
 
 import java.util.List;
 /**
@@ -16,17 +16,26 @@ import java.util.List;
  *     <li>{@link #deleteById}</li>
  *     <li>{@link #updateById}</li>
  *     <li>{@link #updateProductTypeDescById}</li>
+ *     <li>{@link #getProductTypeEntityById}</li>
  * </ul>
  *
  */
 
 public interface ProductTypeService {
 
+    /**
+     * Create a product type.
+     *
+     * @param productTypeRequest {@link ProductTypeRequest}
+     * @return {@link ProductTypeResponse}
+     *
+     */
+    ProductTypeResponse create(final ProductTypeRequest productTypeRequest);
 
     /**
      * Get a list of product types.
      *
-     * @return {@link InventoryResponse}
+     * @return {@link ProductTypeResponse}
      *
      */
     List<ProductTypeResponse> findAll();
@@ -67,4 +76,13 @@ public interface ProductTypeService {
      *
      */
     ProductTypeResponse updateProductTypeDescById (final Long id, final String productTypeDesc);
+
+    /**
+     * Get a product type entity by id.
+     *
+     * @param id {@link Long}
+     * @return {@link ProductTypeEntity}
+     */
+    ProductTypeEntity getProductTypeEntityById(final Long id);
+
 }

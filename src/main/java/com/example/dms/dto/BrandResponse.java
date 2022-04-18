@@ -1,6 +1,8 @@
 package com.example.dms.dto;
 
 
+import java.time.LocalDateTime;
+
 public class BrandResponse {
     private Long id;
     private String brandName;
@@ -8,6 +10,15 @@ public class BrandResponse {
     private String phoneNumber;
     private String email;
     private String website;
+    private LocalDateTime createdAt;
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 
     public Long getId() {
         return id;

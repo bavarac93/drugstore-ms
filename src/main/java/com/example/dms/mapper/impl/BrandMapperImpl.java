@@ -32,6 +32,7 @@ public class BrandMapperImpl implements BrandMapper {
         brandResponse.setEmail(persistedBrandEntity.getEmail());
         brandResponse.setPhoneNumber(persistedBrandEntity.getPhoneNumber());
         brandResponse.setWebsite(persistedBrandEntity.getWebsite());
+        brandResponse.setCreatedAt(persistedBrandEntity.getCreatedAt());
         return brandResponse;
     }
 

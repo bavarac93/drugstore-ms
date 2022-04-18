@@ -39,6 +39,7 @@ public class InventoryMapperImpl implements InventoryMapper {
         inventoryResponse.setSold(persistedInventoryEntity.getSold());
         inventoryResponse.setCreatedAt(persistedInventoryEntity.getCreatedAt());
         inventoryResponse.setBrandId(persistedInventoryEntity.getBrandEntity().getId());
+        inventoryResponse.setProductTypeId(persistedInventoryEntity.getProductTypeEntity().getId());
         return inventoryResponse;
     }
 

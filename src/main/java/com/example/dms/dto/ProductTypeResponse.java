@@ -7,7 +7,6 @@ public class ProductTypeResponse {
     private String productType;
     private String productTypeDesc;
     private LocalDateTime createdAt;
-    private String createdBy;
 
     public Long getId() {
         return id;
@@ -41,11 +40,4 @@ public class ProductTypeResponse {
         this.createdAt = createdAt;
     }
 
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
 }

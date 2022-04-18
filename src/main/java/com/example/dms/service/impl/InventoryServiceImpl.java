@@ -7,8 +7,10 @@ import com.example.dms.exception.ApiRequestException;
 import com.example.dms.mapper.InventoryMapper;
 import com.example.dms.model.BrandEntity;
 import com.example.dms.model.InventoryEntity;
+import com.example.dms.model.ProductTypeEntity;
 import com.example.dms.service.BrandService;
 import com.example.dms.service.InventoryService;
+import com.example.dms.service.ProductTypeService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import java.text.MessageFormat;
@@ -27,11 +29,13 @@ public class InventoryServiceImpl implements InventoryService {
     private final InventoryRepository inventoryRepository;
     private final BrandService brandService;
     private final InventoryMapper inventoryMapper;
+    private final ProductTypeService productTypeService;
 
-    public InventoryServiceImpl(final InventoryRepository inventoryRepository, final BrandService brandService, final InventoryMapper inventoryMapper) {
+    public InventoryServiceImpl(final InventoryRepository inventoryRepository, final BrandService brandService, final InventoryMapper inventoryMapper, final ProductTypeService productTypeService) {
         this.inventoryRepository = Objects.requireNonNull(inventoryRepository, "inventoryRepository cannot be null");
         this.brandService = Objects.requireNonNull(brandService, "brandService cannot be null");
         this.inventoryMapper = Objects.requireNonNull(inventoryMapper, "inventoryMapper cannot be null");
+        this.productTypeService = Objects.requireNonNull(productTypeService, "productTypeService cannot be null");
     }
 
     @Override
@@ -41,6 +45,8 @@ public class InventoryServiceImpl implements InventoryService {
         inventoryEntity.setCreatedBy(AUTHOR);
         final BrandEntity brandEntity = brandService.getBrandEntityById(inventoryRequest.getBrandId());
         inventoryEntity.setBrandEntity(brandEntity);
+        final ProductTypeEntity productTypeEntity = productTypeService.getProductTypeEntityById(inventoryRequest.getProductTypeId());
+        inventoryEntity.setProductTypeEntity(productTypeEntity);
         final InventoryEntity persistedInventoryEntity = inventoryRepository.save(inventoryEntity);
         return inventoryMapper.entityToDto(persistedInventoryEntity);
     }

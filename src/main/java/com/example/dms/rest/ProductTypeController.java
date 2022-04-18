@@ -19,6 +19,11 @@ public class ProductTypeController {
         this.productTypeService = Objects.requireNonNull(productTypeService, "productTypeService cannot be null");
     }
 
+    @PostMapping
+    ResponseEntity<ProductTypeResponse> create(@RequestBody final ProductTypeRequest productTypeRequest) {
+        return new ResponseEntity<>(productTypeService.create(productTypeRequest), HttpStatus.CREATED);
+    }
+
     @GetMapping
     ResponseEntity<List<ProductTypeResponse>> findAll() {
         return new ResponseEntity<>(productTypeService.findAll(), HttpStatus.FOUND);

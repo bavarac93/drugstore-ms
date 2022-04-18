@@ -30,6 +30,15 @@ public class ProductTypeServiceImpl implements ProductTypeService {
     }
 
     @Override
+    public ProductTypeResponse create(final ProductTypeRequest productTypeRequest) {
+        final ProductTypeEntity productTypeEntity = productTypeMapper.dtoToEntity(productTypeRequest);
+        productTypeEntity.setCreatedAt(LocalDateTime.now());
+        productTypeEntity.setCreatedBy(AUTHOR);
+        final ProductTypeEntity saveProductTypeEntity = productTypeRepository.save(productTypeEntity);
+        return productTypeMapper.entityToDto(saveProductTypeEntity);
+    }
+
+    @Override
     public List<ProductTypeResponse> findAll() {
         List<ProductTypeEntity> productTypeEntityList = productTypeRepository.findAll();
         return productTypeMapper.entitiesToDto(productTypeEntityList);
@@ -70,7 +79,8 @@ public class ProductTypeServiceImpl implements ProductTypeService {
         return productTypeMapper.entityToDto(updateProductTypeEntity);
     }
 
-    private @NotNull ProductTypeEntity getProductTypeEntityById(final Long id) {
+    @Override
+    public @NotNull ProductTypeEntity getProductTypeEntityById(final Long id) {
         final Optional<ProductTypeEntity> optionalProductTypeEntity = productTypeRepository.findById(id);
         if (optionalProductTypeEntity.isEmpty()) {
             throw new ApiRequestException(

@@ -18,16 +18,18 @@ public class InventoryEntity extends AuditEntity {
     private LocalDateTime expiryDate;
 
     @ManyToOne
-    @JoinColumn(name = "brand_id")
+    @JoinColumn (name = "brand_id")
     private BrandEntity brandEntity;
+
+    @ManyToOne
+    @JoinColumn (name = "product_type_id")
+    private ProductTypeEntity productTypeEntity;
 
 //    @OneToMany
 //    @JoinColumn(name = "supplier_id")
 //    private SupplierEntity supplierEntity;
 //
-//    @OneToMany
-//    @JoinColumn(name = "product_id")
-//    private ProductTypeEntity productType;
+
 
 
     public InventoryEntity() {
@@ -97,6 +99,22 @@ public class InventoryEntity extends AuditEntity {
         this.expiryDate = expiryDate;
     }
 
+    public BrandEntity getBrandEntity() {
+        return brandEntity;
+    }
+
+    public void setBrandEntity(BrandEntity brandEntity) {
+        this.brandEntity = brandEntity;
+    }
+
+    public ProductTypeEntity getProductTypeEntity() {
+        return productTypeEntity;
+    }
+
+    public void setProductTypeEntity(ProductTypeEntity productTypeEntity) {
+        this.productTypeEntity = productTypeEntity;
+    }
+
     @Override
     public String getCreatedBy() {
         return super.getCreatedBy();
@@ -137,12 +155,5 @@ public class InventoryEntity extends AuditEntity {
         super.setModifiedBy(modifiedBy);
     }
 
-    public BrandEntity getBrandEntity() {
-        return brandEntity;
-    }
-
-    public void setBrandEntity(BrandEntity brandEntity) {
-        this.brandEntity = brandEntity;
-    }
 }
 
