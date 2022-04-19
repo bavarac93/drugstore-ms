@@ -1,10 +1,18 @@
 package com.example.dms.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 public class AddressRequest {
     private String buildingNumber;
     private String street;
+    @NotBlank
+    @NotNull(message = "City is a mandatory field!")
     private String city;
     private String postcode;
+    @NotBlank(message = "City is a mandatory field za blank!")
+    @NotNull(message = "City is a mandatory field!")
     private String country;
 
     public AddressRequest() {

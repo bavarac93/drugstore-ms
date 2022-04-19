@@ -4,11 +4,11 @@ import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
 @MappedSuperclass
-public class AuditEntity {
+public class AuditSuperclass {
     private  String createdBy;
+    private String modifiedBy;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
-    private String modifiedBy;
 
     public String getCreatedBy() {
         return createdBy;

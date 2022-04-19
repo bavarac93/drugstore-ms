@@ -70,7 +70,11 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public AddressResponse updateStreetAndBuildingNumberById(final Long id, final String buildingNumber, final String street) {
+    public AddressResponse updateStreetAndBuildingNumberById(
+            final Long id,
+            final String buildingNumber,
+            final String street
+    ) {
         final AddressEntity addressEntity = getAddressEntityById(id);
         addressEntity.setStreet(street);
         addressEntity.setBuildingNumber(buildingNumber);

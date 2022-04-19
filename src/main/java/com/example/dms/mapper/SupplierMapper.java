@@ -13,4 +13,6 @@ public interface SupplierMapper {
     SupplierResponse entityToDto(final SupplierEntity supplierEntity);
 
     List<SupplierResponse> entitiesToDto(final List<SupplierEntity> supplierEntityList);
+
+    void updateSupplier(final SupplierRequest supplierRequest, final SupplierEntity supplierEntity);
 }

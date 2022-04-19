@@ -39,7 +39,8 @@ public class InventoryServiceImpl implements InventoryService {
             final BrandService brandService,
             final InventoryMapper inventoryMapper,
             final ProductTypeService productTypeService,
-            final SupplierService supplierService) {
+            final SupplierService supplierService
+    ) {
         this.inventoryRepository = Objects.requireNonNull(inventoryRepository, "inventoryRepository cannot be null");
         this.brandService = Objects.requireNonNull(brandService, "brandService cannot be null");
         this.inventoryMapper = Objects.requireNonNull(inventoryMapper, "inventoryMapper cannot be null");

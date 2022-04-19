@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Entity
 @Table (name = "customer")
-public class CustomerEntity extends AuditEntity {
+public class CustomerEntity extends AuditSuperclass {
 
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)

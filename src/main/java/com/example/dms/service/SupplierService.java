@@ -4,6 +4,7 @@ import com.example.dms.dto.SupplierRequest;
 import com.example.dms.dto.SupplierResponse;
 import com.example.dms.model.SupplierEntity;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /** Methods used to manipulate supplier data.
@@ -15,7 +16,7 @@ import java.util.List;
  *     <li>{@link #findById}</li>
  *     <li>{@link #deleteById}</li>
  *     <li>{@link #updateById}</li>
- *     <li>{@link #updateProductTypeDescById}</li>
+ *     <li>{@link #updateContractExpiresById}</li>
  * </ul>
  *
  * */
@@ -62,12 +63,20 @@ public interface SupplierService {
     SupplierResponse updateById(final Long id, final SupplierRequest supplierRequest);
 
     /**
+     * Update contractExpires by id.
+     *
+     * @param id {@link Long}
+     * @param contractExpires {@link LocalDateTime}
+     *
+     * @return {@link SupplierResponse}
+     */
+    SupplierResponse updateContractExpiresById(final Long id, final LocalDateTime contractExpires);
+
+    /**
      * Get a supplier entity by id.
      *
      * @param id {@link Long}
      * @return {@link SupplierEntity}
      */
     SupplierEntity getSupplierEntityById(final Long id);
-
-
 }

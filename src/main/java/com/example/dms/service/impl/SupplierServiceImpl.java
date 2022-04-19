@@ -61,8 +61,23 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
-    public SupplierResponse updateById(Long id, SupplierRequest supplierRequest) {
-        return null;
+    public SupplierResponse updateById(final Long id, final SupplierRequest supplierRequest) {
+        final SupplierEntity supplierEntity = getSupplierEntityById(id);
+        supplierEntity.setModifiedAt(LocalDateTime.now());
+        supplierEntity.setModifiedBy(AUTHOR);
+        supplierMapper.updateSupplier(supplierRequest, supplierEntity);
+        final SupplierEntity updateSupplierEntity = supplierRepository.save(supplierEntity);
+        return supplierMapper.entityToDto(updateSupplierEntity);
+    }
+
+    @Override
+    public SupplierResponse updateContractExpiresById(final Long id, final LocalDateTime contractExpires) {
+        final SupplierEntity supplierEntity = getSupplierEntityById(id);
+        supplierEntity.setModifiedAt(LocalDateTime.now());
+        supplierEntity.setModifiedBy(AUTHOR);
+        supplierEntity.setContractExpires(contractExpires);
+        final SupplierEntity updateSupplierEntity = supplierRepository.save(supplierEntity);
+        return supplierMapper.entityToDto(updateSupplierEntity);
     }
 
     @Override
@@ -74,6 +89,5 @@ public class SupplierServiceImpl implements SupplierService {
             }
             return optionalSupplierEntity.get();
     }
-
 
 }

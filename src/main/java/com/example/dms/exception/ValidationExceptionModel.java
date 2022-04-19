@@ -4,21 +4,22 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
-public class ApiExceptionResponse {
-    private final String message;
+public class ValidationExceptionModel {
+    private final Map<String, String> errors;
     private final HttpStatus httpStatus;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private final LocalDateTime timestamp;
 
-    public ApiExceptionResponse(final String message, final HttpStatus httpStatus, final LocalDateTime timestamp) {
-        this.message = message;
+    public ValidationExceptionModel(final Map<String, String> errors, final HttpStatus httpStatus, final LocalDateTime timestamp) {
+        this.errors = errors;
         this.httpStatus = httpStatus;
         this.timestamp = timestamp;
     }
 
-    public String getMessage() {
-        return message;
+    public Map<String, String> getErrors() {
+        return errors;
     }
 
     public HttpStatus getHttpStatus() {

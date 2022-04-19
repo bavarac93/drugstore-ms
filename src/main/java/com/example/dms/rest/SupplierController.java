@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -44,8 +45,17 @@ public class SupplierController {
     @PutMapping ("{id}")
     ResponseEntity<SupplierResponse> updateById (
             @PathVariable final Long id,
-            @RequestBody final SupplierRequest supplierRequest){
+            @RequestBody final SupplierRequest supplierRequest
+    ) {
         return new ResponseEntity<>(supplierService.updateById(id, supplierRequest), HttpStatus.ACCEPTED);
+    }
+
+    @PatchMapping("/{id}")
+    ResponseEntity<SupplierResponse> updateContractExpiresById(
+            @PathVariable ("id") final Long id,
+            @RequestParam ("contractExpires") final LocalDateTime contractExpires
+    ) {
+        return new ResponseEntity<>(supplierService.updateContractExpiresById(id, contractExpires), HttpStatus.ACCEPTED);
     }
 
 

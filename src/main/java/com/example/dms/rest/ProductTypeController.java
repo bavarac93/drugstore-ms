@@ -44,7 +44,7 @@ public class ProductTypeController {
     ResponseEntity<ProductTypeResponse> updateById(
             @PathVariable Long id,
             @RequestBody ProductTypeRequest productTypeRequest
-            ) {
+    ) {
         return new ResponseEntity<>(productTypeService.updateById(id, productTypeRequest), HttpStatus.ACCEPTED);
     }
 

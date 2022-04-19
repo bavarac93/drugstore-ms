@@ -9,8 +9,10 @@ import org.apache.tomcat.jni.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,6 +21,7 @@ import java.util.Objects;
 @RestController
 @RequestMapping("address")
 @Api(value = "APIs used to manipulate address data", tags = "address")
+@Validated
 public class AddressController {
     private final AddressService addressService;
 
@@ -30,7 +33,7 @@ public class AddressController {
                   consumes = MediaType.APPLICATION_JSON_VALUE,
                   produces = MediaType.APPLICATION_JSON_VALUE)
     @PostMapping
-    public ResponseEntity<AddressResponse> create(@RequestBody final AddressRequest addressRequest) {
+    public ResponseEntity<AddressResponse> create(@Valid @RequestBody final AddressRequest addressRequest) {
         return new ResponseEntity<>(addressService.create(addressRequest), HttpStatus.CREATED);
     }
 

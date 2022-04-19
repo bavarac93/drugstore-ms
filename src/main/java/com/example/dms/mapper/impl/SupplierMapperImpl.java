@@ -45,4 +45,12 @@ public class SupplierMapperImpl implements SupplierMapper {
         }
         return supplierResponses;
     }
+
+    @Override
+    public void updateSupplier(final @NotNull SupplierRequest supplierRequest, final @NotNull SupplierEntity supplierEntity) {
+        supplierEntity.setSupplierName(supplierRequest.getSupplierName());
+        supplierEntity.setSupplierDesc(supplierRequest.getSupplierDesc());
+        supplierEntity.setContractSigned(supplierRequest.getContractSigned());
+        supplierEntity.setContractExpires(supplierRequest.getContractExpires());
+    }
 }

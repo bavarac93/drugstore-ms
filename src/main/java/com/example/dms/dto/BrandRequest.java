@@ -1,7 +1,10 @@
 package com.example.dms.dto;
 
 
+import javax.validation.constraints.NotEmpty;
+
 public class BrandRequest {
+    @NotEmpty
     private String brandName;
     private String brandDesc;
     private String phoneNumber;
