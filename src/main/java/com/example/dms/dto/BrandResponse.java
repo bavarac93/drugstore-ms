@@ -3,6 +3,7 @@ package com.example.dms.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.validation.constraints.Email;
 import java.time.LocalDateTime;
 
 public class BrandResponse {

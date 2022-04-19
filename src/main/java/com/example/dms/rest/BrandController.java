@@ -3,15 +3,20 @@ package com.example.dms.rest;
 import com.example.dms.dto.BrandRequest;
 import com.example.dms.dto.BrandResponse;
 import com.example.dms.service.BrandService;
+import io.swagger.annotations.Api;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
 
 @RestController
 @RequestMapping("brand")
+@Api(value = "APIs used to manipulate brand data", tags = "brand")
+@Validated
 public class BrandController {
 
     private final BrandService brandService;
@@ -21,7 +26,7 @@ public class BrandController {
     }
 
     @PostMapping
-    ResponseEntity<BrandResponse> create(@RequestBody final BrandRequest brandRequest) {
+    ResponseEntity<BrandResponse> create(@Valid @RequestBody final BrandRequest brandRequest) {
         return new ResponseEntity<> (brandService.create(brandRequest), HttpStatus.CREATED);
     }
 

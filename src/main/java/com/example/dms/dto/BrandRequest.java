@@ -1,14 +1,31 @@
 package com.example.dms.dto;
 
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.*;
 
 public class BrandRequest {
-    @NotEmpty
+    @NotEmpty(message = "Name must be included in the brand.")
+    @NotBlank(message = "Name must be included in the brand.")
     private String brandName;
+
+    @NotBlank(message = "The brand must include the description.")
+    @NotEmpty(message = "The brand must include the description.")
+    @Size(min = 10, max = 200, message
+            = "Description must be between 10 and 200 characters")
     private String brandDesc;
+
+    @NotBlank(message = "A phone number is required.")
+    @NotEmpty(message = "A phone number is required.")
     private String phoneNumber;
+
+    @NotBlank(message = "The email is obligatory.")
+    @NotEmpty(message = "The email is obligatory.")
+    @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}",
+            flags = Pattern.Flag.CASE_INSENSITIVE,
+            message = "A correct format of the email must be used, e.g. example@mail.com")
     private String email;
+
+
     private String website;
 
     public String getBrandName() {

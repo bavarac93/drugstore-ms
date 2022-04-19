@@ -3,15 +3,20 @@ package com.example.dms.rest;
 import com.example.dms.dto.CustomerRequest;
 import com.example.dms.dto.CustomerResponse;
 import com.example.dms.service.CustomerService;
+import io.swagger.annotations.Api;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
 
 @RestController
 @RequestMapping ("customer")
+@Api(value = "APIs used to manipulate customer data", tags = "customer")
+@Validated
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -21,7 +26,7 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<CustomerResponse> create(@RequestBody final CustomerRequest customerRequest) {
+    public ResponseEntity<CustomerResponse> create(@Valid @RequestBody final CustomerRequest customerRequest) {
         return new ResponseEntity<> (customerService.create(customerRequest), HttpStatus.CREATED);
     }
 

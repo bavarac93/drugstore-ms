@@ -3,15 +3,20 @@ package com.example.dms.rest;
 import com.example.dms.dto.ProductTypeRequest;
 import com.example.dms.dto.ProductTypeResponse;
 import com.example.dms.service.ProductTypeService;
+import io.swagger.annotations.Api;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
 
 @RestController
 @RequestMapping ("product_type")
+@Api(value = "APIs used to manipulate product type data", tags = "product type")
+@Validated
 public class ProductTypeController {
 
     private final ProductTypeService productTypeService;
@@ -20,7 +25,7 @@ public class ProductTypeController {
     }
 
     @PostMapping
-    ResponseEntity<ProductTypeResponse> create(@RequestBody final ProductTypeRequest productTypeRequest) {
+    ResponseEntity<ProductTypeResponse> create(@Valid @RequestBody final ProductTypeRequest productTypeRequest) {
         return new ResponseEntity<>(productTypeService.create(productTypeRequest), HttpStatus.CREATED);
     }
 

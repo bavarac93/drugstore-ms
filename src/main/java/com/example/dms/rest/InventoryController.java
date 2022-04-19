@@ -3,15 +3,20 @@ package com.example.dms.rest;
 import com.example.dms.dto.InventoryRequest;
 import com.example.dms.dto.InventoryResponse;
 import com.example.dms.service.InventoryService;
+import io.swagger.annotations.Api;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
 
 @RestController
 @RequestMapping ("inventory")
+@Api(value = "APIs used to manipulate inventory data", tags = "inventory")
+@Validated
 public class InventoryController {
 
     private final InventoryService inventoryService;
@@ -21,7 +26,7 @@ public class InventoryController {
     }
 
     @PostMapping
-    ResponseEntity<InventoryResponse> create(@RequestBody final InventoryRequest inventoryRequest) {
+    ResponseEntity<InventoryResponse> create(@Valid @RequestBody final InventoryRequest inventoryRequest) {
         return new ResponseEntity<>(inventoryService.create(inventoryRequest), HttpStatus.CREATED);
     }
 
