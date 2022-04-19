@@ -8,27 +8,32 @@ public class AddressRequest {
     @NotEmpty(message = "Building number must be included in the address.")
     @NotBlank(message = "Building number must be included in the address.")
     @Size(min = 1, max = 5, message = "Building number must be between 1 and 5 characters.")
+    @Pattern(regexp = "[a-zA-Z\\d]+", message = "Cannot contain special characters!")
     private String buildingNumber;
 
     @NotEmpty(message = "Street is a required field in the address.")
     @NotBlank(message = "Street is a required field in the address.")
     @Size(min = 5, max = 50, message = "Street must be between 5 and 50 characters.")
+    @Pattern(regexp = "[a-zA-Z]+", message = "Cannot contain special characters and numbers!")
     private String street;
 
     @NotBlank(message = "City is a mandatory field.")
     @NotEmpty(message = "City is a mandatory field.")
     @Size(min = 1, max = 25, message = "City must be between 1 and 25 characters.")
+    @Pattern(regexp = "[a-zA-Z]+", message = "Cannot contain special characters and numbers!")
     private String city;
 
     @NotBlank(message = "The address must include the postcode.")
     @NotEmpty(message = "The address must include the postcode.")
     @Min(value = 1000, message = "The postcode cannot be under 1000")
     @Max(value = 100_000, message = "The postcode cannot be over 100 000")
+    @Pattern(regexp = "\\d+", message = "Cannot contain special characters and letters!")
     private String postcode;
 
     @NotBlank(message = "Country is obligatory!")
     @NotNull(message = "Country is obligatory!")
     @Size(min = 4, max = 60, message = "Country must be between 4 and 60 characters.")
+    @Pattern(regexp = "[a-zA-Z]+", message = "Cannot contain special characters and numbers!")
     private String country;
 
     public AddressRequest() {

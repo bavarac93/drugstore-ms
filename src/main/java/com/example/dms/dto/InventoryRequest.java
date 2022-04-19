@@ -1,18 +1,32 @@
 package com.example.dms.dto;
 
 
+import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 
 public class InventoryRequest {
+    @NotEmpty(message = "Item name must be included in the request.")
+    @NotBlank(message = "Item name must be included in the request.")
+    @Pattern(regexp = "[a-zA-Z]+", message = "Item name can not contain special characters and numbers.")
     private String itemName;
+
+    @NotBlank(message = "The item must have the description.")
+    @NotEmpty(message = "The item must have the description.")
+    @Size(min = 10, max = 250, message = "Description must be between 10 and 250 characters.")
+    @Pattern(regexp = "[a-zA-Z\\d#%'*/<()>:`;,!& .?_]+")
     private String description;
+
     private Long price;
     private String sku;
     private Long quantity;
     private Long sold;
     private LocalDateTime expiryDate;
+
+    @NotNull
     private Long brandId;
+    @NotNull
     private Long productTypeId;
+    @NotNull
     private Long supplierId;
 
     public Long getProductTypeId() {

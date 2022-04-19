@@ -1,12 +1,36 @@
 package com.example.dms.dto;
 
-public class CustomerRequest {
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
-    private String email;
-    private String drugAllergicTo;
+import javax.validation.constraints.*;
 
+public class CustomerRequest {
+    @NotEmpty(message = "Name must be included in the brand.")
+    @NotBlank(message = "Name must be included in the brand.")
+    @Pattern(regexp = "[a-zA-Z]+", message = "First name can not contain special characters and numbers.")
+    private String firstName;
+
+    @NotEmpty(message = "Name must be included in the brand.")
+    @NotBlank(message = "Name must be included in the brand.")
+    @Pattern(regexp = "[a-zA-Z]+", message = "Last name can not contain special characters and numbers.")
+    private String lastName;
+
+    @NotBlank(message = "A phone number is required.")
+    @NotEmpty(message = "A phone number is required.")
+    @Size(min = 9, max = 12, message = "Phone number must be between 9 and 12 characters.")
+    @Pattern(regexp = "[\\d]+", message = "Only numbers without spaces are allowed.")
+    private String phoneNumber;
+
+    @NotBlank(message = "The email is obligatory.")
+    @NotEmpty(message = "The email is obligatory.")
+    @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}",
+            flags = Pattern.Flag.CASE_INSENSITIVE,
+            message = "A correct format of the email must be used, e.g. example@mail.com")
+    private String email;
+
+    @NotBlank(message = "The drugs that the customer is allergic to must be written!")
+    @NotEmpty(message = "The drugs that the customer is allergic to must be written!")
+    @Size(min = 5, max = 300, message = "drugAllergicTo must be between 5 and 300 characters.")
+    @Pattern(regexp = "[a-zA-Z\\d]+")
+    private String drugAllergicTo;
 
     public CustomerRequest() {
     }
