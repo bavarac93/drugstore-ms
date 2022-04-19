@@ -49,9 +49,7 @@ public class InventoryController {
         return new ResponseEntity<>(inventoryService.findById(id), HttpStatus.FOUND);
     }
 
-    @ApiOperation(value = "Delete an item by id",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Delete an item by id", consumes = MediaType.APPLICATION_JSON_VALUE)
     @DeleteMapping("{id}")
     ResponseEntity<Void> deleteById(@PathVariable final Long id) {
         inventoryService.deleteById(id);

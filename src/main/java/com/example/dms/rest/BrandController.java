@@ -47,9 +47,7 @@ public class BrandController {
         return new ResponseEntity<>(brandService.findById(id), HttpStatus.FOUND);
     }
 
-    @ApiOperation(value = "Delete a brand by id",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Delete a brand by id", consumes = MediaType.APPLICATION_JSON_VALUE)
     @DeleteMapping("{id}")
     ResponseEntity<Void> deleteById(@PathVariable final Long id) {
         brandService.deleteById(id);

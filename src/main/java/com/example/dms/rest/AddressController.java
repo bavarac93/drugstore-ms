@@ -51,9 +51,7 @@ public class AddressController {
         return new ResponseEntity<>(addressService.findById(id), HttpStatus.FOUND);
     }
 
-    @ApiOperation(value = "Delete an address by id",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Delete an address by id", consumes = MediaType.APPLICATION_JSON_VALUE)
     @DeleteMapping("{id}")
     public ResponseEntity<Void> deleteById(@PathVariable final Long id) {
         addressService.deleteById(id);

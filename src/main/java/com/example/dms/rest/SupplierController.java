@@ -50,9 +50,8 @@ public class SupplierController {
         return new ResponseEntity<>(supplierService.findById(id), HttpStatus.FOUND);
     }
 
-    @ApiOperation(value = "Delete a supplier by id",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)    @DeleteMapping ("{id}")
+    @ApiOperation(value = "Delete a supplier by id", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping ("{id}")
     ResponseEntity<Void> deleteById(@PathVariable final Long id) {
         supplierService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

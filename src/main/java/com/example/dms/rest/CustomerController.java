@@ -47,9 +47,7 @@ public class CustomerController {
         return new ResponseEntity<>(customerService.findById(id), HttpStatus.FOUND);
     }
 
-    @ApiOperation(value = "Delete a customer by id",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Delete a customer by id", consumes = MediaType.APPLICATION_JSON_VALUE)
     @DeleteMapping("{id}")
     public ResponseEntity<Void> deleteById(@PathVariable final Long id) {
         customerService.deleteById(id);
