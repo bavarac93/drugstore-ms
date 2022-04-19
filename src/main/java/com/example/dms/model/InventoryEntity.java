@@ -160,5 +160,22 @@ public class InventoryEntity extends AuditSuperclass {
         super.setModifiedBy(modifiedBy);
     }
 
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("InventoryEntity{");
+        sb.append("id=").append(id);
+        sb.append(", itemName='").append(itemName).append('\'');
+        sb.append(", price=").append(price);
+        sb.append(", sku='").append(sku).append('\'');
+        sb.append(", quantity=").append(quantity);
+        sb.append(", sold=").append(sold);
+        sb.append(", description='").append(description).append('\'');
+        sb.append(", expiryDate=").append(expiryDate);
+        sb.append(", brandEntity=").append(brandEntity);
+        sb.append(", productTypeEntity=").append(productTypeEntity);
+        sb.append(", supplierEntity=").append(supplierEntity);
+        sb.append('}');
+        return sb.toString();
+    }
 }
 

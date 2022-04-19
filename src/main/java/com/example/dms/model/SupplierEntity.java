@@ -96,4 +96,16 @@ public class SupplierEntity extends AuditSuperclass {
     public void setModifiedBy(String modifiedBy) {
         super.setModifiedBy(modifiedBy);
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("SupplierEntity{");
+        sb.append("id=").append(id);
+        sb.append(", supplierName='").append(supplierName).append('\'');
+        sb.append(", supplierDesc='").append(supplierDesc).append('\'');
+        sb.append(", contractSigned=").append(contractSigned);
+        sb.append(", contractExpires=").append(contractExpires);
+        sb.append('}');
+        return sb.toString();
+    }
 }

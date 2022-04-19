@@ -21,7 +21,7 @@ public class SupplierRequest {
     @PastOrPresent(message = "The date must be in the past or present.")
     private LocalDateTime contractSigned;
 
-    @Future(message = "The date must be in the future or present. Otherwise, the contract is expired.")
+    @FutureOrPresent(message = "The date must be in the future or present. Otherwise, the contract is expired.")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime contractExpires;
 
