@@ -4,6 +4,7 @@ package com.example.dms.dto;
 import javax.validation.constraints.*;
 
 public class BrandRequest {
+
     public static final String WEBSITE_REGEX = "(https?:\\/\\/)?(www\\.)[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,4}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)|(https?:\\/\\/)?(www\\.)?(?!ww)[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,4}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)";
 
     @NotEmpty(message = "Name must be included in the brand.")
@@ -25,15 +26,16 @@ public class BrandRequest {
 
     @NotBlank(message = "The email is obligatory.")
     @NotEmpty(message = "The email is obligatory.")
-    @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}",
+    @Email(
+            regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}",
             flags = Pattern.Flag.CASE_INSENSITIVE,
-            message = "A correct format of the email must be used, e.g. example@mail.com")
+            message = "A correct format of the email must be used, e.g. example@mail.com"
+    )
     private String email;
 
     @NotBlank(message = "The brand must include the website.")
     @NotEmpty(message = "The brand must include the website.")
-    @Pattern(regexp = WEBSITE_REGEX,
-            message = "A default website format is: http://www.example.com/index.html ")
+    @Pattern(regexp = WEBSITE_REGEX, message = "A default website format is: http://www.example.com/index.html ")
     private String website;
 
     public String getBrandName() {

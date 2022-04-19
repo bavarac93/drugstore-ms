@@ -11,8 +11,8 @@ public class AddressRequest {
     @Pattern(regexp = "[a-zA-Z\\d]+", message = "Cannot contain special characters!")
     private String buildingNumber;
 
-    @NotEmpty(message = "Street is a required field in the address.")
-    @NotBlank(message = "Street is a required field in the address.")
+    @NotEmpty(message = "Street is a required field.")
+    @NotBlank(message = "Street is a required field.")
     @Size(min = 5, max = 50, message = "Street must be between 5 and 50 characters.")
     @Pattern(regexp = "[a-zA-Z]+", message = "Cannot contain special characters and numbers!")
     private String street;

@@ -15,7 +15,7 @@ public class CustomerRequest {
 
     @NotBlank(message = "A phone number is required.")
     @NotEmpty(message = "A phone number is required.")
-    @Size(min = 9, max = 12, message = "Phone number must be between 9 and 12 characters.")
+    @Size(min = 9, max = 15, message = "Phone number must be between 9 and 12 characters.")
     @Pattern(regexp = "[\\d]+", message = "Only numbers without spaces are allowed.")
     private String phoneNumber;
 

@@ -1,5 +1,7 @@
 package com.example.dms.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class CustomerResponse {
@@ -9,6 +11,7 @@ public class CustomerResponse {
     private String phoneNumber;
     private String email;
     private boolean isVerified;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date dateJoined;
     private String drugAllergicTo;
 

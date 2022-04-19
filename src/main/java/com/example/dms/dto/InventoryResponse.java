@@ -13,6 +13,7 @@ public class InventoryResponse {
     private Long price;
     private Long quantity;
     private Long sold;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime expiryDate;
     private Long brandId;
     private Long productTypeId;
