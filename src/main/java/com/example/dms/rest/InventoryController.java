@@ -62,7 +62,7 @@ public class InventoryController {
     @PutMapping("{id}")
     ResponseEntity<InventoryResponse> updateById(
             @PathVariable final Long id,
-            @RequestBody final InventoryRequest inventoryRequest
+            @Valid @RequestBody final InventoryRequest inventoryRequest
     ) {
     return new ResponseEntity<>(inventoryService.updateById(id, inventoryRequest), HttpStatus.ACCEPTED);
     }
@@ -73,7 +73,7 @@ public class InventoryController {
     @PatchMapping("/{id}")
     ResponseEntity<InventoryResponse> updateDescriptionById(
             @PathVariable ("id") final Long id,
-            @RequestParam ("description") final String description
+            @Valid @RequestParam ("description") final String description
     ) {
       return new ResponseEntity<>(
               inventoryService.updateDescriptionById(id,description),

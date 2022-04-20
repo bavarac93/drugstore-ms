@@ -63,7 +63,7 @@ public class SupplierController {
     @PutMapping ("{id}")
     ResponseEntity<SupplierResponse> updateById (
             @PathVariable final Long id,
-            @RequestBody final SupplierRequest supplierRequest
+            @Valid @RequestBody final SupplierRequest supplierRequest
     ) {
         return new ResponseEntity<>(supplierService.updateById(id, supplierRequest), HttpStatus.ACCEPTED);
     }
@@ -74,7 +74,7 @@ public class SupplierController {
     @PatchMapping("/{id}")
     ResponseEntity<SupplierResponse> updateContractExpiresById(
             @PathVariable ("id") final Long id,
-            @RequestParam ("contractExpires") final LocalDateTime contractExpires
+            @Valid @RequestParam ("contractExpires") final LocalDateTime contractExpires
     ) {
         return new ResponseEntity<>(supplierService.updateContractExpiresById(id, contractExpires), HttpStatus.ACCEPTED);
     }

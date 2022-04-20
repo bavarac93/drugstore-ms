@@ -5,7 +5,6 @@ import com.example.dms.dto.AddressResponse;
 import com.example.dms.service.AddressService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.tomcat.jni.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Objects;
 
@@ -64,7 +62,7 @@ public class AddressController {
     @PutMapping("{id}")
     public ResponseEntity<AddressResponse> updateById(
             @PathVariable final Long id,
-            @RequestBody final AddressRequest addressRequest
+            @Valid @RequestBody final AddressRequest addressRequest
     ) {
         return new ResponseEntity<>(addressService.updateById(id, addressRequest), HttpStatus.ACCEPTED);
     }

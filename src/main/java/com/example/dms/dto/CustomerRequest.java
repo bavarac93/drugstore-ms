@@ -21,9 +21,7 @@ public class CustomerRequest {
 
     @NotBlank(message = "The email is obligatory.")
     @NotEmpty(message = "The email is obligatory.")
-    @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}",
-            flags = Pattern.Flag.CASE_INSENSITIVE,
-            message = "A correct format of the email must be used, e.g. example@mail.com")
+    @Email(flags = Pattern.Flag.CASE_INSENSITIVE, message = "Email must be a valid email address, e.g. example@mail.com")
     private String email;
 
     @NotBlank(message = "The drugs that the customer is allergic to must be written!")

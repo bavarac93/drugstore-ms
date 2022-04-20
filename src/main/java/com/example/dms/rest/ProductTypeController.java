@@ -60,7 +60,7 @@ public class ProductTypeController {
     @PutMapping("{id}")
     ResponseEntity<ProductTypeResponse> updateById(
             @PathVariable Long id,
-            @RequestBody ProductTypeRequest productTypeRequest
+            @Valid @RequestBody ProductTypeRequest productTypeRequest
     ) {
         return new ResponseEntity<>(productTypeService.updateById(id, productTypeRequest), HttpStatus.ACCEPTED);
     }
@@ -71,7 +71,7 @@ public class ProductTypeController {
     @PatchMapping("/{id}")
     ResponseEntity<ProductTypeResponse> updateProductTypeDescById(
             @PathVariable ("id") final Long id,
-            @RequestParam ("productTypeDesc") final String productTypeDesc
+            @Valid @RequestParam ("productTypeDesc") final String productTypeDesc
     ) {
       return new ResponseEntity<>(productTypeService.updateProductTypeDescById(id, productTypeDesc), HttpStatus.ACCEPTED);
     }

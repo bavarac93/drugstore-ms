@@ -60,7 +60,7 @@ public class BrandController {
     @PutMapping("{id}")
     ResponseEntity<BrandResponse> updateById(
             @PathVariable final Long id,
-            @RequestBody final BrandRequest brandRequest
+            @Valid @RequestBody final BrandRequest brandRequest
     ) {
         return new ResponseEntity<>(brandService.updateById(id, brandRequest), HttpStatus.ACCEPTED);
     }
@@ -71,7 +71,7 @@ public class BrandController {
     @PatchMapping("/{id}")
     ResponseEntity<BrandResponse> updateBrandDescById(
             @PathVariable ("id") final Long id,
-            @RequestParam ("brandDesc") final String brandDesc
+            @Valid @RequestParam ("brandDesc") final String brandDesc
     ) {
         BrandResponse brandResponse = brandService.updateBrandDescById(id, brandDesc);
         return new ResponseEntity<>(brandResponse, HttpStatus.OK);
