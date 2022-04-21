@@ -1,6 +1,9 @@
 package com.example.dms.dto;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 public class CustomerRequestPhoneNumberPatch {
     @NotBlank(message = "A phone number is required.")

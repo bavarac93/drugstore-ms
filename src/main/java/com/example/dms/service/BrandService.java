@@ -1,6 +1,8 @@
 package com.example.dms.service;
 
-import com.example.dms.dto.*;
+import com.example.dms.dto.BrandRequest;
+import com.example.dms.dto.BrandRequestPatch;
+import com.example.dms.dto.BrandResponse;
 import com.example.dms.model.BrandEntity;
 
 import java.util.List;
