@@ -3,24 +3,12 @@ package com.example.dms.dto;
 
 import javax.validation.constraints.*;
 
-public class AddressRequest {
-
-    @NotEmpty(message = "Building number must be included in the address.")
-    @NotBlank(message = "Building number must be included in the address.")
-    @Size(min = 1, max = 5, message = "Building number must be between 1 and 5 characters.")
-    @Pattern(regexp = "[a-zA-Z\\d]+", message = "Cannot contain special characters!")
-    private String buildingNumber;
-
-    @NotEmpty(message = "Street is a required field.")
-    @NotBlank(message = "Street is a required field.")
-    @Size(min = 5, max = 50, message = "Street must be between 5 and 50 characters.")
-    @Pattern(regexp = "[a-zA-Z]+", message = "Cannot contain special characters and numbers!")
-    private String street;
+public class AddressRequest extends AddressRequestPatch{
 
     @NotBlank(message = "City is a mandatory field.")
     @NotEmpty(message = "City is a mandatory field.")
     @Size(min = 1, max = 25, message = "City must be between 1 and 25 characters.")
-    @Pattern(regexp = "[a-zA-Z]+", message = "Cannot contain special characters and numbers!")
+    @Pattern(regexp = "[a-zA-Z ]+", message = "Cannot contain special characters and numbers!")
     private String city;
 
     @NotBlank(message = "The address must include the postcode.")
@@ -33,26 +21,10 @@ public class AddressRequest {
     @NotBlank(message = "Country is obligatory!")
     @NotNull(message = "Country is obligatory!")
     @Size(min = 4, max = 60, message = "Country must be between 4 and 60 characters.")
-    @Pattern(regexp = "[a-zA-Z]+", message = "Cannot contain special characters and numbers!")
+    @Pattern(regexp = "[a-zA-Z ]+", message = "Cannot contain special characters and numbers!")
     private String country;
 
     public AddressRequest() {
-    }
-
-    public String getBuildingNumber() {
-        return buildingNumber;
-    }
-
-    public void setBuildingNumber(String buildingNumber) {
-        this.buildingNumber = buildingNumber;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
     }
 
     public String getCity() {

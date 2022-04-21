@@ -9,7 +9,7 @@ public class BrandRequestPatch {
     @NotBlank(message = "The brand must include the description.")
     @NotEmpty(message = "The brand must include the description.")
     @Size(min = 10, max = 200, message = "Description must be between 10 and 200 characters.")
-    @Pattern(regexp = "[a-zA-Z\\d#%'*/<()>:`;,!& .?_]+", message = "Only letters, numbers and punctuation marks are allowed.")
+    @Pattern(regexp = "[a-zA-Z\\d #%'*/<()>:`;,!&.?_]+", message = "Only letters, numbers and punctuation marks are allowed.")
     private String brandDesc;
 
     public String getBrandDesc() {

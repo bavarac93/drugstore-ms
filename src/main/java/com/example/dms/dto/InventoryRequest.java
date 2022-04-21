@@ -4,17 +4,11 @@ package com.example.dms.dto;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 
-public class InventoryRequest {
+public class InventoryRequest extends InventoryRequestPatch{
     @NotEmpty(message = "Item name must be included in the request.")
     @NotBlank(message = "Item name must be included in the request.")
-    @Pattern(regexp = "[a-zA-Z]+", message = "Item name can not contain special characters and numbers.")
+    @Pattern(regexp = "[a-zA-Z ]+", message = "Item name can not contain special characters and numbers.")
     private String itemName;
-
-    @NotBlank(message = "The item must have the description.")
-    @NotEmpty(message = "The item must have the description.")
-    @Size(min = 10, max = 250, message = "Description must be between 10 and 250 characters.")
-    @Pattern(regexp = "[a-zA-Z\\d#%'*/<()>:`;,!& .?_]+", message = "Only letters, numbers and punctuation marks are allowed.")
-    private String description;
 
     @Min(value = 1, message = "Minimum price is 1.")
     @Max(value = 500, message = "Maximum price is 500")
@@ -73,14 +67,6 @@ public class InventoryRequest {
 
     public void setItemName(String itemName) {
         this.itemName = itemName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Long getPrice() {
