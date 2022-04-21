@@ -1,6 +1,7 @@
 package com.example.dms.rest;
 
 import com.example.dms.dto.ProductTypeRequest;
+import com.example.dms.dto.ProductTypeRequestPatch;
 import com.example.dms.dto.ProductTypeResponse;
 import com.example.dms.service.ProductTypeService;
 import io.swagger.annotations.Api;
@@ -71,9 +72,9 @@ public class ProductTypeController {
     @PatchMapping("/{id}")
     ResponseEntity<ProductTypeResponse> updateProductTypeDescById(
             @PathVariable ("id") final Long id,
-            @Valid @RequestParam ("productTypeDesc") final String productTypeDesc
-    ) {
-      return new ResponseEntity<>(productTypeService.updateProductTypeDescById(id, productTypeDesc), HttpStatus.ACCEPTED);
+            @Valid @RequestBody final ProductTypeRequestPatch productTypeRequestPatch
+            ) {
+      return new ResponseEntity<>(productTypeService.updateProductTypeDescById(id, productTypeRequestPatch), HttpStatus.ACCEPTED);
     }
 
 

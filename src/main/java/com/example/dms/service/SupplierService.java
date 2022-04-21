@@ -1,6 +1,7 @@
 package com.example.dms.service;
 
 import com.example.dms.dto.SupplierRequest;
+import com.example.dms.dto.SupplierRequestPatch;
 import com.example.dms.dto.SupplierResponse;
 import com.example.dms.model.SupplierEntity;
 
@@ -66,11 +67,11 @@ public interface SupplierService {
      * Update contractExpires by id.
      *
      * @param id {@link Long}
-     * @param contractExpires {@link LocalDateTime}
+     * @param supplierRequestPatch {@link SupplierRequestPatch}
      *
      * @return {@link SupplierResponse}
      */
-    SupplierResponse updateContractExpiresById(final Long id, final LocalDateTime contractExpires);
+    SupplierResponse updateContractExpiresById(final Long id, final SupplierRequestPatch supplierRequestPatch);
 
     /**
      * Get a supplier entity by id.

@@ -2,11 +2,13 @@ package com.example.dms.service.impl;
 
 import com.example.dms.dao.SupplierRepository;
 import com.example.dms.dto.SupplierRequest;
+import com.example.dms.dto.SupplierRequestPatch;
 import com.example.dms.dto.SupplierResponse;
 import com.example.dms.exception.ApiRequestException;
 import com.example.dms.mapper.SupplierMapper;
 import com.example.dms.model.SupplierEntity;
 import com.example.dms.service.SupplierService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
@@ -71,11 +73,11 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
-    public SupplierResponse updateContractExpiresById(final Long id, final LocalDateTime contractExpires) {
+    public SupplierResponse updateContractExpiresById(final Long id, final @NotNull SupplierRequestPatch supplierRequestPatch) {
         final SupplierEntity supplierEntity = getSupplierEntityById(id);
         supplierEntity.setModifiedAt(LocalDateTime.now());
         supplierEntity.setModifiedBy(AUTHOR);
-        supplierEntity.setContractExpires(contractExpires);
+        supplierEntity.setContractExpires(supplierRequestPatch.getContractExpires());
         final SupplierEntity updateSupplierEntity = supplierRepository.save(supplierEntity);
         return supplierMapper.entityToDto(updateSupplierEntity);
     }

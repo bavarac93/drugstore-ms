@@ -1,10 +1,12 @@
 package com.example.dms.rest;
 
 import com.example.dms.dto.AddressRequest;
+import com.example.dms.dto.AddressRequestPatch;
 import com.example.dms.dto.AddressResponse;
 import com.example.dms.service.AddressService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +14,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Objects;
 
@@ -72,11 +73,10 @@ public class AddressController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @PatchMapping ("/{id}")
     public ResponseEntity<AddressResponse> updateStreetAndBuildingNumberById(
-            @RequestParam("buildingNumber") String buildingNumber,
-            @RequestParam("street") String street,
-            @PathVariable("id") Long id
+            @PathVariable("id") final Long id,
+            @Valid @RequestBody final AddressRequestPatch addressRequestPatch
     ) {
-        AddressResponse addressResponse = addressService.updateStreetAndBuildingNumberById(id, buildingNumber, street);
+        AddressResponse addressResponse = addressService.updateStreetAndBuildingNumberById(id, addressRequestPatch);
         return new ResponseEntity<>(addressResponse, HttpStatus.OK);
     }
 

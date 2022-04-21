@@ -1,6 +1,7 @@
 package com.example.dms.rest;
 
 import com.example.dms.dto.InventoryRequest;
+import com.example.dms.dto.InventoryRequestPatch;
 import com.example.dms.dto.InventoryResponse;
 import com.example.dms.service.InventoryService;
 import io.swagger.annotations.Api;
@@ -73,10 +74,10 @@ public class InventoryController {
     @PatchMapping("/{id}")
     ResponseEntity<InventoryResponse> updateDescriptionById(
             @PathVariable ("id") final Long id,
-            @Valid @RequestParam ("description") final String description
-    ) {
+            @Valid @RequestBody final InventoryRequestPatch inventoryRequestPatch
+            ) {
       return new ResponseEntity<>(
-              inventoryService.updateDescriptionById(id,description),
+              inventoryService.updateDescriptionById(id,inventoryRequestPatch),
               HttpStatus.ACCEPTED
       );
     }

@@ -2,6 +2,8 @@ package com.example.dms.service.impl;
 
 import com.example.dms.dao.CustomerRepository;
 import com.example.dms.dto.CustomerRequest;
+import com.example.dms.dto.CustomerRequestPhoneNumberPatch;
+import com.example.dms.dto.CustomerRequestVerifiedPatch;
 import com.example.dms.dto.CustomerResponse;
 import com.example.dms.exception.ApiRequestException;
 import com.example.dms.mapper.CustomerMapper;
@@ -73,9 +75,9 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerResponse updatePhoneNumberById(final Long id, final String phoneNumber) {
+    public CustomerResponse updatePhoneNumberById(final Long id, final CustomerRequestPhoneNumberPatch customerRequestPhoneNumberPatch) {
         final CustomerEntity customerEntity = getCustomerEntityById(id);
-        customerEntity.setPhoneNumber(phoneNumber);
+        customerEntity.setPhoneNumber(customerRequestPhoneNumberPatch.getPhoneNumber());
         customerEntity.setModifiedBy(AUTHOR);
         customerEntity.setModifiedAt(LocalDateTime.now());
         final CustomerEntity updateCustomerEntity = customerRepository.save(customerEntity);
@@ -83,7 +85,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerResponse updateVerifiedStatus(final Long id, final String email) {
+    public CustomerResponse updateVerifiedStatus(final Long id, final CustomerRequestVerifiedPatch customerRequestVerifiedPatch) {
         final CustomerEntity customerEntity = this.getCustomerEntityById(id);
         customerEntity.setModifiedBy(AUTHOR);
         customerEntity.setModifiedAt(LocalDateTime.now());

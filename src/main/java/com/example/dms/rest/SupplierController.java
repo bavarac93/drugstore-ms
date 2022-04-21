@@ -1,6 +1,7 @@
 package com.example.dms.rest;
 
 import com.example.dms.dto.SupplierRequest;
+import com.example.dms.dto.SupplierRequestPatch;
 import com.example.dms.dto.SupplierResponse;
 import com.example.dms.service.SupplierService;
 import io.swagger.annotations.Api;
@@ -74,9 +75,9 @@ public class SupplierController {
     @PatchMapping("/{id}")
     ResponseEntity<SupplierResponse> updateContractExpiresById(
             @PathVariable ("id") final Long id,
-            @Valid @RequestParam ("contractExpires") final LocalDateTime contractExpires
-    ) {
-        return new ResponseEntity<>(supplierService.updateContractExpiresById(id, contractExpires), HttpStatus.ACCEPTED);
+            @Valid @RequestBody final SupplierRequestPatch supplierRequestPatch
+            ) {
+        return new ResponseEntity<>(supplierService.updateContractExpiresById(id, supplierRequestPatch), HttpStatus.ACCEPTED);
     }
 
 

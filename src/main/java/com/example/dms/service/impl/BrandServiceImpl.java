@@ -2,11 +2,13 @@ package com.example.dms.service.impl;
 
 import com.example.dms.dao.BrandRepository;
 import com.example.dms.dto.BrandRequest;
+import com.example.dms.dto.BrandRequestPatch;
 import com.example.dms.dto.BrandResponse;
 import com.example.dms.exception.ApiRequestException;
 import com.example.dms.mapper.BrandMapper;
 import com.example.dms.model.BrandEntity;
 import com.example.dms.service.BrandService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import java.text.MessageFormat;
 import java.time.LocalDateTime;
@@ -69,9 +71,9 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public BrandResponse updateBrandDescById(final Long id, final String brandDesc) {
+    public BrandResponse updateBrandDescById(final Long id, final @NotNull BrandRequestPatch brandRequestPatch) {
         final BrandEntity brandEntity = getBrandEntityById(id);
-        brandEntity.setBrandDesc(brandDesc);
+        brandEntity.setBrandDesc(brandRequestPatch.getBrandDesc());
         brandEntity.setModifiedAt(LocalDateTime.now());
         brandEntity.setModifiedBy(AUTHOR);
         final BrandEntity updateBrandEntity = brandRepository.save(brandEntity);

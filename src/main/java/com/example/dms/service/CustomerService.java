@@ -1,6 +1,8 @@
 package com.example.dms.service;
 
 import com.example.dms.dto.CustomerRequest;
+import com.example.dms.dto.CustomerRequestPhoneNumberPatch;
+import com.example.dms.dto.CustomerRequestVerifiedPatch;
 import com.example.dms.dto.CustomerResponse;
 
 import java.util.List;
@@ -66,18 +68,18 @@ public interface CustomerService {
      * Update a phoneNumber by id.
      *
      * @param id {@link Long}
-     * @param phoneNumber {@link String}
+     * @param customerRequestPhoneNumberPatch {@link CustomerRequestPhoneNumberPatch}
      * @return {@link CustomerResponse}
      */
-    CustomerResponse updatePhoneNumberById(final Long id, final String phoneNumber);
+    CustomerResponse updatePhoneNumberById(final Long id,  final CustomerRequestPhoneNumberPatch customerRequestPhoneNumberPatch);
 
     /**
      *
      * Update isVerified by id.
      *
      * @param id {@link Long}
-     * @param email {@link String}
+     * @param customerRequestVerifiedPatch {@link CustomerRequestVerifiedPatch}
      * @return {@link CustomerResponse}
      */
-    CustomerResponse updateVerifiedStatus(final Long id, final String email);
+    CustomerResponse updateVerifiedStatus(final Long id, final CustomerRequestVerifiedPatch customerRequestVerifiedPatch);
 }

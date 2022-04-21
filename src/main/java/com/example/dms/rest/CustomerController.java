@@ -1,6 +1,8 @@
 package com.example.dms.rest;
 
 import com.example.dms.dto.CustomerRequest;
+import com.example.dms.dto.CustomerRequestPhoneNumberPatch;
+import com.example.dms.dto.CustomerRequestVerifiedPatch;
 import com.example.dms.dto.CustomerResponse;
 import com.example.dms.service.CustomerService;
 import io.swagger.annotations.Api;
@@ -70,10 +72,10 @@ public class CustomerController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @PatchMapping("/{id}")
     public ResponseEntity<CustomerResponse> updatePhoneNumberById(
-            @PathVariable ("id") Long id,
-            @RequestParam ("phoneNumber") String phoneNumber
+            @PathVariable ("id") final Long id,
+            @Valid @RequestBody final CustomerRequestPhoneNumberPatch customerRequestPhoneNumberPatch
     ){
-        CustomerResponse customerResponse = customerService.updatePhoneNumberById(id, phoneNumber);
+        CustomerResponse customerResponse = customerService.updatePhoneNumberById(id, customerRequestPhoneNumberPatch);
         return new ResponseEntity<>(customerResponse, HttpStatus.OK);
     }
 
@@ -82,10 +84,11 @@ public class CustomerController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @PatchMapping("verified/{id}")
     public ResponseEntity<CustomerResponse> updateVerifiedStatus(
-            @PathVariable ("id") Long id,
-            @RequestParam ("email") String email
+            @PathVariable ("id") final Long id,
+            @Valid @RequestBody final CustomerRequestVerifiedPatch CustomerRequestVerifiedPatch
+
     ){
-        CustomerResponse customerResponse = customerService.updateVerifiedStatus(id, email);
+        CustomerResponse customerResponse = customerService.updateVerifiedStatus(id, CustomerRequestVerifiedPatch);
         return new ResponseEntity<>(customerResponse, HttpStatus.OK);
     }
 

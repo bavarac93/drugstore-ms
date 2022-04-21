@@ -2,6 +2,7 @@ package com.example.dms.service.impl;
 
 import com.example.dms.dao.AddressRepository;
 import com.example.dms.dto.AddressRequest;
+import com.example.dms.dto.AddressRequestPatch;
 import com.example.dms.dto.AddressResponse;
 import com.example.dms.exception.ApiRequestException;
 import com.example.dms.mapper.AddressMapper;
@@ -72,12 +73,11 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public AddressResponse updateStreetAndBuildingNumberById(
             final Long id,
-            final String buildingNumber,
-            final String street
+            final @NotNull AddressRequestPatch addressRequestPatch
     ) {
         final AddressEntity addressEntity = getAddressEntityById(id);
-        addressEntity.setStreet(street);
-        addressEntity.setBuildingNumber(buildingNumber);
+        addressEntity.setStreet(addressRequestPatch.setStreet(addressRequestPatch.getStreet()));
+        addressEntity.setBuildingNumber(addressRequestPatch.setBuildingNumber(addressRequestPatch.getBuildingNumber()));
         addressEntity.setModifiedBy(AUTHOR);
         addressEntity.setModifiedAt(LocalDateTime.now());
         final AddressEntity updateAddressEntity = addressRepository.save(addressEntity);

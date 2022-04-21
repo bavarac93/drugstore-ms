@@ -2,6 +2,7 @@ package com.example.dms.service;
 
 
 import com.example.dms.dto.InventoryRequest;
+import com.example.dms.dto.InventoryRequestPatch;
 import com.example.dms.dto.InventoryResponse;
 
 import java.util.List;
@@ -66,9 +67,9 @@ public interface InventoryService {
      * Update the description of an item by id.
      *
      * @param id {@link Long}
-     * @param description {@link String}
+     * @param inventoryRequestPatch {@link InventoryRequestPatch}
      *
      * @return {@link InventoryResponse}
      * */
-    InventoryResponse updateDescriptionById(final Long id, final String description);
+    InventoryResponse updateDescriptionById(final Long id, final InventoryRequestPatch inventoryRequestPatch);
 }

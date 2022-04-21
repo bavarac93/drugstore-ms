@@ -1,6 +1,7 @@
 package com.example.dms.rest;
 
 import com.example.dms.dto.BrandRequest;
+import com.example.dms.dto.BrandRequestPatch;
 import com.example.dms.dto.BrandResponse;
 import com.example.dms.service.BrandService;
 import io.swagger.annotations.Api;
@@ -71,9 +72,9 @@ public class BrandController {
     @PatchMapping("/{id}")
     ResponseEntity<BrandResponse> updateBrandDescById(
             @PathVariable ("id") final Long id,
-            @Valid @RequestParam ("brandDesc") final String brandDesc
-    ) {
-        BrandResponse brandResponse = brandService.updateBrandDescById(id, brandDesc);
+            @Valid @RequestBody final BrandRequestPatch brandRequestPatch
+            ) {
+        BrandResponse brandResponse = brandService.updateBrandDescById(id, brandRequestPatch);
         return new ResponseEntity<>(brandResponse, HttpStatus.OK);
     }
 

@@ -2,6 +2,7 @@ package com.example.dms.service.impl;
 
 import com.example.dms.dao.InventoryRepository;
 import com.example.dms.dto.InventoryRequest;
+import com.example.dms.dto.InventoryRequestPatch;
 import com.example.dms.dto.InventoryResponse;
 import com.example.dms.exception.ApiRequestException;
 import com.example.dms.mapper.InventoryMapper;
@@ -95,11 +96,11 @@ public class InventoryServiceImpl implements InventoryService {
     }
 
     @Override
-    public InventoryResponse updateDescriptionById(final Long id,final  String description) {
+    public InventoryResponse updateDescriptionById(final Long id, final @NotNull InventoryRequestPatch inventoryRequestPatch) {
         final InventoryEntity inventoryEntity = getInventoryEntityById(id);
         inventoryEntity.setModifiedBy(AUTHOR);
         inventoryEntity.setModifiedAt(LocalDateTime.now());
-        inventoryEntity.setDescription(description);
+        inventoryEntity.setDescription(inventoryRequestPatch.getDescription());
         final InventoryEntity updateInventory = inventoryRepository.save(inventoryEntity);
         return inventoryMapper.entityToDto(updateInventory);
     }

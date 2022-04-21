@@ -2,6 +2,7 @@ package com.example.dms.service.impl;
 
 import com.example.dms.dao.ProductTypeRepository;
 import com.example.dms.dto.ProductTypeRequest;
+import com.example.dms.dto.ProductTypeRequestPatch;
 import com.example.dms.dto.ProductTypeResponse;
 import com.example.dms.exception.ApiRequestException;
 import com.example.dms.mapper.ProductTypeMapper;
@@ -70,9 +71,9 @@ public class ProductTypeServiceImpl implements ProductTypeService {
     }
 
     @Override
-    public ProductTypeResponse updateProductTypeDescById(final Long id, final String productTypeDesc) {
+    public ProductTypeResponse updateProductTypeDescById(final Long id, final @NotNull ProductTypeRequestPatch productTypeRequestPatch) {
         final ProductTypeEntity productTypeEntity = getProductTypeEntityById(id);
-        productTypeEntity.setProductTypeDesc(productTypeDesc);
+        productTypeEntity.setProductTypeDesc(productTypeRequestPatch.getProductTypeDesc());
         productTypeEntity.setModifiedBy(AUTHOR);
         productTypeEntity.setModifiedAt(LocalDateTime.now());
         final ProductTypeEntity updateProductTypeEntity = productTypeRepository.save(productTypeEntity);

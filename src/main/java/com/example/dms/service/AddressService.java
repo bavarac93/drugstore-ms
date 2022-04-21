@@ -1,6 +1,7 @@
 package com.example.dms.service;
 
 import com.example.dms.dto.AddressRequest;
+import com.example.dms.dto.AddressRequestPatch;
 import com.example.dms.dto.AddressResponse;
 
 import java.util.List;
@@ -63,11 +64,10 @@ public interface AddressService {
      * Update the buildingNumber and street by id.
      *
      * @param id {@link Long}
-     * @param buildingNumber {@link String}
-     * @param street {@link String}
+     * @param addressRequestPatch {@link AddressRequestPatch}
      * @return {@link AddressResponse}
      */
-    AddressResponse updateStreetAndBuildingNumberById(Long id, String buildingNumber, String street);
+    AddressResponse updateStreetAndBuildingNumberById(final Long id, final AddressRequestPatch addressRequestPatch);
 }
 
 

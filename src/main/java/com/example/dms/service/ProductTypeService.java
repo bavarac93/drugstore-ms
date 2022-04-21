@@ -1,6 +1,7 @@
 package com.example.dms.service;
 
 import com.example.dms.dto.ProductTypeRequest;
+import com.example.dms.dto.ProductTypeRequestPatch;
 import com.example.dms.dto.ProductTypeResponse;
 import com.example.dms.model.ProductTypeEntity;
 
@@ -70,11 +71,11 @@ public interface ProductTypeService {
      * Update a product desc by id.
      *
      * @param id {@link Long}
-     * @param productTypeDesc {@link String}
+     * @param productTypeRequestPatch {@link ProductTypeRequestPatch}
      * @return productTypeResponse {@link ProductTypeResponse}
      *
      */
-    ProductTypeResponse updateProductTypeDescById (final Long id, final String productTypeDesc);
+    ProductTypeResponse updateProductTypeDescById (final Long id, final ProductTypeRequestPatch productTypeRequestPatch);
 
     /**
      * Get a product type entity by id.

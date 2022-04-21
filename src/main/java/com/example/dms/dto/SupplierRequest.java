@@ -14,7 +14,7 @@ public class SupplierRequest {
     @NotBlank(message = "The supplier must include the description.")
     @NotEmpty(message = "The supplier must include the description.")
     @Size(min = 10, max = 250, message = "Description must be between 10 and 250 characters.")
-    @Pattern(regexp = "[a-zA-Z\\d#%'*/<()>:`;,!& .?_]+")
+    @Pattern(regexp = "[a-zA-Z\\d#%'*/<()>:`;,!& .?_]+", message = "Only letters, numbers and punctuation marks are allowed.")
     private String supplierDesc;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
