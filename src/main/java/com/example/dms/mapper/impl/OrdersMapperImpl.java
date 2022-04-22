@@ -7,6 +7,9 @@ import com.example.dms.model.OrdersEntity;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class OrdersMapperImpl implements OrdersMapper {
     @Override
@@ -27,5 +30,14 @@ public class OrdersMapperImpl implements OrdersMapper {
         ordersResponse.setInventoryId(persistedOrdersEntity.getInventoryEntity().getId());
         ordersResponse.setDateOrdered(persistedOrdersEntity.getDateOrdered());
         return ordersResponse;
+    }
+
+    @Override
+    public List<OrdersResponse> entitiesToDto(final @NotNull List<OrdersEntity> ordersEntities) {
+        final List<OrdersResponse> ordersResponseList = new ArrayList<>();
+        for (OrdersEntity ordersEntity : ordersEntities) {
+            ordersResponseList.add(entityToDto(ordersEntity));
+        }
+        return ordersResponseList;
     }
 }

@@ -13,6 +13,7 @@ import com.example.dms.service.OrdersService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -47,5 +48,11 @@ public class OrdersServiceImpl implements OrdersService {
         ordersEntity.setInventoryEntity(inventoryEntity);
         final OrdersEntity persistedOrdersEntity = ordersRepository.save(ordersEntity);
         return ordersMapper.entityToDto(persistedOrdersEntity);
+    }
+
+    @Override
+    public List<OrdersResponse> findAllOrders() {
+        List<OrdersEntity> ordersEntityList = ordersRepository.findAll();
+        return ordersMapper.entitiesToDto(ordersEntityList);
     }
 }
