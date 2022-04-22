@@ -15,7 +15,7 @@ public class BrandRequest extends BrandRequestPatch {
     @NotBlank(message = "A phone number is required.")
     @NotEmpty(message = "A phone number is required.")
     @Size(min = 9, max = 12, message = "Phone number must be between 9 and 12 characters.")
-    @Pattern(regexp = "[\\d ]+", message = "Only numbers without spaces are allowed.")
+    @Pattern(regexp = "[ +\\d]+", message = "Only numbers with country code are allowed.")
     private String phoneNumber;
 
     @NotBlank(message = "The email is obligatory.")
@@ -29,7 +29,7 @@ public class BrandRequest extends BrandRequestPatch {
 
     @NotBlank(message = "The brand must include the website.")
     @NotEmpty(message = "The brand must include the website.")
-    @Pattern(regexp = WEBSITE_REGEX, message = "A default website format is: http://www.example.com/index.html ")
+    @Pattern(regexp = WEBSITE_REGEX, message = "A default website format is: http://www.example.com/ ")
     private String website;
 
     public String getBrandName() {

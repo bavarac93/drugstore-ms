@@ -7,7 +7,9 @@ import com.example.dms.dto.CustomerRequestVerifiedPatch;
 import com.example.dms.dto.CustomerResponse;
 import com.example.dms.exception.ApiRequestException;
 import com.example.dms.mapper.CustomerMapper;
+import com.example.dms.model.AddressEntity;
 import com.example.dms.model.CustomerEntity;
+import com.example.dms.service.AddressService;
 import com.example.dms.service.CustomerService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
@@ -28,15 +30,23 @@ public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
     private final CustomerMapper customerMapper;
+    private final AddressService addressService;
 
-    public CustomerServiceImpl(final CustomerRepository customerRepository, final CustomerMapper customerMapper) {
+    public CustomerServiceImpl(
+            final CustomerRepository customerRepository,
+            final CustomerMapper customerMapper,
+            final AddressService addressService
+    ) {
         this.customerRepository = Objects.requireNonNull(customerRepository, "customerRepository cannot be null");
         this.customerMapper = Objects.requireNonNull(customerMapper, "customerMapper cannot be null");
+        this.addressService = Objects.requireNonNull(addressService, "addressService cannot be null");
     }
 
     @Override
     public CustomerResponse create(final CustomerRequest customerRequest) {
         final CustomerEntity customerEntity = customerMapper.dtoToEntity(customerRequest);
+        final AddressEntity addressEntity = addressService.getAddressEntityById(customerRequest.getAddressId());
+        customerEntity.setAddressEntity(addressEntity);
         customerEntity.setCreatedAt(LocalDateTime.now());
         customerEntity.setCreatedBy(AUTHOR);
         customerEntity.setDateJoined(Date.from(Instant.now()));
@@ -76,7 +86,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerResponse updatePhoneNumberById(final Long id, final CustomerRequestPhoneNumberPatch customerRequestPhoneNumberPatch) {
+    public CustomerResponse updatePhoneNumberById(final Long id, final @NotNull CustomerRequestPhoneNumberPatch customerRequestPhoneNumberPatch) {
         final CustomerEntity customerEntity = getCustomerEntityById(id);
         customerEntity.setPhoneNumber(customerRequestPhoneNumberPatch.getPhoneNumber());
         customerEntity.setModifiedBy(AUTHOR);
@@ -95,7 +105,7 @@ public class CustomerServiceImpl implements CustomerService {
         return customerMapper.entityToDto(updateCustomerEntity);
     }
 
-    private @NotNull CustomerEntity getCustomerEntityById(final Long id) {
+    public @NotNull CustomerEntity getCustomerEntityById(final Long id) {
         final Optional<CustomerEntity> optionalCustomerEntity = customerRepository.findById(id);
         if (optionalCustomerEntity.isEmpty()) {
             throw new ApiRequestException(

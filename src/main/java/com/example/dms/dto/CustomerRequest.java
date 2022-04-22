@@ -24,7 +24,18 @@ public class CustomerRequest extends CustomerRequestPhoneNumberPatch{
     @Pattern(regexp = "[a-zA-Z\\d ]+")
     private String drugAllergicTo;
 
+    @NotNull(message = "AddressId cannot be null.")
+    private Long addressId;
+
     public CustomerRequest() {
+    }
+
+    public Long getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(Long addressId) {
+        this.addressId = addressId;
     }
 
     public String getDrugAllergicTo() {

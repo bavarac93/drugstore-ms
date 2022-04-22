@@ -21,7 +21,6 @@ public class SupplierMapperImpl implements SupplierMapper {
         supplierEntity.setSupplierDesc(supplierRequest.getSupplierDesc());
         supplierEntity.setContractSigned(supplierRequest.getContractSigned());
         supplierEntity.setContractExpires(supplierRequest.getContractExpires());
-        supplierEntity.setCreatedAt(supplierRequest.getCreatedAt());
         return supplierEntity;
     }
 

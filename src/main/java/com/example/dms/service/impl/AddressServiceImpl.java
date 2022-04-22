@@ -86,7 +86,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @NotNull
-    private AddressEntity getAddressEntityById(final Long id) {
+    public AddressEntity getAddressEntityById(final Long id) {
         final Optional<AddressEntity> optionalAddressEntity = addressRepository.findById(id);
         if (optionalAddressEntity.isEmpty()) {
             throw new ApiRequestException(

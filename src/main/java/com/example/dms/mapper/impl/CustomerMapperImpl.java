@@ -35,6 +35,7 @@ public class CustomerMapperImpl implements CustomerMapper {
         customerResponse.setVerified(persistedCustomerEntity.isVerified());
         customerResponse.setDateJoined(persistedCustomerEntity.getDateJoined());
         customerResponse.setDrugAllergicTo(persistedCustomerEntity.getDrugAllergicTo());
+        customerResponse.setAddressId(persistedCustomerEntity.getAddressEntity().getId());
         return customerResponse;
     }
 

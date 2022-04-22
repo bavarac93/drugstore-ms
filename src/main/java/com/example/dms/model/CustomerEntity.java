@@ -23,12 +23,11 @@ public class CustomerEntity extends AuditSuperclass {
     @JoinColumn(name = "address_id")
     private AddressEntity addressEntity;
 
-    public AddressEntity getAddressEntity() {
-        return addressEntity;
+    public CustomerEntity() {
     }
 
-    public CustomerEntity() {
-
+    public AddressEntity getAddressEntity() {
+        return addressEntity;
     }
 
     public void setAddressEntity(AddressEntity addressEntity) {

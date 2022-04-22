@@ -21,23 +21,12 @@ public class SupplierRequest extends SupplierRequestPatch {
     @PastOrPresent(message = "The date must be in the past or present.")
     private LocalDateTime contractSigned;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime createdAt;
-
     public String getSupplierName() {
         return supplierName;
     }
 
     public void setSupplierName(String supplierName) {
         this.supplierName = supplierName;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
     }
 
     public String getSupplierDesc() {

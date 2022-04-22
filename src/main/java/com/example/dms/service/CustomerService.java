@@ -4,6 +4,7 @@ import com.example.dms.dto.CustomerRequest;
 import com.example.dms.dto.CustomerRequestPhoneNumberPatch;
 import com.example.dms.dto.CustomerRequestVerifiedPatch;
 import com.example.dms.dto.CustomerResponse;
+import com.example.dms.model.CustomerEntity;
 
 import java.util.List;
 
@@ -72,6 +73,14 @@ public interface CustomerService {
      * @return {@link CustomerResponse}
      */
     CustomerResponse updatePhoneNumberById(final Long id,  final CustomerRequestPhoneNumberPatch customerRequestPhoneNumberPatch);
+
+    /**
+     * Get a customer entity by id.
+     *
+     * @param id {@link Long}
+     * @return {@link CustomerEntity}
+     */
+    CustomerEntity getCustomerEntityById(final Long id);
 
     /**
      *

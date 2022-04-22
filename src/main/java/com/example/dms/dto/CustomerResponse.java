@@ -14,6 +14,15 @@ public class CustomerResponse {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date dateJoined;
     private String drugAllergicTo;
+    private Long addressId;
+
+    public Long getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(Long addressId) {
+        this.addressId = addressId;
+    }
 
     public String getDrugAllergicTo() {
         return drugAllergicTo;

@@ -3,6 +3,7 @@ package com.example.dms.service;
 import com.example.dms.dto.AddressRequest;
 import com.example.dms.dto.AddressRequestPatch;
 import com.example.dms.dto.AddressResponse;
+import com.example.dms.model.AddressEntity;
 
 import java.util.List;
 
@@ -68,6 +69,14 @@ public interface AddressService {
      * @return {@link AddressResponse}
      */
     AddressResponse updateStreetAndBuildingNumberById(final Long id, final AddressRequestPatch addressRequestPatch);
+
+    /**
+     * Get an address entity by id.
+     *
+     * @param id {@link Long}
+     * @return {@link AddressEntity}
+     */
+    AddressEntity getAddressEntityById(final Long id);
 }
 
 
