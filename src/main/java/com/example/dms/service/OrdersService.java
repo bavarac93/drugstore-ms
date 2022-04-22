@@ -3,6 +3,8 @@ package com.example.dms.service;
 
 import com.example.dms.dto.OrdersRequest;
 import com.example.dms.dto.OrdersResponse;
+import com.example.dms.model.InventoryEntity;
+import com.example.dms.model.OrdersEntity;
 
 import java.util.List;
 
@@ -35,4 +37,20 @@ public interface OrdersService {
      * @return {@link OrdersResponse}
      */
     List<OrdersResponse> findAllOrders();
+
+    /**
+     * Find an order by id.
+     *
+     * @param id {@link Long}
+     * @return {@link OrdersResponse}
+     */
+    OrdersResponse findById(final Long id);
+
+    /**
+     * Get orders entity by id.
+     *
+     * @param id {@link Long}
+     * @return {@link OrdersEntity}
+     */
+    OrdersEntity getOrdersEntityById(final Long id);
 }

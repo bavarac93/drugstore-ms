@@ -3,6 +3,7 @@ package com.example.dms.service.impl;
 import com.example.dms.dao.OrdersRepository;
 import com.example.dms.dto.OrdersRequest;
 import com.example.dms.dto.OrdersResponse;
+import com.example.dms.exception.ApiRequestException;
 import com.example.dms.mapper.OrdersMapper;
 import com.example.dms.model.CustomerEntity;
 import com.example.dms.model.InventoryEntity;
@@ -12,14 +13,17 @@ import com.example.dms.service.InventoryService;
 import com.example.dms.service.OrdersService;
 import org.springframework.stereotype.Service;
 
+import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class OrdersServiceImpl implements OrdersService {
 
     private static final String AUTHOR = "Muki";
+    private static final String ORDER_NOT_FOUND = "Order with this id {0} does not exist.";
 
     private final OrdersRepository ordersRepository;
     private final OrdersMapper ordersMapper;
@@ -54,5 +58,21 @@ public class OrdersServiceImpl implements OrdersService {
     public List<OrdersResponse> findAllOrders() {
         List<OrdersEntity> ordersEntityList = ordersRepository.findAll();
         return ordersMapper.entitiesToDto(ordersEntityList);
+    }
+
+    @Override
+    public OrdersResponse findById(final Long id) {
+        final OrdersEntity ordersEntity = getOrdersEntityById(id);
+        return ordersMapper.entityToDto(ordersEntity);
+    }
+
+    @Override
+    public OrdersEntity getOrdersEntityById(final Long id) {
+        final Optional<OrdersEntity> optionalProductTypeEntity = ordersRepository.findById(id);
+        if (optionalProductTypeEntity.isEmpty()) {
+            throw new ApiRequestException(
+                    MessageFormat.format(ORDER_NOT_FOUND, id));
+        }
+        return optionalProductTypeEntity.get();
     }
 }

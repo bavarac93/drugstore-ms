@@ -41,4 +41,12 @@ public class OrdersController {
         return new ResponseEntity<>(ordersService.findAllOrders(), HttpStatus.FOUND);
     }
 
+    @ApiOperation(value = "Get an item by id",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("{id}")
+    ResponseEntity<OrdersResponse> findById(@PathVariable final Long id) {
+        return new ResponseEntity<>(ordersService.findById(id), HttpStatus.FOUND);
+    }
+
 }
