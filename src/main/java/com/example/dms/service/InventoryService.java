@@ -4,6 +4,7 @@ package com.example.dms.service;
 import com.example.dms.dto.InventoryRequest;
 import com.example.dms.dto.InventoryRequestPatch;
 import com.example.dms.dto.InventoryResponse;
+import com.example.dms.model.InventoryEntity;
 
 import java.util.List;
 
@@ -72,4 +73,12 @@ public interface InventoryService {
      * @return {@link InventoryResponse}
      * */
     InventoryResponse updateDescriptionById(final Long id, final InventoryRequestPatch inventoryRequestPatch);
+
+    /**
+     * Get an inventory entity by id.
+     *
+     * @param id {@link Long}
+     * @return {@link InventoryEntity}
+     */
+    InventoryEntity getInventoryEntityById(final Long id);
 }

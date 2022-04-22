@@ -15,7 +15,7 @@ public class InventoryMapperImpl implements InventoryMapper {
 
     @Override
     public InventoryEntity dtoToEntity(final @NotNull InventoryRequest inventoryRequest) {
-        InventoryEntity inventoryEntity = new InventoryEntity();
+        final InventoryEntity inventoryEntity = new InventoryEntity();
         inventoryEntity.setItemName(inventoryRequest.getItemName());
         inventoryEntity.setDescription(inventoryRequest.getDescription());
         inventoryEntity.setPrice(inventoryRequest.getPrice());

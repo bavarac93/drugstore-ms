@@ -2,6 +2,7 @@ package com.example.dms.model;
 
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table (name = "orders")
@@ -9,6 +10,7 @@ public class OrdersEntity extends AuditSuperclass{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private LocalDateTime dateOrdered;
     @ManyToOne
     @JoinColumn(name = "inventory_id")
     private InventoryEntity inventoryEntity;
@@ -18,6 +20,14 @@ public class OrdersEntity extends AuditSuperclass{
     private CustomerEntity customerEntity;
 
     public OrdersEntity() {
+    }
+
+    public LocalDateTime getDateOrdered() {
+        return dateOrdered;
+    }
+
+    public void setDateOrdered(LocalDateTime dateOrdered) {
+        this.dateOrdered = dateOrdered;
     }
 
     public Long getId() {

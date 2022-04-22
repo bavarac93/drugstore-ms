@@ -9,15 +9,13 @@ public class OrdersRequest {
     @NotNull(message = "InventoryId cannot be null.")
     private Long inventoryId;
 
-    @FutureOrPresent(message = "Date of order must be valid.")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dateOrdered;
 
     @NotBlank(message = "Instructions to customer are mandatory.")
     @NotEmpty(message = "Instructions to customer are mandatory.")
-    @Size(min = 10, max = 10, message = "SKU must be 10 characters long.")
-    @Pattern(regexp = "[a-zA-Z\\d]+", message = "SKU can only contain letters and numbers.")
-    private String instructionsToCustomer;
+    @Size(min = 10, max = 200, message = "Instructions must be between 10 and 200 characters.")
+    @Pattern(regexp = "[a-zA-Z\\d #%'*/<()>:`;,!&.?_]+", message = "Only letters, numbers and punctuation marks are allowed.")    private String instructionsToCustomer;
 
     @NotNull(message = "CustomerId cannot be null.")
     private Long customerId;

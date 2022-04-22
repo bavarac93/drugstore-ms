@@ -106,7 +106,7 @@ public class InventoryServiceImpl implements InventoryService {
         return inventoryMapper.entityToDto(updateInventory);
     }
 
-    private @NotNull InventoryEntity getInventoryEntityById(final Long id) {
+    public @NotNull InventoryEntity getInventoryEntityById(final Long id) {
         final Optional<InventoryEntity> optionalInventoryEntity = inventoryRepository.findById(id);
         if (optionalInventoryEntity.isEmpty()) {
             throw new ApiRequestException(
