@@ -67,6 +67,14 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
+    public void deleteById(final Long id) {
+        if (!ordersRepository.existsById(id)) {
+            throw new ApiRequestException(MessageFormat.format(ORDER_NOT_FOUND, id));
+        }
+        ordersRepository.deleteById(id);
+    }
+
+    @Override
     public OrdersEntity getOrdersEntityById(final Long id) {
         final Optional<OrdersEntity> optionalProductTypeEntity = ordersRepository.findById(id);
         if (optionalProductTypeEntity.isEmpty()) {

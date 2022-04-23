@@ -41,12 +41,20 @@ public class OrdersController {
         return new ResponseEntity<>(ordersService.findAllOrders(), HttpStatus.FOUND);
     }
 
-    @ApiOperation(value = "Get an item by id",
+    @ApiOperation(value = "Get an order by id",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping("{id}")
     ResponseEntity<OrdersResponse> findById(@PathVariable final Long id) {
         return new ResponseEntity<>(ordersService.findById(id), HttpStatus.FOUND);
     }
+
+    @ApiOperation(value = "Delete an order by id", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping("{id}")
+    ResponseEntity<Void> deleteById(@PathVariable final Long id) {
+        ordersService.findById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 
 }

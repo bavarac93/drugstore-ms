@@ -61,7 +61,7 @@ public interface InventoryService {
      * @param inventoryRequest {@link InventoryRequest}
      *
      * @return {@link InventoryResponse}
-     * */
+     */
     InventoryResponse updateById(final Long id, final InventoryRequest inventoryRequest);
     
     /**
@@ -71,7 +71,7 @@ public interface InventoryService {
      * @param inventoryRequestPatch {@link InventoryRequestPatch}
      *
      * @return {@link InventoryResponse}
-     * */
+     */
     InventoryResponse updateDescriptionById(final Long id, final InventoryRequestPatch inventoryRequestPatch);
 
     /**
