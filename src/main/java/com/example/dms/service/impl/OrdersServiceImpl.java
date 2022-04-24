@@ -12,6 +12,8 @@ import com.example.dms.service.CustomerService;
 import com.example.dms.service.InventoryService;
 import com.example.dms.service.OrdersService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.MessageFormat;
 import java.time.LocalDateTime;
@@ -19,6 +21,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+@EnableTransactionManagement
 @Service
 public class OrdersServiceImpl implements OrdersService {
 
@@ -66,12 +69,23 @@ public class OrdersServiceImpl implements OrdersService {
         return ordersMapper.entityToDto(ordersEntity);
     }
 
+    @Transactional
     @Override
     public void deleteById(final Long id) {
         if (!ordersRepository.existsById(id)) {
             throw new ApiRequestException(MessageFormat.format(ORDER_NOT_FOUND, id));
         }
         ordersRepository.deleteById(id);
+    }
+
+    @Override
+    public OrdersResponse updateById(final Long id, final OrdersRequest ordersRequest) {
+        OrdersEntity ordersEntity = getOrdersEntityById(id);
+        ordersMapper.updateOrder(ordersEntity, ordersRequest);
+        ordersEntity.setModifiedAt(LocalDateTime.now());
+        ordersEntity.setModifiedBy(AUTHOR);
+        final OrdersEntity updateOrder = ordersRepository.save(ordersEntity);
+        return ordersMapper.entityToDto(updateOrder);
     }
 
     @Override

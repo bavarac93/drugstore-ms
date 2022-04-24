@@ -56,5 +56,15 @@ public class OrdersController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @ApiOperation(value = "Update an order by id",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping("{id}")
+    ResponseEntity<OrdersResponse> updateById(
+            @PathVariable final Long id,
+            @Valid @RequestBody final OrdersRequest ordersRequest
+    ) {
+        return new ResponseEntity<>(ordersService.updateById(id, ordersRequest), HttpStatus.ACCEPTED);
+    }
 
 }

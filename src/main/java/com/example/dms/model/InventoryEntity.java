@@ -1,5 +1,8 @@
 package com.example.dms.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -18,14 +21,17 @@ public class InventoryEntity extends AuditSuperclass {
     private LocalDateTime expiryDate;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn (name = "brand_id")
     private BrandEntity brandEntity;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn (name = "product_type_id")
     private ProductTypeEntity productTypeEntity;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn (name = "supplier_id")
     private SupplierEntity supplierEntity;
 

@@ -14,4 +14,6 @@ public interface OrdersMapper {
     OrdersResponse entityToDto(final OrdersEntity persistedOrdersEntity);
 
     List<OrdersResponse> entitiesToDto(final List<OrdersEntity> ordersEntityList);
+
+    void updateOrder(final OrdersEntity ordersEntity, final OrdersRequest ordersRequest);
 }

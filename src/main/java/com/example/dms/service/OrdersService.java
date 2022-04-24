@@ -53,10 +53,21 @@ public interface OrdersService {
     void deleteById(final Long id);
 
     /**
+     * Update an order by id.
+     *
+     * @param id {@link Long}
+     * @param ordersRequest {@link OrdersRequest}
+     * @return {@link OrdersResponse}
+     */
+    OrdersResponse updateById(final Long id, final OrdersRequest ordersRequest);
+
+    /**
      * Get orders entity by id.
      *
      * @param id {@link Long}
      * @return {@link OrdersEntity}
      */
     OrdersEntity getOrdersEntityById(final Long id);
+
+
 }

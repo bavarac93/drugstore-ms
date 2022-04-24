@@ -40,4 +40,10 @@ public class OrdersMapperImpl implements OrdersMapper {
         }
         return ordersResponseList;
     }
+
+    @Override
+    public void updateOrder(final @NotNull OrdersEntity ordersEntity, final @NotNull OrdersRequest ordersRequest) {
+        ordersEntity.setDateOrdered(ordersRequest.getDateOrdered());
+        ordersEntity.setInstructionsToCustomer(ordersRequest.getInstructionsToCustomer());
+    }
 }

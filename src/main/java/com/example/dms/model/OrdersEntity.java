@@ -1,5 +1,7 @@
 package com.example.dms.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,12 +13,16 @@ public class OrdersEntity extends AuditSuperclass{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private LocalDateTime dateOrdered;
-    @ManyToOne
-    @JoinColumn(name = "inventory_id")
-    private InventoryEntity inventoryEntity;
     private String instructionsToCustomer;
-    @ManyToOne
+
+    @ManyToOne( fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "inventory_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private InventoryEntity inventoryEntity;
+
+    @ManyToOne( fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "customer_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private CustomerEntity customerEntity;
 
     public OrdersEntity() {
