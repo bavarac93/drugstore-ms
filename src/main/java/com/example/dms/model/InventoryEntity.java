@@ -4,6 +4,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -18,7 +19,7 @@ public class InventoryEntity extends AuditSuperclass {
     private Long quantity;
     private Long sold;
     private String description;
-    private LocalDateTime expiryDate;
+    private LocalDate expiryDate;
 
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -94,11 +95,11 @@ public class InventoryEntity extends AuditSuperclass {
         this.description = description;
     }
 
-    public LocalDateTime getExpiryDate() {
+    public LocalDate getExpiryDate() {
         return expiryDate;
     }
 
-    public void setExpiryDate(LocalDateTime expiryDate) {
+    public void setExpiryDate(LocalDate expiryDate) {
         this.expiryDate = expiryDate;
     }
 

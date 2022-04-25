@@ -18,6 +18,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -113,5 +114,11 @@ public class InventoryServiceImpl implements InventoryService {
                     MessageFormat.format(ITEM_DOES_NOT_EXIST, id));
         }
         return optionalInventoryEntity.get();
+    }
+
+    @Override
+    public List<InventoryResponse> findItemsWithSpecificExpiryDate(final LocalDate expiryDate) {
+        List<InventoryEntity> inventoryEntityList = inventoryRepository.findItemsWithSpecificExpiryDate(expiryDate);
+        return inventoryMapper.entitiesToDto(inventoryEntityList);
     }
 }

@@ -1,7 +1,10 @@
 package com.example.dms.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.validation.constraints.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class InventoryRequest extends InventoryRequestPatch{
@@ -28,7 +31,8 @@ public class InventoryRequest extends InventoryRequestPatch{
     private Long sold;
 
     @FutureOrPresent(message = "The expiry date must be valid. Otherwise, the item cannot be used.")
-    private LocalDateTime expiryDate;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private LocalDate expiryDate;
 
     @NotNull(message = "BrandId cannot be null.")
     private Long brandId;
@@ -101,11 +105,11 @@ public class InventoryRequest extends InventoryRequestPatch{
         this.sold = sold;
     }
 
-    public LocalDateTime getExpiryDate() {
+    public LocalDate getExpiryDate() {
         return expiryDate;
     }
 
-    public void setExpiryDate(LocalDateTime expiryDate) {
+    public void setExpiryDate(LocalDate expiryDate) {
         this.expiryDate = expiryDate;
     }
 

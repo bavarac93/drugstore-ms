@@ -96,8 +96,8 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public List<AddressResponse> findDrugstoresInTheSameCity(final String city) {
-        final List<AddressEntity> responseList = addressRepository.findDrugstoresInTheSameCity(city);
+    public List<AddressResponse> findAddressesInTheSameCity(final String city) {
+        final List<AddressEntity> responseList = addressRepository.findAddressesInTheSameCity(city);
         return addressMapper.entitiesToDto(responseList);
     }
 

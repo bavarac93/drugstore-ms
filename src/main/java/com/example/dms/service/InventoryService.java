@@ -6,6 +6,8 @@ import com.example.dms.dto.InventoryRequestPatch;
 import com.example.dms.dto.InventoryResponse;
 import com.example.dms.model.InventoryEntity;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -81,4 +83,12 @@ public interface InventoryService {
      * @return {@link InventoryEntity}
      */
     InventoryEntity getInventoryEntityById(final Long id);
+
+    /**
+     * Get a list of inventory items by specific date.
+     *
+     * @param expiryDate {@link LocalDate}
+     * @return {@link InventoryResponse}
+     */
+    List<InventoryResponse> findItemsWithSpecificExpiryDate(final LocalDate expiryDate);
 }

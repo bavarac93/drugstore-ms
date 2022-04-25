@@ -83,7 +83,7 @@ public interface AddressService {
      * @param city {@link String}
      * @return {@link AddressResponse}
      */
-    List<AddressResponse> findDrugstoresInTheSameCity(final String city);
+    List<AddressResponse> findAddressesInTheSameCity(final String city);
 }
 
 

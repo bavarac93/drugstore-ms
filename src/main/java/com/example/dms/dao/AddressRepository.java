@@ -13,6 +13,6 @@ import java.util.List;
 public interface AddressRepository extends JpaRepository<AddressEntity, Long> {
 
     @Query("SELECT t FROM AddressEntity t WHERE t.city = :city")
-    List<AddressEntity> findDrugstoresInTheSameCity(@Param("city") final String city);
+    List<AddressEntity> findAddressesInTheSameCity(@Param("city") final String city);
 
 }

@@ -3,6 +3,7 @@ package com.example.dms.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class InventoryResponse {
@@ -13,8 +14,8 @@ public class InventoryResponse {
     private Long price;
     private Long quantity;
     private Long sold;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime expiryDate;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private LocalDate expiryDate;
     private Long brandId;
     private Long productTypeId;
     private Long supplierId;
@@ -101,11 +102,11 @@ public class InventoryResponse {
         this.sold = sold;
     }
 
-    public LocalDateTime getExpiryDate() {
+    public LocalDate getExpiryDate() {
         return expiryDate;
     }
 
-    public void setExpiryDate(LocalDateTime expiryDate) {
+    public void setExpiryDate(LocalDate expiryDate) {
         this.expiryDate = expiryDate;
     }
 

@@ -6,6 +6,7 @@ import com.example.dms.dto.InventoryResponse;
 import com.example.dms.service.InventoryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -80,6 +83,14 @@ public class InventoryController {
               inventoryService.updateDescriptionById(id,inventoryRequestPatch),
               HttpStatus.ACCEPTED
       );
+    }
+
+    @ApiOperation(value = "Get items by specific date",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("/get-items-by-expiry-date/{expiryDate}")
+    ResponseEntity<List<InventoryResponse>> findItemsWithSpecificExpiryDate(@PathVariable @DateTimeFormat(pattern="yyyy-MM-dd") final LocalDate expiryDate) {
+        return new ResponseEntity<>(inventoryService.findItemsWithSpecificExpiryDate(expiryDate), HttpStatus.FOUND);
     }
 
 }
