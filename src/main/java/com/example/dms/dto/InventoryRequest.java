@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.validation.constraints.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class InventoryRequest extends InventoryRequestPatch{
     @NotEmpty(message = "Item name must be included in the request.")

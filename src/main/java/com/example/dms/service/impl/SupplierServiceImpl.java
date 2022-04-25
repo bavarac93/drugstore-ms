@@ -12,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -90,6 +91,12 @@ public class SupplierServiceImpl implements SupplierService {
                         MessageFormat.format(SUPPLIER_DOES_NOT_EXIST, id));
             }
             return optionalSupplierEntity.get();
+    }
+
+    @Override
+    public List<SupplierResponse> findAllWithContractSignedOn(final LocalDate contractSigned) {
+        List<SupplierEntity> list = supplierRepository.findAllWithContractSignedOn(contractSigned);
+        return supplierMapper.entitiesToDto(list);
     }
 
 }

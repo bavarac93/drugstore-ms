@@ -6,6 +6,7 @@ import com.example.dms.dto.SupplierResponse;
 import com.example.dms.service.SupplierService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -77,6 +79,14 @@ public class SupplierController {
             @Valid @RequestBody final SupplierRequestPatch supplierRequestPatch
             ) {
         return new ResponseEntity<>(supplierService.updateContractExpiresById(id, supplierRequestPatch), HttpStatus.ACCEPTED);
+    }
+
+    @ApiOperation(value = "Get suppliers that signed contracts on specific date",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("/get-suppliers-contract-signed-on/{contractSigned}")
+    ResponseEntity<List<SupplierResponse>> findAllWithContractSignedOn(@PathVariable @DateTimeFormat(pattern="yyyy-MM-dd") final LocalDate contractSigned) {
+        return new ResponseEntity<>(supplierService.findAllWithContractSignedOn(contractSigned), HttpStatus.FOUND);
     }
 
 

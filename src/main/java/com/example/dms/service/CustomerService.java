@@ -20,6 +20,8 @@ import java.util.List;
  *     <li>{@link #updateById}</li>
  *     <li>{@link #updatePhoneNumberById}</li>
  *     <li>{@link #updateVerifiedStatus}</li>
+ *     <li>{@link #findAllergicCustomers}</li>
+ *     <li>{@link #countAllergicCustomersToSomeDrug}</li>
  * </ul>
  *
  */

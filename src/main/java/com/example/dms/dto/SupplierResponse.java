@@ -2,16 +2,17 @@ package com.example.dms.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class SupplierResponse {
     private Long id;
     private String supplierName;
     private String supplierDesc;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime contractSigned;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime contractExpires;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private LocalDate contractSigned;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private LocalDate contractExpires;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
 
@@ -48,19 +49,19 @@ public class SupplierResponse {
         this.supplierDesc = supplierDesc;
     }
 
-    public LocalDateTime getContractSigned() {
+    public LocalDate getContractSigned() {
         return contractSigned;
     }
 
-    public void setContractSigned(LocalDateTime contractSigned) {
+    public void setContractSigned(LocalDate contractSigned) {
         this.contractSigned = contractSigned;
     }
 
-    public LocalDateTime getContractExpires() {
+    public LocalDate getContractExpires() {
         return contractExpires;
     }
 
-    public void setContractExpires(LocalDateTime contractExpires) {
+    public void setContractExpires(LocalDate contractExpires) {
         this.contractExpires = contractExpires;
     }
 }

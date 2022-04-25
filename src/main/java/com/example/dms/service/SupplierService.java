@@ -5,6 +5,7 @@ import com.example.dms.dto.SupplierRequestPatch;
 import com.example.dms.dto.SupplierResponse;
 import com.example.dms.model.SupplierEntity;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /** Methods used to manipulate supplier data.
@@ -17,6 +18,7 @@ import java.util.List;
  *     <li>{@link #deleteById}</li>
  *     <li>{@link #updateById}</li>
  *     <li>{@link #updateContractExpiresById}</li>
+ *     <li>{@link #findAllWithContractSignedOn}</li>
  * </ul>
  *
  * */
@@ -79,4 +81,12 @@ public interface SupplierService {
      * @return {@link SupplierEntity}
      */
     SupplierEntity getSupplierEntityById(final Long id);
+
+    /**
+     * Get suppliers that signed a contract on some date.
+     *
+     * @param contractSigned {@link LocalDate}
+     * @return {@link SupplierResponse}
+     */
+    List<SupplierResponse> findAllWithContractSignedOn(final LocalDate contractSigned);
 }

@@ -7,7 +7,6 @@ import com.example.dms.dto.InventoryResponse;
 import com.example.dms.model.InventoryEntity;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -21,6 +20,13 @@ import java.util.List;
  *     <li>{@link #deleteById}</li>
  *     <li>{@link #updateById}</li>
  *     <li>{@link #updateDescriptionById}</li>
+ *     <li>{@link #findItemsOfTheSameType}</li>
+ *     <li>{@link #countItemsOfTheSameType}</li>
+ *     <li>{@link #findAllWithExpiryTimeBefore}</li>
+ *     <li>{@link #findItemsMadeByTheSameBrand}</li>
+ *     <li>{@link #countItemsMadeByTheSameBrand}</li>
+ *     <li>{@link #findItemsFromTheSameSupplier}</li>
+ *     <li>{@link #countItemsFromTheSameSupplier}</li>
  * </ul>
  *
  */
@@ -85,10 +91,58 @@ public interface InventoryService {
     InventoryEntity getInventoryEntityById(final Long id);
 
     /**
-     * Get a list of inventory items by specific date.
+     * Get a list of inventory items with expiry date before.
      *
      * @param expiryDate {@link LocalDate}
      * @return {@link InventoryResponse}
      */
-    List<InventoryResponse> findItemsWithSpecificExpiryDate(final LocalDate expiryDate);
+    List<InventoryResponse> findAllWithExpiryTimeBefore(final LocalDate expiryDate);
+
+    /**
+     * Get a list of inventory items made by the same brand.
+     *
+     * @param brandId {@link Long}
+     * @return {@link InventoryResponse}
+     */
+    List<InventoryResponse> findItemsMadeByTheSameBrand(final Long brandId);
+
+    /**
+     * Count items made by the same brand.
+     *
+     * @param brandId {@link Long}
+     * @return {@link String}
+     */
+    String countItemsMadeByTheSameBrand(final Long brandId);
+
+    /**
+     * Get a list of items made of the same type.
+     *
+     * @param productTypeId {@link Long}
+     * @return {@link InventoryResponse}
+     */
+    List<InventoryResponse> findItemsOfTheSameType(final Long productTypeId);
+
+    /**
+     * Get a list of items made by the same supplier.
+     *
+     * @param supplierId {@link Long}
+     * @return {@link InventoryResponse}
+     */
+    List<InventoryResponse> findItemsFromTheSameSupplier(final Long supplierId);
+
+    /**
+     * Count items of the same type.
+     *
+     * @param productTypeId {@link Long}
+     * @return {@link String}
+     */
+    String countItemsOfTheSameType(final Long productTypeId);
+
+    /**
+     * Count items from the same supplier.
+     *
+     * @param supplierId {@link Long}
+     * @return {@link String}
+     */
+    String countItemsFromTheSameSupplier(final Long supplierId);
 }

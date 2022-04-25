@@ -117,8 +117,47 @@ public class InventoryServiceImpl implements InventoryService {
     }
 
     @Override
-    public List<InventoryResponse> findItemsWithSpecificExpiryDate(final LocalDate expiryDate) {
-        List<InventoryEntity> inventoryEntityList = inventoryRepository.findItemsWithSpecificExpiryDate(expiryDate);
+    public List<InventoryResponse> findAllWithExpiryTimeBefore(final LocalDate expiryDate) {
+        List<InventoryEntity> inventoryEntityList = inventoryRepository.findAllWithExpiryTimeBefore(expiryDate);
         return inventoryMapper.entitiesToDto(inventoryEntityList);
+    }
+
+    @Override
+    public List<InventoryResponse> findItemsMadeByTheSameBrand(final @NotNull Long brandId) {
+        List<InventoryEntity> inventoryEntities = inventoryRepository.findItemsMadeByTheSameBrand(brandId);
+        return inventoryMapper.entitiesToDto(inventoryEntities);
+    }
+
+    @Override
+    public String countItemsMadeByTheSameBrand(final Long brandId) {
+        List<InventoryEntity> inventoryEntityList = inventoryRepository.findItemsMadeByTheSameBrand(brandId);
+        inventoryMapper.entitiesToDto(inventoryEntityList);
+        return "There is/are " + inventoryEntityList.size() + " item(s) of the same brand id " + brandId;
+    }
+
+    @Override
+    public List<InventoryResponse> findItemsOfTheSameType(final Long productTypeId) {
+        List<InventoryEntity> list = inventoryRepository.findItemsOfTheSameType(productTypeId);
+        return inventoryMapper.entitiesToDto(list);
+    }
+
+    @Override
+    public List<InventoryResponse> findItemsFromTheSameSupplier(final Long supplierId) {
+        List<InventoryEntity> entities = inventoryRepository.findItemsFromTheSameSupplier(supplierId);
+        return inventoryMapper.entitiesToDto(entities);
+    }
+
+    @Override
+    public String countItemsOfTheSameType(final Long productTypeId) {
+        List<InventoryEntity> list = inventoryRepository.findItemsOfTheSameType(productTypeId);
+        inventoryMapper.entitiesToDto(list);
+        return "There is/are " + list.size() + " item(s) of the type id " + productTypeId;
+    }
+
+    @Override
+    public String countItemsFromTheSameSupplier(final Long supplierId) {
+        List<InventoryEntity> list = inventoryRepository.findItemsFromTheSameSupplier(supplierId);
+        inventoryMapper.entitiesToDto(list);
+        return "There is/are " + list.size() + " item(s) from the same supplier id " + supplierId;
     }
 }

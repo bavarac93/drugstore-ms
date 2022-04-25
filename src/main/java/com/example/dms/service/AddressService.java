@@ -18,6 +18,7 @@ import java.util.List;
  *     <li>{@link #deleteById}</li>
  *     <li>{@link #updateById}</li>
  *     <li>{@link #updateStreetAndBuildingNumberById}</li>
+ *     <li>{@link #findAddressesInTheSameCity}</li>
  * </ul>
  */
 public interface AddressService {

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -89,8 +88,54 @@ public class InventoryController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping("/get-items-by-expiry-date/{expiryDate}")
-    ResponseEntity<List<InventoryResponse>> findItemsWithSpecificExpiryDate(@PathVariable @DateTimeFormat(pattern="yyyy-MM-dd") final LocalDate expiryDate) {
-        return new ResponseEntity<>(inventoryService.findItemsWithSpecificExpiryDate(expiryDate), HttpStatus.FOUND);
+    ResponseEntity<List<InventoryResponse>> findAllWithExpiryTimeBefore(@PathVariable @DateTimeFormat(pattern="yyyy-MM-dd") final LocalDate expiryDate) {
+        return new ResponseEntity<>(inventoryService.findAllWithExpiryTimeBefore(expiryDate), HttpStatus.FOUND);
     }
 
+    @ApiOperation(value = "Get items made by the same brand",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("/get-items-by-same-brand/{brandId}")
+    ResponseEntity<List<InventoryResponse>> findItemsMadeByTheSameBrand(@PathVariable final Long brandId) {
+        return new ResponseEntity<>(inventoryService.findItemsMadeByTheSameBrand(brandId), HttpStatus.FOUND);
+    }
+
+    @ApiOperation(value = "Count items made by the same brand",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("/count-items-by-same-brand/{brandId}")
+    ResponseEntity<String> countItemsMadeByTheSameBrand(@PathVariable final Long brandId) {
+        return new ResponseEntity<>(inventoryService.countItemsMadeByTheSameBrand(brandId), HttpStatus.FOUND);
+    }
+
+    @ApiOperation(value = "Get items of the same type",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("/get-items-of-same-type/{productTypeId}")
+    ResponseEntity<List<InventoryResponse>> findItemsOfTheSameType(@PathVariable final Long productTypeId) {
+        return new ResponseEntity<>(inventoryService.findItemsOfTheSameType(productTypeId), HttpStatus.FOUND);
+    }
+
+    @ApiOperation(value = "Get items of the same supplier",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("/get-items-from-same-supplier/{supplierId}")
+    ResponseEntity<List<InventoryResponse>> findItemsFromTheSameSupplier(@PathVariable final Long supplierId) {
+        return new ResponseEntity<>(inventoryService.findItemsFromTheSameSupplier(supplierId), HttpStatus.FOUND);
+    }
+
+    @ApiOperation(value = "Count items of the same type",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("/count-items-of-same-type/{productTypeId}")
+    ResponseEntity<String> countItemsOfTheSameType(@PathVariable final Long productTypeId) {
+        return new ResponseEntity<>(inventoryService.countItemsOfTheSameType(productTypeId), HttpStatus.FOUND);
+    }
+    @ApiOperation(value = "Count items of the same type",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("/count-items-from-same-supplier/{supplierId}")
+    ResponseEntity<String> countItemsFromTheSameSupplier(@PathVariable final Long supplierId) {
+        return new ResponseEntity<>(inventoryService.countItemsFromTheSameSupplier(supplierId), HttpStatus.FOUND);
+    }
 }

@@ -1,6 +1,9 @@
 package com.example.dms.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -11,8 +14,10 @@ public class SupplierEntity extends AuditSuperclass {
     private Long id;
     private String supplierName;
     private String supplierDesc;
-    private LocalDateTime contractSigned;
-    private LocalDateTime contractExpires;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private LocalDate contractSigned;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private LocalDate contractExpires;
 
     public SupplierEntity() {
     }
@@ -37,19 +42,19 @@ public class SupplierEntity extends AuditSuperclass {
         this.supplierDesc = supplierDesc;
     }
 
-    public LocalDateTime getContractSigned() {
+    public LocalDate getContractSigned() {
         return contractSigned;
     }
 
-    public void setContractSigned(LocalDateTime contractSigned) {
+    public void setContractSigned(LocalDate contractSigned) {
         this.contractSigned = contractSigned;
     }
 
-    public LocalDateTime getContractExpires() {
+    public LocalDate getContractExpires() {
         return contractExpires;
     }
 
-    public void setContractExpires(LocalDateTime contractExpires) {
+    public void setContractExpires(LocalDate contractExpires) {
         this.contractExpires = contractExpires;
     }
 
