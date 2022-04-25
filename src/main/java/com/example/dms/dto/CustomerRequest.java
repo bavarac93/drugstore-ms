@@ -13,15 +13,13 @@ public class CustomerRequest extends CustomerRequestPhoneNumberPatch{
     @Pattern(regexp = "[a-zA-Z]+", message = "Last name can not contain special characters and numbers.")
     private String lastName;
 
-    @NotBlank(message = "The email is obligatory.")
-    @NotEmpty(message = "The email is obligatory.")
     @Email(flags = Pattern.Flag.CASE_INSENSITIVE, message = "Email must be a valid email address, e.g. example@mail.com")
     private String email;
 
     @NotBlank(message = "The drugs that the customer is allergic to must be written!")
     @NotEmpty(message = "The drugs that the customer is allergic to must be written!")
     @Size(min = 5, max = 300, message = "drugAllergicTo must be between 5 and 300 characters.")
-    @Pattern(regexp = "[a-zA-Z\\d ]+")
+    @Pattern(regexp = "[A-Z\\d ]+", message = "Only uppercase words and numbers are accepted.")
     private String drugAllergicTo;
 
     @NotNull(message = "AddressId cannot be null.")

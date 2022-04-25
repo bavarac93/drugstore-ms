@@ -66,6 +66,15 @@ public class BrandController {
         return new ResponseEntity<>(brandService.updateById(id, brandRequest), HttpStatus.ACCEPTED);
     }
 
+    @ApiOperation(value = "Get all brands by a specific name",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("get-all-brands/{brandName}")
+    public ResponseEntity<List<BrandResponse>> findAllBrandsBySomeName(@PathVariable final String brandName) {
+        return new ResponseEntity<>(brandService.findAllBrandsBySomeName(brandName), HttpStatus.FOUND);
+    }
+
+
     @ApiOperation(value = "Update brand description by id",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)

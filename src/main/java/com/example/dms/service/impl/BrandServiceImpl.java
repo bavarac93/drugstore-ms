@@ -82,6 +82,12 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
+    public List<BrandResponse> findAllBrandsBySomeName(final String brandName) {
+        List<BrandEntity> brandEntities = brandRepository.findAllBrandsBySomeName(brandName);
+        return brandMapper.entitiesToDto(brandEntities);
+    }
+
+    @Override
     public BrandEntity getBrandEntityById(final Long id) {
         final Optional<BrandEntity> optionalBrandEntity = brandRepository.findById(id);
         if (optionalBrandEntity.isEmpty()) {

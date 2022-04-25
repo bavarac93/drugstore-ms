@@ -105,6 +105,19 @@ public class CustomerServiceImpl implements CustomerService {
         return customerMapper.entityToDto(updateCustomerEntity);
     }
 
+    @Override
+    public List<CustomerResponse> findAllergicCustomers(final String drugAllergicTo) {
+        List<CustomerEntity> customerEntityList = customerRepository.listAllergicCustomers(drugAllergicTo);
+        return customerMapper.entitiesToDto(customerEntityList);
+    }
+
+    @Override
+    public String countAllergicCustomersToSomeDrug(final @NotNull String drugAllergicTo) {
+        List<CustomerEntity> customerEntityList = customerRepository.listAllergicCustomers(drugAllergicTo);
+        customerMapper.entitiesToDto(customerEntityList);
+        return "There is/are " + customerEntityList.size() + " allergic customer(s) to " + drugAllergicTo;
+    }
+
     public @NotNull CustomerEntity getCustomerEntityById(final Long id) {
         final Optional<CustomerEntity> optionalCustomerEntity = customerRepository.findById(id);
         if (optionalCustomerEntity.isEmpty()) {
@@ -112,6 +125,12 @@ public class CustomerServiceImpl implements CustomerService {
                     MessageFormat.format(CUSTOMER_DOES_NOT_EXIST, id));
         }
         return optionalCustomerEntity.get();
+    }
+
+    @Override
+    public List<CustomerResponse> findVerifiedCustomers() {
+        final List<CustomerEntity> listOfEntities = customerRepository.findVerifiedCustomers();
+        return customerMapper.entitiesToDto(listOfEntities);
     }
 
     private void validateCustomerEmail (

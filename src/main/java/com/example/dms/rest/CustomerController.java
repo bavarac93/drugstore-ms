@@ -7,6 +7,7 @@ import com.example.dms.dto.CustomerResponse;
 import com.example.dms.service.CustomerService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -77,6 +78,28 @@ public class CustomerController {
     ){
         CustomerResponse customerResponse = customerService.updatePhoneNumberById(id, customerRequestPhoneNumberPatch);
         return new ResponseEntity<>(customerResponse, HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "Get all verified customers", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("get-verified-customers")
+    public ResponseEntity<List<CustomerResponse>> findVerifiedCustomers() {
+        return new ResponseEntity<>(customerService.findVerifiedCustomers(), HttpStatus.FOUND);
+    }
+
+    @ApiOperation(value = "Get all customers with allergies",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("/get-allergic-customers/{drugAllergicTo}")
+    public ResponseEntity<List<CustomerResponse>> findAllergicCustomers(@PathVariable final String drugAllergicTo) {
+        return new ResponseEntity<>(customerService.findAllergicCustomers(drugAllergicTo), HttpStatus.FOUND);
+    }
+
+    @ApiOperation(value = "Count customers with allergies",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("count-allergic-customers-to-some-medication/{drugAllergicTo}")
+    public ResponseEntity<String> countAllergicCustomersToSomeDrug(@PathVariable final @NotNull String drugAllergicTo) {
+        return new ResponseEntity<>(customerService.countAllergicCustomersToSomeDrug(drugAllergicTo), HttpStatus.FOUND);
     }
 
     @ApiOperation(value = "Update verified status by id",

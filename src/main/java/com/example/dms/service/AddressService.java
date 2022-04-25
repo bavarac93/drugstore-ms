@@ -19,7 +19,6 @@ import java.util.List;
  *     <li>{@link #updateById}</li>
  *     <li>{@link #updateStreetAndBuildingNumberById}</li>
  * </ul>
- *
  */
 public interface AddressService {
     /**
@@ -77,6 +76,14 @@ public interface AddressService {
      * @return {@link AddressEntity}
      */
     AddressEntity getAddressEntityById(final Long id);
+
+    /**
+     * Get a list of drugstores in the same city.
+     *
+     * @param city {@link String}
+     * @return {@link AddressResponse}
+     */
+    List<AddressResponse> findDrugstoresInTheSameCity(final String city);
 }
 
 

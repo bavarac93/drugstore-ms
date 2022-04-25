@@ -19,7 +19,6 @@ import java.util.List;
  *     <li>{@link #updateById}</li>
  *     <li>{@link #updateBrandDescById}</li>
  * </ul>
- *
  */
 public interface BrandService {
 
@@ -79,4 +78,12 @@ public interface BrandService {
      * @return {@link BrandResponse}
      */
     BrandResponse updateBrandDescById(final Long id, final BrandRequestPatch brandRequestPatch );
+
+    /**
+     * Get brands by brandName.
+     *
+     * @param brandName {@link String}
+     * @return {@link BrandResponse}
+     */
+    List<BrandResponse> findAllBrandsBySomeName(final String brandName);
 }

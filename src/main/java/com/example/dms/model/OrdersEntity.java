@@ -15,12 +15,12 @@ public class OrdersEntity extends AuditSuperclass{
     private LocalDateTime dateOrdered;
     private String instructionsToCustomer;
 
-    @ManyToOne( fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "inventory_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private InventoryEntity inventoryEntity;
 
-    @ManyToOne( fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "customer_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private CustomerEntity customerEntity;

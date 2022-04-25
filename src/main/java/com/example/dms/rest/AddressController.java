@@ -67,6 +67,14 @@ public class AddressController {
         return new ResponseEntity<>(addressService.updateById(id, addressRequest), HttpStatus.ACCEPTED);
     }
 
+    @ApiOperation(value = "Get all drugstores in the same city",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("get-drugstores-in-the-same-city/{city}")
+    public ResponseEntity<List<AddressResponse>> findDrugstoresInTheSameCity(@PathVariable final String city) {
+        return new ResponseEntity<>(addressService.findDrugstoresInTheSameCity(city), HttpStatus.FOUND);
+    }
+
     @ApiOperation(value = "Update the building number and street by id",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)

@@ -83,6 +83,13 @@ public interface CustomerService {
     CustomerEntity getCustomerEntityById(final Long id);
 
     /**
+     * Get a list of verified customers.
+     *
+     * @return {@link CustomerResponse}
+     */
+    List<CustomerResponse> findVerifiedCustomers();
+
+    /**
      *
      * Update isVerified by id.
      *
@@ -91,4 +98,18 @@ public interface CustomerService {
      * @return {@link CustomerResponse}
      */
     CustomerResponse updateVerifiedStatus(final Long id, final CustomerRequestVerifiedPatch customerRequestVerifiedPatch);
+
+    /**
+     * Get a list of allergic customers.
+     * @param drugAllergicTo {@link String}
+     * @return {@link CustomerResponse}
+     */
+    List<CustomerResponse>  findAllergicCustomers(final String drugAllergicTo);
+
+    /**
+     * Count allergic customers.
+     * @param drugAllergicTo {@link String}
+     * @return {@link String}
+     */
+    String countAllergicCustomersToSomeDrug(final String drugAllergicTo);
 }

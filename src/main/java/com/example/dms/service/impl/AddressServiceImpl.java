@@ -95,4 +95,10 @@ public class AddressServiceImpl implements AddressService {
         return optionalAddressEntity.get();
     }
 
+    @Override
+    public List<AddressResponse> findDrugstoresInTheSameCity(final String city) {
+        final List<AddressEntity> responseList = addressRepository.findDrugstoresInTheSameCity(city);
+        return addressMapper.entitiesToDto(responseList);
+    }
+
 }
