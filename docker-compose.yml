@@ -1,0 +1,24 @@
+version: '3.5'
+
+services:
+  db:
+    container_name: drugstore_ms
+    image: postgres
+    environment:
+      POSTGRES_USER: muki
+      POSTGRES_PASSWORD: muki93
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5342:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+  postgres:
