@@ -15,4 +15,6 @@ public interface SupplierRepository extends JpaRepository <SupplierEntity, Long>
 
     @Query("SELECT t FROM SupplierEntity t WHERE t.contractSigned = :contractSigned")
     List<SupplierEntity> findAllWithContractSignedOn (@Param("contractSigned") @JsonFormat(pattern="yyyy-MM-dd") LocalDate contractSigned);
-}
+
+    @Query("SELECT t FROM SupplierEntity t WHERE t.contractExpires = :contractExpires")
+    List<SupplierEntity> findAllWithContractExpiresOn (@Param("contractExpires") @JsonFormat(pattern="yyyy-MM-dd") LocalDate contractExpires);}

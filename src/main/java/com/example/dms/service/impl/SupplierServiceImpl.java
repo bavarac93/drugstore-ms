@@ -99,4 +99,10 @@ public class SupplierServiceImpl implements SupplierService {
         return supplierMapper.entitiesToDto(list);
     }
 
+    @Override
+    public List<SupplierResponse> findAllWithContractExpiresOn(final LocalDate contractExpires) {
+        List<SupplierEntity> list = supplierRepository.findAllWithContractExpiresOn(contractExpires);
+        return supplierMapper.entitiesToDto(list);
+    }
+
 }

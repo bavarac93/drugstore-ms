@@ -10,12 +10,13 @@ public class OrdersRequest {
     private Long inventoryId;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime dateOrdered;
+    private LocalDateTime dateTimeOrdered;
 
     @NotBlank(message = "Instructions to customer are mandatory.")
     @NotEmpty(message = "Instructions to customer are mandatory.")
     @Size(min = 10, max = 200, message = "Instructions must be between 10 and 200 characters.")
-    @Pattern(regexp = "[a-zA-Z\\d #%'*/<()>:`;,!&.?_]+", message = "Only letters, numbers and punctuation marks are allowed.")    private String instructionsToCustomer;
+    @Pattern(regexp = "[a-zA-Z\\d #%'*/<()>:`;,!&.?_]+", message = "Only letters, numbers and punctuation marks are allowed.")
+    private String instructionsToCustomer;
 
     @NotNull(message = "CustomerId cannot be null.")
     private Long customerId;
@@ -28,12 +29,12 @@ public class OrdersRequest {
         this.inventoryId = inventoryId;
     }
 
-    public LocalDateTime getDateOrdered() {
-        return dateOrdered;
+    public LocalDateTime getDateTimeOrdered() {
+        return dateTimeOrdered;
     }
 
-    public void setDateOrdered(LocalDateTime dateOrdered) {
-        this.dateOrdered = dateOrdered;
+    public void setDateTimeOrdered(LocalDateTime dateTimeOrdered) {
+        this.dateTimeOrdered = dateTimeOrdered;
     }
 
     public String getInstructionsToCustomer() {

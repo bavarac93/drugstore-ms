@@ -85,9 +85,20 @@ public class SupplierController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping("/get-suppliers-contract-signed-on/{contractSigned}")
-    ResponseEntity<List<SupplierResponse>> findAllWithContractSignedOn(@PathVariable @DateTimeFormat(pattern="yyyy-MM-dd") final LocalDate contractSigned) {
+    ResponseEntity<List<SupplierResponse>> findAllWithContractSignedOn(
+            @PathVariable @DateTimeFormat(pattern="yyyy-MM-dd") final LocalDate contractSigned
+    ) {
         return new ResponseEntity<>(supplierService.findAllWithContractSignedOn(contractSigned), HttpStatus.FOUND);
     }
 
+    @ApiOperation(value = "Get suppliers whose contract expires on specific date",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("/get-suppliers-contract-expires-on/{contractExpires}")
+    ResponseEntity<List<SupplierResponse>> findAllWithContractExpiresOn(
+            @PathVariable @DateTimeFormat(pattern="yyyy-MM-dd") final LocalDate contractExpires
+    ) {
+        return new ResponseEntity<>(supplierService.findAllWithContractExpiresOn(contractExpires), HttpStatus.FOUND);
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.example.dms.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -12,7 +13,8 @@ public class OrdersEntity extends AuditSuperclass{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private LocalDateTime dateOrdered;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime dateTimeOrdered;
     private String instructionsToCustomer;
 
     @ManyToOne
@@ -28,12 +30,12 @@ public class OrdersEntity extends AuditSuperclass{
     public OrdersEntity() {
     }
 
-    public LocalDateTime getDateOrdered() {
-        return dateOrdered;
+    public LocalDateTime getDateTimeOrdered() {
+        return dateTimeOrdered;
     }
 
-    public void setDateOrdered(LocalDateTime dateOrdered) {
-        this.dateOrdered = dateOrdered;
+    public void setDateTimeOrdered(LocalDateTime dateTimeOrdered) {
+        this.dateTimeOrdered = dateTimeOrdered;
     }
 
     public Long getId() {

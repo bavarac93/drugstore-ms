@@ -97,4 +97,16 @@ public class OrdersServiceImpl implements OrdersService {
         }
         return optionalProductTypeEntity.get();
     }
+
+    @Override
+    public List<OrdersResponse> findOrdersMadeOnSomeDate(final LocalDateTime dateTimeOrdered) {
+        List<OrdersEntity> list = ordersRepository.findOrdersMadeOnSomeDate(dateTimeOrdered);
+        return ordersMapper.entitiesToDto(list);
+    }
+
+    @Override
+    public List<OrdersResponse> findOrdersMadeBySameCustomer(final Long customerId) {
+        List<OrdersEntity> ordersEntityList = ordersRepository.findOrdersMadeBySameCustomer(customerId);
+        return ordersMapper.entitiesToDto(ordersEntityList);
+    }
 }

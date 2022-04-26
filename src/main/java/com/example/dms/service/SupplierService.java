@@ -19,6 +19,7 @@ import java.util.List;
  *     <li>{@link #updateById}</li>
  *     <li>{@link #updateContractExpiresById}</li>
  *     <li>{@link #findAllWithContractSignedOn}</li>
+ *     <li>{@link #findAllWithContractExpiresOn}</li>
  * </ul>
  *
  * */
@@ -89,4 +90,12 @@ public interface SupplierService {
      * @return {@link SupplierResponse}
      */
     List<SupplierResponse> findAllWithContractSignedOn(final LocalDate contractSigned);
+
+    /**
+     * Get suppliers whose contract expires on some date.
+     *
+     * @param contractExpires {@link LocalDate}
+     * @return {@link SupplierResponse}
+     */
+    List<SupplierResponse> findAllWithContractExpiresOn(final LocalDate contractExpires);
 }

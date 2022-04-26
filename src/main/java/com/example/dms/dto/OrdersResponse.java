@@ -10,7 +10,7 @@ public class OrdersResponse {
     private String instructionsToCustomer;
     private Long customerId;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime dateOrdered;
+    private LocalDateTime dateTimeOrdered;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
 
@@ -22,12 +22,12 @@ public class OrdersResponse {
         this.id = id;
     }
 
-    public LocalDateTime getDateOrdered() {
-        return dateOrdered;
+    public LocalDateTime getDateTimeOrdered() {
+        return dateTimeOrdered;
     }
 
-    public void setDateOrdered(LocalDateTime dateOrdered) {
-        this.dateOrdered = dateOrdered;
+    public void setDateTimeOrdered(LocalDateTime dateTimeOrdered) {
+        this.dateTimeOrdered = dateTimeOrdered;
     }
 
     public Long getInventoryId() {

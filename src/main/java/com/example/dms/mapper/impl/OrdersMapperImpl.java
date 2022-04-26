@@ -16,7 +16,7 @@ public class OrdersMapperImpl implements OrdersMapper {
     public OrdersEntity dtoToEntity(final @NotNull OrdersRequest ordersRequest) {
         OrdersEntity ordersEntity = new OrdersEntity();
         ordersEntity.setInstructionsToCustomer(ordersRequest.getInstructionsToCustomer());
-        ordersEntity.setDateOrdered(ordersRequest.getDateOrdered());
+        ordersEntity.setDateTimeOrdered(ordersRequest.getDateTimeOrdered());
         return ordersEntity;
     }
 
@@ -28,7 +28,7 @@ public class OrdersMapperImpl implements OrdersMapper {
         ordersResponse.setInstructionsToCustomer(persistedOrdersEntity.getInstructionsToCustomer());
         ordersResponse.setCustomerId(persistedOrdersEntity.getCustomerEntity().getId());
         ordersResponse.setInventoryId(persistedOrdersEntity.getInventoryEntity().getId());
-        ordersResponse.setDateOrdered(persistedOrdersEntity.getDateOrdered());
+        ordersResponse.setDateTimeOrdered(persistedOrdersEntity.getDateTimeOrdered());
         return ordersResponse;
     }
 
@@ -43,7 +43,7 @@ public class OrdersMapperImpl implements OrdersMapper {
 
     @Override
     public void updateOrder(final @NotNull OrdersEntity ordersEntity, final @NotNull OrdersRequest ordersRequest) {
-        ordersEntity.setDateOrdered(ordersRequest.getDateOrdered());
+        ordersEntity.setDateTimeOrdered(ordersRequest.getDateTimeOrdered());
         ordersEntity.setInstructionsToCustomer(ordersRequest.getInstructionsToCustomer());
     }
 }
