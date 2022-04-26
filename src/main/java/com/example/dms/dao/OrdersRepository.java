@@ -1,14 +1,12 @@
 package com.example.dms.dao;
 
 import com.example.dms.model.OrdersEntity;
-import com.example.dms.model.SupplierEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 

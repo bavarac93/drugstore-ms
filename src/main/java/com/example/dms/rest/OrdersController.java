@@ -2,7 +2,6 @@ package com.example.dms.rest;
 
 import com.example.dms.dto.OrdersRequest;
 import com.example.dms.dto.OrdersResponse;
-import com.example.dms.dto.SupplierResponse;
 import com.example.dms.service.OrdersService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -14,7 +13,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
