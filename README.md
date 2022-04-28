@@ -28,6 +28,8 @@ In order to start everything up, follow the next steps:
   4. mvn spring-boot:run 
      This command runs the application.
      
+Flyway scripts have been added for manual testing.
+
 Examples: 
 
 In order to create a brand we will hit http://localhost:8080/brand using HTTP POST method by sending the appropriate request body.
