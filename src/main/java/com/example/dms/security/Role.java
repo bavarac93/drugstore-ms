@@ -3,7 +3,7 @@ package com.example.dms.security;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user_role")
+@Table(name = "users_roles")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
