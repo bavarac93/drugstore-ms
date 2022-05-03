@@ -1,17 +1,17 @@
-package com.example.dms.security;
+package com.example.dms.model;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "users_roles")
-public class Role {
+public class RoleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
 
     // dodati validacije za name
-    public Role() {
+    public RoleEntity() {
     }
 
     public Long getId() {
@@ -32,7 +32,7 @@ public class Role {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Role{");
+        final StringBuilder sb = new StringBuilder("RoleEntity{");
         sb.append("id=").append(id);
         sb.append(", name='").append(name).append('\'');
         sb.append('}');

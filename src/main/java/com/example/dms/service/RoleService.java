@@ -1,12 +1,12 @@
 package com.example.dms.service;
 
-import com.example.dms.security.Role;
+import com.example.dms.model.RoleEntity;
 
 import java.util.List;
 
 public interface RoleService {
 
-    Role saveRole(final Role role);
+    RoleEntity saveRole(final RoleEntity roleEntity);
 
-    List<Role> getRoles();
+    List<RoleEntity> getRoles();
 }

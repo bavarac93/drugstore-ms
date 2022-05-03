@@ -1,6 +1,6 @@
 package com.example.dms.rest;
 
-import com.example.dms.security.Role;
+import com.example.dms.model.RoleEntity;
 import com.example.dms.service.RoleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +20,12 @@ public class RoleController {
     }
 
     @GetMapping("/roles")
-    public ResponseEntity<List<Role>> getRoles() {
+    public ResponseEntity<List<RoleEntity>> getRoles() {
         return new ResponseEntity<>(roleService.getRoles(), HttpStatus.FOUND);
     }
 
     @PostMapping
-    public ResponseEntity<Role> saveRole(@RequestBody final Role role) {
-        return new ResponseEntity<>(roleService.saveRole(role), HttpStatus.CREATED);
+    public ResponseEntity<RoleEntity> saveRole(@RequestBody final RoleEntity roleEntity) {
+        return new ResponseEntity<>(roleService.saveRole(roleEntity), HttpStatus.CREATED);
     }
 }

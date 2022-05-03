@@ -1,4 +1,4 @@
-package com.example.dms.security;
+package com.example.dms.model;
 
 public class RoleToUserForm {
     private String username;

@@ -1,4 +1,4 @@
-package com.example.dms.security;
+package com.example.dms.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "user")
-public class User{
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -17,9 +17,9 @@ public class User{
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Role> roles = new ArrayList<>();
+    private List<RoleEntity> roleEntities = new ArrayList<>();
 
-    public User() {
+    public UserEntity() {
 
     }
 
@@ -55,22 +55,22 @@ public class User{
         this.password = password;
     }
 
-    public List<Role> getRoles() {
-        return roles;
+    public List<RoleEntity> getRoles() {
+        return roleEntities;
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+    public void setRoles(List<RoleEntity> roleEntities) {
+        this.roleEntities = roleEntities;
     }
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("User{");
+        final StringBuilder sb = new StringBuilder("UserEntity{");
         sb.append("id=").append(id);
         sb.append(", name='").append(name).append('\'');
         sb.append(", username='").append(username).append('\'');
         sb.append(", password='").append(password).append('\'');
-        sb.append(", roles=").append(roles);
+        sb.append(", roleEntities=").append(roleEntities);
         sb.append('}');
         return sb.toString();
     }

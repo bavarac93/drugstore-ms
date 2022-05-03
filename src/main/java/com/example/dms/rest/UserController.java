@@ -1,6 +1,6 @@
 package com.example.dms.rest;
 
-import com.example.dms.security.User;
+import com.example.dms.model.UserEntity;
 import com.example.dms.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,13 +20,13 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public ResponseEntity<List<User>> getUsers() {
+    public ResponseEntity<List<UserEntity>> getUsers() {
         return new ResponseEntity<>(userService.getUsers(), HttpStatus.FOUND);
     }
 
     @PostMapping
-    public ResponseEntity<User> saveUser(@RequestBody final User user) {
-        return new ResponseEntity<>(userService.saveUser(user), HttpStatus.CREATED);
+    public ResponseEntity<UserEntity> saveUser(@RequestBody final UserEntity userEntity) {
+        return new ResponseEntity<>(userService.saveUser(userEntity), HttpStatus.CREATED);
     }
 }
 

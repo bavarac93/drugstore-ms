@@ -1,7 +1,7 @@
 package com.example.dms.service.impl;
 
 import com.example.dms.dao.RoleRepository;
-import com.example.dms.security.Role;
+import com.example.dms.model.RoleEntity;
 import com.example.dms.service.RoleService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,12 +20,12 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Role saveRole(final Role role) {
-        return roleRepository.save(role);
+    public RoleEntity saveRole(final RoleEntity roleEntity) {
+        return roleRepository.save(roleEntity);
     }
 
     @Override
-    public List<Role> getRoles() {
+    public List<RoleEntity> getRoles() {
         return roleRepository.findAll();
     }
 }
