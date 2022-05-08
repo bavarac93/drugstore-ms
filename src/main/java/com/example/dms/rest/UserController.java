@@ -19,7 +19,7 @@ public class UserController {
 
     public UserController(final UserService userService, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userService = Objects.requireNonNull(userService, "userService cannot be null");
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.bCryptPasswordEncoder = Objects.requireNonNull(bCryptPasswordEncoder, "passwordEncoder cannot be null");
     }
 
     @GetMapping("/users")
@@ -30,6 +30,11 @@ public class UserController {
     @PostMapping
     public ResponseEntity<UserEntity> saveUser(@RequestBody final UserEntity userEntity) {
         return new ResponseEntity<>(userService.saveUser(userEntity), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/add-role-to-user/{username},{roleName}")
+    public ResponseEntity<Void> addRoleToUser(@RequestParam String username, @RequestParam String roleName) {
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 }
 
