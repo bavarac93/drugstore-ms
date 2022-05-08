@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.stream.Collectors;
 
 public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+
     private final AuthenticationManager authenticationManager;
 
     public CustomAuthenticationFilter(final AuthenticationManager authenticationManager) {
@@ -28,8 +29,8 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 
     @Override
     public Authentication attemptAuthentication(
-            final @NotNull HttpServletRequest request,
-            final HttpServletResponse response
+             @NotNull HttpServletRequest request,
+             HttpServletResponse response
     ) throws AuthenticationException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -39,10 +40,10 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 
     @Override
     protected void successfulAuthentication(
-            final @NotNull HttpServletRequest request,
-            final HttpServletResponse response,
-            final FilterChain chain,
-            final @NotNull Authentication authentication
+             @NotNull HttpServletRequest request,
+             @NotNull HttpServletResponse response,
+             FilterChain chain,
+             @NotNull Authentication authentication
     ) throws IOException, ServletException {
         User user = (User)authentication.getPrincipal();
         Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());

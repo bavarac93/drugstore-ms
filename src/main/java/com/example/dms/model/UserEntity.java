@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,7 +17,7 @@ public class UserEntity {
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<RoleEntity> roleEntities = new ArrayList<>();
+    private List<RoleEntity> roles = new ArrayList<>();
 
     public UserEntity() {
 
@@ -56,11 +56,11 @@ public class UserEntity {
     }
 
     public List<RoleEntity> getRoles() {
-        return roleEntities;
+        return roles;
     }
 
     public void setRoles(List<RoleEntity> roleEntities) {
-        this.roleEntities = roleEntities;
+        this.roles = roles;
     }
 
     @Override
@@ -70,7 +70,7 @@ public class UserEntity {
         sb.append(", name='").append(name).append('\'');
         sb.append(", username='").append(username).append('\'');
         sb.append(", password='").append(password).append('\'');
-        sb.append(", roleEntities=").append(roleEntities);
+        sb.append(", roleEntities=").append(roles);
         sb.append('}');
         return sb.toString();
     }

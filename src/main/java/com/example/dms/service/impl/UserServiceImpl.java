@@ -5,11 +5,13 @@ import com.example.dms.dao.UserRepository;
 import com.example.dms.model.RoleEntity;
 import com.example.dms.model.UserEntity;
 import com.example.dms.service.UserService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,19 +22,22 @@ import java.util.Objects;
 
 @Service
 @Transactional
-
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(final UserRepository userRepository, final RoleRepository roleRepository) {
+
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = Objects.requireNonNull(userRepository, "userRepository cannot be null");
         this.roleRepository = Objects.requireNonNull(roleRepository, "roleRepository cannot be null");
+        this.passwordEncoder = Objects.requireNonNull(passwordEncoder, "passwordEncoder cannot be null");
     }
 
     @Override
-    public UserEntity saveUser(final UserEntity userEntity) {
+    public UserEntity saveUser(final @NotNull UserEntity userEntity) {
+        userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
         return userRepository.save(userEntity);
     }
 
