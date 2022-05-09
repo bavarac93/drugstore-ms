@@ -24,8 +24,8 @@ public class RoleController {
         return new ResponseEntity<>(roleService.getRoles(), HttpStatus.FOUND);
     }
 
-    @PostMapping
-    public ResponseEntity<RoleEntity> saveRole(@RequestBody final RoleEntity roleEntity) {
-        return new ResponseEntity<>(roleService.saveRole(roleEntity), HttpStatus.CREATED);
+    @PostMapping("/save")
+    public ResponseEntity<RoleEntity>saveRole(@RequestBody RoleEntity role) {
+        return new ResponseEntity<>(roleService.saveRole(role), HttpStatus.CREATED);
     }
 }
