@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface RoleService {
 
-    RoleEntity saveRole(final RoleEntity roleEntity);
+    RoleEntity create (final RoleEntity roleEntity);
 
     List<RoleEntity> getRoles();
 }

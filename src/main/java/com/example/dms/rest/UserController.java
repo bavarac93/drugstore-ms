@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Objects;
@@ -30,9 +31,14 @@ public class UserController {
         return new ResponseEntity<>(userService.getUsers(), HttpStatus.FOUND);
     }
 
-    @PostMapping("/user/save")
-    public ResponseEntity<UserEntity> saveUser(@RequestBody final UserEntity userEntity) {
-        return new ResponseEntity<>(userService.saveUser(userEntity), HttpStatus.CREATED);
+    @GetMapping("{username}")
+    public ResponseEntity<UserEntity> getUser(@PathVariable final String username) {
+        return new ResponseEntity<>(userService.getUser(username), HttpStatus.FOUND);
+    }
+
+    @PostMapping
+    public ResponseEntity<UserEntity> create (@RequestBody final UserEntity userEntity) {
+        return new ResponseEntity<>(userService.create(userEntity), HttpStatus.CREATED);
     }
 
     @PostMapping("/user/add-role-to-user")

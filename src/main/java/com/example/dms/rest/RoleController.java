@@ -28,8 +28,8 @@ public class RoleController {
         return new ResponseEntity<>(roleService.getRoles(), HttpStatus.FOUND);
     }
 
-    @PostMapping("/save")
-    public ResponseEntity<RoleEntity> saveRole(@RequestBody RoleEntity role) {
-        return new ResponseEntity<>(roleService.saveRole(role), HttpStatus.CREATED);
+    @PostMapping
+    public ResponseEntity<RoleEntity> create (@RequestBody RoleEntity role) {
+        return new ResponseEntity<>(roleService.create(role), HttpStatus.CREATED);
     }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserService {
 
-    UserEntity saveUser(final UserEntity userEntity);
+    UserEntity create (final UserEntity userEntity);
 
     void addRoleToUser(final String username, final String roleName);
 
