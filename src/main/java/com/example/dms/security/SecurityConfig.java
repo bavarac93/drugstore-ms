@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     public SecurityConfig(final UserDetailsService userDetailsService, final BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userDetailsService = Objects.requireNonNull(userDetailsService, "userDetailsService cannot be null");
-        this.bCryptPasswordEncoder = Objects.requireNonNull(bCryptPasswordEncoder, "CryptPasswordEncoder cannot be nnull");
+        this.bCryptPasswordEncoder = Objects.requireNonNull(bCryptPasswordEncoder, "CryptPasswordEncoder cannot be null");
     }
 
     @Override
@@ -43,12 +43,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilter(customAuthenticationFilter);
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers("/security/login", "/security/token/refresh/**").permitAll();
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/security/**").permitAll();
-        http.authorizeRequests().antMatchers(HttpMethod.POST, "/security/user/**").hasAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.POST, "/security/user/**").hasAuthority("ROLE_SUPER_ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/role/**").permitAll();
-        http.authorizeRequests().antMatchers(HttpMethod.POST, "/role/**").hasAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.POST, "/role/**").hasAuthority("ROLE_SUPER_ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/security/user/save").hasAuthority("ROLE_ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/security/user/save").hasAuthority("ROLE_OWNER");
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/role/roles").hasAuthority("ROLE_USER");
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/role/roles").hasAuthority("ROLE_OWNER");
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/role/roles").hasAuthority("ROLE_ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/role/save").hasAuthority("ROLE_ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/role/save").hasAuthority("ROLE_OWNER");
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/security/user/add-role-to-user/").hasAuthority("ROLE_OWNER");
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/security/user/add-role-to-user/").hasAuthority("ROLE_ADMIN");
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
