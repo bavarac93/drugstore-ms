@@ -1,12 +1,18 @@
 package com.example.dms.dto;
 
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.FutureOrPresent;
 import java.time.LocalDate;
 
-public class InventoryRequest extends InventoryRequestPatch{
+public class InventoryRequest extends InventoryRequestPatch {
     @NotEmpty(message = "Item name must be included in the request.")
     @NotBlank(message = "Item name must be included in the request.")
     @Pattern(regexp = "[a-zA-Z ]+", message = "Item name can not contain special characters and numbers.")
@@ -30,7 +36,7 @@ public class InventoryRequest extends InventoryRequestPatch{
     private Long sold;
 
     @FutureOrPresent(message = "The expiry date must be valid. Otherwise, the item cannot be used.")
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate expiryDate;
 
     @NotNull(message = "BrandId cannot be null.")

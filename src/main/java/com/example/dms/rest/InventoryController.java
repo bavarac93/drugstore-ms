@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Objects;
 
 @RestController
-@RequestMapping ("inventory")
+@RequestMapping("inventory")
 @Api(value = "APIs used to manipulate inventory data", tags = "inventory")
 @Validated
 public class InventoryController {
@@ -49,7 +49,7 @@ public class InventoryController {
     @ApiOperation(value = "Retrieve all items", produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping
     ResponseEntity<List<InventoryResponse>> findAll() {
-        return new ResponseEntity<> (inventoryService.findAll(), HttpStatus.FOUND);
+        return new ResponseEntity<>(inventoryService.findAll(), HttpStatus.FOUND);
     }
 
     @ApiOperation(value = "Get an item by id",
@@ -75,7 +75,7 @@ public class InventoryController {
             @PathVariable final Long id,
             @Valid @RequestBody final InventoryRequest inventoryRequest
     ) {
-    return new ResponseEntity<>(inventoryService.updateById(id, inventoryRequest), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(inventoryService.updateById(id, inventoryRequest), HttpStatus.ACCEPTED);
     }
 
     @ApiOperation(value = "Update description by id",
@@ -83,20 +83,20 @@ public class InventoryController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @PatchMapping("/{id}")
     ResponseEntity<InventoryResponse> updateDescriptionById(
-            @PathVariable ("id") final Long id,
+            @PathVariable("id") final Long id,
             @Valid @RequestBody final InventoryRequestPatch inventoryRequestPatch
-            ) {
-      return new ResponseEntity<>(
-              inventoryService.updateDescriptionById(id,inventoryRequestPatch),
-              HttpStatus.ACCEPTED
-      );
+    ) {
+        return new ResponseEntity<>(
+                inventoryService.updateDescriptionById(id, inventoryRequestPatch),
+                HttpStatus.ACCEPTED
+        );
     }
 
     @ApiOperation(value = "Get items by specific date",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping("/get-items-by-expiry-date/{expiryDate}")
-    ResponseEntity<List<InventoryResponse>> findAllWithExpiryTimeBefore(@PathVariable @DateTimeFormat(pattern="yyyy-MM-dd") final LocalDate expiryDate) {
+    ResponseEntity<List<InventoryResponse>> findAllWithExpiryTimeBefore(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") final LocalDate expiryDate) {
         return new ResponseEntity<>(inventoryService.findAllWithExpiryTimeBefore(expiryDate), HttpStatus.FOUND);
     }
 
@@ -139,6 +139,7 @@ public class InventoryController {
     ResponseEntity<String> countItemsOfTheSameType(@PathVariable final Long productTypeId) {
         return new ResponseEntity<>(inventoryService.countItemsOfTheSameType(productTypeId), HttpStatus.FOUND);
     }
+
     @ApiOperation(value = "Count items of the same type",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)

@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface OrdersRepository extends JpaRepository<OrdersEntity, Long> {
     @Query("SELECT t FROM OrdersEntity t WHERE t.dateTimeOrdered = :dateTimeOrdered")
-    List<OrdersEntity> findOrdersMadeOnSomeDate(@Param("dateTimeOrdered") @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss") LocalDateTime dateTimeOrdered);
+    List<OrdersEntity> findOrdersMadeOnSomeDate(@Param("dateTimeOrdered") @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime dateTimeOrdered);
 
     @Query("SELECT t FROM OrdersEntity t WHERE t.customerEntity.id = :customerId")
     List<OrdersEntity> findOrdersMadeBySameCustomer(@Param("customerId") final Long customerId);

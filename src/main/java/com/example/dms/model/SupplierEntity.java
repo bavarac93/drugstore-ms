@@ -2,21 +2,25 @@ package com.example.dms.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GenerationType;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table (name = "supplier")
+@Table(name = "supplier")
 public class SupplierEntity extends AuditSuperclass {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String supplierName;
     private String supplierDesc;
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate contractSigned;
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate contractExpires;
 
     public SupplierEntity() {
@@ -32,6 +36,10 @@ public class SupplierEntity extends AuditSuperclass {
 
     public String getSupplierName() {
         return supplierName;
+    }
+
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
     }
 
     public String getSupplierDesc() {
@@ -56,10 +64,6 @@ public class SupplierEntity extends AuditSuperclass {
 
     public void setContractExpires(LocalDate contractExpires) {
         this.contractExpires = contractExpires;
-    }
-
-    public void setSupplierName(String supplierName) {
-        this.supplierName = supplierName;
     }
 
     @Override

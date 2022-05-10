@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Objects;
 
 @RestController
-@RequestMapping ("customer")
+@RequestMapping("customer")
 @Api(value = "APIs used to manipulate customer data", tags = "customer")
 @Validated
 public class CustomerController {
@@ -43,7 +43,7 @@ public class CustomerController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @PostMapping
     public ResponseEntity<CustomerResponse> create(@Valid @RequestBody final CustomerRequest customerRequest) {
-        return new ResponseEntity<> (customerService.create(customerRequest), HttpStatus.CREATED);
+        return new ResponseEntity<>(customerService.create(customerRequest), HttpStatus.CREATED);
     }
 
     @ApiOperation(value = "Get all customers", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -81,9 +81,9 @@ public class CustomerController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @PatchMapping("/{id}")
     public ResponseEntity<CustomerResponse> updatePhoneNumberById(
-            @PathVariable ("id") final Long id,
+            @PathVariable("id") final Long id,
             @Valid @RequestBody final CustomerRequestPhoneNumberPatch customerRequestPhoneNumberPatch
-    ){
+    ) {
         CustomerResponse customerResponse = customerService.updatePhoneNumberById(id, customerRequestPhoneNumberPatch);
         return new ResponseEntity<>(customerResponse, HttpStatus.OK);
     }
@@ -115,14 +115,13 @@ public class CustomerController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @PatchMapping("verified/{id}")
     public ResponseEntity<CustomerResponse> updateVerifiedStatus(
-            @PathVariable ("id") final Long id,
+            @PathVariable("id") final Long id,
             @Valid @RequestBody final CustomerRequestVerifiedPatch CustomerRequestVerifiedPatch
 
-    ){
+    ) {
         CustomerResponse customerResponse = customerService.updateVerifiedStatus(id, CustomerRequestVerifiedPatch);
         return new ResponseEntity<>(customerResponse, HttpStatus.OK);
     }
-
 
 
 }

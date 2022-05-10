@@ -2,7 +2,11 @@ package com.example.dms.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.PastOrPresent;
 import java.time.LocalDate;
 
 public class SupplierRequest extends SupplierRequestPatch {
@@ -17,7 +21,7 @@ public class SupplierRequest extends SupplierRequestPatch {
     @Pattern(regexp = "[a-zA-Z\\d #%'*/<()>:`;,!&.?_]+", message = "Only letters, numbers and punctuation marks are allowed.")
     private String supplierDesc;
 
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @PastOrPresent(message = "The date must be in the past or present.")
     private LocalDate contractSigned;
 

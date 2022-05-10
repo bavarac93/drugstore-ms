@@ -8,7 +8,8 @@ import com.example.dms.model.SupplierEntity;
 import java.time.LocalDate;
 import java.util.List;
 
-/** Methods used to manipulate supplier data.
+/**
+ * Methods used to manipulate supplier data.
  * List of implemented APIs with links:
  *
  * <ul>
@@ -21,8 +22,7 @@ import java.util.List;
  *     <li>{@link #findAllWithContractSignedOn}</li>
  *     <li>{@link #findAllWithContractExpiresOn}</li>
  * </ul>
- *
- * */
+ */
 public interface SupplierService {
 
     /**
@@ -30,7 +30,6 @@ public interface SupplierService {
      *
      * @param supplierRequest {@link SupplierRequest}
      * @return supplierResponse {@link SupplierResponse}
-     *
      */
     SupplierResponse create(final SupplierRequest supplierRequest);
 
@@ -53,7 +52,6 @@ public interface SupplierService {
      * Delete a supplier by id.
      *
      * @param id {@link Long}
-     *
      */
     void deleteById(final Long id);
 
@@ -61,7 +59,6 @@ public interface SupplierService {
      * Update a supplier by id.
      *
      * @param id {@link Long}
-     *
      */
     SupplierResponse updateById(final Long id, final SupplierRequest supplierRequest);
 
@@ -70,7 +67,6 @@ public interface SupplierService {
      *
      * @param id {@link Long}
      * @param supplierRequestPatch {@link SupplierRequestPatch}
-     *
      * @return {@link SupplierResponse}
      */
     SupplierResponse updateContractExpiresById(final Long id, final SupplierRequestPatch supplierRequestPatch);

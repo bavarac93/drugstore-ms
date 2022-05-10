@@ -11,7 +11,7 @@ public class CustomerResponse {
     private String phoneNumber;
     private String email;
     private boolean isVerified;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date dateJoined;
     private String drugAllergicTo;
     private Long addressId;
@@ -36,16 +36,16 @@ public class CustomerResponse {
         return firstName;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public Date getDateJoined() {
         return dateJoined;
     }
 
     public void setDateJoined(Date dateJoined) {
         this.dateJoined = dateJoined;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -64,13 +64,12 @@ public class CustomerResponse {
         this.phoneNumber = phoneNumber;
     }
 
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public boolean isVerified() {
         return isVerified;
+    }
+
+    public void setVerified(boolean verified) {
+        isVerified = verified;
     }
 
     public Long getId() {
@@ -85,7 +84,7 @@ public class CustomerResponse {
         return email;
     }
 
-    public void setVerified(boolean verified) {
-        isVerified = verified;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

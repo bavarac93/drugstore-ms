@@ -1,10 +1,14 @@
 package com.example.dms.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GenerationType;
 import java.time.LocalDateTime;
 
 @Entity
-@Table (name = "product_type")
+@Table(name = "product_type")
 public class ProductTypeEntity extends AuditSuperclass {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

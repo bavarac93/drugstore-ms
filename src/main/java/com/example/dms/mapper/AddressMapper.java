@@ -7,11 +7,11 @@ import com.example.dms.model.AddressEntity;
 import java.util.List;
 
 public interface AddressMapper {
-     AddressEntity dtoToEntity(final AddressRequest addressRequest);
+    AddressEntity dtoToEntity(final AddressRequest addressRequest);
 
-     AddressResponse entityToDto(final AddressEntity persistedAddressEntity);
+    AddressResponse entityToDto(final AddressEntity persistedAddressEntity);
 
-     List<AddressResponse> entitiesToDto(final List<AddressEntity> addressEntities);
+    List<AddressResponse> entitiesToDto(final List<AddressEntity> addressEntities);
 
-     void updateAddress(final AddressRequest addressRequest, final AddressEntity addressEntity);
+    void updateAddress(final AddressRequest addressRequest, final AddressEntity addressEntity);
 }

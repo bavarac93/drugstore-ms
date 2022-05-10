@@ -11,10 +11,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface SupplierRepository extends JpaRepository <SupplierEntity, Long> {
+public interface SupplierRepository extends JpaRepository<SupplierEntity, Long> {
 
     @Query("SELECT t FROM SupplierEntity t WHERE t.contractSigned = :contractSigned")
-    List<SupplierEntity> findAllWithContractSignedOn (@Param("contractSigned") @JsonFormat(pattern="yyyy-MM-dd") LocalDate contractSigned);
+    List<SupplierEntity> findAllWithContractSignedOn(@Param("contractSigned") @JsonFormat(pattern = "yyyy-MM-dd") LocalDate contractSigned);
 
     @Query("SELECT t FROM SupplierEntity t WHERE t.contractExpires = :contractExpires")
-    List<SupplierEntity> findAllWithContractExpiresOn (@Param("contractExpires") @JsonFormat(pattern="yyyy-MM-dd") LocalDate contractExpires);}
+    List<SupplierEntity> findAllWithContractExpiresOn(@Param("contractExpires") @JsonFormat(pattern = "yyyy-MM-dd") LocalDate contractExpires);
+}

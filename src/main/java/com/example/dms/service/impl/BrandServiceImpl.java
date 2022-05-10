@@ -20,9 +20,8 @@ import java.util.Optional;
 @Service
 public class BrandServiceImpl implements BrandService {
 
-    private static final String BRAND_DOES_NOT_EXIST = "Brand with id: {0} does not exist.";
     public static final String AUTHOR = "Muki";
-
+    private static final String BRAND_DOES_NOT_EXIST = "Brand with id: {0} does not exist.";
     private final BrandRepository brandRepository;
     private final BrandMapper brandMapper;
 
@@ -64,7 +63,7 @@ public class BrandServiceImpl implements BrandService {
     @Override
     public BrandResponse updateById(final Long id, final BrandRequest brandRequest) {
         final BrandEntity brandEntity = getBrandEntityById(id);
-        brandMapper.updateBrand (brandRequest, brandEntity);
+        brandMapper.updateBrand(brandRequest, brandEntity);
         brandEntity.setModifiedAt(LocalDateTime.now());
         brandEntity.setModifiedBy(AUTHOR);
         final BrandEntity updateBrandEntity = brandRepository.save(brandEntity);

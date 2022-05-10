@@ -3,16 +3,22 @@ package com.example.dms.model;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.GenerationType;
 import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
-@Table (name = "customer")
+@Table(name = "customer")
 public class CustomerEntity extends AuditSuperclass {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String firstName;
     private String lastName;
@@ -82,6 +88,10 @@ public class CustomerEntity extends AuditSuperclass {
         return dateJoined;
     }
 
+    public void setDateJoined(Date dateJoined) {
+        this.dateJoined = dateJoined;
+    }
+
     public boolean isVerified() {
         return isVerified;
     }
@@ -89,11 +99,6 @@ public class CustomerEntity extends AuditSuperclass {
     public void setVerified(boolean verified) {
         isVerified = verified;
     }
-
-    public void setDateJoined(Date dateJoined) {
-        this.dateJoined = dateJoined;
-    }
-
 
     public String getDrugAllergicTo() {
         return drugAllergicTo;

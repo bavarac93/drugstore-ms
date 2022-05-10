@@ -11,7 +11,7 @@ public class AddressResponse {
     private String city;
     private String postcode;
     private String country;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
 
     public LocalDateTime getCreatedAt() {

@@ -25,15 +25,17 @@ import java.util.List;
 import java.util.Objects;
 
 @RestController
-@RequestMapping ("product_type")
+@RequestMapping("product_type")
 @Api(value = "APIs used to manipulate product type data", tags = "product type")
 @Validated
 public class ProductTypeController {
 
     private final ProductTypeService productTypeService;
+
     public ProductTypeController(final ProductTypeService productTypeService) {
         this.productTypeService = Objects.requireNonNull(productTypeService, "productTypeService cannot be null");
     }
+
     @ApiOperation(value = "Create a product type",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -79,10 +81,10 @@ public class ProductTypeController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @PatchMapping("/{id}")
     ResponseEntity<ProductTypeResponse> updateProductTypeDescById(
-            @PathVariable ("id") final Long id,
+            @PathVariable("id") final Long id,
             @Valid @RequestBody final ProductTypeRequestPatch productTypeRequestPatch
-            ) {
-      return new ResponseEntity<>(productTypeService.updateProductTypeDescById(id, productTypeRequestPatch), HttpStatus.ACCEPTED);
+    ) {
+        return new ResponseEntity<>(productTypeService.updateProductTypeDescById(id, productTypeRequestPatch), HttpStatus.ACCEPTED);
     }
 
 

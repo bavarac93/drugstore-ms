@@ -39,7 +39,7 @@ public class BrandMapperImpl implements BrandMapper {
     @Override
     public List<BrandResponse> entitiesToDto(final @NotNull List<BrandEntity> brandEntities) {
         List<BrandResponse> brandResponseList = new ArrayList<>();
-        for(BrandEntity brandEntity : brandEntities) {
+        for (BrandEntity brandEntity : brandEntities) {
             brandResponseList.add(entityToDto(brandEntity));
         }
         return brandResponseList;

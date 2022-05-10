@@ -133,7 +133,7 @@ public class CustomerServiceImpl implements CustomerService {
         return customerMapper.entitiesToDto(listOfEntities);
     }
 
-    private void validateCustomerEmail (
+    private void validateCustomerEmail(
             @NotNull final CustomerEntity customerEntity,
             @NotNull final CustomerRequest customerRequest
     ) {

@@ -12,7 +12,7 @@ public class BrandResponse {
     private String phoneNumber;
     private String email;
     private String website;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
 
     public LocalDateTime getCreatedAt() {

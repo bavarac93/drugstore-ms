@@ -36,8 +36,8 @@ public class AddressController {
     }
 
     @ApiOperation(value = "Create new address",
-                  consumes = MediaType.APPLICATION_JSON_VALUE,
-                  produces = MediaType.APPLICATION_JSON_VALUE)
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @PostMapping
     public ResponseEntity<AddressResponse> create(@Valid @RequestBody final AddressRequest addressRequest) {
         return new ResponseEntity<>(addressService.create(addressRequest), HttpStatus.CREATED);
@@ -86,7 +86,7 @@ public class AddressController {
     @ApiOperation(value = "Update the building number and street by id",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    @PatchMapping ("/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<AddressResponse> updateStreetAndBuildingNumberById(
             @PathVariable("id") final Long id,
             @Valid @RequestBody final AddressRequestPatch addressRequestPatch

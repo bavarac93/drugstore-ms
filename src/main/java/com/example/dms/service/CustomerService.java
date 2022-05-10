@@ -23,7 +23,6 @@ import java.util.List;
  *     <li>{@link #findAllergicCustomers}</li>
  *     <li>{@link #countAllergicCustomersToSomeDrug}</li>
  * </ul>
- *
  */
 public interface CustomerService {
 
@@ -67,14 +66,13 @@ public interface CustomerService {
     CustomerResponse updateById(final Long id, final CustomerRequest customerRequest);
 
     /**
-     *
      * Update a phoneNumber by id.
      *
      * @param id {@link Long}
      * @param customerRequestPhoneNumberPatch {@link CustomerRequestPhoneNumberPatch}
      * @return {@link CustomerResponse}
      */
-    CustomerResponse updatePhoneNumberById(final Long id,  final CustomerRequestPhoneNumberPatch customerRequestPhoneNumberPatch);
+    CustomerResponse updatePhoneNumberById(final Long id, final CustomerRequestPhoneNumberPatch customerRequestPhoneNumberPatch);
 
     /**
      * Get a customer entity by id.
@@ -92,7 +90,6 @@ public interface CustomerService {
     List<CustomerResponse> findVerifiedCustomers();
 
     /**
-     *
      * Update isVerified by id.
      *
      * @param id {@link Long}
@@ -103,13 +100,15 @@ public interface CustomerService {
 
     /**
      * Get a list of allergic customers.
+     *
      * @param drugAllergicTo {@link String}
      * @return {@link CustomerResponse}
      */
-    List<CustomerResponse>  findAllergicCustomers(final String drugAllergicTo);
+    List<CustomerResponse> findAllergicCustomers(final String drugAllergicTo);
 
     /**
      * Count allergic customers.
+     *
      * @param drugAllergicTo {@link String}
      * @return {@link String}
      */

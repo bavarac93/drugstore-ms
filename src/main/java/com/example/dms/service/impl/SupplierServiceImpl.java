@@ -56,7 +56,7 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public void deleteById(final Long id) {
-        if (!supplierRepository.existsById(id)){
+        if (!supplierRepository.existsById(id)) {
             throw new ApiRequestException(
                     MessageFormat.format(SUPPLIER_DOES_NOT_EXIST, id));
         }
@@ -86,11 +86,11 @@ public class SupplierServiceImpl implements SupplierService {
     @Override
     public SupplierEntity getSupplierEntityById(final Long id) {
         final Optional<SupplierEntity> optionalSupplierEntity = supplierRepository.findById(id);
-            if (optionalSupplierEntity.isEmpty()) {
-                throw new ApiRequestException(
-                        MessageFormat.format(SUPPLIER_DOES_NOT_EXIST, id));
-            }
-            return optionalSupplierEntity.get();
+        if (optionalSupplierEntity.isEmpty()) {
+            throw new ApiRequestException(
+                    MessageFormat.format(SUPPLIER_DOES_NOT_EXIST, id));
+        }
+        return optionalSupplierEntity.get();
     }
 
     @Override

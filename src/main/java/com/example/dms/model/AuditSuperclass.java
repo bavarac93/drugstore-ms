@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 @MappedSuperclass
 public class AuditSuperclass {
-    private  String createdBy;
+    private String createdBy;
     private String modifiedBy;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;

@@ -3,12 +3,18 @@ package com.example.dms.model;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.GenerationType;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table (name = "inventory")
+@Table(name = "inventory")
 public class InventoryEntity extends AuditSuperclass {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,17 +29,17 @@ public class InventoryEntity extends AuditSuperclass {
 
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn (name = "brand_id")
+    @JoinColumn(name = "brand_id")
     private BrandEntity brandEntity;
 
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn (name = "product_type_id")
+    @JoinColumn(name = "product_type_id")
     private ProductTypeEntity productTypeEntity;
 
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn (name = "supplier_id")
+    @JoinColumn(name = "supplier_id")
     private SupplierEntity supplierEntity;
 
     public InventoryEntity() {
@@ -115,16 +121,16 @@ public class InventoryEntity extends AuditSuperclass {
         return productTypeEntity;
     }
 
+    public void setProductTypeEntity(ProductTypeEntity productTypeEntity) {
+        this.productTypeEntity = productTypeEntity;
+    }
+
     public SupplierEntity getSupplierEntity() {
         return supplierEntity;
     }
 
     public void setSupplierEntity(SupplierEntity supplierEntity) {
         this.supplierEntity = supplierEntity;
-    }
-
-    public void setProductTypeEntity(ProductTypeEntity productTypeEntity) {
-        this.productTypeEntity = productTypeEntity;
     }
 
     @Override

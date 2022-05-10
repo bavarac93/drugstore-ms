@@ -82,7 +82,7 @@ public class InventoryServiceImpl implements InventoryService {
     public void deleteById(final Long id) {
         if (!inventoryRepository.existsById(id)) {
             throw new ApiRequestException(
-            MessageFormat.format(ITEM_DOES_NOT_EXIST, id));
+                    MessageFormat.format(ITEM_DOES_NOT_EXIST, id));
         }
         inventoryRepository.deleteById(id);
     }

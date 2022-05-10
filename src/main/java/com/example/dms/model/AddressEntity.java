@@ -1,10 +1,14 @@
 package com.example.dms.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GenerationType;
 import java.time.LocalDateTime;
 
 @Entity
-@Table (name = "address")
+@Table(name = "address")
 public class AddressEntity extends AuditSuperclass {
 
     @Id
@@ -16,7 +20,7 @@ public class AddressEntity extends AuditSuperclass {
     private String postcode;
     private String country;
 
-    public AddressEntity( ) {
+    public AddressEntity() {
     }
 
     public Long getId() {

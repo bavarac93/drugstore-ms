@@ -28,7 +28,6 @@ import java.util.List;
  *     <li>{@link #findItemsFromTheSameSupplier}</li>
  *     <li>{@link #countItemsFromTheSameSupplier}</li>
  * </ul>
- *
  */
 public interface InventoryService {
 
@@ -67,17 +66,15 @@ public interface InventoryService {
      *
      * @param id {@link Long}
      * @param inventoryRequest {@link InventoryRequest}
-     *
      * @return {@link InventoryResponse}
      */
     InventoryResponse updateById(final Long id, final InventoryRequest inventoryRequest);
-    
+
     /**
      * Update the description of an item by id.
      *
      * @param id {@link Long}
      * @param inventoryRequestPatch {@link InventoryRequestPatch}
-     *
      * @return {@link InventoryResponse}
      */
     InventoryResponse updateDescriptionById(final Long id, final InventoryRequestPatch inventoryRequestPatch);

@@ -8,7 +8,7 @@ public class ProductTypeResponse {
     private Long id;
     private String productType;
     private String productTypeDesc;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
 
     public Long getId() {

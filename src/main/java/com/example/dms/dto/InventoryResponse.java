@@ -14,12 +14,12 @@ public class InventoryResponse {
     private Long price;
     private Long quantity;
     private Long sold;
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate expiryDate;
     private Long brandId;
     private Long productTypeId;
     private Long supplierId;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
 
     public Long getId() {
@@ -50,8 +50,16 @@ public class InventoryResponse {
         return sku;
     }
 
+    public void setSku(String sku) {
+        this.sku = sku;
+    }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Long getSupplierId() {
@@ -68,14 +76,6 @@ public class InventoryResponse {
 
     public void setProductTypeId(Long productTypeId) {
         this.productTypeId = productTypeId;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public void setSku(String sku) {
-        this.sku = sku;
     }
 
     public Long getPrice() {

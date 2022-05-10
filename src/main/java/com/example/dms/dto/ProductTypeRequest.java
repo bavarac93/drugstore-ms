@@ -5,7 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
-public class ProductTypeRequest extends ProductTypeRequestPatch{
+public class ProductTypeRequest extends ProductTypeRequestPatch {
 
     @NotEmpty(message = "Product type must be included.")
     @NotBlank(message = "Product type must be included.")

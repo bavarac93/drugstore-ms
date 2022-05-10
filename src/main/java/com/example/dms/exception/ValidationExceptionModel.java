@@ -9,7 +9,7 @@ import java.util.Map;
 public class ValidationExceptionModel {
     private final Map<String, String> errors;
     private final HttpStatus httpStatus;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private final LocalDateTime timestamp;
 
     public ValidationExceptionModel(final Map<String, String> errors, final HttpStatus httpStatus, final LocalDateTime timestamp) {

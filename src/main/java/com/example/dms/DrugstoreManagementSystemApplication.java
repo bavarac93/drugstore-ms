@@ -11,13 +11,13 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @SpringBootApplication
 public class DrugstoreManagementSystemApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(DrugstoreManagementSystemApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(DrugstoreManagementSystemApplication.class, args);
+    }
 
-	@Bean
-	PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
 }

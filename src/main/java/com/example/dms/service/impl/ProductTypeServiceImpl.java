@@ -55,7 +55,7 @@ public class ProductTypeServiceImpl implements ProductTypeService {
     public void deleteById(final Long id) {
         if (!productTypeRepository.existsById(id)) {
             throw new ApiRequestException(
-                    MessageFormat.format(PRODUCT_TYPE_DOES_NOT_EXIST,id));
+                    MessageFormat.format(PRODUCT_TYPE_DOES_NOT_EXIST, id));
         }
         productTypeRepository.deleteById(id);
     }

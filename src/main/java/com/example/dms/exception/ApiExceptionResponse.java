@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class ApiExceptionResponse {
     private final String message;
     private final HttpStatus httpStatus;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private final LocalDateTime timestamp;
 
     public ApiExceptionResponse(final String message, final HttpStatus httpStatus, final LocalDateTime timestamp) {

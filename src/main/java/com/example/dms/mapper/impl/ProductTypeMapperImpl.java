@@ -34,7 +34,7 @@ public class ProductTypeMapperImpl implements ProductTypeMapper {
     @Override
     public List<ProductTypeResponse> entitiesToDto(final @NotNull List<ProductTypeEntity> productTypeEntityList) {
         final List<ProductTypeResponse> productTypeResponses = new ArrayList<>();
-        for (ProductTypeEntity productTypeEntity : productTypeEntityList){
+        for (ProductTypeEntity productTypeEntity : productTypeEntityList) {
             productTypeResponses.add(entityToDto(productTypeEntity));
         }
         return productTypeResponses;

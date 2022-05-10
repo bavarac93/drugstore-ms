@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Objects;
 
 @RestController
-@RequestMapping ("orders")
+@RequestMapping("orders")
 @Api(value = "APIs used to manipulate orders data", tags = "orders")
 @Validated
 public class OrdersController {
@@ -81,7 +81,7 @@ public class OrdersController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping("/get-orders-made-on/{dateTimeOrdered}")
     ResponseEntity<List<OrdersResponse>> findOrdersMadeOnSomeDate(
-            @PathVariable @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") final LocalDateTime dateTimeOrdered
+            @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") final LocalDateTime dateTimeOrdered
     ) {
         return new ResponseEntity<>(ordersService.findOrdersMadeOnSomeDate(dateTimeOrdered), HttpStatus.FOUND);
     }

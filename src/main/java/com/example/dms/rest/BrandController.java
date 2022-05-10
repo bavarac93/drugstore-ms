@@ -41,7 +41,7 @@ public class BrandController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @PostMapping
     ResponseEntity<BrandResponse> create(@Valid @RequestBody final BrandRequest brandRequest) {
-        return new ResponseEntity<> (brandService.create(brandRequest), HttpStatus.CREATED);
+        return new ResponseEntity<>(brandService.create(brandRequest), HttpStatus.CREATED);
     }
 
     @ApiOperation(value = "Get all brands", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -88,9 +88,9 @@ public class BrandController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @PatchMapping("/{id}")
     ResponseEntity<BrandResponse> updateBrandDescById(
-            @PathVariable ("id") final Long id,
+            @PathVariable("id") final Long id,
             @Valid @RequestBody final BrandRequestPatch brandRequestPatch
-            ) {
+    ) {
         BrandResponse brandResponse = brandService.updateBrandDescById(id, brandRequestPatch);
         return new ResponseEntity<>(brandResponse, HttpStatus.OK);
     }

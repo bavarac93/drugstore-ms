@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CustomerRepository extends JpaRepository <CustomerEntity, Long> {
+public interface CustomerRepository extends JpaRepository<CustomerEntity, Long> {
 
     @Query("SELECT t FROM CustomerEntity t WHERE t.isVerified = true")
     List<CustomerEntity> findVerifiedCustomers();

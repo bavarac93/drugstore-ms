@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 public class SupplierRequestPatch {
     @FutureOrPresent(message = "The date must be in the future or present. Otherwise, the contract is expired.")
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate contractExpires;
 
     public LocalDate getContractExpires() {

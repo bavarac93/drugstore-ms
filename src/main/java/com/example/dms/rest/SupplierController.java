@@ -70,8 +70,8 @@ public class SupplierController {
     @ApiOperation(value = "Update a supplier by id",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    @PutMapping ("{id}")
-    ResponseEntity<SupplierResponse> updateById (
+    @PutMapping("{id}")
+    ResponseEntity<SupplierResponse> updateById(
             @PathVariable final Long id,
             @Valid @RequestBody final SupplierRequest supplierRequest
     ) {
@@ -83,9 +83,9 @@ public class SupplierController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @PatchMapping("/{id}")
     ResponseEntity<SupplierResponse> updateContractExpiresById(
-            @PathVariable ("id") final Long id,
+            @PathVariable("id") final Long id,
             @Valid @RequestBody final SupplierRequestPatch supplierRequestPatch
-            ) {
+    ) {
         return new ResponseEntity<>(supplierService.updateContractExpiresById(id, supplierRequestPatch), HttpStatus.ACCEPTED);
     }
 
@@ -94,7 +94,7 @@ public class SupplierController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping("/get-suppliers-contract-signed-on/{contractSigned}")
     ResponseEntity<List<SupplierResponse>> findAllWithContractSignedOn(
-            @PathVariable @DateTimeFormat(pattern="yyyy-MM-dd") final LocalDate contractSigned
+            @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") final LocalDate contractSigned
     ) {
         return new ResponseEntity<>(supplierService.findAllWithContractSignedOn(contractSigned), HttpStatus.FOUND);
     }
@@ -104,7 +104,7 @@ public class SupplierController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping("/get-suppliers-contract-expires-on/{contractExpires}")
     ResponseEntity<List<SupplierResponse>> findAllWithContractExpiresOn(
-            @PathVariable @DateTimeFormat(pattern="yyyy-MM-dd") final LocalDate contractExpires
+            @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") final LocalDate contractExpires
     ) {
         return new ResponseEntity<>(supplierService.findAllWithContractExpiresOn(contractExpires), HttpStatus.FOUND);
     }

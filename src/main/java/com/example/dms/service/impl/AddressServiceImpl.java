@@ -28,7 +28,7 @@ public class AddressServiceImpl implements AddressService {
 
     public AddressServiceImpl(final AddressMapper addressMapper, final AddressRepository addressRepository) {
         this.addressMapper = Objects.requireNonNull(addressMapper, "addressMapper cannot be null");
-        this.addressRepository = Objects.requireNonNull(addressRepository,"addressRepository cannot be null");
+        this.addressRepository = Objects.requireNonNull(addressRepository, "addressRepository cannot be null");
     }
 
     @Override
@@ -62,7 +62,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public  AddressResponse updateById(final Long id, final AddressRequest addressRequest) {
+    public AddressResponse updateById(final Long id, final AddressRequest addressRequest) {
         final AddressEntity addressEntity = getAddressEntityById(id);
         addressMapper.updateAddress(addressRequest, addressEntity);
         addressEntity.setModifiedBy(AUTHOR);

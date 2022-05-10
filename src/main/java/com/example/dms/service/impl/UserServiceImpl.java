@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private final PasswordEncoder passwordEncoder;
 
 
-    public UserServiceImpl(final UserRepository userRepository, final RoleRepository roleRepository,final PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(final UserRepository userRepository, final RoleRepository roleRepository, final PasswordEncoder passwordEncoder) {
         this.userRepository = Objects.requireNonNull(userRepository, "userRepository cannot be null");
         this.roleRepository = Objects.requireNonNull(roleRepository, "roleRepository cannot be null");
         this.passwordEncoder = Objects.requireNonNull(passwordEncoder, "passwordEncoder cannot be null");
@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
         user.getRoles().forEach(roleEntity -> {
-            authorities.add((new SimpleGrantedAuthority( roleEntity.getName())));
+            authorities.add((new SimpleGrantedAuthority(roleEntity.getName())));
         });
         return new User(user.getUsername(), user.getPassword(), authorities);
     }

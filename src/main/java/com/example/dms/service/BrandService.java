@@ -58,7 +58,6 @@ public interface BrandService {
      * Delete a  brand by id.
      *
      * @param id {@link Long}
-     *
      */
     void deleteById(final Long id);
 
@@ -78,7 +77,7 @@ public interface BrandService {
      * @param brandRequestPatch {@link BrandRequestPatch}
      * @return {@link BrandResponse}
      */
-    BrandResponse updateBrandDescById(final Long id, final BrandRequestPatch brandRequestPatch );
+    BrandResponse updateBrandDescById(final Long id, final BrandRequestPatch brandRequestPatch);
 
     /**
      * Get brands by brandName.

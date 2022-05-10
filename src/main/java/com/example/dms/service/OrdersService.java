@@ -21,7 +21,6 @@ import java.util.List;
  *     <li>{@link #findOrdersMadeOnSomeDate}</li>
  *     <li>{@link #findOrdersMadeBySameCustomer}</li>
  * </ul>
- *
  */
 public interface OrdersService {
 
