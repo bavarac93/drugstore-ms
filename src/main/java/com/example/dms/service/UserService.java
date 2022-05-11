@@ -1,16 +1,17 @@
 package com.example.dms.service;
 
-import com.example.dms.model.UserEntity;
+import com.example.dms.dto.UserRequest;
+import com.example.dms.dto.UserResponse;
 
 import java.util.List;
 
 public interface UserService {
 
-    UserEntity create (final UserEntity userEntity);
+    UserResponse create (final UserRequest userRequest);
 
     void addRoleToUser(final String username, final String roleName);
 
-    UserEntity getUser(final String username);
+    UserResponse getUser(final String username);
 
-    List<UserEntity> getUsers();
+    List<UserResponse> getUsers();
 }

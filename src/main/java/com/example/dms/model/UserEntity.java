@@ -7,26 +7,23 @@ import javax.persistence.Table;
 import javax.persistence.ManyToMany;
 import javax.persistence.FetchType;
 import javax.persistence.GenerationType;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class UserEntity {
+public class UserEntity extends AuditSuperclass{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    // dodati validacije za name, username i pass
     private String name;
     private String username;
     private String password;
-
     @ManyToMany(fetch = FetchType.EAGER)
     private List<RoleEntity> roles = new ArrayList<>();
 
     public UserEntity() {
-
     }
 
     public Long getId() {
@@ -79,5 +76,45 @@ public class UserEntity {
         sb.append(", roleEntities=").append(roles);
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public String getCreatedBy() {
+        return super.getCreatedBy();
+    }
+
+    @Override
+    public void setCreatedBy(String createdBy) {
+        super.setCreatedBy(createdBy);
+    }
+
+    @Override
+    public LocalDateTime getCreatedAt() {
+        return super.getCreatedAt();
+    }
+
+    @Override
+    public void setCreatedAt(LocalDateTime createdAt) {
+        super.setCreatedAt(createdAt);
+    }
+
+    @Override
+    public LocalDateTime getModifiedAt() {
+        return super.getModifiedAt();
+    }
+
+    @Override
+    public void setModifiedAt(LocalDateTime modifiedAt) {
+        super.setModifiedAt(modifiedAt);
+    }
+
+    @Override
+    public String getModifiedBy() {
+        return super.getModifiedBy();
+    }
+
+    @Override
+    public void setModifiedBy(String modifiedBy) {
+        super.setModifiedBy(modifiedBy);
     }
 }

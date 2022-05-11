@@ -5,16 +5,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.GenerationType;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "roles")
-public class RoleEntity {
+public class RoleEntity extends AuditSuperclass{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-
-    // dodati validacije za name
     public RoleEntity() {
     }
 
@@ -41,5 +40,45 @@ public class RoleEntity {
         sb.append(", name='").append(name).append('\'');
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public String getCreatedBy() {
+        return super.getCreatedBy();
+    }
+
+    @Override
+    public void setCreatedBy(String createdBy) {
+        super.setCreatedBy(createdBy);
+    }
+
+    @Override
+    public LocalDateTime getCreatedAt() {
+        return super.getCreatedAt();
+    }
+
+    @Override
+    public void setCreatedAt(LocalDateTime createdAt) {
+        super.setCreatedAt(createdAt);
+    }
+
+    @Override
+    public LocalDateTime getModifiedAt() {
+        return super.getModifiedAt();
+    }
+
+    @Override
+    public void setModifiedAt(LocalDateTime modifiedAt) {
+        super.setModifiedAt(modifiedAt);
+    }
+
+    @Override
+    public String getModifiedBy() {
+        return super.getModifiedBy();
+    }
+
+    @Override
+    public void setModifiedBy(String modifiedBy) {
+        super.setModifiedBy(modifiedBy);
     }
 }

@@ -2,6 +2,8 @@ package com.example.dms.service.impl;
 
 import com.example.dms.dao.RoleRepository;
 import com.example.dms.dao.UserRepository;
+import com.example.dms.dto.UserRequest;
+import com.example.dms.dto.UserResponse;
 import com.example.dms.model.RoleEntity;
 import com.example.dms.model.UserEntity;
 import com.example.dms.service.UserService;
@@ -36,9 +38,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public UserEntity create(final @NotNull UserEntity userEntity) {
-        userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
-        return userRepository.save(userEntity);
+    public UserResponse create(final @NotNull UserRequest userRequest) {
+        userRequest.setPassword(passwordEncoder.encode(userRequest.getPassword()));
+        return userRepository.save(userRequest);
     }
 
     @Override
@@ -49,12 +51,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public UserEntity getUser(final String username) {
+    public UserResponse getUser(final String username) {
         return userRepository.findByUsername(username);
     }
 
     @Override
-    public List<UserEntity> getUsers() {
+    public List<UserResponse> getUsers() {
         return userRepository.findAll();
     }
 
