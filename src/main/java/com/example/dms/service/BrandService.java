@@ -64,7 +64,7 @@ public interface BrandService {
     /**
      * Update a brand by id.
      *
-     * @param id {@link Long}
+     * @param id           {@link Long}
      * @param brandRequest {@link BrandRequest}
      * @return {@link BrandResponse}
      */
@@ -73,7 +73,7 @@ public interface BrandService {
     /**
      * Update brandDesc by id.
      *
-     * @param id {@link Long}
+     * @param id                {@link Long}
      * @param brandRequestPatch {@link BrandRequestPatch}
      * @return {@link BrandResponse}
      */

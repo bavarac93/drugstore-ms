@@ -64,7 +64,7 @@ public interface InventoryService {
     /**
      * Update an item by id.
      *
-     * @param id {@link Long}
+     * @param id               {@link Long}
      * @param inventoryRequest {@link InventoryRequest}
      * @return {@link InventoryResponse}
      */
@@ -73,7 +73,7 @@ public interface InventoryService {
     /**
      * Update the description of an item by id.
      *
-     * @param id {@link Long}
+     * @param id                    {@link Long}
      * @param inventoryRequestPatch {@link InventoryRequestPatch}
      * @return {@link InventoryResponse}
      */

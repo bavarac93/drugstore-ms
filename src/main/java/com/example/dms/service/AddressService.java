@@ -55,7 +55,7 @@ public interface AddressService {
     /**
      * Update an address by id.
      *
-     * @param id {@link Long}
+     * @param id             {@link Long}
      * @param addressRequest {@link AddressRequest}
      * @return {@link AddressResponse}
      */
@@ -64,7 +64,7 @@ public interface AddressService {
     /**
      * Update the buildingNumber and street by id.
      *
-     * @param id {@link Long}
+     * @param id                  {@link Long}
      * @param addressRequestPatch {@link AddressRequestPatch}
      * @return {@link AddressResponse}
      */

@@ -57,7 +57,7 @@ public interface OrdersService {
     /**
      * Update an order by id.
      *
-     * @param id {@link Long}
+     * @param id            {@link Long}
      * @param ordersRequest {@link OrdersRequest}
      * @return {@link OrdersResponse}
      */

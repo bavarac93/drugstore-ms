@@ -26,11 +26,11 @@ public class RoleResponse {
         this.name = name;
     }
 
-    public LocalDateTime getRoleCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setRoleCreatedAt(LocalDateTime roleCreatedAt) {
-        this.createdAt = roleCreatedAt;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

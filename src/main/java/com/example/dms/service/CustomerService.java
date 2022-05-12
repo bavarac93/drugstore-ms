@@ -59,7 +59,7 @@ public interface CustomerService {
     /**
      * Update a customer by id.
      *
-     * @param id {@link Long}
+     * @param id              {@link Long}
      * @param customerRequest {@link CustomerRequest}
      * @return {@link CustomerResponse}
      */
@@ -68,7 +68,7 @@ public interface CustomerService {
     /**
      * Update a phoneNumber by id.
      *
-     * @param id {@link Long}
+     * @param id                              {@link Long}
      * @param customerRequestPhoneNumberPatch {@link CustomerRequestPhoneNumberPatch}
      * @return {@link CustomerResponse}
      */
@@ -92,7 +92,7 @@ public interface CustomerService {
     /**
      * Update isVerified by id.
      *
-     * @param id {@link Long}
+     * @param id                           {@link Long}
      * @param customerRequestVerifiedPatch {@link CustomerRequestVerifiedPatch}
      * @return {@link CustomerResponse}
      */

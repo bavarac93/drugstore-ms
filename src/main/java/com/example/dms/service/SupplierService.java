@@ -65,7 +65,7 @@ public interface SupplierService {
     /**
      * Update contractExpires by id.
      *
-     * @param id {@link Long}
+     * @param id                   {@link Long}
      * @param supplierRequestPatch {@link SupplierRequestPatch}
      * @return {@link SupplierResponse}
      */

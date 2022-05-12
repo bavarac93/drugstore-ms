@@ -1,12 +1,33 @@
 package com.example.dms.service;
 
-import com.example.dms.model.RoleEntity;
+import com.example.dms.dto.RoleRequest;
+import com.example.dms.dto.RoleResponse;
 
 import java.util.List;
 
+/**
+ * Methods used to manipulate role data.
+ * List of implemented APIs with links:
+ *
+ * <ul>
+ *     <li>{@link #create}</li>
+ *     <li>{@link #findAll}</li>
+ * </ul>
+ */
 public interface RoleService {
 
-    RoleEntity create (final RoleEntity roleEntity);
+    /**
+     * Create a role based on request data.
+     *
+     * @param roleRequest {@link RoleRequest}
+     * @return roleResponse {@link RoleResponse}
+     */
+    RoleResponse create(final RoleRequest roleRequest);
 
-    List<RoleEntity> getRoles();
+    /**
+     * Get a list of roles.
+     *
+     * @return roleResponse {@link RoleResponse}
+     */
+    List<RoleResponse> findAll();
 }

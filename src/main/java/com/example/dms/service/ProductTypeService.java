@@ -56,7 +56,7 @@ public interface ProductTypeService {
     /**
      * Update a product type by id.
      *
-     * @param id {@link Long}
+     * @param id                 {@link Long}
      * @param productTypeRequest {@link ProductTypeRequest}
      * @return productTypeResponse {@link ProductTypeResponse}
      */
@@ -65,7 +65,7 @@ public interface ProductTypeService {
     /**
      * Update a product desc by id.
      *
-     * @param id {@link Long}
+     * @param id                      {@link Long}
      * @param productTypeRequestPatch {@link ProductTypeRequestPatch}
      * @return productTypeResponse {@link ProductTypeResponse}
      */
