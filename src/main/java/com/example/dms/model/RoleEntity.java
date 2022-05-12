@@ -5,11 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "roles")
-public class RoleEntity extends AuditSuperclass {
+public class RoleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -41,45 +40,5 @@ public class RoleEntity extends AuditSuperclass {
         sb.append(", name='").append(name).append('\'');
         sb.append('}');
         return sb.toString();
-    }
-
-    @Override
-    public String getCreatedBy() {
-        return super.getCreatedBy();
-    }
-
-    @Override
-    public void setCreatedBy(String createdBy) {
-        super.setCreatedBy(createdBy);
-    }
-
-    @Override
-    public LocalDateTime getCreatedAt() {
-        return super.getCreatedAt();
-    }
-
-    @Override
-    public void setCreatedAt(LocalDateTime createdAt) {
-        super.setCreatedAt(createdAt);
-    }
-
-    @Override
-    public LocalDateTime getModifiedAt() {
-        return super.getModifiedAt();
-    }
-
-    @Override
-    public void setModifiedAt(LocalDateTime modifiedAt) {
-        super.setModifiedAt(modifiedAt);
-    }
-
-    @Override
-    public String getModifiedBy() {
-        return super.getModifiedBy();
-    }
-
-    @Override
-    public void setModifiedBy(String modifiedBy) {
-        super.setModifiedBy(modifiedBy);
     }
 }

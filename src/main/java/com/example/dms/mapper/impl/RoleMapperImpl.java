@@ -24,7 +24,6 @@ public class RoleMapperImpl implements RoleMapper {
         final RoleResponse roleResponse = new RoleResponse();
         roleResponse.setId(saveRoleEntity.getId());
         roleResponse.setName(saveRoleEntity.getName());
-        roleResponse.setCreatedAt(saveRoleEntity.getCreatedAt());
         return roleResponse;
     }
 

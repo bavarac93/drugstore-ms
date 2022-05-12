@@ -1,8 +1,10 @@
 package com.example.dms.dto;
 
+import com.example.dms.model.RoleEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class UserResponse {
     private Long id;
@@ -11,7 +13,7 @@ public class UserResponse {
     private String password;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
-
+    private List<RoleEntity> roles;
 
     public Long getId() {
         return id;
@@ -53,4 +55,11 @@ public class UserResponse {
         this.createdAt = createdAt;
     }
 
+    public List<RoleEntity> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RoleEntity> roles) {
+        this.roles = roles;
+    }
 }

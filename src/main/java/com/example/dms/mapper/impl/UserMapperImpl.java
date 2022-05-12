@@ -29,6 +29,7 @@ public class UserMapperImpl implements UserMapper {
         userResponse.setUsername(saveUserEntity.getUsername());
         userResponse.setPassword(saveUserEntity.getPassword());
         userResponse.setCreatedAt(saveUserEntity.getCreatedAt());
+        userResponse.setRoles(saveUserEntity.getRoles());
         return userResponse;
     }
 

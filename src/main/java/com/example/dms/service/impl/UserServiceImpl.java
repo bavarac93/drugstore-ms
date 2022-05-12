@@ -4,6 +4,7 @@ import com.example.dms.dao.RoleRepository;
 import com.example.dms.dao.UserRepository;
 import com.example.dms.dto.UserRequest;
 import com.example.dms.dto.UserResponse;
+import com.example.dms.exception.ApiRequestException;
 import com.example.dms.mapper.UserMapper;
 import com.example.dms.model.RoleEntity;
 import com.example.dms.model.UserEntity;
@@ -18,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,6 +30,7 @@ import java.util.Objects;
 @Transactional
 public class UserServiceImpl implements UserService, UserDetailsService {
 
+    private static final String USER_DOES_NOT_EXIST = "User with this id: {0} does not exist.";
     private static final String AUTHOR = "Muki";
 
     private final UserRepository userRepository;
@@ -71,11 +74,19 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return userMapper.entityToDto(userEntity);
     }
 
-
     @Override
     public List<UserResponse> findAll() {
         List<UserEntity> userEntityList = userRepository.findAll();
         return userMapper.entitiesToDto(userEntityList);
+    }
+
+    @Override
+    public void deleteById(final Long id) {
+        if (!userRepository.existsById(id)) {
+            throw new ApiRequestException(
+                    MessageFormat.format(USER_DOES_NOT_EXIST, id));
+        }
+        userRepository.deleteById(id);
     }
 
     @Override

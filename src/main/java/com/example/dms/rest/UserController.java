@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -64,5 +65,13 @@ public class UserController {
         userService.addRoleToUser(form.getUsername(), form.getRoleName());
         return ResponseEntity.ok().build();
     }
+
+    @ApiOperation(value = "Delete a user by id", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping("{id}")
+    ResponseEntity<Void> deleteById(@PathVariable final Long id) {
+        userService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 }
 

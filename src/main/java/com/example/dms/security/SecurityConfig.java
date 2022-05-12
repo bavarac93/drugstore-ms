@@ -43,14 +43,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilter(customAuthenticationFilter);
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers("/security/login", "/security/token/refresh/**").permitAll();
-        http.authorizeRequests().antMatchers(HttpMethod.POST, "/security/user/save").hasAnyAuthority("ROLE_ADMIN", "ROLE_OWNER");
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/security/user/users").hasAuthority("ROLE_CUSTOMER");
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/role/roles").hasAnyAuthority("ROLE_ADMIN", "ROLE_OWNER");
+        http.authorizeRequests().antMatchers( "/security/user/save").permitAll();
+        http.authorizeRequests().antMatchers( "/security/user/users").permitAll();
+        http.authorizeRequests().antMatchers("/role/roles").permitAll();
         http.authorizeRequests().antMatchers(HttpMethod.POST, "/role/save").hasAnyAuthority("ROLE_ADMIN", "ROLE_OWNER");
         http.authorizeRequests().antMatchers(HttpMethod.POST, "/security/user/add-role-to-user/").hasAnyAuthority("ROLE_ADMIN", "ROLE_OWNER");
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
+
+    //fix roles and login
 
     @Bean
     @Override

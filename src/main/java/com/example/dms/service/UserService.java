@@ -14,6 +14,7 @@ import java.util.List;
  *     <li>{@link #findAll}</li>
  *     <li>{@link #addRoleToUser}</li>
  *     <li>{@link #findUserByUsername}</li>
+ *     <li>{@link #deleteById}</li>
  * </ul>
  */
 public interface UserService {
@@ -49,5 +50,11 @@ public interface UserService {
      */
     List<UserResponse> findAll();
 
+    /**
+     * Delete a user by id.
+     *
+     * @param id {@link Long}
+     */
+    void deleteById(final Long id);
 
 }

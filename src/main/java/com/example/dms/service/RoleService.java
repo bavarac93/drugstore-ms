@@ -12,6 +12,7 @@ import java.util.List;
  * <ul>
  *     <li>{@link #create}</li>
  *     <li>{@link #findAll}</li>
+ *     <li>{@link #deleteById}</li>
  * </ul>
  */
 public interface RoleService {
@@ -30,4 +31,11 @@ public interface RoleService {
      * @return roleResponse {@link RoleResponse}
      */
     List<RoleResponse> findAll();
+
+    /**
+     * Delete a role by id.
+     *
+     * @param id {@link Long}
+     */
+    void deleteById(final Long id);
 }
