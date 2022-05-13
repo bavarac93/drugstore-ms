@@ -26,7 +26,9 @@ import java.util.Optional;
 public class CustomerServiceImpl implements CustomerService {
 
     public static final String AUTHOR = "Muki";
-    public static final String CUSTOMER_DOES_NOT_EXIST = "Customer with id: {0} does not exist.";
+    public static final String CUSTOMER_DOES_NOT_EXIST = "Customer with the id: {0} does not exist.";
+    public static final String EMAIL_ALREADY_EXISTS = "Customer with this email: {0} already exists. ";
+
 
     private final CustomerRepository customerRepository;
     private final CustomerMapper customerMapper;
@@ -42,10 +44,17 @@ public class CustomerServiceImpl implements CustomerService {
         this.addressService = Objects.requireNonNull(addressService, "addressService cannot be null");
     }
 
+    private boolean emailExists(final String email) {
+        return customerRepository.findByEmail(email) != null;
+    }
+
     @Override
     public CustomerResponse create(final CustomerRequest customerRequest) {
         final CustomerEntity customerEntity = customerMapper.dtoToEntity(customerRequest);
         final AddressEntity addressEntity = addressService.getAddressEntityById(customerRequest.getAddressId());
+        if (emailExists(customerRequest.getEmail())) {
+            throw new ApiRequestException(MessageFormat.format(EMAIL_ALREADY_EXISTS,customerRequest.getEmail()));
+        }
         customerEntity.setAddressEntity(addressEntity);
         customerEntity.setCreatedAt(LocalDateTime.now());
         customerEntity.setCreatedBy(AUTHOR);

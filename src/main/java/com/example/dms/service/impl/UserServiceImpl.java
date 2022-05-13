@@ -31,6 +31,8 @@ import java.util.Objects;
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     private static final String USER_DOES_NOT_EXIST = "User with this id: {0} does not exist.";
+    private static final String USER_ALREADY_EXISTS = "User with this username: {0} already exists.";
+
     private static final String AUTHOR = "Muki";
 
     private final UserRepository userRepository;
@@ -49,11 +51,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         this.passwordEncoder = Objects.requireNonNull(passwordEncoder, "passwordEncoder cannot be null");
         this.userMapper = Objects.requireNonNull(userMapper, "userMapper cannot be null");
     }
+    private boolean userExists(final String username) {
+        return userRepository.findByUsername(username) != null;
+    }
 
     @Override
     public UserResponse create(final @NotNull UserRequest userRequest) {
         userRequest.setPassword(passwordEncoder.encode(userRequest.getPassword()));
         UserEntity userEntity = userMapper.dtoToEntity(userRequest);
+        if (userExists(userRequest.getUsername())) {
+            throw new ApiRequestException(MessageFormat.format(USER_ALREADY_EXISTS,userRequest.getUsername()));
+        }
         userEntity.setCreatedAt(LocalDateTime.now());
         userEntity.setCreatedBy(AUTHOR);
         userRequest.setPassword(passwordEncoder.encode(userRequest.getPassword()));

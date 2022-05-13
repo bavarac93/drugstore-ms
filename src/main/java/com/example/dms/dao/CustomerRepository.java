@@ -19,4 +19,7 @@ public interface CustomerRepository extends JpaRepository<CustomerEntity, Long> 
 
     @Query("SELECT COUNT(t) FROM CustomerEntity t WHERE UPPER(t.drugAllergicTo) = :drugAllergicTo")
     int countAllergicCustomersToSomeMedication(@Param("drugAllergicTo") final String drugAllergicTo);
+
+    CustomerEntity findByEmail(final String email);
+
 }

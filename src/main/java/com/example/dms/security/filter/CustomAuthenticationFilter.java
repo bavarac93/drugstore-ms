@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
@@ -28,7 +29,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     private final AuthenticationManager authenticationManager;
 
     public CustomAuthenticationFilter(final AuthenticationManager authenticationManager) {
-        this.authenticationManager = authenticationManager;
+        this.authenticationManager = Objects.requireNonNull(authenticationManager, "authenticationManager cannot be null");
     }
 
     @Override

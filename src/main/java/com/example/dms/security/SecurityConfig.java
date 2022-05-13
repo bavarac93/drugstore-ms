@@ -39,20 +39,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(@NotNull final HttpSecurity http) throws Exception {
         http.csrf().disable();
         CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean());
-        customAuthenticationFilter.setFilterProcessesUrl("/security/login");
+        customAuthenticationFilter.setFilterProcessesUrl("/authentication/login");
         http.addFilter(customAuthenticationFilter);
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().antMatchers("/security/login", "/security/token/refresh/**").permitAll();
-        http.authorizeRequests().antMatchers( "/security/user/save").permitAll();
-        http.authorizeRequests().antMatchers( "/security/user/users").permitAll();
-        http.authorizeRequests().antMatchers("/role/roles").permitAll();
-        http.authorizeRequests().antMatchers(HttpMethod.POST, "/role/save").hasAnyAuthority("ROLE_ADMIN", "ROLE_OWNER");
-        http.authorizeRequests().antMatchers(HttpMethod.POST, "/security/user/add-role-to-user/").hasAnyAuthority("ROLE_ADMIN", "ROLE_OWNER");
+        http.authorizeRequests().antMatchers("/authentication/login", "/authentication/token/refresh").permitAll();
+        http.authorizeRequests().antMatchers("/user/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF", "ROLE_CUSTOMER", "ROLE_GUEST");
+        http.authorizeRequests().antMatchers("/role/**").permitAll();
+        http.authorizeRequests().antMatchers("/user/**").permitAll();
+        http.authorizeRequests().antMatchers("/address/**").permitAll();
+        http.authorizeRequests().antMatchers("/customer/**").permitAll();
+        http.authorizeRequests().antMatchers("/inventory/**").permitAll();
+        http.authorizeRequests().antMatchers("/orders/**").permitAll();
+        http.authorizeRequests().antMatchers("/product_type/**").permitAll();
+        http.authorizeRequests().antMatchers("/supplier/**").permitAll();
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
-
-    //fix roles and login
 
     @Bean
     @Override
