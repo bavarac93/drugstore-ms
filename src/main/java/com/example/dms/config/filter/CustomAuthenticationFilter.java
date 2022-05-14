@@ -1,4 +1,4 @@
-package com.example.dms.security.filter;
+package com.example.dms.config.filter;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -34,8 +34,8 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 
     @Override
     public Authentication attemptAuthentication(
-            @NotNull HttpServletRequest request,
-            HttpServletResponse response
+            @NotNull final HttpServletRequest request,
+            @NotNull final HttpServletResponse response
     ) throws AuthenticationException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -47,8 +47,8 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     protected void successfulAuthentication(
             @NotNull HttpServletRequest request,
             @NotNull HttpServletResponse response,
-            FilterChain chain,
-            @NotNull Authentication authentication
+            @NotNull final FilterChain filterChain,
+            @NotNull final Authentication authentication
     ) throws IOException, ServletException {
         User user = (User) authentication.getPrincipal();
         Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());

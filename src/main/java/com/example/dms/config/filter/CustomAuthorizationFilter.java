@@ -1,4 +1,4 @@
-package com.example.dms.security.filter;
+package com.example.dms.config.filter;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -30,7 +30,7 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(
             @NotNull final HttpServletRequest request,
             @NotNull final HttpServletResponse response,
-            final FilterChain filterChain
+            @NotNull final FilterChain filterChain
     )
             throws ServletException, IOException {
         if (request.getServletPath().equals("/authentication/login") || request.getServletPath().equals("/authentication/token/refresh/")) {

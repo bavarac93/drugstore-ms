@@ -1,11 +1,13 @@
-package com.example.dms.security;
+package com.example.dms.config;
 
-import com.example.dms.security.filter.CustomAuthenticationFilter;
-import com.example.dms.security.filter.CustomAuthorizationFilter;
+import com.example.dms.config.filter.CustomAuthenticationFilter;
+import com.example.dms.config.filter.CustomAuthorizationFilter;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -43,8 +45,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilter(customAuthenticationFilter);
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers("/authentication/login", "/authentication/token/refresh").permitAll();
-        http.authorizeRequests().antMatchers("/user/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF", "ROLE_CUSTOMER", "ROLE_GUEST");
-        http.authorizeRequests().antMatchers("/role/**").permitAll();
+        http.authorizeRequests().antMatchers("/user/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF" /*"ROLE_CUSTOMER", "ROLE_GUEST"*/);
+        http.authorizeRequests().antMatchers(HttpMethod.GET,"/role/**").hasAnyAuthority("ROLE_CUSTOMER");
+        http.authorizeRequests().antMatchers(HttpMethod.POST,"/role/**").hasAnyAuthority("ROLE_ADMIN");
         http.authorizeRequests().antMatchers("/user/**").permitAll();
         http.authorizeRequests().antMatchers("/address/**").permitAll();
         http.authorizeRequests().antMatchers("/customer/**").permitAll();
@@ -52,8 +55,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/orders/**").permitAll();
         http.authorizeRequests().antMatchers("/product_type/**").permitAll();
         http.authorizeRequests().antMatchers("/supplier/**").permitAll();
+        http.exceptionHandling().accessDeniedPage("/login");
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+    }
+    @Bean
+    public RoleHierarchy roleHierarchy() {
+        RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
+        String hierarchy = "ROLE_MODERATOR > ROLE_ADMIN \n ROLE_ADMIN > ROLE_STAFF \n ROLE_STAFF > ROLE_CUSTOMER \n ROLE_CUSTOMER > ROLE_GUEST";
+        roleHierarchy.setHierarchy(hierarchy);
+        return roleHierarchy;
     }
 
     @Bean
