@@ -47,12 +47,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(@NotNull final HttpSecurity http) throws Exception {
         http.csrf().disable();
         CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean());
-        customAuthenticationFilter.setFilterProcessesUrl("/authentication/login");
+        customAuthenticationFilter.setFilterProcessesUrl("/user/login/");
         http.addFilter(customAuthenticationFilter);
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().antMatchers("/authentication/**").permitAll();
+        http.authorizeRequests().antMatchers("/user/login/").permitAll();
         http.authorizeRequests().antMatchers(ENABLE_SWAGGER_REQUESTS).permitAll();
-        http.authorizeRequests().antMatchers("/user/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF","ROLE_CUSTOMER", "ROLE_GUEST");
+        http.authorizeRequests().antMatchers("/user/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF","ROLE_CUSTOMER");
         http.authorizeRequests().antMatchers("/role/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF");
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/role/**").hasAnyAuthority("ROLE_ADMIN");
         http.authorizeRequests().antMatchers("/address/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF","ROLE_CUSTOMER");

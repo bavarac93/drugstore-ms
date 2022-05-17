@@ -30,12 +30,11 @@ public class ExceptionHandlers {
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public ResponseEntity<Object> handleValidationException(final @NotNull MethodArgumentNotValidException e) {
         final Map<String, String> errors = new HashMap<>();
-
         e.getBindingResult().getAllErrors().forEach((error) ->
                 errors.put(((FieldError) error).getField(), error.getDefaultMessage())
         );
 
-        final ValidationExceptionModel validationException = new ValidationExceptionModel(
+        final ValidationException validationException = new ValidationException(
                 errors,
                 BAD_REQUEST,
                 LocalDateTime.now()

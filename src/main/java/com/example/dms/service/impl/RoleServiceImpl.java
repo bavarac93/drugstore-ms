@@ -20,11 +20,18 @@ public class RoleServiceImpl implements RoleService {
 
     private final RoleRepository roleRepository;
     private final RoleMapper roleMapper;
+
     private static final String ROLE_DOES_NOT_EXIST = "Role with this id: {0} does not exist.";
+    private static final String ROLE_NOT_FOUND = "Role with this name: {0} does not exist.";
+
 
     public RoleServiceImpl(final RoleRepository roleRepository, final RoleMapper roleMapper) {
         this.roleRepository = Objects.requireNonNull(roleRepository, "roleRepository cannot be null");
         this.roleMapper = Objects.requireNonNull(roleMapper, "roleMapper cannot be null");
+    }
+
+    private boolean roleExists(final String name) {
+        return roleRepository.findByName(name) != null;
     }
 
     @Override
@@ -48,4 +55,15 @@ public class RoleServiceImpl implements RoleService {
         }
         roleRepository.deleteById(id);
     }
+
+    @Override
+    public RoleResponse findRoleByName(final String name) {
+        final RoleEntity roleEntity = roleRepository.findByName(name);
+        if (roleExists(name)) {
+            throw new ApiRequestException(MessageFormat.format(ROLE_NOT_FOUND,name));
+        }
+        return roleMapper.entityToDto(roleEntity);
+    }
+
+
 }
