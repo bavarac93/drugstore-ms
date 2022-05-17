@@ -26,6 +26,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private static final String[] ENABLE_SWAGGER_REQUESTS = {
+            "/v2/api-docs",
+            "/swagger-resources/**",
+            "/swagger-ui/**",
+            "/webjars/**"
+    };
 
     public SecurityConfig(final UserDetailsService userDetailsService, final BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userDetailsService = Objects.requireNonNull(userDetailsService, "userDetailsService cannot be null");
@@ -44,18 +50,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         customAuthenticationFilter.setFilterProcessesUrl("/authentication/login");
         http.addFilter(customAuthenticationFilter);
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().antMatchers("/authentication/login", "/authentication/token/refresh").permitAll();
-        http.authorizeRequests().antMatchers("/user/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF" /*"ROLE_CUSTOMER", "ROLE_GUEST"*/);
-        http.authorizeRequests().antMatchers(HttpMethod.GET,"/role/**").hasAnyAuthority("ROLE_CUSTOMER");
+        http.authorizeRequests().antMatchers("/authentication/**").permitAll();
+        http.authorizeRequests().antMatchers(ENABLE_SWAGGER_REQUESTS).permitAll();
+        http.authorizeRequests().antMatchers("/user/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF","ROLE_CUSTOMER", "ROLE_GUEST");
+        http.authorizeRequests().antMatchers("/role/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF");
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/role/**").hasAnyAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers("/user/**").permitAll();
-        http.authorizeRequests().antMatchers("/address/**").permitAll();
-        http.authorizeRequests().antMatchers("/customer/**").permitAll();
-        http.authorizeRequests().antMatchers("/inventory/**").permitAll();
-        http.authorizeRequests().antMatchers("/orders/**").permitAll();
-        http.authorizeRequests().antMatchers("/product_type/**").permitAll();
-        http.authorizeRequests().antMatchers("/supplier/**").permitAll();
-        http.exceptionHandling().accessDeniedPage("/login");
+        http.authorizeRequests().antMatchers("/address/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF","ROLE_CUSTOMER");
+        http.authorizeRequests().antMatchers("/customer/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF","ROLE_CUSTOMER");
+        http.authorizeRequests().antMatchers("/inventory/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF","ROLE_CUSTOMER");
+        http.authorizeRequests().antMatchers(HttpMethod.GET,"/inventory/**").hasAnyAuthority("ROLE_GUEST");
+        http.authorizeRequests().antMatchers("/orders/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF");
+        http.authorizeRequests().antMatchers("/product_type/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF");
+        http.authorizeRequests().antMatchers("/supplier/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF");
+        http.exceptionHandling().accessDeniedPage("/authentication/login");
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
