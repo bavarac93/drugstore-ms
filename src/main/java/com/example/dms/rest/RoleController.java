@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Objects;
 
 @RestController
-@RequestMapping("/role")
+@RequestMapping("role")
 @Api(value = "APIs used to manipulate role data", tags = "role")
 @Validated
 public class RoleController {

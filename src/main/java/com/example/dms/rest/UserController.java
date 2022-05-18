@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Objects;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("user")
 @Api(value = "APIs used to manipulate user data", tags = "user")
 @Validated
 public class UserController {

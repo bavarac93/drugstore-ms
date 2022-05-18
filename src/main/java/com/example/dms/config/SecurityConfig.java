@@ -52,8 +52,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers("/user/login/").permitAll();
         http.authorizeRequests().antMatchers(ENABLE_SWAGGER_REQUESTS).permitAll();
-        http.authorizeRequests().antMatchers("/user/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF","ROLE_CUSTOMER");
-        http.authorizeRequests().antMatchers("/role/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF");
+        http.authorizeRequests().antMatchers("/user/**").permitAll(); //hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF","ROLE_CUSTOMER");
+        http.authorizeRequests().antMatchers("/role/**").permitAll(); //hasAnyAuthority("MODERATOR","ADMIN", "STAFF");
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/role/**").hasAnyAuthority("ROLE_ADMIN");
         http.authorizeRequests().antMatchers("/address/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF","ROLE_CUSTOMER");
         http.authorizeRequests().antMatchers("/customer/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF","ROLE_CUSTOMER");
@@ -62,7 +62,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/orders/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF");
         http.authorizeRequests().antMatchers("/product_type/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF");
         http.authorizeRequests().antMatchers("/supplier/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF");
-        http.exceptionHandling().accessDeniedPage("/authentication/login");
+        http.authorizeRequests().antMatchers("/facility/**").permitAll(); //hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF","ROLE_CUSTOMER");
+        http.exceptionHandling().accessDeniedPage("/user/login");
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }

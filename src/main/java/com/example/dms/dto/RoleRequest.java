@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 public class RoleRequest {
     @NotEmpty(message = "Role must contain name.")
     @NotBlank(message = "Role must contain name.")
-    @Size(min = 4, max = 15, message = "Role must be between 4 and 15 characters.")
+    @Size(min = 3, max = 15, message = "Role must be between 4 and 15 characters.")
     @Pattern(regexp = "[a-zA-Z ]+", message = "Role can not contain special characters and numbers.")
     private String name;
 

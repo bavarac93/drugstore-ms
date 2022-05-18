@@ -44,8 +44,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             final UserRepository userRepository,
             final RoleRepository roleRepository,
             final PasswordEncoder passwordEncoder,
-            final UserMapper userMapper
-    ) {
+            final UserMapper userMapper)
+    {
         this.userRepository = Objects.requireNonNull(userRepository, "userRepository cannot be null");
         this.roleRepository = Objects.requireNonNull(roleRepository, "roleRepository cannot be null");
         this.passwordEncoder = Objects.requireNonNull(passwordEncoder, "passwordEncoder cannot be null");
@@ -77,7 +77,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public UserResponse findUserByUsername(final String username) {
+    public UserResponse findUserByUsername(@NotNull final String username) {
         final UserEntity userEntity = userRepository.findByUsername(username);
         return userMapper.entityToDto(userEntity);
     }

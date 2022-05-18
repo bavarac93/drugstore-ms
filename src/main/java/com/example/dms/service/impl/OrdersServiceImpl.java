@@ -37,7 +37,8 @@ public class OrdersServiceImpl implements OrdersService {
             final OrdersRepository ordersRepository,
             final OrdersMapper ordersMapper,
             final CustomerService customerService,
-            final InventoryService inventoryService) {
+            final InventoryService inventoryService)
+    {
         this.ordersRepository = Objects.requireNonNull(ordersRepository, "ordersRepository cannot be null");
         this.ordersMapper = Objects.requireNonNull(ordersMapper, "ordersMapper cannot be null");
         this.customerService = Objects.requireNonNull(customerService, "customerService cannot be null");

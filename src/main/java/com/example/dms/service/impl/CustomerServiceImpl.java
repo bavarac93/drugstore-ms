@@ -37,8 +37,8 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerServiceImpl(
             final CustomerRepository customerRepository,
             final CustomerMapper customerMapper,
-            final AddressService addressService
-    ) {
+            final AddressService addressService)
+    {
         this.customerRepository = Objects.requireNonNull(customerRepository, "customerRepository cannot be null");
         this.customerMapper = Objects.requireNonNull(customerMapper, "customerMapper cannot be null");
         this.addressService = Objects.requireNonNull(addressService, "addressService cannot be null");
