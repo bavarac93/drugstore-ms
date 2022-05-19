@@ -1,3 +1,3 @@
-INSERT INTO inventory (id, description, expiry_date, item_name, price, quantity, sku, sold, brand_id , product_type_id, supplier_id) VALUES
-(2940486483, 'A pill that keeps your heart well', '2032-04-25', 'PARACETAMOL', 1, 100, '927832675', 50, 1922443234, 2828847862, 2941782423),
-(2140025635, 'A pill that regulates blood pressure', '2032-11-14', 'ANDOL', 1, 150, '997532175', 75, 1122543131, 1493654785, 2456987452);
+INSERT INTO inventory (id, description, expiry_date, item_name, price, quantity, sku, sold, brand_id , product_type_id, supplier_id, created_at, created_by) VALUES
+(2940486483, 'A pill that keeps your heart well', '2032-04-25', 'PARACETAMOL', 1, 100, '927832675', 50, 1922443234, 2828847862, 2941782423, '2022-05-18 11:42:50', 'flyway'),
+(2140025635, 'A pill that regulates blood pressure', '2032-11-14', 'ANDOL', 1, 150, '997532175', 75, 1122543131, 1493654785, 2456987452, '2022-05-18 11:42:50', 'flyway');

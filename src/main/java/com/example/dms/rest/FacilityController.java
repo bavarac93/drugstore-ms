@@ -51,7 +51,7 @@ public class FacilityController {
     @ApiOperation(value = "Get all facilities",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    @GetMapping()
+    @GetMapping("get-all-stores")
     public ResponseEntity<List<FacilityResponse>> findAll() {
         return new ResponseEntity<>(facilityService.findAll(), HttpStatus.FOUND);
     }
