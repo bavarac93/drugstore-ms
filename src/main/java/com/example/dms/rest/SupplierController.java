@@ -108,5 +108,4 @@ public class SupplierController {
     ) {
         return new ResponseEntity<>(supplierService.findAllWithContractExpiresOn(contractExpires), HttpStatus.FOUND);
     }
-
 }

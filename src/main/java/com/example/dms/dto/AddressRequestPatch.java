@@ -6,7 +6,6 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class AddressRequestPatch {
-
     @NotEmpty(message = "Building number must be included in the address.")
     @NotBlank(message = "Building number must be included in the address.")
     @Size(min = 1, max = 5, message = "Building number must be between 1 and 5 characters.")

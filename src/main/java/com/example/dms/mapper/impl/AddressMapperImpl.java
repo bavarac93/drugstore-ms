@@ -12,7 +12,6 @@ import java.util.List;
 
 @Component
 public class AddressMapperImpl implements AddressMapper {
-
     @Override
     public AddressEntity dtoToEntity(final @NotNull AddressRequest addressRequest) {
         final AddressEntity addressEntity = new AddressEntity();

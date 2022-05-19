@@ -47,7 +47,7 @@ public class InventoryController {
     }
 
     @ApiOperation(value = "Retrieve all items", produces = MediaType.APPLICATION_JSON_VALUE)
-    @GetMapping
+    @GetMapping("get-inventory")
     ResponseEntity<List<InventoryResponse>> findAll() {
         return new ResponseEntity<>(inventoryService.findAll(), HttpStatus.FOUND);
     }
@@ -106,6 +106,14 @@ public class InventoryController {
     @GetMapping("/get-items-by-same-brand/{brandId}")
     ResponseEntity<List<InventoryResponse>> findItemsMadeByTheSameBrand(@PathVariable final Long brandId) {
         return new ResponseEntity<>(inventoryService.findItemsMadeByTheSameBrand(brandId), HttpStatus.FOUND);
+    }
+
+    @ApiOperation(value = "Get items with the same name",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("/get-items-by-name/{itemName}")
+    ResponseEntity<List<InventoryResponse>> findItemByName (@PathVariable final String itemName) {
+        return new ResponseEntity<>(inventoryService.findItemByName(itemName), HttpStatus.FOUND);
     }
 
     @ApiOperation(value = "Count items made by the same brand",

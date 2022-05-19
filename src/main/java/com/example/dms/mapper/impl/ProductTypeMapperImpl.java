@@ -12,7 +12,6 @@ import java.util.List;
 
 @Component
 public class ProductTypeMapperImpl implements ProductTypeMapper {
-
     @Override
     public ProductTypeEntity dtoToEntity(final @NotNull ProductTypeRequest productTypeRequest) {
         final ProductTypeEntity productTypeEntity = new ProductTypeEntity();
@@ -45,5 +44,4 @@ public class ProductTypeMapperImpl implements ProductTypeMapper {
         productTypeEntity.setProductType(productTypeRequest.getProductType());
         productTypeEntity.setProductTypeDesc(productTypeRequest.getProductTypeDesc());
     }
-
 }

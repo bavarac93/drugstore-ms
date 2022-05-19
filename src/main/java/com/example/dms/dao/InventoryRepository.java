@@ -15,6 +15,9 @@ public interface InventoryRepository extends JpaRepository<InventoryEntity, Long
     @Query("SELECT t FROM InventoryEntity t WHERE t.expiryDate <= :expiryDate")
     List<InventoryEntity> findAllWithExpiryTimeBefore(@Param("expiryDate") LocalDate expiryDate);
 
+    @Query("SELECT t FROM InventoryEntity t WHERE t.itemName = :itemName")
+    List<InventoryEntity> findItemByName(@Param("itemName") String itemName);
+
     @Query("SELECT t FROM InventoryEntity t WHERE t.brandEntity.id = :brandId")
     List<InventoryEntity> findItemsMadeByTheSameBrand(@Param("brandId") final Long brandId);
 

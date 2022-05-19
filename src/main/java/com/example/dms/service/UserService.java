@@ -56,5 +56,4 @@ public interface UserService {
      * @param id {@link Long}
      */
     void deleteById(final Long id);
-
 }

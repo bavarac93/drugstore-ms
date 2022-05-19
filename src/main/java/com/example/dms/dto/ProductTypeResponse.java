@@ -42,5 +42,4 @@ public class ProductTypeResponse {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
-
 }

@@ -160,4 +160,10 @@ public class InventoryServiceImpl implements InventoryService {
         inventoryMapper.entitiesToDto(list);
         return "There is/are " + list.size() + " item(s) from the same supplier id " + supplierId;
     }
+
+    @Override
+    public List<InventoryResponse> findItemByName(final String itemName) {
+        List<InventoryEntity> list = inventoryRepository.findItemByName(itemName);
+        return inventoryMapper.entitiesToDto(list);
+    }
 }

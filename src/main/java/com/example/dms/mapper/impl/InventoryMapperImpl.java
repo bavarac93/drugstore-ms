@@ -12,7 +12,6 @@ import java.util.List;
 
 @Component
 public class InventoryMapperImpl implements InventoryMapper {
-
     @Override
     public InventoryEntity dtoToEntity(final @NotNull InventoryRequest inventoryRequest) {
         final InventoryEntity inventoryEntity = new InventoryEntity();

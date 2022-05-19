@@ -72,5 +72,4 @@ public class CustomerRequest extends CustomerRequestPhoneNumberPatch {
     public void setEmail(String email) {
         this.email = email;
     }
-
 }

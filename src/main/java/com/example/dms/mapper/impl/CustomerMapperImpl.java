@@ -12,7 +12,6 @@ import java.util.List;
 
 @Component
 public class CustomerMapperImpl implements CustomerMapper {
-
     @Override
     public CustomerEntity dtoToEntity(final @NotNull CustomerRequest customerRequest) {
         final CustomerEntity customerEntity = new CustomerEntity();

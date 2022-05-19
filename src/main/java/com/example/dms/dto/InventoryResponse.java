@@ -117,5 +117,4 @@ public class InventoryResponse {
     public void setBrandId(Long brandId) {
         this.brandId = brandId;
     }
-
 }

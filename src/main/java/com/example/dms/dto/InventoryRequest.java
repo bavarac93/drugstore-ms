@@ -117,5 +117,4 @@ public class InventoryRequest extends InventoryRequestPatch {
     public void setExpiryDate(LocalDate expiryDate) {
         this.expiryDate = expiryDate;
     }
-
 }

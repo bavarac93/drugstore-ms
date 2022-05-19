@@ -104,5 +104,4 @@ public class SupplierServiceImpl implements SupplierService {
         List<SupplierEntity> list = supplierRepository.findAllWithContractExpiresOn(contractExpires);
         return supplierMapper.entitiesToDto(list);
     }
-
 }

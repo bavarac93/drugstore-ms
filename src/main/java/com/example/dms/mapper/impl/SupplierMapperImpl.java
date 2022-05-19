@@ -12,8 +12,6 @@ import java.util.List;
 
 @Component
 public class SupplierMapperImpl implements SupplierMapper {
-
-
     @Override
     public SupplierEntity dtoToEntity(final @NotNull SupplierRequest supplierRequest) {
         final SupplierEntity supplierEntity = new SupplierEntity();

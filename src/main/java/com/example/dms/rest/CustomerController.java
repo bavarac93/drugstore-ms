@@ -122,6 +122,4 @@ public class CustomerController {
         CustomerResponse customerResponse = customerService.updateVerifiedStatus(id, CustomerRequestVerifiedPatch);
         return new ResponseEntity<>(customerResponse, HttpStatus.OK);
     }
-
-
 }

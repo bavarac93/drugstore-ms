@@ -46,6 +46,4 @@ public interface RoleService {
      * @param id {@link Long}
      */
     void deleteById(final Long id);
-
-
 }

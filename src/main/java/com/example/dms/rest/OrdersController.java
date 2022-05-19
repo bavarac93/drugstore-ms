@@ -95,5 +95,4 @@ public class OrdersController {
     ) {
         return new ResponseEntity<>(ordersService.findOrdersMadeBySameCustomer(customerId), HttpStatus.FOUND);
     }
-
 }

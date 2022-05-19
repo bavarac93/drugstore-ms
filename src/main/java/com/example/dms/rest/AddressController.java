@@ -94,5 +94,4 @@ public class AddressController {
         AddressResponse addressResponse = addressService.updateStreetAndBuildingNumberById(id, addressRequestPatch);
         return new ResponseEntity<>(addressResponse, HttpStatus.OK);
     }
-
 }

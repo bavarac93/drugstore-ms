@@ -5,9 +5,6 @@ import com.example.dms.config.filter.CustomAuthorizationFilter;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
-import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
-import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -47,32 +44,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(@NotNull final HttpSecurity http) throws Exception {
         http.csrf().disable();
         CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean());
-        customAuthenticationFilter.setFilterProcessesUrl("/user/login/");
+        customAuthenticationFilter.setFilterProcessesUrl("/auth/login/");
         http.addFilter(customAuthenticationFilter);
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().antMatchers("/user/login/").permitAll();
+        http.authorizeRequests().antMatchers("/auth/login/").permitAll();
         http.authorizeRequests().antMatchers(ENABLE_SWAGGER_REQUESTS).permitAll();
-        http.authorizeRequests().antMatchers("/user/**").permitAll(); //hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF","ROLE_CUSTOMER");
-        http.authorizeRequests().antMatchers("/role/**").permitAll(); //hasAnyAuthority("MODERATOR","ADMIN", "STAFF");
-        http.authorizeRequests().antMatchers(HttpMethod.POST,"/role/**").hasAnyAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers("/address/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF","ROLE_CUSTOMER");
-        http.authorizeRequests().antMatchers("/customer/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF","ROLE_CUSTOMER");
-        http.authorizeRequests().antMatchers("/inventory/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF","ROLE_CUSTOMER");
-        http.authorizeRequests().antMatchers(HttpMethod.GET,"/inventory/**").hasAnyAuthority("ROLE_GUEST");
-        http.authorizeRequests().antMatchers("/orders/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF");
-        http.authorizeRequests().antMatchers("/product_type/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF");
-        http.authorizeRequests().antMatchers("/supplier/**").hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF");
-        http.authorizeRequests().antMatchers("/facility/**").permitAll(); //hasAnyAuthority("ROLE_MODERATOR","ROLE_ADMIN", "ROLE_STAFF","ROLE_CUSTOMER");
-        http.exceptionHandling().accessDeniedPage("/user/login");
+        http.authorizeRequests().antMatchers("/user/**").hasAnyRole("MODERATOR","ADMIN", "STAFF", "CUSTOMER");
+        http.authorizeRequests().antMatchers("/role/**").hasAnyRole("MODERATOR","ADMIN", "STAFF");
+        http.authorizeRequests().antMatchers("/address/**").hasAnyRole("MODERATOR","ADMIN", "STAFF","CUSTOMER");
+        http.authorizeRequests().antMatchers("/customer/**").hasAnyRole("MODERATOR","ADMIN", "STAFF","CUSTOMER");
+        http.authorizeRequests().antMatchers("/inventory/get-items-by-name/**").permitAll();
+        http.authorizeRequests().antMatchers("/inventory/get-inventory/**").permitAll();
+        http.authorizeRequests().antMatchers("/inventory/**").hasAnyRole("MODERATOR","ADMIN", "STAFF");
+        http.authorizeRequests().antMatchers("/orders/**").hasAnyRole("MODERATOR","ADMIN", "STAFF");
+        http.authorizeRequests().antMatchers("/product_type/**").hasAnyRole("MODERATOR","ADMIN", "STAFF");
+        http.authorizeRequests().antMatchers("/supplier/**").hasAnyRole("MODERATOR","ADMIN", "STAFF");
+        http.authorizeRequests().antMatchers("/facility/**").hasAnyRole("MODERATOR","ADMIN", "STAFF","CUSTOMER");
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
-    }
-    @Bean
-    public RoleHierarchy roleHierarchy() {
-        RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
-        String hierarchy = "ROLE_MODERATOR > ROLE_ADMIN \n ROLE_ADMIN > ROLE_STAFF \n ROLE_STAFF > ROLE_CUSTOMER \n ROLE_CUSTOMER > ROLE_GUEST";
-        roleHierarchy.setHierarchy(hierarchy);
-        return roleHierarchy;
     }
 
     @Bean

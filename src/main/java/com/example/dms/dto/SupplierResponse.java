@@ -16,7 +16,6 @@ public class SupplierResponse {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
 
-
     public Long getId() {
         return id;
     }

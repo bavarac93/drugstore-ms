@@ -94,6 +94,4 @@ public class BrandController {
         BrandResponse brandResponse = brandService.updateBrandDescById(id, brandRequestPatch);
         return new ResponseEntity<>(brandResponse, HttpStatus.OK);
     }
-
-
 }

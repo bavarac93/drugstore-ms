@@ -12,7 +12,6 @@ public class CustomerRequestPhoneNumberPatch {
     @Pattern(regexp = "[\\d ]+", message = "Only numbers without spaces are allowed.")
     private String phoneNumber;
 
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -20,5 +19,4 @@ public class CustomerRequestPhoneNumberPatch {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
 }

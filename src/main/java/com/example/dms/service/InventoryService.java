@@ -22,6 +22,7 @@ import java.util.List;
  *     <li>{@link #updateDescriptionById}</li>
  *     <li>{@link #findItemsOfTheSameType}</li>
  *     <li>{@link #countItemsOfTheSameType}</li>
+ *     <li>{@link #findItemByName}</li>
  *     <li>{@link #findAllWithExpiryTimeBefore}</li>
  *     <li>{@link #findItemsMadeByTheSameBrand}</li>
  *     <li>{@link #countItemsMadeByTheSameBrand}</li>
@@ -142,4 +143,12 @@ public interface InventoryService {
      * @return {@link String}
      */
     String countItemsFromTheSameSupplier(final Long supplierId);
+
+    /**
+     * Find items by some name.
+     *
+     * @param itemName {@link String}
+     * @return {@link String}
+     */
+    List<InventoryResponse> findItemByName(final String itemName);
 }

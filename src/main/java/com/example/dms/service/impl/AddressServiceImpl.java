@@ -100,5 +100,4 @@ public class AddressServiceImpl implements AddressService {
         final List<AddressEntity> responseList = addressRepository.findAddressesInTheSameCity(city);
         return addressMapper.entitiesToDto(responseList);
     }
-
 }

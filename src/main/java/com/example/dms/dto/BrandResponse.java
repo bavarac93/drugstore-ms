@@ -47,7 +47,6 @@ public class BrandResponse {
         this.brandDesc = brandDesc;
     }
 
-
     public String getPhoneNumber() {
         return phoneNumber;
     }

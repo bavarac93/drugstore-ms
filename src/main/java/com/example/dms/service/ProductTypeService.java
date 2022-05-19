@@ -20,7 +20,6 @@ import java.util.List;
  *     <li>{@link #updateProductTypeDescById}</li>
  * </ul>
  */
-
 public interface ProductTypeService {
 
     /**
@@ -78,5 +77,4 @@ public interface ProductTypeService {
      * @return {@link ProductTypeEntity}
      */
     ProductTypeEntity getProductTypeEntityById(final Long id);
-
 }

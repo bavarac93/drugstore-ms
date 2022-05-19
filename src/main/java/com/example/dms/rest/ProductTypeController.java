@@ -86,6 +86,4 @@ public class ProductTypeController {
     ) {
         return new ResponseEntity<>(productTypeService.updateProductTypeDescById(id, productTypeRequestPatch), HttpStatus.ACCEPTED);
     }
-
-
 }
