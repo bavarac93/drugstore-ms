@@ -48,20 +48,17 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    public List<RoleResponse> findAllRolesByName(final String name) {
+        List<RoleEntity> entities = roleRepository.findAllRolesByName(name);
+        return roleMapper.entitiesToDto(entities);
+    }
+
+    @Override
     public void deleteById(final Long id) {
         if (!roleRepository.existsById(id)) {
             throw new ApiRequestException(
                     MessageFormat.format(ROLE_DOES_NOT_EXIST, id));
         }
         roleRepository.deleteById(id);
-    }
-
-    @Override
-    public RoleResponse findRoleByName(final String name) {
-        final RoleEntity roleEntity = roleRepository.findByName(name);
-        if (roleExists(name)) {
-            throw new ApiRequestException(MessageFormat.format(ROLE_NOT_FOUND,name));
-        }
-        return roleMapper.entityToDto(roleEntity);
     }
 }

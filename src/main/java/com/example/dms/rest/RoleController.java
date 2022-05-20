@@ -47,12 +47,12 @@ public class RoleController {
         return new ResponseEntity<>(roleService.findAll(), HttpStatus.FOUND);
     }
 
-    @ApiOperation(value = "Retrieve a role by name",
+    @ApiOperation(value = "Retrieve all roles by same name",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    @GetMapping("{name}")
-    public ResponseEntity<RoleResponse> findRoleByName(@PathVariable final String name) {
-        return new ResponseEntity<>(roleService.findRoleByName(name), HttpStatus.FOUND);
+    @GetMapping("/find-roles-by-name/{name}")
+    public ResponseEntity<List<RoleResponse>> findAllRolesByName(@PathVariable final String name) {
+        return new ResponseEntity<>(roleService.findAllRolesByName(name), HttpStatus.FOUND);
     }
 
     @ApiOperation(value = "Delete a role by id", consumes = MediaType.APPLICATION_JSON_VALUE)

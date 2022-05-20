@@ -14,7 +14,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,8 +29,11 @@ import java.util.Objects;
 @Transactional
 public class UserServiceImpl implements UserService, UserDetailsService {
 
-    private static final String USER_DOES_NOT_EXIST = "User with this id: {0} does not exist.";
+    private static final String USER_DOES_NOT_EXIST_ID = "User with this id: {0} does not exist.";
     private static final String USER_ALREADY_EXISTS = "User with this username: {0} already exists.";
+    private static final String USERNAME_DOES_NOT_EXIST = "Username {0} does not exist.";
+    private static final String USER_DOES_NOT_EXIST = "User {0} does not exist.";
+
 
     private static final String AUTHOR = "Muki";
 
@@ -77,8 +79,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public UserResponse findUserByUsername(@NotNull final String username) {
+    public UserResponse findUserByUsername(final String username) {
         final UserEntity userEntity = userRepository.findByUsername(username);
+        if ((userEntity == null) || !(userEntity.getUsername().equals(username))) {
+            throw new ApiRequestException(MessageFormat.format(USERNAME_DOES_NOT_EXIST, username));
+        }
         return userMapper.entityToDto(userEntity);
     }
 
@@ -92,16 +97,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public void deleteById(final Long id) {
         if (!userRepository.existsById(id)) {
             throw new ApiRequestException(
-                    MessageFormat.format(USER_DOES_NOT_EXIST, id));
+                    MessageFormat.format(USER_DOES_NOT_EXIST_ID, id));
         }
         userRepository.deleteById(id);
     }
 
     @Override
-    public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(final String username) throws ApiRequestException {
         UserEntity user = userRepository.findByUsername(username);
         if (user == null) {
-            throw new UsernameNotFoundException("User not found in the database");
+            throw new ApiRequestException(MessageFormat.format(USER_DOES_NOT_EXIST, username));
         }
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
         user.getRoles().forEach(roleEntity -> {

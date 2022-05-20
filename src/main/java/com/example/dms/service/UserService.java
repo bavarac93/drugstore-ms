@@ -36,10 +36,10 @@ public interface UserService {
     void addRoleToUser(final String username, final String roleName);
 
     /**
-     * Find a user by username.
+     * Find user by username.
      *
      * @param username {@link String}
-     * @return userResponse {@link UserResponse}
+     * @return {@link String}
      */
     UserResponse findUserByUsername(final String username);
 

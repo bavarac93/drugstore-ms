@@ -52,7 +52,7 @@ public class UserController {
     @ApiOperation(value = "Retrieve a user by username",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    @GetMapping("{username}")
+    @GetMapping("/find-user-by-username/{username}")
     public ResponseEntity<UserResponse> findUserByUsername(@PathVariable final String username) {
         return new ResponseEntity<>(userService.findUserByUsername(username), HttpStatus.FOUND);
     }
