@@ -20,7 +20,6 @@ import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class FacilityServiceImpl implements FacilityService {
