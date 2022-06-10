@@ -8,13 +8,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "roles")
-public class RoleEntity {
+public class RolesEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
 
-    public RoleEntity() {
+    public RolesEntity() {
     }
 
     public Long getId() {
@@ -35,7 +35,7 @@ public class RoleEntity {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("RoleEntity{");
+        final StringBuilder sb = new StringBuilder("RolesEntity{");
         sb.append("id=").append(id);
         sb.append(", name='").append(name).append('\'');
         sb.append('}');

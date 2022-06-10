@@ -85,11 +85,7 @@ public class FacilityServiceImpl implements FacilityService {
     }
 
     public @NotNull FacilityEntity getFacilityEntityById(final Long id) {
-        final Optional<FacilityEntity> optionalFacilityEntity = facilityRepository.findById(id);
-        if (optionalFacilityEntity.isEmpty()) {
-            throw new ApiRequestException(
-                    MessageFormat.format(FACILITY_DOES_NOT_EXIST, id));
-        }
-        return optionalFacilityEntity.get();
+        return facilityRepository.findById(id)
+                .orElseThrow(() -> new ApiRequestException(MessageFormat.format(FACILITY_DOES_NOT_EXIST, id)));
     }
 }

@@ -85,12 +85,8 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public SupplierEntity getSupplierEntityById(final Long id) {
-        final Optional<SupplierEntity> optionalSupplierEntity = supplierRepository.findById(id);
-        if (optionalSupplierEntity.isEmpty()) {
-            throw new ApiRequestException(
-                    MessageFormat.format(SUPPLIER_DOES_NOT_EXIST, id));
-        }
-        return optionalSupplierEntity.get();
+        return supplierRepository.findById(id)
+                .orElseThrow(() -> new ApiRequestException(MessageFormat.format(SUPPLIER_DOES_NOT_EXIST, id)));
     }
 
     @Override

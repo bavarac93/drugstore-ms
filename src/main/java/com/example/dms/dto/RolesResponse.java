@@ -1,6 +1,6 @@
 package com.example.dms.dto;
 
-public class RoleResponse {
+public class RolesResponse {
     private Long id;
     private String name;
 

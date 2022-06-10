@@ -108,12 +108,8 @@ public class InventoryServiceImpl implements InventoryService {
     }
 
     public @NotNull InventoryEntity getInventoryEntityById(final Long id) {
-        final Optional<InventoryEntity> optionalInventoryEntity = inventoryRepository.findById(id);
-        if (optionalInventoryEntity.isEmpty()) {
-            throw new ApiRequestException(
-                    MessageFormat.format(ITEM_DOES_NOT_EXIST, id));
-        }
-        return optionalInventoryEntity.get();
+        return inventoryRepository.findById(id)
+                .orElseThrow(() -> new ApiRequestException(MessageFormat.format(ITEM_DOES_NOT_EXIST, id)));
     }
 
     @Override

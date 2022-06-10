@@ -1,8 +1,8 @@
 package com.example.dms.rest;
 
-import com.example.dms.dto.RoleRequest;
-import com.example.dms.dto.RoleResponse;
-import com.example.dms.service.RoleService;
+import com.example.dms.dto.RolesRequest;
+import com.example.dms.dto.RolesResponse;
+import com.example.dms.service.RolesService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
@@ -25,40 +25,40 @@ import java.util.Objects;
 @RequestMapping("role")
 @Api(value = "APIs used to manipulate role data", tags = "role")
 @Validated
-public class RoleController {
+public class RolesController {
 
-    private final RoleService roleService;
+    private final RolesService rolesService;
 
-    public RoleController(final RoleService roleService) {
-        this.roleService = Objects.requireNonNull(roleService, "roleService cannot be null");
+    public RolesController(final RolesService rolesService) {
+        this.rolesService = Objects.requireNonNull(rolesService, "rolesService cannot be null");
     }
 
     @ApiOperation(value = "Create a role",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @PostMapping
-    public ResponseEntity<RoleResponse> create(@Valid @RequestBody final RoleRequest roleRequest) {
-        return new ResponseEntity<>(roleService.create(roleRequest), HttpStatus.CREATED);
+    public ResponseEntity<RolesResponse> create(@Valid @RequestBody final RolesRequest rolesRequest) {
+        return new ResponseEntity<>(rolesService.create(rolesRequest), HttpStatus.CREATED);
     }
 
     @ApiOperation(value = "Retrieve all roles", produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping
-    public ResponseEntity<List<RoleResponse>> findAll() {
-        return new ResponseEntity<>(roleService.findAll(), HttpStatus.FOUND);
+    public ResponseEntity<List<RolesResponse>> findAll() {
+        return new ResponseEntity<>(rolesService.findAll(), HttpStatus.FOUND);
     }
 
     @ApiOperation(value = "Retrieve all roles by same name",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping("/find-roles-by-name/{name}")
-    public ResponseEntity<List<RoleResponse>> findAllRolesByName(@PathVariable final String name) {
-        return new ResponseEntity<>(roleService.findAllRolesByName(name), HttpStatus.FOUND);
+    public ResponseEntity<List<RolesResponse>> findAllRolesByName(@PathVariable final String name) {
+        return new ResponseEntity<>(rolesService.findAllRolesByName(name), HttpStatus.FOUND);
     }
 
     @ApiOperation(value = "Delete a role by id", consumes = MediaType.APPLICATION_JSON_VALUE)
     @DeleteMapping("{id}")
     ResponseEntity<Void> deleteById(@PathVariable final Long id) {
-        roleService.deleteById(id);
+        rolesService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

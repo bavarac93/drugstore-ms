@@ -128,12 +128,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     public @NotNull CustomerEntity getCustomerEntityById(final Long id) {
-        final Optional<CustomerEntity> optionalCustomerEntity = customerRepository.findById(id);
-        if (optionalCustomerEntity.isEmpty()) {
-            throw new ApiRequestException(
-                    MessageFormat.format(CUSTOMER_DOES_NOT_EXIST, id));
-        }
-        return optionalCustomerEntity.get();
+        return customerRepository.findById(id)
+                .orElseThrow(() -> new ApiRequestException(MessageFormat.format(CUSTOMER_DOES_NOT_EXIST, id)));
     }
 
     @Override

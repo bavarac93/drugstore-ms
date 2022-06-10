@@ -91,12 +91,8 @@ public class OrdersServiceImpl implements OrdersService {
 
     @Override
     public OrdersEntity getOrdersEntityById(final Long id) {
-        final Optional<OrdersEntity> optionalProductTypeEntity = ordersRepository.findById(id);
-        if (optionalProductTypeEntity.isEmpty()) {
-            throw new ApiRequestException(
-                    MessageFormat.format(ORDER_NOT_FOUND, id));
-        }
-        return optionalProductTypeEntity.get();
+        return ordersRepository.findById(id)
+                .orElseThrow(() -> new ApiRequestException(MessageFormat.format(ORDER_NOT_FOUND, id)));
     }
 
     @Override

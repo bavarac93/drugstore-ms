@@ -1,7 +1,7 @@
 package com.example.dms.service;
 
-import com.example.dms.dto.UserRequest;
-import com.example.dms.dto.UserResponse;
+import com.example.dms.dto.UsersRequest;
+import com.example.dms.dto.UsersResponse;
 
 import java.util.List;
 
@@ -17,15 +17,15 @@ import java.util.List;
  *     <li>{@link #deleteById}</li>
  * </ul>
  */
-public interface UserService {
+public interface UsersService {
 
     /**
      * Create a user based on request data.
      *
-     * @param userRequest {@link UserRequest}
-     * @return userResponse {@link UserResponse}
+     * @param usersRequest {@link UsersRequest}
+     * @return userResponse {@link UsersResponse}
      */
-    UserResponse create(final UserRequest userRequest);
+    UsersResponse create(final UsersRequest usersRequest);
 
     /**
      * Add role to a user.
@@ -41,14 +41,14 @@ public interface UserService {
      * @param username {@link String}
      * @return {@link String}
      */
-    UserResponse findUserByUsername(final String username);
+    UsersResponse findUserByUsername(final String username);
 
     /**
      * Get a list of users.
      *
-     * @return userResponse {@link UserResponse}
+     * @return userResponse {@link UsersResponse}
      */
-    List<UserResponse> findAll();
+    List<UsersResponse> findAll();
 
     /**
      * Delete a user by id.

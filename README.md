@@ -11,7 +11,7 @@ The application allows you to perform a variety of tasks.
 It is possible to:
 Make a list of addresses in the same city, List all brands in some drugstore, Get a list of customers that are allergic to the same medicine, Get a list of verified customers, Count customers allergic to a specific drug, Get items with specific expiry date, Get a list of products of the same type, Make a list of items made by the same brand, Count items made by the same brand, Find suppliers that signed the contract on a specific date, Find suppliers who contract expires on a specific date, Get items of the same supplier, Count items from the same supplier, Find orders that were made on a specific date, and Make a list of orders made by the same customer.
 
-The userEntity (developer) is assumed to have Java 11 or higher installed. 
+The usersEntity (developer) is assumed to have Java 11 or higher installed. 
 Maven, git, docker, and docker-compose are also required. 
 Keep in mind that you must meet the prerequisites listed above.
 

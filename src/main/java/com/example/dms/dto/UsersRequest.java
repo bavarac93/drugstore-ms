@@ -5,7 +5,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-public class UserRequest {
+public class UsersRequest {
     @NotEmpty(message = "Name must contain name.")
     @NotBlank(message = "Name must contain name.")
     @Size(min = 3, max = 25, message = "Role must be between 3 and 25 characters.")

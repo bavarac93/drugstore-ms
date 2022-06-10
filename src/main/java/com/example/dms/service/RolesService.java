@@ -1,7 +1,7 @@
 package com.example.dms.service;
 
-import com.example.dms.dto.RoleRequest;
-import com.example.dms.dto.RoleResponse;
+import com.example.dms.dto.RolesRequest;
+import com.example.dms.dto.RolesResponse;
 
 import java.util.List;
 
@@ -16,29 +16,29 @@ import java.util.List;
  *     <li>{@link #findAllRolesByName}</li>
  * </ul>
  */
-public interface RoleService {
+public interface RolesService {
 
     /**
      * Create a role based on request data.
      *
-     * @param roleRequest {@link RoleRequest}
-     * @return roleResponse {@link RoleResponse}
+     * @param rolesRequest {@link RolesRequest}
+     * @return roleResponse {@link RolesResponse}
      */
-    RoleResponse create(final RoleRequest roleRequest);
+    RolesResponse create(final RolesRequest rolesRequest);
 
     /**
      * Get a list of roles.
      *
-     * @return roleResponse {@link RoleResponse}
+     * @return roleResponse {@link RolesResponse}
      */
-    List<RoleResponse> findAll();
+    List<RolesResponse> findAll();
 
     /**
      * Find all roles by same name.
      *
      * @param name {@link String}
      */
-    List<RoleResponse> findAllRolesByName(final String name);
+    List<RolesResponse> findAllRolesByName(final String name);
 
     /**
      * Delete a role by id.

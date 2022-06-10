@@ -82,11 +82,7 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 
     @Override
     public @NotNull ProductTypeEntity getProductTypeEntityById(final Long id) {
-        final Optional<ProductTypeEntity> optionalProductTypeEntity = productTypeRepository.findById(id);
-        if (optionalProductTypeEntity.isEmpty()) {
-            throw new ApiRequestException(
-                    MessageFormat.format(PRODUCT_TYPE_DOES_NOT_EXIST, id));
-        }
-        return optionalProductTypeEntity.get();
+        return productTypeRepository.findById(id)
+                .orElseThrow(() -> new ApiRequestException(MessageFormat.format(PRODUCT_TYPE_DOES_NOT_EXIST, id)));
     }
 }

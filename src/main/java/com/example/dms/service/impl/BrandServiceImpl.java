@@ -88,12 +88,8 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public BrandEntity getBrandEntityById(final Long id) {
-        final Optional<BrandEntity> optionalBrandEntity = brandRepository.findById(id);
-        if (optionalBrandEntity.isEmpty()) {
-            throw new ApiRequestException(
-                    MessageFormat.format(BRAND_DOES_NOT_EXIST, id));
-        }
-        return optionalBrandEntity.get();
+        return brandRepository.findById(id)
+                .orElseThrow(() -> new ApiRequestException(MessageFormat.format(BRAND_DOES_NOT_EXIST, id)));
     }
 }
 

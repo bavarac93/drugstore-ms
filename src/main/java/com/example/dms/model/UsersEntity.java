@@ -13,7 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class UserEntity extends AuditSuperclass {
+public class UsersEntity extends AuditSuperclass {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -21,9 +21,9 @@ public class UserEntity extends AuditSuperclass {
     private String username;
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<RoleEntity> roles = new ArrayList<>();
+    private List<RolesEntity> roles = new ArrayList<>();
 
-    public UserEntity() {
+    public UsersEntity() {
     }
 
     public Long getId() {
@@ -58,17 +58,17 @@ public class UserEntity extends AuditSuperclass {
         this.password = password;
     }
 
-    public List<RoleEntity> getRoles() {
+    public List<RolesEntity> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<RoleEntity> roleEntities) {
+    public void setRoles(List<RolesEntity> roleEntities) {
         this.roles = roles;
     }
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("UserEntity{");
+        final StringBuilder sb = new StringBuilder("UsersEntity{");
         sb.append("id=").append(id);
         sb.append(", name='").append(name).append('\'');
         sb.append(", username='").append(username).append('\'');
