@@ -7,8 +7,8 @@ import com.example.dms.model.FacilityEntity;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class FacilityMapperImpl implements FacilityMapper {
@@ -41,10 +41,6 @@ public class FacilityMapperImpl implements FacilityMapper {
 
     @Override
     public List<FacilityResponse> entitiesToDto(final @NotNull List<FacilityEntity> facilityEntityList) {
-        final List<FacilityResponse > facilityResponseList = new ArrayList<>();
-        for (FacilityEntity facilityEntity : facilityEntityList) {
-            facilityResponseList.add(entityToDto(facilityEntity));
-        }
-        return facilityResponseList;
+        return facilityEntityList.stream().map(this::entityToDto).collect(Collectors.toList());
     }
 }

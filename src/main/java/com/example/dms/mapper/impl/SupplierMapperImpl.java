@@ -7,8 +7,8 @@ import com.example.dms.model.SupplierEntity;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class SupplierMapperImpl implements SupplierMapper {
@@ -36,11 +36,7 @@ public class SupplierMapperImpl implements SupplierMapper {
 
     @Override
     public List<SupplierResponse> entitiesToDto(@NotNull List<SupplierEntity> supplierEntityList) {
-        final List<SupplierResponse> supplierResponses = new ArrayList<>();
-        for (SupplierEntity supplierEntity : supplierEntityList) {
-            supplierResponses.add(entityToDto(supplierEntity));
-        }
-        return supplierResponses;
+        return supplierEntityList.stream().map(this::entityToDto).collect(Collectors.toList());
     }
 
     @Override

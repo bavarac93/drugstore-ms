@@ -7,8 +7,8 @@ import com.example.dms.model.ProductTypeEntity;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class ProductTypeMapperImpl implements ProductTypeMapper {
@@ -32,11 +32,7 @@ public class ProductTypeMapperImpl implements ProductTypeMapper {
 
     @Override
     public List<ProductTypeResponse> entitiesToDto(final @NotNull List<ProductTypeEntity> productTypeEntityList) {
-        final List<ProductTypeResponse> productTypeResponses = new ArrayList<>();
-        for (ProductTypeEntity productTypeEntity : productTypeEntityList) {
-            productTypeResponses.add(entityToDto(productTypeEntity));
-        }
-        return productTypeResponses;
+        return productTypeEntityList.stream().map(this::entityToDto).collect(Collectors.toList());
     }
 
     @Override

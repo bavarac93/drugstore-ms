@@ -7,8 +7,8 @@ import com.example.dms.model.AddressEntity;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class AddressMapperImpl implements AddressMapper {
@@ -38,11 +38,7 @@ public class AddressMapperImpl implements AddressMapper {
 
     @Override
     public List<AddressResponse> entitiesToDto(final @NotNull List<AddressEntity> addressEntities) {
-        final List<AddressResponse> responseList = new ArrayList<>();
-        for (AddressEntity addressEntity : addressEntities) {
-            responseList.add(entityToDto(addressEntity));
-        }
-        return responseList;
+        return addressEntities.stream().map(this::entityToDto).collect(Collectors.toList());
     }
 
     @Override

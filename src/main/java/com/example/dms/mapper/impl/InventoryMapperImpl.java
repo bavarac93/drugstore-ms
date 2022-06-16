@@ -7,8 +7,8 @@ import com.example.dms.model.InventoryEntity;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class InventoryMapperImpl implements InventoryMapper {
@@ -45,11 +45,7 @@ public class InventoryMapperImpl implements InventoryMapper {
 
     @Override
     public List<InventoryResponse> entitiesToDto(final @NotNull List<InventoryEntity> inventoryEntities) {
-        final List<InventoryResponse> inventoryResponseList = new ArrayList<>();
-        for (InventoryEntity inventory : inventoryEntities) {
-            inventoryResponseList.add(entityToDto(inventory));
-        }
-        return inventoryResponseList;
+        return inventoryEntities.stream().map(this::entityToDto).collect(Collectors.toList());
     }
 
     @Override

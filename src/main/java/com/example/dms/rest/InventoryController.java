@@ -112,7 +112,7 @@ public class InventoryController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping("/get-items-by-name/{itemName}")
-    ResponseEntity<List<InventoryResponse>> findItemByName (@PathVariable final String itemName) {
+    ResponseEntity<List<InventoryResponse>> findItemByName(@PathVariable final String itemName) {
         return new ResponseEntity<>(inventoryService.findItemByName(itemName), HttpStatus.FOUND);
     }
 

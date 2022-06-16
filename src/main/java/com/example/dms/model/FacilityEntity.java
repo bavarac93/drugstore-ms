@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "facility")
-public class FacilityEntity extends AuditSuperclass{
+public class FacilityEntity extends AuditSuperclass {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

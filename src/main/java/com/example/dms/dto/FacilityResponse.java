@@ -23,16 +23,16 @@ public class FacilityResponse {
         return facilityName;
     }
 
+    public void setFacilityName(String facilityName) {
+        this.facilityName = facilityName;
+    }
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public void setFacilityName(String facilityName) {
-        this.facilityName = facilityName;
     }
 
     public String getPhoneNumber() {

@@ -36,8 +36,7 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerServiceImpl(
             final CustomerRepository customerRepository,
             final CustomerMapper customerMapper,
-            final AddressService addressService)
-    {
+            final AddressService addressService) {
         this.customerRepository = Objects.requireNonNull(customerRepository, "customerRepository cannot be null");
         this.customerMapper = Objects.requireNonNull(customerMapper, "customerMapper cannot be null");
         this.addressService = Objects.requireNonNull(addressService, "addressService cannot be null");
@@ -52,7 +51,7 @@ public class CustomerServiceImpl implements CustomerService {
         final CustomerEntity customerEntity = customerMapper.dtoToEntity(customerRequest);
         final AddressEntity addressEntity = addressService.getAddressEntityById(customerRequest.getAddressId());
         if (emailExists(customerRequest.getEmail())) {
-            throw new ApiRequestException(MessageFormat.format(EMAIL_ALREADY_EXISTS,customerRequest.getEmail()));
+            throw new ApiRequestException(MessageFormat.format(EMAIL_ALREADY_EXISTS, customerRequest.getEmail()));
         }
         customerEntity.setAddressEntity(addressEntity);
         customerEntity.setCreatedAt(LocalDateTime.now());

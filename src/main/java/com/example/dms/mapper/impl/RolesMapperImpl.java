@@ -7,8 +7,8 @@ import com.example.dms.model.RolesEntity;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class RolesMapperImpl implements RolesMapper {
@@ -29,10 +29,6 @@ public class RolesMapperImpl implements RolesMapper {
 
     @Override
     public List<RolesResponse> entitiesToDto(final @NotNull List<RolesEntity> rolesEntityList) {
-        final List<RolesResponse> rolesRespons = new ArrayList<>();
-        for (RolesEntity rolesEntity : rolesEntityList) {
-            rolesRespons.add(entityToDto(rolesEntity));
-        }
-        return rolesRespons;
+        return rolesEntityList.stream().map(this::entityToDto).collect(Collectors.toList());
     }
 }

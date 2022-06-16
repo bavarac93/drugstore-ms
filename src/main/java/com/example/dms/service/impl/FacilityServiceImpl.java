@@ -38,8 +38,7 @@ public class FacilityServiceImpl implements FacilityService {
             final FacilityMapper facilityMapper,
             final AddressService addressService,
             final InventoryService inventoryService,
-            final OrdersService ordersService)
-    {
+            final OrdersService ordersService) {
         this.facilityRepository = Objects.requireNonNull(facilityRepository, "facilityRepository cannot be null");
         this.facilityMapper = Objects.requireNonNull(facilityMapper, "facilityMapper cannot be null");
         this.addressService = Objects.requireNonNull(addressService, "addressService cannot be null");

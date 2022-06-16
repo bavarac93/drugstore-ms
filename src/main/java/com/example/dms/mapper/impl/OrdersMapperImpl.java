@@ -7,8 +7,8 @@ import com.example.dms.model.OrdersEntity;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class OrdersMapperImpl implements OrdersMapper {
@@ -34,11 +34,7 @@ public class OrdersMapperImpl implements OrdersMapper {
 
     @Override
     public List<OrdersResponse> entitiesToDto(final @NotNull List<OrdersEntity> ordersEntities) {
-        final List<OrdersResponse> ordersResponseList = new ArrayList<>();
-        for (OrdersEntity ordersEntity : ordersEntities) {
-            ordersResponseList.add(entityToDto(ordersEntity));
-        }
-        return ordersResponseList;
+        return ordersEntities.stream().map(this::entityToDto).collect(Collectors.toList());
     }
 
     @Override

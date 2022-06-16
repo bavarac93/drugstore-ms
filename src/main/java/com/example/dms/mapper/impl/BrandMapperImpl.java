@@ -7,8 +7,8 @@ import com.example.dms.model.BrandEntity;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class BrandMapperImpl implements BrandMapper {
@@ -38,11 +38,7 @@ public class BrandMapperImpl implements BrandMapper {
 
     @Override
     public List<BrandResponse> entitiesToDto(final @NotNull List<BrandEntity> brandEntities) {
-        List<BrandResponse> brandResponseList = new ArrayList<>();
-        for (BrandEntity brandEntity : brandEntities) {
-            brandResponseList.add(entityToDto(brandEntity));
-        }
-        return brandResponseList;
+        return brandEntities.stream().map(this::entityToDto).collect(Collectors.toList());
     }
 
     @Override

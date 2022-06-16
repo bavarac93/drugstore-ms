@@ -21,14 +21,14 @@ import java.util.Objects;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final UserDetailsService userDetailsService;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private static final String[] ENABLE_SWAGGER_REQUESTS = {
             "/v2/api-docs",
             "/swagger-resources/**",
             "/swagger-ui/**",
             "/webjars/**"
     };
+    private final UserDetailsService userDetailsService;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public SecurityConfig(final UserDetailsService userDetailsService, final BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userDetailsService = Objects.requireNonNull(userDetailsService, "userDetailsService cannot be null");
@@ -49,18 +49,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers("/auth/login/").permitAll();
         http.authorizeRequests().antMatchers(ENABLE_SWAGGER_REQUESTS).permitAll();
-        http.authorizeRequests().antMatchers("/user/**").hasAnyRole("MODERATOR","ADMIN", "STAFF", "CUSTOMER");
-        http.authorizeRequests().antMatchers("/role/**").hasAnyRole("MODERATOR","ADMIN", "STAFF");
-        http.authorizeRequests().antMatchers("/address/**").hasAnyRole("MODERATOR","ADMIN", "STAFF","CUSTOMER");
-        http.authorizeRequests().antMatchers("/customer/**").hasAnyRole("MODERATOR","ADMIN", "STAFF","CUSTOMER");
+        http.authorizeRequests().antMatchers("/user/**").permitAll();
+        http.authorizeRequests().antMatchers("/role/**").hasAnyRole("MODERATOR", "ADMIN", "STAFF");
+        http.authorizeRequests().antMatchers("/address/**").hasAnyRole("MODERATOR", "ADMIN", "STAFF", "CUSTOMER");
+        http.authorizeRequests().antMatchers("/customer/**").hasAnyRole("MODERATOR", "ADMIN", "STAFF", "CUSTOMER");
         http.authorizeRequests().antMatchers("/inventory/get-items-by-name/**").permitAll();
         http.authorizeRequests().antMatchers("/inventory/get-inventory/**").permitAll();
-        http.authorizeRequests().antMatchers("/inventory/**").hasAnyRole("MODERATOR","ADMIN", "STAFF");
-        http.authorizeRequests().antMatchers("/orders/**").hasAnyRole("MODERATOR","ADMIN", "STAFF");
-        http.authorizeRequests().antMatchers("/product_type/**").hasAnyRole("MODERATOR","ADMIN", "STAFF");
-        http.authorizeRequests().antMatchers("/supplier/**").hasAnyRole("MODERATOR","ADMIN", "STAFF");
+        http.authorizeRequests().antMatchers("/inventory/**").hasAnyRole("MODERATOR", "ADMIN", "STAFF");
+        http.authorizeRequests().antMatchers("/orders/**").hasAnyRole("MODERATOR", "ADMIN", "STAFF");
+        http.authorizeRequests().antMatchers("/product_type/**").hasAnyRole("MODERATOR", "ADMIN", "STAFF");
+        http.authorizeRequests().antMatchers("/supplier/**").hasAnyRole("MODERATOR", "ADMIN", "STAFF");
         http.authorizeRequests().antMatchers("/facility/get-all-stores/**").permitAll();
-        http.authorizeRequests().antMatchers("/facility/**").hasAnyRole("MODERATOR","ADMIN", "STAFF");
+        http.authorizeRequests().antMatchers("/facility/**").hasAnyRole("MODERATOR", "ADMIN", "STAFF");
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }

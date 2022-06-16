@@ -46,13 +46,13 @@ public class UsersServiceImpl implements UsersService, UserDetailsService {
             final UsersRepository usersRepository,
             final RolesRepository rolesRepository,
             final PasswordEncoder passwordEncoder,
-            final UsersMapper usersMapper)
-    {
+            final UsersMapper usersMapper) {
         this.usersRepository = Objects.requireNonNull(usersRepository, "usersRepository cannot be null");
         this.rolesRepository = Objects.requireNonNull(rolesRepository, "rolesRepository cannot be null");
         this.passwordEncoder = Objects.requireNonNull(passwordEncoder, "passwordEncoder cannot be null");
         this.usersMapper = Objects.requireNonNull(usersMapper, "usersMapper cannot be null");
     }
+
     private boolean userExists(final String username) {
         return usersRepository.findByUsername(username) != null;
     }
