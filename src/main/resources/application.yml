@@ -4,8 +4,8 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:1993/drugstore_db
-    username: muki
+    url: jdbc:postgresql://localhost:5342/drugstore_db
+    username: postgres
     password: muki93
 
   jpa:

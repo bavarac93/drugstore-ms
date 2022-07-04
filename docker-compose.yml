@@ -1,13 +1,14 @@
-version: '3.5'
+version: "3.8"
 
 services:
   db:
     container_name: drugstore_ms
     image: postgres
     environment:
-      POSTGRES_USER: muki
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: muki93
       PGDATA: /data/postgres
+      POSTGRES_DB: drugstore_db
     volumes:
       - postgres:/data/postgres
     ports:

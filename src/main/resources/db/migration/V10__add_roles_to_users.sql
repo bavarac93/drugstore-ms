@@ -1,4 +1,4 @@
-INSERT INTO users_roles(user_entity_id, roles_id) VALUES
+INSERT INTO users_roles(users_entity_id, roles_id) VALUES
 (1235654784521, 1234767802),
 (2354478854412, 2234267803),
 (1023445234789, 3234167806),
