@@ -92,7 +92,7 @@
 					<password>muki93</password>
 					<url>jdbc:postgresql://localhost:5342/drugstore_db</url>
 					<schemas>
-						<schema>flyway_schema_history</schema>
+						<schema>public</schema>
 					</schemas>
 				</configuration>
 			</plugin>
