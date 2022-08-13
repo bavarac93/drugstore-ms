@@ -44,7 +44,7 @@ INSERT INTO users(id, name, username, password, created_at, created_by) VALUES
 (1215489523654, 'Meho', 'MehoCust', '$2a$10$mMA6BQyNyx3lBtGuWaT7p.ZcOzYeQWu/F5jUnkBR5J6ojbD1ri0TG', '2022-05-18 11:42:56', 'flyway'),
 (9123654785922, 'Ahmed', 'AhmedGue', '$2a$10$mDE6BQyNyx3lBtGuWaT1p.ZcOzYeQWu/F5jUnkBR5J6ojbD7ri0TG', '2022-05-18 11:42:58', 'flyway');
 
-INSERT INTO users_roles(users_id, roles_id) VALUES
+INSERT INTO users_roles(users_entity_id, roles_id) VALUES
 (1235654784521, 12347678021),
 (2354478854412, 22342678031),
 (1023445234789, 32341678061),

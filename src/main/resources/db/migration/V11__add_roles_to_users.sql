@@ -1,8 +1,8 @@
 CREATE TABLE IF NOT EXISTS public.users_roles
 (
-    users_id bigint NOT NULL,
+    users_entity_id bigint NOT NULL,
     roles_id bigint NOT NULL,
-    CONSTRAINT FKqhv300wni4ac56vwbqbeqa6fi FOREIGN KEY (users_id)
+    CONSTRAINT FKqhv300wni4ac56vwbqbeqa6fi FOREIGN KEY (users_entity_id)
         REFERENCES public.users (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION,
