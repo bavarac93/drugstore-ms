@@ -17,4 +17,4 @@ TABLESPACE pg_default;
 ALTER TABLE IF EXISTS public.supplier
     OWNER to postgres;
 
-CREATE SEQUENCE supplier_sequence_flyway START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE supplier_sequence START WITH 1 INCREMENT BY 1;

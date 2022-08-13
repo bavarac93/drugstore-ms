@@ -33,4 +33,4 @@ TABLESPACE pg_default;
 ALTER TABLE IF EXISTS public.facility
     OWNER to postgres;
 
-CREATE SEQUENCE facility_sequence_flyway START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE facility_sequence START WITH 1 INCREMENT BY 1;

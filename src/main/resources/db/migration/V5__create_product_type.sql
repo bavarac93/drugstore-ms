@@ -15,4 +15,4 @@ TABLESPACE pg_default;
 ALTER TABLE IF EXISTS public.product_type
     OWNER to postgres;
 
-CREATE SEQUENCE product_type_sequence_flyway START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE product_type_sequence START WITH 1 INCREMENT BY 1;

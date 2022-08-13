@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users_entity")
 public class UsersEntity extends AuditSuperclass {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

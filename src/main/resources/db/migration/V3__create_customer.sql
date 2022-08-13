@@ -25,4 +25,4 @@ TABLESPACE pg_default;
 ALTER TABLE IF EXISTS public.customer
     OWNER to postgres;
 
-CREATE SEQUENCE customer_sequence_flyway START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE customer_sequence START WITH 1 INCREMENT BY 1;

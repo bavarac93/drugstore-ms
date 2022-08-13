@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS public.users
+CREATE TABLE IF NOT EXISTS public.users_entity
 (
     id bigint NOT NULL,
     created_by character varying(255) COLLATE pg_catalog."default",
@@ -16,4 +16,4 @@ TABLESPACE pg_default;
 ALTER TABLE IF EXISTS public.users
     OWNER to postgres;
 
-CREATE SEQUENCE users_sequence_flyway START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE users_entity_sequence START WITH 1 INCREMENT BY 1;

@@ -10,4 +10,4 @@ TABLESPACE pg_default;
 ALTER TABLE IF EXISTS public.roles
     OWNER to postgres;
 
-CREATE SEQUENCE roles_sequence_flyway START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE roles_sequence START WITH 1 INCREMENT BY 1;
