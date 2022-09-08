@@ -1,14 +1,5 @@
-FROM openjdk:11-jre-slim as builder
-WORKDIR application
+FROM openjdk:11
 ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} application.jar
-RUN java -Djarmode=layertools -jar application.jar extract
-
-FROM openjdk:11-jre-slim
-WORKDIR application
-COPY --from=builder application/dependencies/ ./
-COPY --from=builder application/spring-boot-loader/ ./
-COPY --from=builder application/snapshot-dependencies/ ./
-COPY --from=builder application/application/ ./
+COPY ${JAR_FILE} dms-0.0.1-SNAPSHOT.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
+ENTRYPOINT ["java","-jar","/dms-0.0.1-SNAPSHOT.jar"]
