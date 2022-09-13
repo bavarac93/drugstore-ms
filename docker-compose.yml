@@ -1,5 +1,5 @@
 version: "3.8"
- // update docker-compose run the image of the db and the image from dockerfile, put them in the same network //
+ # update docker-compose run the image of the db and the image from dockerfile, put them in the same network //
 services:
   db:
     container_name: drugstore_management_system
