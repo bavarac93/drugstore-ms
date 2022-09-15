@@ -19,7 +19,6 @@ import java.util.Objects;
 public class RolesServiceImpl implements RolesService {
 
     private static final String ROLE_DOES_NOT_EXIST = "Role with this id: {0} does not exist.";
-    private static final String ROLE_NOT_FOUND = "Role with this name: {0} does not exist.";
     private final RolesRepository rolesRepository;
     private final RolesMapper rolesMapper;
 
