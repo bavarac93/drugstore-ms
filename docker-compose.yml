@@ -1,6 +1,15 @@
 version: "3.8"
- // update docker-compose run the image of the db and the image from dockerfile, put them in the same network //
+ # update docker-compose to run the image of the db and the image from dockerfile, put them in the same network, set image name
 services:
+  project-dms:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+    container_name: project-dms
+    depends_on:
+      - db
   db:
     container_name: drugstore_management_system
     image: postgres
