@@ -3,9 +3,8 @@ package com.example.dms.service.impl;
 import com.example.dms.dao.AddressRepository;
 import com.example.dms.dao.CustomerRepository;
 import com.example.dms.dto.CustomerRequest;
-import com.example.dms.mapper.AddressMapper;
+import com.example.dms.dto.CustomerResponse;
 import com.example.dms.mapper.CustomerMapper;
-import com.example.dms.mapper.impl.AddressMapperImpl;
 import com.example.dms.mapper.impl.CustomerMapperImpl;
 import com.example.dms.model.AddressEntity;
 import com.example.dms.model.CustomerEntity;
@@ -18,10 +17,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import java.util.List;
+
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -102,7 +101,7 @@ class CustomerServiceImplTest {
 
     @Test
     @Disabled
-    void findById() {
+    void canFindById() {
         CustomerRequest customerRequest = new CustomerRequest();
         Mockito.when(customerRepository.save(Mockito.any(CustomerEntity.class))).thenReturn(mapper.dtoToEntity(customerRequest));
         underTest.create(customerRequest);
@@ -112,41 +111,53 @@ class CustomerServiceImplTest {
 
     @Test
     @Disabled
-    void deleteById() {
+    void canDeleteById() {
     }
 
     @Test
     @Disabled
-    void updateById() {
+    void canUpdateById() {
     }
 
     @Test
     @Disabled
-    void updatePhoneNumberById() {
+    void canUpdatePhoneNumberById() {
     }
 
     @Test
     @Disabled
-    void updateVerifiedStatus() {
+    void canUpdateVerifiedStatus() {
+    }
+
+    @Test
+    void canFindAllergicCustomers() {
+        //given
+        String medicine = "Zenica";
+
+        //when
+        List<CustomerResponse> responseList = underTest.findAllergicCustomers(medicine);
+
+        //then
+        Mockito.verify(customerRepository, Mockito.times(1)).listAllergicCustomers(medicine);
     }
 
     @Test
     @Disabled
-    void findAllergicCustomers() {
+    void canCountAllergicCustomersToSomeDrug() {
     }
 
     @Test
     @Disabled
-    void countAllergicCustomersToSomeDrug() {
+    void canGetCustomerEntityById() {
     }
 
     @Test
-    @Disabled
-    void getCustomerEntityById() {
-    }
+    void canFindVerifiedCustomers() {
+        //given
+        //when
+        List<CustomerResponse> responseList = underTest.findVerifiedCustomers();
 
-    @Test
-    @Disabled
-    void findVerifiedCustomers() {
+        //then
+        Mockito.verify(customerRepository, Mockito.times(1)).findVerifiedCustomers();
     }
 }

@@ -2,6 +2,7 @@ package com.example.dms.service.impl;
 
 import com.example.dms.dao.BrandRepository;
 import com.example.dms.dto.BrandRequest;
+import com.example.dms.dto.BrandResponse;
 import com.example.dms.mapper.BrandMapper;
 import com.example.dms.mapper.impl.BrandMapperImpl;
 import com.example.dms.model.BrandEntity;
@@ -14,6 +15,8 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.times;
@@ -69,31 +72,38 @@ class BrandServiceImplTest {
 
     @Test
     @Disabled
-    void findById() {
+    void canFindById() {
     }
 
     @Test
     @Disabled
-    void deleteById() {
+    void canDeleteById() {
     }
 
     @Test
     @Disabled
-    void updateById() {
+    void canUpdateById() {
     }
 
     @Test
     @Disabled
-    void updateBrandDescById() {
+    void canUpdateBrandDescById() {
+    }
+
+    @Test
+    void canFindAllBrandsBySomeName() {
+        //given
+        String brand = "Zenica";
+
+        //when
+        List<BrandResponse> responseList = underTest.findAllBrandsBySomeName(brand);
+
+        //then
+        Mockito.verify(brandRepository, Mockito.times(1)).findAllBrandsBySomeName(brand);
     }
 
     @Test
     @Disabled
-    void findAllBrandsBySomeName() {
-    }
-
-    @Test
-    @Disabled
-    void getBrandEntityById() {
+    void canGetBrandEntityById() {
     }
 }

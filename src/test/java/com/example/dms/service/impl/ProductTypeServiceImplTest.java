@@ -35,7 +35,7 @@ class ProductTypeServiceImplTest {
     }
 
     @Test
-    void canFindAllOrders() {
+    void canFindAllProductTypes() {
         //when
         underTest.findAll();
         //then
@@ -62,26 +62,26 @@ class ProductTypeServiceImplTest {
 
     @Test
     @Disabled
-    void findById() {
+    void canFindById() {
     }
 
     @Test
     @Disabled
-    void deleteById() {
+    void canDeleteById() {
     }
 
     @Test
     @Disabled
-    void updateById() {
+    void canUpdateById() {
     }
 
     @Test
     @Disabled
-    void updateProductTypeDescById() {
+    void canUpdateProductTypeDescById() {
     }
 
     @Test
     @Disabled
-    void getProductTypeEntityById() {
+    void canGetProductTypeEntityById() {
     }
 }

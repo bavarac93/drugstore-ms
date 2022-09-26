@@ -32,7 +32,7 @@ class UsersServiceImplTest {
     }
 
     @Test
-    void canFindAll() {
+    void canFindAllUsers() {
         //when
         underTest.findAll();
         //then
@@ -41,26 +41,26 @@ class UsersServiceImplTest {
 
     @Test
     @Disabled
-    void create() {
+    void canCreateUsers() {
     }
 
     @Test
     @Disabled
-    void addRoleToUser() {
+    void canAddRoleToUser() {
     }
 
     @Test
     @Disabled
-    void findUserByUsername() {
+    void canFindUserByUsername() {
     }
 
     @Test
     @Disabled
-    void deleteById() {
+    void canDeleteById() {
     }
 
     @Test
     @Disabled
-    void loadUserByUsername() {
+    void canLoadUserByUsername() {
     }
 }

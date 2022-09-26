@@ -1,6 +1,7 @@
 package com.example.dms.service.impl;
 
 import com.example.dms.dao.InventoryRepository;
+import com.example.dms.dto.InventoryResponse;
 import com.example.dms.mapper.InventoryMapper;
 import com.example.dms.mapper.impl.InventoryMapperImpl;
 import com.example.dms.service.BrandService;
@@ -12,7 +13,10 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.List;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -41,76 +45,86 @@ class InventoryServiceImplTest {
 
     @Test
     @Disabled
-    void create() {
+    void canCreateInventoryItems() {
     }
 
     @Test
     @Disabled
-    void findById() {
+    void canFindById() {
     }
 
     @Test
     @Disabled
-    void findAll() {
+    void canDeleteById() {
     }
 
     @Test
     @Disabled
-    void deleteById() {
+    void canUpdateById() {
     }
 
     @Test
     @Disabled
-    void updateById() {
+    void canUpdateDescriptionById() {
     }
 
     @Test
     @Disabled
-    void updateDescriptionById() {
+    void canGetInventoryEntityById() {
     }
 
     @Test
     @Disabled
-    void getInventoryEntityById() {
+    void canFindAllWithExpiryTimeBefore() {
     }
 
     @Test
     @Disabled
-    void findAllWithExpiryTimeBefore() {
+    void canFindItemsMadeByTheSameBrand() {
     }
 
     @Test
     @Disabled
-    void findItemsMadeByTheSameBrand() {
+    void canCountItemsMadeByTheSameBrand() {
     }
 
     @Test
     @Disabled
-    void countItemsMadeByTheSameBrand() {
+    void canFindItemsOfTheSameType() {
     }
 
     @Test
     @Disabled
-    void findItemsOfTheSameType() {
+    void canFindItemsFromTheSameSupplier() {
+        //given
+        String name = "Item";
+
+        //when
+        List<InventoryResponse> responseList = underTest.findItemByName(name);
+
+        //then
+        Mockito.verify(inventoryRepository, Mockito.times(1)).findItemByName(name);
     }
 
     @Test
     @Disabled
-    void findItemsFromTheSameSupplier() {
+    void canCountItemsOfTheSameType() {
     }
 
     @Test
     @Disabled
-    void countItemsOfTheSameType() {
+    void canCountItemsFromTheSameSupplier() {
     }
 
     @Test
-    @Disabled
-    void countItemsFromTheSameSupplier() {
-    }
+    void canFindItemByName() {
+        //given
+        String name = "Item";
 
-    @Test
-    @Disabled
-    void findItemByName() {
+        //when
+        List<InventoryResponse> responseList = underTest.findItemByName(name);
+
+        //then
+        Mockito.verify(inventoryRepository, Mockito.times(1)).findItemByName(name);
     }
 }

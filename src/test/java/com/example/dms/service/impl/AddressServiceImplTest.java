@@ -2,6 +2,7 @@ package com.example.dms.service.impl;
 
 import com.example.dms.dao.AddressRepository;
 import com.example.dms.dto.AddressRequest;
+import com.example.dms.dto.AddressResponse;
 import com.example.dms.exception.ApiRequestException;
 import com.example.dms.mapper.AddressMapper;
 import com.example.dms.mapper.impl.AddressMapperImpl;
@@ -16,12 +17,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Optional;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
 class AddressServiceImplTest {
@@ -133,12 +133,44 @@ class AddressServiceImplTest {
     }
     @Test
     @Disabled
-    void updateById() {
+    void canUpdateById() {
+        //given
+        AddressEntity addressEntity = new AddressEntity();
+        addressEntity.setBuildingNumber("2A");
+        addressEntity.setCity("Zenica");
+        addressEntity.setCountry("Bosna i Hercegovina");
+        addressEntity.setPostcode("72000");
+        addressEntity.setStreet("Makovi");
+        addressEntity.setId(1L);
+
+        AddressRequest addressRequest = new AddressRequest();
+        addressRequest.setBuildingNumber("3D");
+        addressRequest.setCity("Sarajevo");
+        addressRequest.setCountry("Bosna i Hercegovina");
+        addressRequest.setPostcode("71000");
+        addressRequest.setStreet("Grbavica");
+
+        //when
+        Long checkId = 1L;
+        addressRepository.findById(checkId);
+        underTest.updateById(checkId, addressRequest);
+
+        //then
+        Mockito.verify(addressRepository).findById(checkId);
+        ArgumentCaptor<AddressEntity> addressEntityArgumentCaptor = ArgumentCaptor.forClass(AddressEntity.class);
+        Mockito.verify(addressRepository).save(addressEntityArgumentCaptor.capture());
+        AddressEntity addressEntityRepo = addressEntityArgumentCaptor.getValue();
+        assertThat(addressEntityRepo.getCity()).isEqualTo(addressRequest.getCity());
+        assertThat(addressEntityRepo.getCountry()).isEqualTo(addressRequest.getCountry());
+        assertThat(addressEntityRepo.getPostcode()).isEqualTo(addressRequest.getPostcode());
+        assertThat(addressEntityRepo.getStreet()).isEqualTo(addressRequest.getStreet());
+        assertThat(addressEntityRepo.getBuildingNumber()).isEqualTo(addressRequest.getBuildingNumber());
+
     }
 
     @Test
     @Disabled
-    void updateStreetAndBuildingNumberById() {
+    void canUpdateStreetAndBuildingNumberById() {
     }
 
     @Test
@@ -161,7 +193,14 @@ class AddressServiceImplTest {
     }
 
     @Test
-    @Disabled
-    void findAddressesInTheSameCity() {
+    void canFindAddressesInTheSameCity() {
+        //given
+        String city = "Zenica";
+
+        //when
+        List<AddressResponse> responseList = underTest.findAddressesInTheSameCity(city);
+
+        //then
+        Mockito.verify(addressRepository, Mockito.times(1)).findAddressesInTheSameCity(city);
     }
 }

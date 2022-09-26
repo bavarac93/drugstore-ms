@@ -36,16 +36,16 @@ class RolesServiceImplTest {
 
     @Test
     @Disabled
-    void create() {
+    void canCreateRoles() {
     }
 
     @Test
     @Disabled
-    void findAllRolesByName() {
+    void canFindAllRolesByName() {
     }
 
     @Test
     @Disabled
-    void deleteById() {
+    void canDeleteById() {
     }
 }

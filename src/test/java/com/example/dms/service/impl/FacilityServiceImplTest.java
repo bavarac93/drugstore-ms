@@ -42,21 +42,21 @@ class FacilityServiceImplTest {
 
     @Test
     @Disabled
-    void create() {
+    void canCreateFacility() {
     }
 
     @Test
     @Disabled
-    void findById() {
+    void canFindById() {
     }
 
     @Test
     @Disabled
-    void deleteById() {
+    void canDeleteById() {
     }
 
     @Test
     @Disabled
-    void getFacilityEntityById() {
+    void canGetFacilityEntityById() {
     }
 }

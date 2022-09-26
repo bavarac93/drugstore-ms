@@ -40,36 +40,36 @@ class OrdersServiceImplTest {
 
     @Test
     @Disabled
-    void create() {
+    void canCreateOrders() {
     }
 
     @Test
     @Disabled
-    void findById() {
+    void canFindById() {
     }
 
     @Test
     @Disabled
-    void deleteById() {
+    void canDeleteById() {
     }
 
     @Test
     @Disabled
-    void updateById() {
+    void canUpdateById() {
     }
 
     @Test
     @Disabled
-    void getOrdersEntityById() {
+    void canGetOrdersEntityById() {
     }
 
     @Test
     @Disabled
-    void findOrdersMadeOnSomeDate() {
+    void canFindOrdersMadeOnSomeDate() {
     }
 
     @Test
     @Disabled
-    void findOrdersMadeBySameCustomer() {
+    void canFindOrdersMadeBySameCustomer() {
     }
 }

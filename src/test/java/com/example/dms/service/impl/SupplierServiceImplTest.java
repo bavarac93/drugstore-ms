@@ -27,7 +27,7 @@ class SupplierServiceImplTest {
     }
 
     @Test
-    void canFindAll() {
+    void canFindAllSuppliers() {
         //when
         underTest.findAll();
         //then
@@ -36,41 +36,41 @@ class SupplierServiceImplTest {
 
     @Test
     @Disabled
-    void create() {
+    void canCreateSupplier() {
     }
 
     @Test
     @Disabled
-    void findById() {
+    void canFindById() {
     }
 
     @Test
     @Disabled
-    void deleteById() {
+    void canDeleteById() {
     }
 
     @Test
     @Disabled
-    void updateById() {
+    void canUpdateById() {
     }
 
     @Test
     @Disabled
-    void updateContractExpiresById() {
+    void canUpdateContractExpiresById() {
     }
 
     @Test
     @Disabled
-    void getSupplierEntityById() {
+    void canGetSupplierEntityById() {
     }
 
     @Test
     @Disabled
-    void findAllWithContractSignedOn() {
+    void canFindAllWithContractSignedOn() {
     }
 
     @Test
     @Disabled
-    void findAllWithContractExpiresOn() {
+    void canFindAllWithContractExpiresOn() {
     }
 }
