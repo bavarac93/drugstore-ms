@@ -2,9 +2,12 @@ package com.example.dms.service.impl;
 
 import com.example.dms.dao.AddressRepository;
 import com.example.dms.dao.CustomerRepository;
+import com.example.dms.dto.AddressRequest;
 import com.example.dms.dto.CustomerRequest;
 import com.example.dms.dto.CustomerResponse;
+import com.example.dms.mapper.AddressMapper;
 import com.example.dms.mapper.CustomerMapper;
+import com.example.dms.mapper.impl.AddressMapperImpl;
 import com.example.dms.mapper.impl.CustomerMapperImpl;
 import com.example.dms.model.AddressEntity;
 import com.example.dms.model.CustomerEntity;
@@ -15,12 +18,14 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -33,6 +38,9 @@ class CustomerServiceImplTest {
 
     @Mock
     private AddressService addressService;
+
+    @Mock
+    private AddressMapper addressMapper = new AddressMapperImpl();
     @Mock
     private AddressRepository addressRepository;
 
@@ -51,7 +59,7 @@ class CustomerServiceImplTest {
         addressService.getAddressEntityById(222L);
 
         CustomerRequest customerRequest = new CustomerRequest();
-        customerRequest.setAddressId(1L);
+        customerRequest.setAddressId(222L);
         customerRequest.setEmail("muki@gmail.com");
         customerRequest.setDrugAllergicTo("Paracetamol");
         customerRequest.setFirstName("Muharem");
@@ -68,20 +76,42 @@ class CustomerServiceImplTest {
     }
 
     @Test
+    @Disabled
     void canCreateCustomer() {
+        AddressRequest addressRequest = new AddressRequest();
+        addressRequest.setBuildingNumber("2A");
+        addressRequest.setCity("Zenica");
+        addressRequest.setCountry("Bosna i Hercegovina");
+        addressRequest.setPostcode("72000");
+        addressRequest.setStreet("Makovi");
+
         // Given
-        CustomerRequest customerRequest = new CustomerRequest();
         AddressEntity addressEntity = new AddressEntity();
-        addressEntity.setId(222L);
+        addressEntity.setId(3252L);
         addressEntity.setBuildingNumber("2A");
         addressEntity.setCity("Zenica");
         addressEntity.setCountry("Bosna i Hercegovina");
         addressEntity.setPostcode("72000");
         addressEntity.setStreet("Makovi");
-        addressService.getAddressEntityById(222L);
+        addressRepository.save(addressEntity);
+
+        CustomerRequest customerRequest = new CustomerRequest();
+        customerRequest.setAddressId(addressEntity.getId());
+        customerRequest.setEmail("muki@gmail.com");
+        customerRequest.setDrugAllergicTo("Paracetamol");
+        customerRequest.setFirstName("Muharem");
+        customerRequest.setLastName("Spica");
+        customerRequest.setPhoneNumber("062325555");
+        AddressEntity newAddressEntity = addressService.getAddressEntityById(customerRequest.getAddressId());
+
+
+//        addressService.getAddressEntityById(222L);
 
         // When
-        Mockito.when(customerRepository.save(Mockito.any(CustomerEntity.class))).thenReturn(mapper.dtoToEntity(customerRequest));
+        addressMapper.dtoToEntity(addressRequest);
+        addressService.create(addressRequest);
+
+        Mockito.when(customerRepository.save(any(CustomerEntity.class))).thenReturn(mapper.dtoToEntity(customerRequest));
         underTest.create(customerRequest);
 
         // Then

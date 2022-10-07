@@ -48,8 +48,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerResponse create(final CustomerRequest customerRequest) {
-        final CustomerEntity customerEntity = customerMapper.dtoToEntity(customerRequest);
         final AddressEntity addressEntity = addressService.getAddressEntityById(customerRequest.getAddressId());
+        final CustomerEntity customerEntity = customerMapper.dtoToEntity(customerRequest);
         if (emailExists(customerRequest.getEmail())) {
             throw new ApiRequestException(MessageFormat.format(EMAIL_ALREADY_EXISTS, customerRequest.getEmail()));
         }

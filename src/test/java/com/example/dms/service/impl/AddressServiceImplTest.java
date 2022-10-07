@@ -3,10 +3,12 @@ package com.example.dms.service.impl;
 import com.example.dms.dao.AddressRepository;
 import com.example.dms.dto.AddressRequest;
 import com.example.dms.dto.AddressResponse;
+import com.example.dms.dto.CustomerRequest;
 import com.example.dms.exception.ApiRequestException;
 import com.example.dms.mapper.AddressMapper;
 import com.example.dms.mapper.impl.AddressMapperImpl;
 import com.example.dms.model.AddressEntity;
+import com.example.dms.model.CustomerEntity;
 import com.example.dms.service.AddressService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -22,6 +24,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
 class AddressServiceImplTest {
@@ -70,30 +73,7 @@ class AddressServiceImplTest {
     }
 
     @Test
-    @Disabled
     void willThrowIfIdDoesNotExist() {
-        //given
-        AddressEntity addressEntity = new AddressEntity();
-        addressEntity.setBuildingNumber("2A");
-        addressEntity.setCity("Zenica");
-        addressEntity.setCountry("Bosna i Hercegovina");
-        addressEntity.setPostcode("72000");
-        addressEntity.setStreet("Makovi");
-        addressEntity.setId(1L);
-        Long checkId = 3L;
-
-        //when
-        //then
-        Mockito.verify(addressRepository, Mockito.times(1)).findById(checkId).orElseThrow();
-//        given(addressRepository.findById(checkId)).willThrow(ApiRequestException.class);
-
-        assertThatThrownBy(() -> addressRepository.findById(checkId))
-                .isInstanceOf(ApiRequestException.class)
-                .hasMessage("Address with id: {0} does not exist.");
-    }
-
-    @Test
-    void canDeleteById() {
         //given
         AddressEntity addressEntity = new AddressEntity();
         addressEntity.setBuildingNumber("2A");
@@ -105,16 +85,16 @@ class AddressServiceImplTest {
         addressRepository.save(addressEntity);
 
         //when
-        Long checkId = 1L;
-        addressRepository.deleteById(checkId);
+        Long checkId = 35L;
 
         //then
-        assertThat(addressEntity.getId()).isNotNull();
-        assertThat(addressEntity.getId()).isEqualTo(checkId);
+        assertThatThrownBy(() -> underTest.findById(checkId))
+                .isInstanceOf(ApiRequestException.class)
+                .hasMessage("Address with id: " + checkId + " does not exist.");
     }
 
     @Test
-    void canFindById() {
+    void canDeleteById() {
         //given
         AddressEntity addressEntity = new AddressEntity();
         addressEntity.setBuildingNumber("2A");
@@ -122,14 +102,31 @@ class AddressServiceImplTest {
         addressEntity.setCountry("Bosna i Hercegovina");
         addressEntity.setPostcode("72000");
         addressEntity.setStreet("Makovi");
-        addressEntity.setId(1L);
+        addressEntity.setId(35L);
+        addressRepository.save(addressEntity);
 
         //when
-        Long checkId = 1L;
-        addressRepository.findById(checkId);
+        Long checkId = 35L;
+        addressRepository.deleteById(checkId);
 
         //then
-        Mockito.verify(addressRepository, Mockito.times(1)).findById(checkId);
+        assertThat(addressEntity.getId()).isNotNull();
+        assertThat(addressEntity.getId()).isEqualTo(checkId);
+    }
+
+
+    @Test
+    void canFindById() {
+        AddressRequest addressRequest = new AddressRequest();
+        addressRequest.setBuildingNumber("2A");
+        addressRequest.setCity("Zenica");
+        addressRequest.setCountry("Bosna i Hercegovina");
+        addressRequest.setPostcode("72000");
+        addressRequest.setStreet("Makovi");
+        Mockito.when(addressRepository.save(Mockito.any(AddressEntity.class))).thenReturn(mapper.dtoToEntity(addressRequest));
+        underTest.create(addressRequest);
+        Long id = 1L;
+        underTest.findById(id);
     }
     @Test
     @Disabled
