@@ -3,13 +3,12 @@ package com.example.dms.service.impl;
 import com.example.dms.dao.AddressRepository;
 import com.example.dms.dto.AddressRequest;
 import com.example.dms.dto.AddressResponse;
-import com.example.dms.dto.CustomerRequest;
 import com.example.dms.exception.ApiRequestException;
 import com.example.dms.mapper.AddressMapper;
 import com.example.dms.mapper.impl.AddressMapperImpl;
 import com.example.dms.model.AddressEntity;
-import com.example.dms.model.CustomerEntity;
 import com.example.dms.service.AddressService;
+import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -19,91 +18,62 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.given;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
 
 @ExtendWith(MockitoExtension.class)
 class AddressServiceImplTest {
     @Mock private AddressRepository addressRepository;
-    private AddressService underTest;
+    private AddressService realAddressService;
     private AddressMapper mapper = new AddressMapperImpl();
 
     @BeforeEach
     void setUp() {
-        underTest = new AddressServiceImpl(mapper, addressRepository);
-        AddressRequest addressRequest = new AddressRequest();
-        addressRequest.setBuildingNumber("2A");
+        realAddressService = new AddressServiceImpl(mapper, addressRepository);
+    }
+
+    @Test // fix
+    void canCreateAddress() {
+        // Given
+        final AddressRequest addressRequest = new AddressRequest();
         addressRequest.setCity("Zenica");
         addressRequest.setCountry("Bosna i Hercegovina");
         addressRequest.setPostcode("72000");
+        addressRequest.setBuildingNumber("2A");
         addressRequest.setStreet("Makovi");
-    }
-
-    @Test
-    void canCreateAddress() {
-        // Given
-        AddressRequest addressRequest = new AddressRequest();
 
         // When
-        Mockito.when(addressRepository.save(any(AddressEntity.class))).thenReturn(mapper.dtoToEntity(addressRequest));
-        underTest.create(addressRequest);
+        Mockito.when(addressRepository.save(any(AddressEntity.class))).thenReturn(new AddressEntity());
+        final AddressResponse actual = realAddressService.create(addressRequest);
 
         // Then
-        ArgumentCaptor<AddressEntity> addressEntityArgumentCaptor = ArgumentCaptor.forClass(AddressEntity.class);
-        Mockito.verify(addressRepository).save(addressEntityArgumentCaptor.capture());
-
-        AddressEntity addressEntity = addressEntityArgumentCaptor.getValue();
-        assertThat(addressEntity.getCity()).isEqualTo(addressRequest.getCity());
-        assertThat(addressEntity.getCountry()).isEqualTo(addressRequest.getCountry());
-        assertThat(addressEntity.getPostcode()).isEqualTo(addressRequest.getPostcode());
-        assertThat(addressEntity.getStreet()).isEqualTo(addressRequest.getStreet());
-        assertThat(addressEntity.getBuildingNumber()).isEqualTo(addressRequest.getBuildingNumber());
+        assertThat(actual.getCity()).isEqualTo(addressRequest.getCity());
+        assertThat(actual.getCountry()).isEqualTo(addressRequest.getCountry());
+        assertThat(actual.getPostcode()).isEqualTo(addressRequest.getPostcode());
+        assertThat(actual.getStreet()).isEqualTo(addressRequest.getStreet());
+        assertThat(actual.getBuildingNumber()).isEqualTo(addressRequest.getBuildingNumber());
     }
 
     @Test
     void canFindAllAddresses() {
         //when
-        underTest.findAll();
+        realAddressService.findAll();
         //then
         Mockito.verify(addressRepository, Mockito.times(1)).findAll();
     }
 
-    @Test
-    void willThrowIfIdDoesNotExist() {
+    @Test // fix
+    @Disabled
+    void canDeleteAddressEntityById() {
         //given
-        AddressEntity addressEntity = new AddressEntity();
-        addressEntity.setBuildingNumber("2A");
-        addressEntity.setCity("Zenica");
-        addressEntity.setCountry("Bosna i Hercegovina");
-        addressEntity.setPostcode("72000");
-        addressEntity.setStreet("Makovi");
-        addressEntity.setId(1L);
-        addressRepository.save(addressEntity);
-
-        //when
-        Long checkId = 35L;
-
-        //then
-        assertThatThrownBy(() -> underTest.findById(checkId))
-                .isInstanceOf(ApiRequestException.class)
-                .hasMessage("Address with id: " + checkId + " does not exist.");
-    }
-
-    @Test
-    void canDeleteById() {
-        //given
-        AddressEntity addressEntity = new AddressEntity();
-        addressEntity.setBuildingNumber("2A");
-        addressEntity.setCity("Zenica");
-        addressEntity.setCountry("Bosna i Hercegovina");
-        addressEntity.setPostcode("72000");
-        addressEntity.setStreet("Makovi");
-        addressEntity.setId(35L);
-        addressRepository.save(addressEntity);
+        final AddressEntity addressEntity = prepareMockAddressEntity();
 
         //when
         Long checkId = 35L;
@@ -116,88 +86,142 @@ class AddressServiceImplTest {
 
 
     @Test
-    void canFindById() {
-        AddressRequest addressRequest = new AddressRequest();
-        addressRequest.setBuildingNumber("2A");
-        addressRequest.setCity("Zenica");
-        addressRequest.setCountry("Bosna i Hercegovina");
-        addressRequest.setPostcode("72000");
-        addressRequest.setStreet("Makovi");
-        Mockito.when(addressRepository.save(Mockito.any(AddressEntity.class))).thenReturn(mapper.dtoToEntity(addressRequest));
-        underTest.create(addressRequest);
-        Long id = 1L;
-        underTest.findById(id);
-    }
-    @Test
-    @Disabled
-    void canUpdateById() {
+    void canFindAddressEntityById() {
         //given
-        AddressEntity addressEntity = new AddressEntity();
-        addressEntity.setBuildingNumber("2A");
-        addressEntity.setCity("Zenica");
-        addressEntity.setCountry("Bosna i Hercegovina");
-        addressEntity.setPostcode("72000");
-        addressEntity.setStreet("Makovi");
-        addressEntity.setId(1L);
-
-        AddressRequest addressRequest = new AddressRequest();
-        addressRequest.setBuildingNumber("3D");
-        addressRequest.setCity("Sarajevo");
-        addressRequest.setCountry("Bosna i Hercegovina");
-        addressRequest.setPostcode("71000");
-        addressRequest.setStreet("Grbavica");
+        final AddressEntity addressEntity = prepareMockAddressEntity();
 
         //when
-        Long checkId = 1L;
-        addressRepository.findById(checkId);
-        underTest.updateById(checkId, addressRequest);
+        Mockito.when(addressRepository.findById(anyLong())).thenReturn(Optional.of(addressEntity));
 
         //then
-        Mockito.verify(addressRepository).findById(checkId);
-        ArgumentCaptor<AddressEntity> addressEntityArgumentCaptor = ArgumentCaptor.forClass(AddressEntity.class);
-        Mockito.verify(addressRepository).save(addressEntityArgumentCaptor.capture());
-        AddressEntity addressEntityRepo = addressEntityArgumentCaptor.getValue();
-        assertThat(addressEntityRepo.getCity()).isEqualTo(addressRequest.getCity());
-        assertThat(addressEntityRepo.getCountry()).isEqualTo(addressRequest.getCountry());
-        assertThat(addressEntityRepo.getPostcode()).isEqualTo(addressRequest.getPostcode());
-        assertThat(addressEntityRepo.getStreet()).isEqualTo(addressRequest.getStreet());
-        assertThat(addressEntityRepo.getBuildingNumber()).isEqualTo(addressRequest.getBuildingNumber());
+        final AddressResponse actual = realAddressService.findById(1L);
 
+        assertThat(actual.getCity()).isEqualTo(addressEntity.getCity());
+        assertThat(actual.getCountry()).isEqualTo(addressEntity.getCountry());
+        assertThat(actual.getId()).isEqualTo(addressEntity.getId());
+        assertThat(actual.getPostcode()).isEqualTo(addressEntity.getPostcode());
+        assertThat(actual.getStreet()).isEqualTo(addressEntity.getStreet());
+        assertThat(actual.getBuildingNumber()).isEqualTo(addressEntity.getBuildingNumber());
+    }
+    @Test
+    void willThrowExceptionIfIdDoesNotExist() {
+        // when
+        Mockito.when(addressRepository.findById(anyLong())).thenThrow(ApiRequestException.class);
+
+        // then
+        assertThatThrownBy(() -> realAddressService.findById(1L)).isInstanceOf(ApiRequestException.class);
+    }
+
+    @Test
+    void willThrowExceptionWithSpecificMessageIfIdDoesNotExist() {
+        //when
+        Mockito.when(addressRepository.findById(anyLong())).thenThrow(new ApiRequestException("Address with id: {0} does not exist."));
+
+        //then
+        assertThatThrownBy(() -> realAddressService.findById(3L)).hasMessage("Address with id: {0} does not exist.");
     }
 
     @Test
     @Disabled
-    void canUpdateStreetAndBuildingNumberById() {
+    void canUpdateAddressEntityById() {
+        //given
+        final AddressEntity addressEntity = prepareMockAddressEntity();
+
+        //when
+        Mockito.when(addressRepository.findById(anyLong())).thenReturn(Optional.of(addressEntity));
+
+        //then
+        final AddressResponse actual = realAddressService.findById(1L);
+
+        assertThat(actual.getCity()).isEqualTo(addressEntity.getCity());
+        assertThat(actual.getCountry()).isEqualTo(addressEntity.getCountry());
+        assertThat(actual.getId()).isEqualTo(addressEntity.getId());
+        assertThat(actual.getPostcode()).isEqualTo(addressEntity.getPostcode());
+        assertThat(actual.getStreet()).isEqualTo(addressEntity.getStreet());
+        assertThat(actual.getBuildingNumber()).isEqualTo(addressEntity.getBuildingNumber());
     }
 
     @Test
+    @Disabled
+    void canUpdateStreetAndBuildingNumberOfAddressEntityById() {
+    }
+
+    @Test // fix
     void canGetAddressEntityById() {
         //given
-        AddressEntity addressEntity = new AddressEntity();
-        addressEntity.setBuildingNumber("2A");
-        addressEntity.setCity("Zenica");
-        addressEntity.setCountry("Bosna i Hercegovina");
-        addressEntity.setPostcode("72000");
-        addressEntity.setStreet("Makovi");
-        addressEntity.setId(1L);
+        final AddressEntity addressEntity = prepareMockAddressEntity();
 
         //when
-        Long checkId = 1L;
-        addressRepository.findById(checkId);
+        Mockito.when(addressRepository.findById(anyLong())).thenReturn(Optional.of(addressEntity));
 
         //then
-        Mockito.verify(addressRepository).findById(checkId);
+        final AddressEntity actual = realAddressService.getAddressEntityById(222L);
+
+        assertThat(actual.getCity()).isEqualTo(addressEntity.getCity());
+        assertThat(actual.getCountry()).isEqualTo(addressEntity.getCountry());
+        assertThat(actual.getId()).isEqualTo(addressEntity.getId());
+        assertThat(actual.getPostcode()).isEqualTo(addressEntity.getPostcode());
+        assertThat(actual.getStreet()).isEqualTo(addressEntity.getStreet());
+        assertThat(actual.getBuildingNumber()).isEqualTo(addressEntity.getBuildingNumber());
+    }
+    @Test // fix
+    void cannotGetAddressEntityById() {
+        //given
+        final AddressEntity addressEntity = prepareMockAddressEntity();
+
+        //when
+        Mockito.when(addressRepository.findById(anyLong())).thenReturn(Optional.of(addressEntity));
+
+        //then
+        final AddressEntity actual = realAddressService.getAddressEntityById(24L);
+
+        assertThat(actual.getCity()).isEqualTo(addressEntity.getCity());
+        assertThat(actual.getCountry()).isEqualTo(addressEntity.getCountry());
+        assertThat(actual.getId()).isEqualTo(addressEntity.getId());
+        assertThat(actual.getPostcode()).isEqualTo(addressEntity.getPostcode());
+        assertThat(actual.getStreet()).isEqualTo(addressEntity.getStreet());
+        assertThat(actual.getBuildingNumber()).isEqualTo(addressEntity.getBuildingNumber());
     }
 
-    @Test
+    @Test // fix
     void canFindAddressesInTheSameCity() {
         //given
         String city = "Zenica";
+        List<AddressEntity> responseList = new ArrayList<>();
 
         //when
-        List<AddressResponse> responseList = underTest.findAddressesInTheSameCity(city);
+        Mockito.when(addressRepository.findAddressesInTheSameCity(anyString())).thenReturn(responseList);
+        final List<AddressResponse> actual = realAddressService.findAddressesInTheSameCity(city);
 
         //then
         Mockito.verify(addressRepository, Mockito.times(1)).findAddressesInTheSameCity(city);
+        assertThat(actual.size()).isEqualTo(responseList.size());
+    }
+    @Test // fix
+    void cannotFindAddressesInTheSameCity() {
+        //given
+        String city = "Tuzla";
+        List<AddressEntity> responseList = new ArrayList<>();
+
+        //when
+        Mockito.when(addressRepository.findAddressesInTheSameCity(anyString())).thenReturn(responseList);
+        final List<AddressResponse> actual = realAddressService.findAddressesInTheSameCity(city);
+
+        //then
+        Mockito.verify(addressRepository, Mockito.times(1)).findAddressesInTheSameCity(city);
+        assertThat(actual.size()).isEqualTo(responseList.size());
+//        assertThat(actual.contains(city)).isEqualTo(responseList.contains(city));
+    }
+
+    @NotNull
+    private static AddressEntity prepareMockAddressEntity() {
+        AddressEntity addressEntity = new AddressEntity();
+        addressEntity.setBuildingNumber("2A");
+        addressEntity.setCity("Zenica");
+        addressEntity.setCountry("Bosna i Hercegovina");
+        addressEntity.setPostcode("72000");
+        addressEntity.setStreet("Makovi");
+        addressEntity.setId(1L);
+        return addressEntity;
     }
 }
