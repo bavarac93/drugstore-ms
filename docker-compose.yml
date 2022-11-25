@@ -1,5 +1,7 @@
 version: "3.8"
  # update docker-compose to run the image of the db and the image from dockerfile, put them in the same network, set image name
+# update docker-compose to run the image of the db and the image from dockerfile, put them in the same network, set image name
+# update docker-compose to run the image of the db and the image from dockerfile, put them in the same network, set image namegit
 
 services:
   project-dms:
