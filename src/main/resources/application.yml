@@ -1,6 +1,13 @@
 server:
   port: 8080
 
+  info:
+    application:
+      name: drugstore-management-system
+      description: A management system app for drugstores.
+      author: Muharem Spica
+      version: '@project.version@'
+
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
