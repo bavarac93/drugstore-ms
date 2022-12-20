@@ -1,15 +1,23 @@
-The scope of the project
+The Drugstore Management System is a simulated application that allows users to perform various tasks related to managing a drugstore. The system includes features for managing addresses, brands, customers, facilities, inventory, orders, product types, and suppliers.
 
-The Drugstore Management System is simulated in this dummy application. 
-I implemented all CRUD operations for Address, Brand, Customer, Facility, Inventory, Orders, Product Type and Supplier. 
-The Facility basically controls different drugstores. It incorporates the Address, Orders and Inventory. 
-In order to create an item in Inventory, we need to send brandId, productTypeId, and SupplierId. 
-After the successful creation of the item, the aforementioned item is saved with the current timestamp.
-Every variable has its own set of validations.
+The system includes all CRUD operations for each of these entities and allows users to perform a variety of tasks, including:
 
-The application allows you to perform a variety of tasks.
-It is possible to:
-Make a list of addresses in the same city, List all brands in some drugstore, Get a list of customers that are allergic to the same medicine, Get a list of verified customers, Count customers allergic to a specific drug, Get items with specific expiry date, Get a list of products of the same type, Make a list of items made by the same brand, Count items made by the same brand, Find suppliers that signed the contract on a specific date, Find suppliers who contract expires on a specific date, Get items of the same supplier, Count items from the same supplier, Find orders that were made on a specific date, and Make a list of orders made by the same customer.
+Making a list of addresses in the same city
+Listing all brands in a specific drugstore
+Getting a list of customers that are allergic to the same medicine
+Getting a list of verified customers
+Counting customers allergic to a specific drug
+Getting items with specific expiry dates
+Getting a list of products of the same type
+Making a list of items made by the same brand
+Counting items made by the same brand
+Finding suppliers that signed a contract on a specific date
+Finding suppliers whose contract expires on a specific date
+Getting items from the same supplier
+Counting items from the same supplier
+Finding orders that were made on a specific date
+Making a list of orders made by the same customer
+
 
 The developer is assumed to have Java 11 or higher installed. 
 Maven, git, docker, and docker-compose are also required. 
