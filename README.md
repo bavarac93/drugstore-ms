@@ -16,7 +16,7 @@ Maven, git, docker, and docker-compose are also required.
 Keep in mind that you must meet the prerequisites listed above.
 
 In order to start everything up, follow the next steps:
-  1. git clone https://https://github.com/bavarac93/drugstore-ms 
+  1. git clone https://github.com/bavarac93/drugstore-ms 
      This will clone the latest version of the Drugstore Management System to a drugstore-ms folder.
 
   2. Simply cd to the root of the project and docker-compose up --detach. 
