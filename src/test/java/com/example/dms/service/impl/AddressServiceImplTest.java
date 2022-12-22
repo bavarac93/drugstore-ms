@@ -18,6 +18,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -153,16 +154,6 @@ class AddressServiceImplTest {
         addressRequestPatch.setBuildingNumber(updatedBuildingNumber);
         Long id = 1L;
 
-        // Add a null check for the id parameter
-        if (id == null) {
-            throw new IllegalArgumentException("id must not be null");
-        }
-
-        // Add a null check for the addressRequestPatch parameter
-        if (addressRequestPatch == null) {
-            throw new IllegalArgumentException("addressRequestPatch must not be null");
-        }
-
         //when
         Mockito.when(addressRepository.findById(id)).thenReturn(Optional.of(addressEntity));
         final AddressResponse actual = realAddressService.updateStreetAndBuildingNumberById(id, addressRequestPatch);
@@ -176,44 +167,24 @@ class AddressServiceImplTest {
         assertThat(actual.getPostcode()).isEqualTo(addressEntity.getPostcode());
     }
 
-    @Test //fix
-    void canGetAddressEntityById() {
-        //given
-        final AddressEntity addressEntity = prepareMockAddressEntity();
-        addressEntity.setId(98L);
-        addressRepository.save(addressEntity);
-
-        //when
-        final Optional<AddressEntity> optional = addressRepository.findById(98L);
-
-        //then
-        assertThat(optional).isPresent();
-        final AddressEntity actual = optional.get();
-        assertThat(actual.getCity()).isEqualTo(addressEntity.getCity());
-        assertThat(actual.getCountry()).isEqualTo(addressEntity.getCountry());
-        assertThat(actual.getId()).isEqualTo(addressEntity.getId());
-        assertThat(actual.getPostcode()).isEqualTo(addressEntity.getPostcode());
-        assertThat(actual.getStreet()).isEqualTo(addressEntity.getStreet());
-        assertThat(actual.getBuildingNumber()).isEqualTo(addressEntity.getBuildingNumber());
-    }
-
-    @Test // fix
+    @Test
     void cannotGetAddressEntityById() {
-        //given
-        final AddressEntity addressEntity = prepareMockAddressEntity();
+        // given
+        AddressEntity addressEntity = new AddressEntity();
+        addressEntity.setId(333333L);
+        addressEntity.setBuildingNumber("2A");
+        addressEntity.setStreet("Makovi");
+        addressEntity.setCity("Zenica");
+        addressEntity.setPostcode("72000");
+        addressEntity.setCountry("Bosna i Hercegovina");
 
-        //when
-        Mockito.when(addressRepository.findById(anyLong())).thenReturn(Optional.of(addressEntity));
+        // when
+        Mockito.when(addressRepository.findById(anyLong())).thenReturn(Optional.empty());
 
-        //then
-        final AddressEntity actual = realAddressService.getAddressEntityById(24L);
-
-        assertThat(actual.getCity()).isEqualTo(addressEntity.getCity());
-        assertThat(actual.getCountry()).isEqualTo(addressEntity.getCountry());
-        assertThat(actual.getId()).isEqualTo(addressEntity.getId());
-        assertThat(actual.getPostcode()).isEqualTo(addressEntity.getPostcode());
-        assertThat(actual.getStreet()).isEqualTo(addressEntity.getStreet());
-        assertThat(actual.getBuildingNumber()).isEqualTo(addressEntity.getBuildingNumber());
+        // then
+        assertThatThrownBy(() -> realAddressService.findById(13333L))
+                .isInstanceOf(ApiRequestException.class)
+                .hasMessageContaining("Address with id: 13.333 does not exist.");
     }
 
     @Test // fix
@@ -247,14 +218,14 @@ class AddressServiceImplTest {
     }
 
 
-    private static AddressEntity prepareMockAddressEntity() {
+    private AddressEntity prepareMockAddressEntity() {
         AddressEntity addressEntity = new AddressEntity();
+        addressEntity.setId(3L);
         addressEntity.setBuildingNumber("2A");
-        addressEntity.setCity("Zenica");
-        addressEntity.setCountry("Bosna i Hercegovina");
-        addressEntity.setPostcode("72000");
         addressEntity.setStreet("Makovi");
-        addressEntity.setId(1L);
+        addressEntity.setCity("Zenica");
+        addressEntity.setPostcode("72000");
+        addressEntity.setCountry("Bosna i Hercegovina");
         return addressEntity;
     }
 }
